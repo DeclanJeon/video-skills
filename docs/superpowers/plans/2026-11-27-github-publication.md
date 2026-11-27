@@ -23,7 +23,7 @@
 - Remote mismatch: verify public visibility and remote HEAD equals local main.
 
 ## Tasks
-- [ ] Finalize README, ignore policy and public scope documentation; inspect local links.
-- [ ] Initialize root Git, preserve nested HEAD/index, stage explicit ordinary files and audit staged content.
-- [ ] Run existing package/boundary checks, verify frozen post source, create atomic source/docs commits.
-- [ ] Create public remote, push main without force, verify remote visibility/HEAD/README and remaining status.
+- [x] Finalize README, ignore policy and public scope documentation; inspect local links.
+- [x] Initialize root Git, preserve nested HEAD/index, stage explicit ordinary files and audit staged content.
+- [x] Run existing package/boundary checks, verify frozen post source, create atomic source/docs commits.
+- [x] Create public remote, push main without force, verify remote visibility/HEAD/README and remaining status.

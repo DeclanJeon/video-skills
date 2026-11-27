@@ -35,13 +35,13 @@ flowchart LR
     B --> C[📋 승인된 설계·에셋·보드·프롬프트]
     C --> D[🎥 프로덕션]
     D --> E[📦 검증된 소스·Handoff]
-    E -. 명시적 연결·수령 계약 필요 .-> F[🎞️ 포스트프로덕션]
+    E -->|실제 수령·입력 검증| F[🎞️ 포스트프로덕션]
     F --> G[🔎 현재 마스터 QA]
     G --> H[🎬 로컬 납품 번들]
 ```
 
 > [!IMPORTANT]
-> 세 패키지가 존재한다는 사실과 **전체 자동 연결 완료**는 다릅니다. 포스트프로덕션 패키지의 로컬 구현은 완료됐지만, 상위 오케스트레이터의 포스트 연결은 별도 인계·수령 계약을 확인해야 합니다. 소스 준비나 러프 연결본을 최종 납품으로 표시하지 않습니다.
+> 공용 오케스트레이터는 요청한 범위에 따라 프리·프로·포스트의 현재 진입점으로 연결합니다. **연결된 지침과 실제 작품 납품 완료는 다릅니다.** 단계마다 실제 입력·승인·수령·도구·QA를 검증하며, 소스 준비나 러프 연결본을 최종 납품으로 표시하지 않습니다.
 
 ## 🧩 패키지 구성
 
@@ -66,7 +66,7 @@ cd video-skills
 
 - **기획·콘티·프롬프트** → [프리프로덕션 문서](video-preproduction-skills/README.md)
 - **프로덕션 작업 관리** → [프로덕션 운영](video-production-skills/docs/operations.md)
-- **편집·합성·믹싱·납품** → [포스트프로덕션 운영](video-postproduction-skills/docs/operations.md)
+- **편집·합성·믹싱·납품** → [포스트 진입점](video-postproduction-skills/SKILL.md) · [연결·수령 계약](references/postproduction-slot.md) · [포스트프로덕션 운영](video-postproduction-skills/docs/operations.md)
 
 ### 3. 기존 환경에서 로컬 CLI 확인
 
@@ -116,8 +116,8 @@ cd video-skills
 | 문서 | 내용 |
 | :--- | :--- |
 | [공용 진입점](SKILL.md) | 요청 접수·부서 배정·완료 계약 |
-| [단계·인계 계약](references/phase-contract.md) | 프리/프로의 경계와 필수 전달 항목 |
-| [포스트 연결 슬롯](references/postproduction-slot.md) | 기존 연결 전 체크포인트와 필요한 수령 계약 |
+| [단계·인계 계약](references/phase-contract.md) | 프리/프로/포스트의 경계와 필수 전달 항목 |
+| [포스트 연결 계약](references/postproduction-slot.md) | 현재 entry·G5·IntakeRequest·실행·QA·로컬 납품 |
 | [오케스트레이터 설계](docs/design.md) | 공용 계층의 설계와 책임 |
 | [프로덕션 입력 예제](video-production-skills/examples/README.md) | 로컬 계약 예제·미승인 입력 구분 |
 | [포스트 입력 예제](video-postproduction-skills/examples/README.md) | 편집·프로파일·설치 권한 예제 |

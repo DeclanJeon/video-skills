@@ -6,7 +6,7 @@
 - 프리: video-preproduction-skills/production-director/SKILL.md.
 - 프로: video-production-skills/production-supervisor/SKILL.md와 video-production-skills/docs/operations.md.
 - 기존 장비 정본: 이 루트의 형제 ../contents-production-skills/. 각 하위 패키지 README의 옛 ../contents-production-skills는 이관 전 경로다.
-- public entry와 프리/프로/포스트 패키지 디렉터리를 공용·agent 경로에 등록한다. 부서의 자동 호출 금지/미릴리스 상태는 보존한다. 포스트 디렉터리는 현재 SKILL.md가 없어 실행 entry로는 아직 적용되지 않았다. 등록 사실을 배포 검증 완료나 실제 실행 지원으로 재해석하지 않는다.
+- public entry와 프리/프로/포스트 패키지 디렉터리를 공용·agent 경로에서 동일 정본으로 참조한다. 부서의 자동 호출 금지 플래그는 보존하며 배정된 파일을 명시적으로 읽는다. 포스트의 실제 진입점은 video-postproduction-skills/SKILL.md이며 실행·지원·수령·QA는 해당 패키지의 현재 계약으로 검증한다. 등록이나 파일 존재를 실제 작품 실행·납품 검증 완료로 재해석하지 않는다.
 
 요청한 범위만 수행한다. 프롬프트만이면 실제 이미지/음성/영상 생성 없음. 이미지 포함이면 감독의 P5/QA3 실제 산출물 계약을 수행한다. 종합 인계는 영상 프롬프트와 QA4를 포함한 영상 생성 전 설계까지 감독 소유다. QA4 이후 실제 영상 생성과 테이크 검수는 총괄 소유이며 legacy P7은 포스트 대체물이 아니다.
 
@@ -57,4 +57,4 @@ standalone image/web provider는 이번 영상 라우팅의 대상이 아니다.
 
 ## 프로 → 포스트
 
-video-production-skills/docs/operations.md와 video-production-skills/production/handoff.py의 G5를 그대로 적용한다. 수령자·권리 근거·현재 selection/구간·접합·전체 흐름 재생이 없으면 sources_ready일 수 있어도 handoff 완료는 아니다. 진짜 외부 편집 수령자가 명시·승인되었다면 그 근거로 G5를 진행할 수 있다. 슬롯 이름이나 오케스트레이터 자신을 가짜 post receiver로 입력하지 않는다. final 목표는 [포스트 슬롯](postproduction-slot.md)에 따라 유지한다.
+video-production-skills/docs/operations.md와 video-production-skills/production/handoff.py의 G5를 그대로 적용한다. 수령자·권리 근거·현재 selection/구간·접합·전체 흐름 재생이 없으면 sources_ready일 수 있어도 handoff 완료는 아니다. 실제 승인된 편집 수령자의 근거로 G5를 진행하고, 포스트 총괄은 별도 IntakeRequest로 현재 입력을 수령·검증한다. 슬롯 이름이나 오케스트레이터 자신을 가짜 post receiver로 입력하지 않는다. 요청 범위에 후반/최종 영상이 있으면 [포스트 연결 계약](postproduction-slot.md)에 따라 실제 entry → intake/validate → 편집·현재 QA·로컬 납품으로 진행한다. 필수 입력·승인·지원·검수가 부족하면 정확한 단계 차단과 재개점을 남기고 final 목표를 유지한다.

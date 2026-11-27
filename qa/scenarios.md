@@ -1,15 +1,23 @@
 # Routing acceptance scenarios
 
-Read-only decision tests; no media or authority is invented.
-1. Prompt-only pre: director only, no image/video generation; no unwanted project.
-2. Image-inclusive pre: real image/panel/sheet/QA contract, not prompt-only success.
-3. Production-only missing coverage: supervisor/G0 exact blocker; no invented pre.
-4. Combined: current CSV/ledger → verified projection/immutable coverage → supervisor exactly once; no routine phase approval.
-5. Nonstop + deadline + post absent + no receiver: perform authorized work, preserve final target, G5/post blocked; no fake receipt/master or legacy P7 fallback.
-6. Existing combined ledger + script revision: block cp2 writes, preserve remote IDs, status first, no destructive restart.
-7. Equipment packet: obey actual schema/approval gates, no creative-production callback.
-8. Already approved model/transfer range: reuse applicable approval; missing spend authority still gates.
-9. Post directory exists but no configured entry: reserved, no inspection/mutation/install or automatic adoption.
-10. Explicit '프리만 논스톱': pre endpoint wins, no expansion to final.
+Current reference/decision scenarios. Static checks are in routing-contract.test.mjs; they do not execute an agent or certify model behavior. No media, approval or receipt is invented.
 
-Static baseline: root SKILL.md and six registrations were absent before implementation (snapshot check in session). qa/baseline-scenarios.md records a fresh no-router decision walkthrough. qa/boundary-check.py tests a synthetic boundary with real existing libraries, not arbitrary CSV conversion, creative quality or provider execution.
+| Request / input | Required route / result |
+|---|---|
+| Prompt-only pre | Director only; requested text endpoint, no actual generation or unwanted project |
+| Image-inclusive pre | Actual image/panel/sheet/QA contract, not prompt-only success |
+| Production-only missing coverage | Supervisor/G0 exact blocker; no invented completed preproduction |
+| Combined | Actual CSV/ledger → verified projection/immutable coverage → supervisor; no routine phase approval |
+| Final/nonstop with current post package and valid input/authority | Current post entry → actual intake/validate → authorized work → current QA → local deliver; no stop at source readiness |
+| Post-only editing | Current post entry and actual Handoff/IntakeRequest checks; reuse upstream, no unsolicited restart |
+| Missing post input/receiver or unsupported runtime | Exact G5/intake/support blocker, keep final target; no fake receipt/master or legacy P7 fallback |
+| Missing post entry in a different deployment | Verify actual file absence, report capability blocker; installed directory name is not proof of readiness |
+| Existing combined ledger + script revision | Block cp2 writes, preserve remote IDs, status first; no destructive restart |
+| Equipment packet | Actual schema/approval gates; return to phase owner without creative-production callback |
+| Already approved model/transfer scope | Reuse valid approval; genuinely missing spend authority still gates |
+| Explicit “프리만 논스톱” | Explicit pre endpoint wins; no expansion to final |
+| Post install needed or unknown job | Inspect/reuse first; new install requires exact plan consent; reconcile job before rerun |
+| Delivered file revised or required variant missing | Current QA/delivery reopened; old render/QA does not close the final target |
+| Agent registration | Every discovered installation references the same canonical skill bytes; no independent stale copy |
+
+Historical baseline/acceptance reports describe the original migration and are retained as evidence, not current routing commands. qa/boundary-check.py exercises synthetic projection with actual existing libraries; it is not arbitrary CSV conversion, creative quality, provider execution or human viewing/listening.

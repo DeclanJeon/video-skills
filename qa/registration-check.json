@@ -1,0 +1,27 @@
+{
+  "registration": "PASS",
+  "registration_links": 12,
+  "retired_links": 89,
+  "retained_legacy_links": 64,
+  "phase_source_files_compared": 464,
+  "original_snapshot_equality": "FAIL: concurrent preproduction changes observed; not overwritten",
+  "changed_phase_files": [
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-preproduction-skills/CHANGELOG.md",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-preproduction-skills/cinematographer/SKILL.md",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-preproduction-skills/storyboard-artist/SKILL.md",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-preproduction-skills/performance-director/SKILL.md",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-preproduction-skills/assistant-director/SKILL.md",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-preproduction-skills/production-qa/SKILL.md",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-preproduction-skills/film-editor/SKILL.md",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-preproduction-skills/image-prompt-engineer/SKILL.md",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-preproduction-skills/assistant-director/assets/CTY-template.md",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-preproduction-skills/assistant-director/assets/conti-layers-template.yaml",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-preproduction-skills/assistant-director/assets/CNT-template.md",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-preproduction-skills/docs/design/06-image-prompt-spec.md",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-preproduction-skills/docs/design/05-conti-collaboration.md",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-preproduction-skills/docs/design/03-artifact-index.md"
+  ],
+  "concurrent_evidence": "preproduction CHANGELOG 2026-11-27 cut continuity entry; file mtimes 00:06\u201300:09 after snapshot 23:54; no migration edits targeted phase sources",
+  "post": "not inspected or mutated by cutover",
+  "backup": "/home/declan/.local/state/video-skills/20261126T235405"
+}

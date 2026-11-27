@@ -1,0 +1,36 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_backend_when_reusing_existing_self_contained_cli_outside_system_mounts_runs_it _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-324/test_backend_when_reusing_exis0')
+
+    def test_backend_when_reusing_existing_self_contained_cli_outside_system_mounts_runs_it(tmp_path):
+        from test_filmcraft import setup
+        store,_,original,_=setup(tmp_path)
+        target=tmp_path/'portable-existing';target.mkdir()
+        binary=target/'filmcraft-cli';shutil.copy2('/usr/bin/filmcraft-cli',binary)
+        backend=require('backends.filmcraft','FilmCraftBackend')(store,tmp_path/'portable-native',binary)
+>       packet=backend.prepare(original.order,backend.inspect(),store.read_recorded().intake.authority)
+                                              ^^^^^^^^^^^^^^^^^
+
+tests/test_review_portable_smoke.py:32: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = FilmCraftBackend(store=<postproduction.ledger.PostStore object at 0x779da08b8c20>, workspace=PosixPath('/tmp/pytest-of..., binary=PosixPath('/tmp/pytest-of-declan/pytest-324/test_backend_when_reusing_exis0/portable-existing/filmcraft-cli'))
+
+    def inspect(self) -> CapabilitySnapshot:
+        """Query actual installed metadata in a private network-denied session, not a user app bridge."""
+        if any(p.is_symlink() for p in (self.workspace,*self.workspace.parents)):
+            raise ContractError("path", "backend workspace prefix cannot be a symlink")
+        self.workspace.mkdir(exist_ok=True,mode=0o700)
+        owner = uuid4().hex
+        isolated = IsolatedProcess(SandboxScope(self.workspace/f"inspect-{owner}",owner))
+        result = isolated.run((str(self.binary),"--version"))
+        if result.returncode or result.timed_out:
+>           raise ContractError("capability", "existing FilmCraft CLI version probe failed")
+E           postproduction.errors.ContractError: capability: existing FilmCraft CLI version probe failed
+
+postproduction/backends/filmcraft.py:45: ContractError
+=========================== short test summary info ============================
+FAILED tests/test_review_portable_smoke.py::test_backend_when_reusing_existing_self_contained_cli_outside_system_mounts_runs_it
+1 failed in 1.86s

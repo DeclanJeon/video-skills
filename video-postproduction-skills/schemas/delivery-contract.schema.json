@@ -1,0 +1,181 @@
+{
+  "$defs": {
+    "DeliveryRights": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "reported_allowed",
+            "unknown",
+            "denied"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "origin": {
+          "enum": [
+            "reported",
+            "fixture"
+          ],
+          "title": "Origin",
+          "type": "string"
+        },
+        "evidence": {
+          "$ref": "#/$defs/Pin"
+        },
+        "permitted": {
+          "items": {
+            "$ref": "#/$defs/Pin"
+          },
+          "title": "Permitted",
+          "type": "array"
+        }
+      },
+      "required": [
+        "status",
+        "origin",
+        "evidence",
+        "permitted"
+      ],
+      "title": "DeliveryRights",
+      "type": "object"
+    },
+    "Digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "FontPermission": {
+      "additionalProperties": false,
+      "properties": {
+        "font_sha256": {
+          "$ref": "#/$defs/Digest"
+        },
+        "redistribute": {
+          "default": false,
+          "title": "Redistribute",
+          "type": "boolean"
+        },
+        "receiver_present": {
+          "default": false,
+          "title": "Receiver Present",
+          "type": "boolean"
+        },
+        "evidence": {
+          "$ref": "#/$defs/Pin"
+        }
+      },
+      "required": [
+        "font_sha256",
+        "evidence"
+      ],
+      "title": "FontPermission",
+      "type": "object"
+    },
+    "Nonempty": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "Pin": {
+      "additionalProperties": false,
+      "description": "Versioned exact bytes at a safe project-relative POSIX path.",
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "path": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "sha256": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "path",
+        "sha256"
+      ],
+      "title": "Pin",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "mode": {
+      "enum": [
+        "technical_fixture",
+        "reported_release"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "master_only",
+        "editable"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "artifact_id": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "receiver": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "output": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "variants": {
+      "items": {
+        "$ref": "#/$defs/Nonempty"
+      },
+      "title": "Variants",
+      "type": "array"
+    },
+    "include_mix": {
+      "title": "Include Mix",
+      "type": "boolean"
+    },
+    "required_stems": {
+      "items": {
+        "$ref": "#/$defs/Nonempty"
+      },
+      "title": "Required Stems",
+      "type": "array"
+    },
+    "font_permissions": {
+      "items": {
+        "$ref": "#/$defs/FontPermission"
+      },
+      "title": "Font Permissions",
+      "type": "array"
+    },
+    "rights": {
+      "$ref": "#/$defs/DeliveryRights"
+    }
+  },
+  "required": [
+    "id",
+    "mode",
+    "kind",
+    "artifact_id",
+    "receiver",
+    "output",
+    "variants",
+    "include_mix",
+    "required_stems",
+    "font_permissions",
+    "rights"
+  ],
+  "title": "DeliveryContract",
+  "type": "object"
+}

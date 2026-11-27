@@ -1,0 +1,31 @@
+.FF                                                                      [100%]
+=================================== FAILURES ===================================
+________ test_loudness_when_actual_final_misses_profile_cannot_pass_pg5 ________
+
+mismatched = (<postproduction.ledger.PostStore object at 0x7d18a5ed5550>, ArtifactRef(id='FINISH-A1-artifact', job_id='FINISH-A1', ...kind='technical_fixture')), required_total=3, covered_total=3, scope_passed=True, acceptance_kind='technical_fixture'))
+
+    def test_loudness_when_actual_final_misses_profile_cannot_pass_pg5(mismatched):
+        store,artifact,result=mismatched
+>       assert next(g for g in result.gates if g.id=="PG5").status=="fail"
+E       AssertionError: assert <QualityVerdict.PASS: 'pass'> == 'fail'
+E         
+E         - fail
+E         + pass
+
+tests/test_loudness_master.py:31: AssertionError
+_____ test_delivery_when_actual_final_loudness_fails_cannot_publish_bundle _____
+
+mismatched = (<postproduction.ledger.PostStore object at 0x7d18a5ed5550>, ArtifactRef(id='FINISH-A1-artifact', job_id='FINISH-A1', ...kind='technical_fixture')), required_total=3, covered_total=3, scope_passed=True, acceptance_kind='technical_fixture'))
+
+    def test_delivery_when_actual_final_loudness_fails_cannot_publish_bundle(mismatched):
+        store,artifact,result=mismatched
+        c=contract(store,artifact,output="deliveries/loudness-denied")
+>       with pytest.raises(require("errors","ContractError")):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_loudness_master.py:39: Failed
+=========================== short test summary info ============================
+FAILED tests/test_loudness_master.py::test_loudness_when_actual_final_misses_profile_cannot_pass_pg5
+FAILED tests/test_loudness_master.py::test_delivery_when_actual_final_loudness_fails_cannot_publish_bundle
+2 failed, 1 passed in 38.11s

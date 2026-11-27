@@ -1,0 +1,102 @@
+{
+  "$defs": {
+    "Pin": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "minLength": 1,
+          "title": "Version",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "path": {
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "sha256",
+        "path"
+      ],
+      "title": "Pin",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "old_source_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Old Source Hash",
+      "type": "string"
+    },
+    "old_scope_revision": {
+      "minLength": 1,
+      "title": "Old Scope Revision",
+      "type": "string"
+    },
+    "new_source": {
+      "$ref": "#/$defs/Pin"
+    },
+    "new_scope_revision": {
+      "minLength": 1,
+      "title": "New Scope Revision",
+      "type": "string"
+    },
+    "removed": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Removed",
+      "type": "array"
+    },
+    "added": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Added",
+      "type": "array"
+    },
+    "changed": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Changed",
+      "type": "array"
+    },
+    "asset_changes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Asset Changes",
+      "type": "array"
+    },
+    "evidence": {
+      "$ref": "#/$defs/Pin"
+    }
+  },
+  "required": [
+    "old_source_hash",
+    "old_scope_revision",
+    "new_source",
+    "new_scope_revision",
+    "removed",
+    "added",
+    "changed",
+    "asset_changes",
+    "evidence"
+  ],
+  "title": "ScopeGrant",
+  "type": "object"
+}

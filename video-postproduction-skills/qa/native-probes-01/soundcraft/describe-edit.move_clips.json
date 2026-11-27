@@ -1,0 +1,9 @@
+{
+  "id": "edit.move_clips",
+  "label": "Move Clips",
+  "menu": [],
+  "shortcut": null,
+  "params": "{clips?: [id], by?: samples, to?: position for the first clip that can move (Grid modes snap its sync point), track?: where the first clip's track goes; the others keep their distance}",
+  "enabled": false,
+  "disabled_reason": "nothing is selected"
+}

@@ -1,0 +1,43 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_ test_delivery_when_narrow_commit_records_actual_package_without_changing_native_job_facts _
+
+actual = (<postproduction.ledger.PostStore object at 0x783e7b9b0440>, ArtifactRef(id='FINISH-A1-artifact', job_id='FINISH-A1', ...58f4ed9661fdbec59/mix.wav', sha256='7e17d5d9004acb3e70494b9f200fbf423b4b905ec1948fc2e3b332d352b88f2b')), kind='video'))
+
+    def test_delivery_when_narrow_commit_records_actual_package_without_changing_native_job_facts(actual):
+        store,artifact=actual;c=contract(store,artifact,id="RECORDED",output="deliveries/recorded")
+        before=store.read_recorded()
+>       record=store.record_delivery(c,before.revision)
+               ^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'PostStore' object has no attribute 'record_delivery'. Did you mean: 'record_review'?
+
+tests/test_delivery.py:71: AttributeError
+_____ test_delivery_when_generic_transaction_cannot_forge_delivered_status _____
+
+actual = (<postproduction.ledger.PostStore object at 0x783e7b9b0440>, ArtifactRef(id='FINISH-A1-artifact', job_id='FINISH-A1', ...58f4ed9661fdbec59/mix.wav', sha256='7e17d5d9004acb3e70494b9f200fbf423b4b905ec1948fc2e3b332d352b88f2b')), kind='video'))
+
+    def test_delivery_when_generic_transaction_cannot_forge_delivered_status(actual):
+        store,artifact=actual;c=contract(store,artifact,id="FAKE-GENERIC",output="deliveries/generic-data")
+        bundle=require("delivery","build_delivery")(store.read_recorded(),c,store.path)
+>       record=require("delivery_models","DeliveryRecord")(contract=c,bundle=bundle)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_delivery.py:80: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'delivery_models', name = 'DeliveryRecord'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+            pytest.fail(f"implementation module missing: {exc}")
+        if not hasattr(loaded,name):
+>           pytest.fail(f"public contract missing: {module}.{name}")
+E           Failed: public contract missing: delivery_models.DeliveryRecord
+
+tests/conftest.py:12: Failed
+=========================== short test summary info ============================
+FAILED tests/test_delivery.py::test_delivery_when_narrow_commit_records_actual_package_without_changing_native_job_facts
+FAILED tests/test_delivery.py::test_delivery_when_generic_transaction_cannot_forge_delivered_status
+2 failed, 7 deselected in 32.68s

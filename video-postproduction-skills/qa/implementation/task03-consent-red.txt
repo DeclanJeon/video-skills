@@ -1,0 +1,1992 @@
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                                           [100%]
+=================================== FAILURES ===================================
+_______________ test_install_when_no_question_or_consent_exists ________________
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_install_when_no_question_or_consent_exists():
+>       h=missing_host();p=plan(h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+________ test_install_when_answer_exists_without_actual_question_record ________
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_install_when_answer_exists_without_actual_question_record():
+>       h=missing_host();p=plan(h);a=authority(p,h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+____________ test_install_when_question_was_only_prepared_not_asked ____________
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_install_when_question_was_only_prepared_not_asked():
+>       h=missing_host();p=plan(h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_exact_question_response_and_scope_match[approve-approved] __
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+answer = 'approve', status = 'approved'
+
+    @pytest.mark.parametrize("answer,status",[("approve","approved"),("decline","declined")])
+    def test_install_when_exact_question_response_and_scope_match(answer,status):
+>       h=missing_host();p=plan(h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_exact_question_response_and_scope_match[decline-declined] __
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+answer = 'decline', status = 'declined'
+
+    @pytest.mark.parametrize("answer,status",[("approve","approved"),("decline","declined")])
+    def test_install_when_exact_question_response_and_scope_match(answer,status):
+>       h=missing_host();p=plan(h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_plan_changes_after_question_requires_new_consent[change0] __
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+change = {'version': 'new-version'}
+
+    @pytest.mark.parametrize("change",[
+        {"version":"new-version"},{"dependencies":[{"name":"runtime","version":"2","write_paths":["/fixture/runtime"]}]},
+        {"write_paths":["/usr/local/changed"]},{"permissions":["admin"]},
+        {"network_hosts":["fixture.invalid","extra.invalid"]},{"cost":"10"},
+        {"source_url":"https://fixture.invalid/different.deb"},{"source_sha256":"e"*64},
+        {"license_steps":["operator must accept new license"]},{"existing_change":"upgrade"},
+        {"estimated_download_bytes":9999},{"system":"Darwin"},{"architecture":"arm64"},
+    ])
+    def test_install_when_plan_changes_after_question_requires_new_consent(change):
+>       h=missing_host();p=plan(h);a=authority(p,h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_plan_changes_after_question_requires_new_consent[change1] __
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+change = {'dependencies': [{'name': 'runtime', 'version': '2', 'write_paths': ['/fixture/runtime']}]}
+
+    @pytest.mark.parametrize("change",[
+        {"version":"new-version"},{"dependencies":[{"name":"runtime","version":"2","write_paths":["/fixture/runtime"]}]},
+        {"write_paths":["/usr/local/changed"]},{"permissions":["admin"]},
+        {"network_hosts":["fixture.invalid","extra.invalid"]},{"cost":"10"},
+        {"source_url":"https://fixture.invalid/different.deb"},{"source_sha256":"e"*64},
+        {"license_steps":["operator must accept new license"]},{"existing_change":"upgrade"},
+        {"estimated_download_bytes":9999},{"system":"Darwin"},{"architecture":"arm64"},
+    ])
+    def test_install_when_plan_changes_after_question_requires_new_consent(change):
+>       h=missing_host();p=plan(h);a=authority(p,h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_plan_changes_after_question_requires_new_consent[change2] __
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+change = {'write_paths': ['/usr/local/changed']}
+
+    @pytest.mark.parametrize("change",[
+        {"version":"new-version"},{"dependencies":[{"name":"runtime","version":"2","write_paths":["/fixture/runtime"]}]},
+        {"write_paths":["/usr/local/changed"]},{"permissions":["admin"]},
+        {"network_hosts":["fixture.invalid","extra.invalid"]},{"cost":"10"},
+        {"source_url":"https://fixture.invalid/different.deb"},{"source_sha256":"e"*64},
+        {"license_steps":["operator must accept new license"]},{"existing_change":"upgrade"},
+        {"estimated_download_bytes":9999},{"system":"Darwin"},{"architecture":"arm64"},
+    ])
+    def test_install_when_plan_changes_after_question_requires_new_consent(change):
+>       h=missing_host();p=plan(h);a=authority(p,h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_plan_changes_after_question_requires_new_consent[change3] __
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+change = {'permissions': ['admin']}
+
+    @pytest.mark.parametrize("change",[
+        {"version":"new-version"},{"dependencies":[{"name":"runtime","version":"2","write_paths":["/fixture/runtime"]}]},
+        {"write_paths":["/usr/local/changed"]},{"permissions":["admin"]},
+        {"network_hosts":["fixture.invalid","extra.invalid"]},{"cost":"10"},
+        {"source_url":"https://fixture.invalid/different.deb"},{"source_sha256":"e"*64},
+        {"license_steps":["operator must accept new license"]},{"existing_change":"upgrade"},
+        {"estimated_download_bytes":9999},{"system":"Darwin"},{"architecture":"arm64"},
+    ])
+    def test_install_when_plan_changes_after_question_requires_new_consent(change):
+>       h=missing_host();p=plan(h);a=authority(p,h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_plan_changes_after_question_requires_new_consent[change4] __
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+change = {'network_hosts': ['fixture.invalid', 'extra.invalid']}
+
+    @pytest.mark.parametrize("change",[
+        {"version":"new-version"},{"dependencies":[{"name":"runtime","version":"2","write_paths":["/fixture/runtime"]}]},
+        {"write_paths":["/usr/local/changed"]},{"permissions":["admin"]},
+        {"network_hosts":["fixture.invalid","extra.invalid"]},{"cost":"10"},
+        {"source_url":"https://fixture.invalid/different.deb"},{"source_sha256":"e"*64},
+        {"license_steps":["operator must accept new license"]},{"existing_change":"upgrade"},
+        {"estimated_download_bytes":9999},{"system":"Darwin"},{"architecture":"arm64"},
+    ])
+    def test_install_when_plan_changes_after_question_requires_new_consent(change):
+>       h=missing_host();p=plan(h);a=authority(p,h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_plan_changes_after_question_requires_new_consent[change5] __
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+change = {'cost': '10'}
+
+    @pytest.mark.parametrize("change",[
+        {"version":"new-version"},{"dependencies":[{"name":"runtime","version":"2","write_paths":["/fixture/runtime"]}]},
+        {"write_paths":["/usr/local/changed"]},{"permissions":["admin"]},
+        {"network_hosts":["fixture.invalid","extra.invalid"]},{"cost":"10"},
+        {"source_url":"https://fixture.invalid/different.deb"},{"source_sha256":"e"*64},
+        {"license_steps":["operator must accept new license"]},{"existing_change":"upgrade"},
+        {"estimated_download_bytes":9999},{"system":"Darwin"},{"architecture":"arm64"},
+    ])
+    def test_install_when_plan_changes_after_question_requires_new_consent(change):
+>       h=missing_host();p=plan(h);a=authority(p,h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_plan_changes_after_question_requires_new_consent[change6] __
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+change = {'source_url': 'https://fixture.invalid/different.deb'}
+
+    @pytest.mark.parametrize("change",[
+        {"version":"new-version"},{"dependencies":[{"name":"runtime","version":"2","write_paths":["/fixture/runtime"]}]},
+        {"write_paths":["/usr/local/changed"]},{"permissions":["admin"]},
+        {"network_hosts":["fixture.invalid","extra.invalid"]},{"cost":"10"},
+        {"source_url":"https://fixture.invalid/different.deb"},{"source_sha256":"e"*64},
+        {"license_steps":["operator must accept new license"]},{"existing_change":"upgrade"},
+        {"estimated_download_bytes":9999},{"system":"Darwin"},{"architecture":"arm64"},
+    ])
+    def test_install_when_plan_changes_after_question_requires_new_consent(change):
+>       h=missing_host();p=plan(h);a=authority(p,h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_plan_changes_after_question_requires_new_consent[change7] __
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+change = {'source_sha256': 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'}
+
+    @pytest.mark.parametrize("change",[
+        {"version":"new-version"},{"dependencies":[{"name":"runtime","version":"2","write_paths":["/fixture/runtime"]}]},
+        {"write_paths":["/usr/local/changed"]},{"permissions":["admin"]},
+        {"network_hosts":["fixture.invalid","extra.invalid"]},{"cost":"10"},
+        {"source_url":"https://fixture.invalid/different.deb"},{"source_sha256":"e"*64},
+        {"license_steps":["operator must accept new license"]},{"existing_change":"upgrade"},
+        {"estimated_download_bytes":9999},{"system":"Darwin"},{"architecture":"arm64"},
+    ])
+    def test_install_when_plan_changes_after_question_requires_new_consent(change):
+>       h=missing_host();p=plan(h);a=authority(p,h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_plan_changes_after_question_requires_new_consent[change8] __
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+change = {'license_steps': ['operator must accept new license']}
+
+    @pytest.mark.parametrize("change",[
+        {"version":"new-version"},{"dependencies":[{"name":"runtime","version":"2","write_paths":["/fixture/runtime"]}]},
+        {"write_paths":["/usr/local/changed"]},{"permissions":["admin"]},
+        {"network_hosts":["fixture.invalid","extra.invalid"]},{"cost":"10"},
+        {"source_url":"https://fixture.invalid/different.deb"},{"source_sha256":"e"*64},
+        {"license_steps":["operator must accept new license"]},{"existing_change":"upgrade"},
+        {"estimated_download_bytes":9999},{"system":"Darwin"},{"architecture":"arm64"},
+    ])
+    def test_install_when_plan_changes_after_question_requires_new_consent(change):
+>       h=missing_host();p=plan(h);a=authority(p,h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_plan_changes_after_question_requires_new_consent[change9] __
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+change = {'existing_change': 'upgrade'}
+
+    @pytest.mark.parametrize("change",[
+        {"version":"new-version"},{"dependencies":[{"name":"runtime","version":"2","write_paths":["/fixture/runtime"]}]},
+        {"write_paths":["/usr/local/changed"]},{"permissions":["admin"]},
+        {"network_hosts":["fixture.invalid","extra.invalid"]},{"cost":"10"},
+        {"source_url":"https://fixture.invalid/different.deb"},{"source_sha256":"e"*64},
+        {"license_steps":["operator must accept new license"]},{"existing_change":"upgrade"},
+        {"estimated_download_bytes":9999},{"system":"Darwin"},{"architecture":"arm64"},
+    ])
+    def test_install_when_plan_changes_after_question_requires_new_consent(change):
+>       h=missing_host();p=plan(h);a=authority(p,h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_plan_changes_after_question_requires_new_consent[change10] _
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+change = {'estimated_download_bytes': 9999}
+
+    @pytest.mark.parametrize("change",[
+        {"version":"new-version"},{"dependencies":[{"name":"runtime","version":"2","write_paths":["/fixture/runtime"]}]},
+        {"write_paths":["/usr/local/changed"]},{"permissions":["admin"]},
+        {"network_hosts":["fixture.invalid","extra.invalid"]},{"cost":"10"},
+        {"source_url":"https://fixture.invalid/different.deb"},{"source_sha256":"e"*64},
+        {"license_steps":["operator must accept new license"]},{"existing_change":"upgrade"},
+        {"estimated_download_bytes":9999},{"system":"Darwin"},{"architecture":"arm64"},
+    ])
+    def test_install_when_plan_changes_after_question_requires_new_consent(change):
+>       h=missing_host();p=plan(h);a=authority(p,h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_plan_changes_after_question_requires_new_consent[change11] _
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+change = {'system': 'Darwin'}
+
+    @pytest.mark.parametrize("change",[
+        {"version":"new-version"},{"dependencies":[{"name":"runtime","version":"2","write_paths":["/fixture/runtime"]}]},
+        {"write_paths":["/usr/local/changed"]},{"permissions":["admin"]},
+        {"network_hosts":["fixture.invalid","extra.invalid"]},{"cost":"10"},
+        {"source_url":"https://fixture.invalid/different.deb"},{"source_sha256":"e"*64},
+        {"license_steps":["operator must accept new license"]},{"existing_change":"upgrade"},
+        {"estimated_download_bytes":9999},{"system":"Darwin"},{"architecture":"arm64"},
+    ])
+    def test_install_when_plan_changes_after_question_requires_new_consent(change):
+>       h=missing_host();p=plan(h);a=authority(p,h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_plan_changes_after_question_requires_new_consent[change12] _
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+change = {'architecture': 'arm64'}
+
+    @pytest.mark.parametrize("change",[
+        {"version":"new-version"},{"dependencies":[{"name":"runtime","version":"2","write_paths":["/fixture/runtime"]}]},
+        {"write_paths":["/usr/local/changed"]},{"permissions":["admin"]},
+        {"network_hosts":["fixture.invalid","extra.invalid"]},{"cost":"10"},
+        {"source_url":"https://fixture.invalid/different.deb"},{"source_sha256":"e"*64},
+        {"license_steps":["operator must accept new license"]},{"existing_change":"upgrade"},
+        {"estimated_download_bytes":9999},{"system":"Darwin"},{"architecture":"arm64"},
+    ])
+    def test_install_when_plan_changes_after_question_requires_new_consent(change):
+>       h=missing_host();p=plan(h);a=authority(p,h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_response_belongs_to_other_question_host_or_plan[host_id-ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff] _
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+field = 'host_id'
+value = 'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
+
+    @pytest.mark.parametrize("field,value",[("host_id","f"*64),("question_id","other-question"),
+        ("question_ref","other-message"),("plan_digest","a"*64),("channel","operator_message")])
+    def test_install_when_response_belongs_to_other_question_host_or_plan(field,value):
+>       h=missing_host();p=plan(h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:88: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_response_belongs_to_other_question_host_or_plan[question_id-other-question] _
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+field = 'question_id', value = 'other-question'
+
+    @pytest.mark.parametrize("field,value",[("host_id","f"*64),("question_id","other-question"),
+        ("question_ref","other-message"),("plan_digest","a"*64),("channel","operator_message")])
+    def test_install_when_response_belongs_to_other_question_host_or_plan(field,value):
+>       h=missing_host();p=plan(h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:88: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_response_belongs_to_other_question_host_or_plan[question_ref-other-message] _
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+field = 'question_ref', value = 'other-message'
+
+    @pytest.mark.parametrize("field,value",[("host_id","f"*64),("question_id","other-question"),
+        ("question_ref","other-message"),("plan_digest","a"*64),("channel","operator_message")])
+    def test_install_when_response_belongs_to_other_question_host_or_plan(field,value):
+>       h=missing_host();p=plan(h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:88: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_response_belongs_to_other_question_host_or_plan[plan_digest-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa] _
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+field = 'plan_digest'
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+    @pytest.mark.parametrize("field,value",[("host_id","f"*64),("question_id","other-question"),
+        ("question_ref","other-message"),("plan_digest","a"*64),("channel","operator_message")])
+    def test_install_when_response_belongs_to_other_question_host_or_plan(field,value):
+>       h=missing_host();p=plan(h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:88: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_response_belongs_to_other_question_host_or_plan[channel-operator_message] _
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+field = 'channel', value = 'operator_message'
+
+    @pytest.mark.parametrize("field,value",[("host_id","f"*64),("question_id","other-question"),
+        ("question_ref","other-message"),("plan_digest","a"*64),("channel","operator_message")])
+    def test_install_when_response_belongs_to_other_question_host_or_plan(field,value):
+>       h=missing_host();p=plan(h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:88: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_________ test_install_when_question_text_was_not_the_full_exact_plan __________
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_install_when_question_text_was_not_the_full_exact_plan():
+>       h=missing_host();p=plan(h);a=authority(p,h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:94: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+___________ test_install_when_host_inventory_changed_since_approval ____________
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_install_when_host_inventory_changed_since_approval():
+>       h=missing_host();p=plan(h);a=authority(p,h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:102: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+_ test_install_when_generic_authority_is_not_a_real_question_response[goal_activated] _
+
+module = 'environment.consent_models', name = 'InstallAuthority'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+field = 'goal_activated'
+
+    @pytest.mark.parametrize("field",["goal_activated","free_policy","yes","project_local"])
+    def test_install_when_generic_authority_is_not_a_real_question_response(field):
+        with pytest.raises(ValidationError):
+>           require("environment.consent_models","InstallAuthority").model_validate_json(json.dumps({field:True}))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_install_consent.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent_models', name = 'InstallAuthority'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent_models'
+
+tests/conftest.py:10: Failed
+_ test_install_when_generic_authority_is_not_a_real_question_response[free_policy] _
+
+module = 'environment.consent_models', name = 'InstallAuthority'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+field = 'free_policy'
+
+    @pytest.mark.parametrize("field",["goal_activated","free_policy","yes","project_local"])
+    def test_install_when_generic_authority_is_not_a_real_question_response(field):
+        with pytest.raises(ValidationError):
+>           require("environment.consent_models","InstallAuthority").model_validate_json(json.dumps({field:True}))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_install_consent.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent_models', name = 'InstallAuthority'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent_models'
+
+tests/conftest.py:10: Failed
+___ test_install_when_generic_authority_is_not_a_real_question_response[yes] ___
+
+module = 'environment.consent_models', name = 'InstallAuthority'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+field = 'yes'
+
+    @pytest.mark.parametrize("field",["goal_activated","free_policy","yes","project_local"])
+    def test_install_when_generic_authority_is_not_a_real_question_response(field):
+        with pytest.raises(ValidationError):
+>           require("environment.consent_models","InstallAuthority").model_validate_json(json.dumps({field:True}))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_install_consent.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent_models', name = 'InstallAuthority'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent_models'
+
+tests/conftest.py:10: Failed
+_ test_install_when_generic_authority_is_not_a_real_question_response[project_local] _
+
+module = 'environment.consent_models', name = 'InstallAuthority'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+field = 'project_local'
+
+    @pytest.mark.parametrize("field",["goal_activated","free_policy","yes","project_local"])
+    def test_install_when_generic_authority_is_not_a_real_question_response(field):
+        with pytest.raises(ValidationError):
+>           require("environment.consent_models","InstallAuthority").model_validate_json(json.dumps({field:True}))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_install_consent.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent_models', name = 'InstallAuthority'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent_models'
+
+tests/conftest.py:10: Failed
+_____ test_install_when_question_contains_every_scope_and_cost_disclosure ______
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.consent', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.consent'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_install_when_question_contains_every_scope_and_cost_disclosure():
+>       h=missing_host();p=plan(h)
+                           ^^^^^^^
+
+tests/test_install_consent.py:115: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_install_consent.py:16: in plan
+    "host_fingerprint":require("environment.consent","host_fingerprint")(snapshot),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.consent', name = 'host_fingerprint'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.consent'
+
+tests/conftest.py:10: Failed
+=========================== short test summary info ============================
+FAILED tests/test_install_consent.py::test_install_when_no_question_or_consent_exists
+FAILED tests/test_install_consent.py::test_install_when_answer_exists_without_actual_question_record
+FAILED tests/test_install_consent.py::test_install_when_question_was_only_prepared_not_asked
+FAILED tests/test_install_consent.py::test_install_when_exact_question_response_and_scope_match[approve-approved]
+FAILED tests/test_install_consent.py::test_install_when_exact_question_response_and_scope_match[decline-declined]
+FAILED tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change0]
+FAILED tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change1]
+FAILED tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change2]
+FAILED tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change3]
+FAILED tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change4]
+FAILED tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change5]
+FAILED tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change6]
+FAILED tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change7]
+FAILED tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change8]
+FAILED tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change9]
+FAILED tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change10]
+FAILED tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change11]
+FAILED tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change12]
+FAILED tests/test_install_consent.py::test_install_when_response_belongs_to_other_question_host_or_plan[host_id-ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff]
+FAILED tests/test_install_consent.py::test_install_when_response_belongs_to_other_question_host_or_plan[question_id-other-question]
+FAILED tests/test_install_consent.py::test_install_when_response_belongs_to_other_question_host_or_plan[question_ref-other-message]
+FAILED tests/test_install_consent.py::test_install_when_response_belongs_to_other_question_host_or_plan[plan_digest-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa]
+FAILED tests/test_install_consent.py::test_install_when_response_belongs_to_other_question_host_or_plan[channel-operator_message]
+FAILED tests/test_install_consent.py::test_install_when_question_text_was_not_the_full_exact_plan
+FAILED tests/test_install_consent.py::test_install_when_host_inventory_changed_since_approval
+FAILED tests/test_install_consent.py::test_install_when_generic_authority_is_not_a_real_question_response[goal_activated]
+FAILED tests/test_install_consent.py::test_install_when_generic_authority_is_not_a_real_question_response[free_policy]
+FAILED tests/test_install_consent.py::test_install_when_generic_authority_is_not_a_real_question_response[yes]
+FAILED tests/test_install_consent.py::test_install_when_generic_authority_is_not_a_real_question_response[project_local]
+FAILED tests/test_install_consent.py::test_install_when_question_contains_every_scope_and_cost_disclosure
+30 failed in 0.46s

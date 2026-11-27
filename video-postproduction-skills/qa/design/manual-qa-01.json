@@ -1,0 +1,97 @@
+{
+  "checked_at": "2026-11-26T14:37:33.972141+00:00",
+  "scope_sha256": "28f273f73131f75ac05d3d14ce36528212e0fd3300308be78a91c6cd24ed153e",
+  "scope_files": 10,
+  "rows": [
+    {
+      "id": "Q01",
+      "check": "Frozen design/source inventory hashes",
+      "observed": "10/10 match",
+      "verdict": "PASS",
+      "artifact": "qa/design/draft-scope.sha256"
+    },
+    {
+      "id": "Q02",
+      "check": "Local Markdown links",
+      "observed": "missing 0",
+      "verdict": "PASS",
+      "artifact": "README.md and docs/"
+    },
+    {
+      "id": "Q03",
+      "check": "Proposed roles and planned acceptance IDs",
+      "observed": "8 unique roles; P01-P50 exact, executed 0",
+      "verdict": "PASS",
+      "artifact": "docs/design/00-overview.md; docs/design/05-validation-and-decisions.md"
+    },
+    {
+      "id": "Q04",
+      "check": "Protected template/CSV/production sources",
+      "observed": "216/216 SHA match",
+      "verdict": "PASS",
+      "artifact": "qa/design/protected-inputs.json"
+    },
+    {
+      "id": "Q05",
+      "check": "Installed CLI claims vs recorded binary and metadata",
+      "observed": "3 unchanged binaries; help metadata exit0 and counts718/766/483 consistent; render not certified",
+      "verdict": "PASS",
+      "artifact": "qa/design/discovery.json; *-command-ids.json; *-cli-help.txt"
+    },
+    {
+      "id": "Q06",
+      "check": "No implementation/template binary delivery added",
+      "observed": "no runtime code/installers/source images/videos/templates in design tree",
+      "verdict": "PASS",
+      "artifact": "qa/design/inventory-at-qa-01.txt"
+    },
+    {
+      "id": "Q07",
+      "check": "Design scenario trace (not runtime execution)",
+      "observed": "Path/invariants located; runtime unverified",
+      "verdict": "PASS",
+      "artifact": "qa/design/manual-trace-01.md"
+    },
+    {
+      "id": "Q08",
+      "check": "Design scenario trace (not runtime execution)",
+      "observed": "Path/invariants located; runtime unverified",
+      "verdict": "PASS",
+      "artifact": "qa/design/manual-trace-01.md"
+    },
+    {
+      "id": "Q09",
+      "check": "Design scenario trace (not runtime execution)",
+      "observed": "Path/invariants located; runtime unverified",
+      "verdict": "PASS",
+      "artifact": "qa/design/manual-trace-01.md"
+    },
+    {
+      "id": "Q10",
+      "check": "Design scenario trace (not runtime execution)",
+      "observed": "Path/invariants located; runtime unverified",
+      "verdict": "PASS",
+      "artifact": "qa/design/manual-trace-01.md"
+    },
+    {
+      "id": "Q11",
+      "check": "Design scenario trace (not runtime execution)",
+      "observed": "Path/invariants located; runtime unverified",
+      "verdict": "PASS",
+      "artifact": "qa/design/manual-trace-01.md"
+    },
+    {
+      "id": "Q12",
+      "check": "Design scenario trace (not runtime execution)",
+      "observed": "Path/invariants located; runtime unverified",
+      "verdict": "PASS",
+      "artifact": "qa/design/manual-trace-01.md"
+    }
+  ],
+  "surface": "design artifacts and source/evidence consistency only",
+  "runtime_tests_executed": 0,
+  "native_render_certified": false,
+  "installed": false,
+  "independent_gate": "pending",
+  "spec_edited": false
+}

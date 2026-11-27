@@ -1,0 +1,282 @@
+FFFFFFFF.                                                                [100%]
+=================================== FAILURES ===================================
+_ test_acceptance_when_real_node_results_are_present_it_reports_qualified_scope _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-284/test_acceptance_when_real_node0')
+
+    def test_acceptance_when_real_node_results_are_present_it_reports_qualified_scope(tmp_path):
+>       paths=fixtures(tmp_path)
+              ^^^^^^^^^^^^^^^^^^
+
+tests/test_acceptance.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_acceptance.py:18: in fixtures
+    scope=root/'qa/source-scope.json';scope.write_text(require('source_scope','snapshot')(root).model_dump_json())
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/source_scope.py:19: in snapshot
+    files = tuple(Pin(path=p.relative_to(root).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+            ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+.0 = <list_iterator object at 0x741e4ae7ca60>
+
+>   files = tuple(Pin(path=p.relative_to(root).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                  for p in sorted(paths))
+E   pydantic_core._pydantic_core.ValidationError: 2 validation errors for Pin
+E   id
+E     Field required [type=missing, input_value={'path': 'tests/test_fixt...f94d59c09dce11fd3483cb'}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/missing
+E   version
+E     Field required [type=missing, input_value={'path': 'tests/test_fixt...f94d59c09dce11fd3483cb'}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+postproduction/source_scope.py:19: ValidationError
+_ test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails[missing-id] _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-284/test_acceptance_when_mapping_e0')
+damage = 'missing-id'
+
+    @pytest.mark.parametrize('damage',['missing-id','missing-node','failed-node','skipped-node','setup-error','changed-source','truncated-results'])
+    def test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails(tmp_path,damage):
+>       mapping,results,scope=fixtures(tmp_path)
+                              ^^^^^^^^^^^^^^^^^^
+
+tests/test_acceptance.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_acceptance.py:18: in fixtures
+    scope=root/'qa/source-scope.json';scope.write_text(require('source_scope','snapshot')(root).model_dump_json())
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/source_scope.py:19: in snapshot
+    files = tuple(Pin(path=p.relative_to(root).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+            ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+.0 = <list_iterator object at 0x741e4ae96620>
+
+>   files = tuple(Pin(path=p.relative_to(root).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                  for p in sorted(paths))
+E   pydantic_core._pydantic_core.ValidationError: 2 validation errors for Pin
+E   id
+E     Field required [type=missing, input_value={'path': 'tests/test_fixt...f94d59c09dce11fd3483cb'}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/missing
+E   version
+E     Field required [type=missing, input_value={'path': 'tests/test_fixt...f94d59c09dce11fd3483cb'}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+postproduction/source_scope.py:19: ValidationError
+_ test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails[missing-node] _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-284/test_acceptance_when_mapping_e1')
+damage = 'missing-node'
+
+    @pytest.mark.parametrize('damage',['missing-id','missing-node','failed-node','skipped-node','setup-error','changed-source','truncated-results'])
+    def test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails(tmp_path,damage):
+>       mapping,results,scope=fixtures(tmp_path)
+                              ^^^^^^^^^^^^^^^^^^
+
+tests/test_acceptance.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_acceptance.py:18: in fixtures
+    scope=root/'qa/source-scope.json';scope.write_text(require('source_scope','snapshot')(root).model_dump_json())
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/source_scope.py:19: in snapshot
+    files = tuple(Pin(path=p.relative_to(root).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+            ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+.0 = <list_iterator object at 0x741e4ae97160>
+
+>   files = tuple(Pin(path=p.relative_to(root).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                  for p in sorted(paths))
+E   pydantic_core._pydantic_core.ValidationError: 2 validation errors for Pin
+E   id
+E     Field required [type=missing, input_value={'path': 'tests/test_fixt...f94d59c09dce11fd3483cb'}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/missing
+E   version
+E     Field required [type=missing, input_value={'path': 'tests/test_fixt...f94d59c09dce11fd3483cb'}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+postproduction/source_scope.py:19: ValidationError
+_ test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails[failed-node] _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-284/test_acceptance_when_mapping_e2')
+damage = 'failed-node'
+
+    @pytest.mark.parametrize('damage',['missing-id','missing-node','failed-node','skipped-node','setup-error','changed-source','truncated-results'])
+    def test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails(tmp_path,damage):
+>       mapping,results,scope=fixtures(tmp_path)
+                              ^^^^^^^^^^^^^^^^^^
+
+tests/test_acceptance.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_acceptance.py:18: in fixtures
+    scope=root/'qa/source-scope.json';scope.write_text(require('source_scope','snapshot')(root).model_dump_json())
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/source_scope.py:19: in snapshot
+    files = tuple(Pin(path=p.relative_to(root).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+            ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+.0 = <list_iterator object at 0x741e4ac978b0>
+
+>   files = tuple(Pin(path=p.relative_to(root).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                  for p in sorted(paths))
+E   pydantic_core._pydantic_core.ValidationError: 2 validation errors for Pin
+E   id
+E     Field required [type=missing, input_value={'path': 'tests/test_fixt...f94d59c09dce11fd3483cb'}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/missing
+E   version
+E     Field required [type=missing, input_value={'path': 'tests/test_fixt...f94d59c09dce11fd3483cb'}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+postproduction/source_scope.py:19: ValidationError
+_ test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails[skipped-node] _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-284/test_acceptance_when_mapping_e3')
+damage = 'skipped-node'
+
+    @pytest.mark.parametrize('damage',['missing-id','missing-node','failed-node','skipped-node','setup-error','changed-source','truncated-results'])
+    def test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails(tmp_path,damage):
+>       mapping,results,scope=fixtures(tmp_path)
+                              ^^^^^^^^^^^^^^^^^^
+
+tests/test_acceptance.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_acceptance.py:18: in fixtures
+    scope=root/'qa/source-scope.json';scope.write_text(require('source_scope','snapshot')(root).model_dump_json())
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/source_scope.py:19: in snapshot
+    files = tuple(Pin(path=p.relative_to(root).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+            ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+.0 = <list_iterator object at 0x741e4acf5c90>
+
+>   files = tuple(Pin(path=p.relative_to(root).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                  for p in sorted(paths))
+E   pydantic_core._pydantic_core.ValidationError: 2 validation errors for Pin
+E   id
+E     Field required [type=missing, input_value={'path': 'tests/test_fixt...f94d59c09dce11fd3483cb'}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/missing
+E   version
+E     Field required [type=missing, input_value={'path': 'tests/test_fixt...f94d59c09dce11fd3483cb'}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+postproduction/source_scope.py:19: ValidationError
+_ test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails[setup-error] _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-284/test_acceptance_when_mapping_e4')
+damage = 'setup-error'
+
+    @pytest.mark.parametrize('damage',['missing-id','missing-node','failed-node','skipped-node','setup-error','changed-source','truncated-results'])
+    def test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails(tmp_path,damage):
+>       mapping,results,scope=fixtures(tmp_path)
+                              ^^^^^^^^^^^^^^^^^^
+
+tests/test_acceptance.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_acceptance.py:18: in fixtures
+    scope=root/'qa/source-scope.json';scope.write_text(require('source_scope','snapshot')(root).model_dump_json())
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/source_scope.py:19: in snapshot
+    files = tuple(Pin(path=p.relative_to(root).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+            ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+.0 = <list_iterator object at 0x741e4acf5bd0>
+
+>   files = tuple(Pin(path=p.relative_to(root).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                  for p in sorted(paths))
+E   pydantic_core._pydantic_core.ValidationError: 2 validation errors for Pin
+E   id
+E     Field required [type=missing, input_value={'path': 'tests/test_fixt...f94d59c09dce11fd3483cb'}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/missing
+E   version
+E     Field required [type=missing, input_value={'path': 'tests/test_fixt...f94d59c09dce11fd3483cb'}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+postproduction/source_scope.py:19: ValidationError
+_ test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails[changed-source] _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-284/test_acceptance_when_mapping_e5')
+damage = 'changed-source'
+
+    @pytest.mark.parametrize('damage',['missing-id','missing-node','failed-node','skipped-node','setup-error','changed-source','truncated-results'])
+    def test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails(tmp_path,damage):
+>       mapping,results,scope=fixtures(tmp_path)
+                              ^^^^^^^^^^^^^^^^^^
+
+tests/test_acceptance.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_acceptance.py:18: in fixtures
+    scope=root/'qa/source-scope.json';scope.write_text(require('source_scope','snapshot')(root).model_dump_json())
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/source_scope.py:19: in snapshot
+    files = tuple(Pin(path=p.relative_to(root).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+            ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+.0 = <list_iterator object at 0x741e4ac978b0>
+
+>   files = tuple(Pin(path=p.relative_to(root).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                  for p in sorted(paths))
+E   pydantic_core._pydantic_core.ValidationError: 2 validation errors for Pin
+E   id
+E     Field required [type=missing, input_value={'path': 'tests/test_fixt...f94d59c09dce11fd3483cb'}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/missing
+E   version
+E     Field required [type=missing, input_value={'path': 'tests/test_fixt...f94d59c09dce11fd3483cb'}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+postproduction/source_scope.py:19: ValidationError
+_ test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails[truncated-results] _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-284/test_acceptance_when_mapping_e6')
+damage = 'truncated-results'
+
+    @pytest.mark.parametrize('damage',['missing-id','missing-node','failed-node','skipped-node','setup-error','changed-source','truncated-results'])
+    def test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails(tmp_path,damage):
+>       mapping,results,scope=fixtures(tmp_path)
+                              ^^^^^^^^^^^^^^^^^^
+
+tests/test_acceptance.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_acceptance.py:18: in fixtures
+    scope=root/'qa/source-scope.json';scope.write_text(require('source_scope','snapshot')(root).model_dump_json())
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/source_scope.py:19: in snapshot
+    files = tuple(Pin(path=p.relative_to(root).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+            ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+.0 = <list_iterator object at 0x741e4ae97160>
+
+>   files = tuple(Pin(path=p.relative_to(root).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                  for p in sorted(paths))
+E   pydantic_core._pydantic_core.ValidationError: 2 validation errors for Pin
+E   id
+E     Field required [type=missing, input_value={'path': 'tests/test_fixt...f94d59c09dce11fd3483cb'}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/missing
+E   version
+E     Field required [type=missing, input_value={'path': 'tests/test_fixt...f94d59c09dce11fd3483cb'}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+postproduction/source_scope.py:19: ValidationError
+=========================== short test summary info ============================
+FAILED tests/test_acceptance.py::test_acceptance_when_real_node_results_are_present_it_reports_qualified_scope
+FAILED tests/test_acceptance.py::test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails[missing-id]
+FAILED tests/test_acceptance.py::test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails[missing-node]
+FAILED tests/test_acceptance.py::test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails[failed-node]
+FAILED tests/test_acceptance.py::test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails[skipped-node]
+FAILED tests/test_acceptance.py::test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails[setup-error]
+FAILED tests/test_acceptance.py::test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails[changed-source]
+FAILED tests/test_acceptance.py::test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails[truncated-results]
+8 failed, 1 passed in 0.37s

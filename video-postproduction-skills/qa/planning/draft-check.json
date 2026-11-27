@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-11-26T15:05:44.374829+00:00",
+  "status": "draft-ready-for-explicit-activation",
+  "project_root": "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills",
+  "upstream_root": "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-production-skills",
+  "upstream_location_blocker_resolved": true,
+  "moved_preexisting_files": 36,
+  "moved_bytes_initially_unchanged": true,
+  "protected_relocated_paths": 76,
+  "protected_content_hashes_unchanged": 216,
+  "original_baseline_preserved": true,
+  "local_markdown_links_missing": [],
+  "planned_cases": 52,
+  "goal_status": "draft",
+  "rubric_checked": 0,
+  "rubric_total": 15,
+  "plan_sha256": "05d51089c3a222735ddcfb39c8c45554979d08f4d6079eefb20939d61c99a969",
+  "plan_self_review": {
+    "spec_coverage": "00-06 mapped to Tasks1-11",
+    "steps": "RED/GREEN; actual native vs simulated installer evidence distinguished",
+    "types": "declared public shared types/required rounding/materialized fields",
+    "review_focus": "five risks assigned to owning tasks",
+    "scope": "plan narrower than spec; no implementation bodies"
+  },
+  "native_execution_method_proposed": "parent implementation plus one newly authorized final read-only reviewer",
+  "code_started": false,
+  "installed": false,
+  "new_delegation_started": false
+}

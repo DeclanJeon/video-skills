@@ -1,0 +1,33 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_quality_when_legacy_wrong_branch_output_is_materialized_cannot_reuse_old_proof _
+
+assets = (<postproduction.ledger.PostStore object at 0x77b0b1b117f0>, ArtifactRef(id='REVERSE-PICTURE-A1-artifact', job_id='REV...2/plate_00023.png', sha256='54134823fdf85f926630126abc2b7b23acc4e08c1dd33085a2e7d31bbe460279')), kind='rgba_sequence'))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x77b0b29c0640>
+
+    def test_quality_when_legacy_wrong_branch_output_is_materialized_cannot_reuse_old_proof(assets,monkeypatch):
+        from quality_support import submission
+        store,picture,mix,oldpicture,oldmix,text=assets;root=store.path.parent
+        request=recipe(oldpicture,oldmix).model_copy(update={"id":"LEGACY-REVERSED"})
+        rp=require("admission","local_pin")(json_pin(root,"legacy-finishing.json",request.model_dump(mode="json")))
+        # Capture the real earlier bug's native result; bypass ONLY its missing historical compile guard.
+        with monkeypatch.context() as patch:
+            patch.setattr("postproduction.finishing.verify_picture_binding",lambda *args:None)
+            order=require("finishing","prepare_finishing")(store.read_recorded(),rp,root)
+            backend=require("backends.finishing","FinishingBackend")(store,root/"legacy-native")
+            packet=backend.prepare(order,backend.inspect(),store.read_recorded().intake.authority)
+            job=store.record_reservation(packet,store.read_recorded().revision)
+            assert backend.execute(packet).phase=="succeeded"
+            artifact=store.record_materialization(job.id,store.read_recorded().revision)
+        # Current real validation must revoke the historical technical proof without deleting facts/bytes.
+        result=require("quality","evaluate_submission")(store.read_recorded(),submission(store,artifact,id="LEGACY-QA"),store.path)
+>       assert next(g for g in result.gates if g.id=="PG5").status=="fail" and result.scope_passed is False
+E       AssertionError: assert (<QualityVerdict.PASS: 'pass'> == 'fail'
+E         
+E         - fail
+E         + pass)
+
+tests/test_review_finishing_binding.py:87: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_review_finishing_binding.py::test_quality_when_legacy_wrong_branch_output_is_materialized_cannot_reuse_old_proof
+1 failed in 88.40s (0:01:28)

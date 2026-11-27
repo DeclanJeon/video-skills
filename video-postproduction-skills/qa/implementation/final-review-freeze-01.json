@@ -1,0 +1,14 @@
+{
+  "format": "post-final-review-freeze/1",
+  "source_scope": "qa/implementation/task11-test-scope-02.json",
+  "source_scope_sha256": "a5efe8908d794dd891729991ac5c478339ccd3ef7e59d3c249ad68572cfefbc7",
+  "goal_snapshot": "qa/implementation/final-review-goal-01.md",
+  "goal_snapshot_sha256": "8ab90c8e80cfc3d5dd934dc0a577a12e5518f4eb7f9aa24c392051d1ad3c908f",
+  "tests": "qa/implementation/task11-test-results-02.xml",
+  "test_count": 404,
+  "test_exit": 0,
+  "qualified_scenarios": 52,
+  "qualified_cases": 300,
+  "protected": 216,
+  "reviewer_launched": false
+}

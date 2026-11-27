@@ -1,0 +1,149 @@
+{
+  "$defs": {
+    "Digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "Domain": {
+      "enum": [
+        "picture",
+        "motion",
+        "color",
+        "sound",
+        "captions",
+        "finishing",
+        "qa",
+        "delivery",
+        "environment"
+      ],
+      "title": "Domain",
+      "type": "string"
+    },
+    "Nonempty": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "Pin": {
+      "additionalProperties": false,
+      "description": "Versioned exact bytes at a safe project-relative POSIX path.",
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "path": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "sha256": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "path",
+        "sha256"
+      ],
+      "title": "Pin",
+      "type": "object"
+    },
+    "Positive": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "SourceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "clip_id": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "take_id": {
+          "$ref": "#/$defs/Nonempty"
+        }
+      },
+      "required": [
+        "clip_id",
+        "take_id"
+      ],
+      "title": "SourceRef",
+      "type": "object"
+    },
+    "Tool": {
+      "enum": [
+        "filmcraft",
+        "effectcraft",
+        "soundcraft",
+        "autoclip",
+        "resolve",
+        "premiere",
+        "after_effects",
+        "ffmpeg",
+        "ffprobe"
+      ],
+      "title": "Tool",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "domain": {
+      "$ref": "#/$defs/Domain"
+    },
+    "branch": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "backend": {
+      "$ref": "#/$defs/Tool"
+    },
+    "source_refs": {
+      "items": {
+        "$ref": "#/$defs/SourceRef"
+      },
+      "title": "Source Refs",
+      "type": "array"
+    },
+    "dependencies": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Pin"
+      },
+      "title": "Dependencies",
+      "type": "array"
+    },
+    "recipe": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Pin"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "output": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "max_attempts": {
+      "$ref": "#/$defs/Positive",
+      "default": 1
+    }
+  },
+  "required": [
+    "id",
+    "domain",
+    "branch",
+    "backend",
+    "source_refs",
+    "output"
+  ],
+  "title": "WorkOrder",
+  "type": "object"
+}

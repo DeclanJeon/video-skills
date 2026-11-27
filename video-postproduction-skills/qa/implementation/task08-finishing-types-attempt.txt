@@ -1,0 +1,10 @@
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/finishing.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/finishing.py:46:61 - error: Set 항목은 해시가 가능해야 합니다.
+    ‘SourceRef’ 형식을 해시할 수 없습니다. (reportUnhashable)
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/finishing_native.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/finishing_native.py:91:25 - error: "str" 형식의 인수를 "__init__" 함수에서 "Literal['frames', 'samples', 'still']" 형식의 "source_unit" 매개 변수에 할당할 수 없습니다.
+    형식 "str"은 형식 "Literal['frames', 'samples', 'still']"에 할당할 수 없습니다.
+      "str"은 형식 "Literal['frames']"에 할당할 수 없습니다.
+      "str"은 형식 "Literal['samples']"에 할당할 수 없습니다.
+      "str"은 형식 "Literal['still']"에 할당할 수 없습니다. (reportArgumentType)
+2 errors, 0 warnings, 0 notes

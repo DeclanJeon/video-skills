@@ -1,0 +1,383 @@
+{
+  "$defs": {
+    "CheckName": {
+      "enum": [
+        "picture",
+        "composite",
+        "color",
+        "sound",
+        "captions",
+        "video_playback",
+        "audio_listening",
+        "rights",
+        "adoption"
+      ],
+      "type": "string"
+    },
+    "Digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "FixTicket": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "source": {
+          "$ref": "#/$defs/SourceRef"
+        },
+        "source_asset": {
+          "$ref": "#/$defs/Pin"
+        },
+        "source_range": {
+          "$ref": "#/$defs/SourceRange"
+        },
+        "acceptance_revision": {
+          "$ref": "#/$defs/Positive"
+        },
+        "defects": {
+          "items": {
+            "$ref": "#/$defs/Nonempty"
+          },
+          "title": "Defects",
+          "type": "array"
+        },
+        "required_fix": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "receiver": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "acceptance_policy": {
+          "$ref": "#/$defs/Nonempty"
+        }
+      },
+      "required": [
+        "id",
+        "source",
+        "source_asset",
+        "source_range",
+        "acceptance_revision",
+        "defects",
+        "required_fix",
+        "receiver",
+        "acceptance_policy"
+      ],
+      "title": "FixTicket",
+      "type": "object"
+    },
+    "Frame": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "Nonempty": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "Pin": {
+      "additionalProperties": false,
+      "description": "Versioned exact bytes at a safe project-relative POSIX path.",
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "path": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "sha256": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "path",
+        "sha256"
+      ],
+      "title": "Pin",
+      "type": "object"
+    },
+    "Positive": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "QualityVerdict": {
+      "enum": [
+        "pass",
+        "fail",
+        "unverified",
+        "not_applicable"
+      ],
+      "title": "QualityVerdict",
+      "type": "string"
+    },
+    "ReportedCoverage": {
+      "additionalProperties": false,
+      "properties": {
+        "requirement_id": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "status": {
+          "$ref": "#/$defs/QualityVerdict"
+        },
+        "source": {
+          "$ref": "#/$defs/SourceRef"
+        },
+        "source_hash": {
+          "$ref": "#/$defs/Digest"
+        },
+        "source_range": {
+          "$ref": "#/$defs/SourceRange"
+        },
+        "master_range": {
+          "$ref": "#/$defs/SourceRange"
+        },
+        "video_observed": {
+          "title": "Video Observed",
+          "type": "boolean"
+        },
+        "audio_observed": {
+          "title": "Audio Observed",
+          "type": "boolean"
+        },
+        "evidence": {
+          "$ref": "#/$defs/Pin"
+        }
+      },
+      "required": [
+        "requirement_id",
+        "status",
+        "source",
+        "source_hash",
+        "source_range",
+        "master_range",
+        "video_observed",
+        "audio_observed",
+        "evidence"
+      ],
+      "title": "ReportedCoverage",
+      "type": "object"
+    },
+    "ResolutionRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "ticket": {
+          "$ref": "#/$defs/FixTicket"
+        },
+        "master": {
+          "$ref": "#/$defs/Pin"
+        },
+        "applied_artifacts": {
+          "items": {
+            "$ref": "#/$defs/Nonempty"
+          },
+          "title": "Applied Artifacts",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "scheduled",
+            "applied",
+            "reviewed_pass",
+            "failed"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "reviewer": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "evidence": {
+          "$ref": "#/$defs/Pin"
+        },
+        "video_observed": {
+          "title": "Video Observed",
+          "type": "boolean"
+        },
+        "audio_observed": {
+          "title": "Audio Observed",
+          "type": "boolean"
+        },
+        "side_effects_reviewed": {
+          "title": "Side Effects Reviewed",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "ticket",
+        "master",
+        "applied_artifacts",
+        "status",
+        "reviewer",
+        "evidence",
+        "video_observed",
+        "audio_observed",
+        "side_effects_reviewed"
+      ],
+      "title": "ResolutionRecord",
+      "type": "object"
+    },
+    "SemanticCheck": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/CheckName"
+        },
+        "status": {
+          "$ref": "#/$defs/QualityVerdict"
+        },
+        "origin": {
+          "enum": [
+            "reported",
+            "fixture",
+            "metadata"
+          ],
+          "title": "Origin",
+          "type": "string"
+        },
+        "artifact": {
+          "$ref": "#/$defs/Pin"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Pin"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "range": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SourceRange"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "reason": {
+          "$ref": "#/$defs/Nonempty"
+        }
+      },
+      "required": [
+        "name",
+        "status",
+        "origin",
+        "artifact",
+        "reason"
+      ],
+      "title": "SemanticCheck",
+      "type": "object"
+    },
+    "SourceRange": {
+      "additionalProperties": false,
+      "description": "Half-open source frame interval, never an invented exterior handle.",
+      "properties": {
+        "start": {
+          "$ref": "#/$defs/Frame"
+        },
+        "end": {
+          "$ref": "#/$defs/Positive"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "SourceRange",
+      "type": "object"
+    },
+    "SourceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "clip_id": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "take_id": {
+          "$ref": "#/$defs/Nonempty"
+        }
+      },
+      "required": [
+        "clip_id",
+        "take_id"
+      ],
+      "title": "SourceRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "mode": {
+      "enum": [
+        "reported",
+        "technical_fixture"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "artifact_id": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "artifact": {
+      "$ref": "#/$defs/Pin"
+    },
+    "receiver": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "input_fingerprint": {
+      "$ref": "#/$defs/Digest"
+    },
+    "timeline_digest": {
+      "$ref": "#/$defs/Digest"
+    },
+    "checks": {
+      "items": {
+        "$ref": "#/$defs/SemanticCheck"
+      },
+      "title": "Checks",
+      "type": "array"
+    },
+    "coverage": {
+      "items": {
+        "$ref": "#/$defs/ReportedCoverage"
+      },
+      "title": "Coverage",
+      "type": "array"
+    },
+    "resolutions": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ResolutionRecord"
+      },
+      "title": "Resolutions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "id",
+    "mode",
+    "artifact_id",
+    "artifact",
+    "receiver",
+    "input_fingerprint",
+    "timeline_digest",
+    "checks",
+    "coverage"
+  ],
+  "title": "QualitySubmission",
+  "type": "object"
+}

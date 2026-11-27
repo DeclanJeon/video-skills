@@ -1,0 +1,3 @@
+{"id":"file.newProject","line":1,"ok":true,"result":{"name":"Owned finishing","revision":2}}
+{"id":"file.newSequence","line":2,"ok":true,"result":{"sequence":4}}
+{"id":"file.import","line":3,"ok":true,"result":{"errors":[],"items":[5,6,7]}}

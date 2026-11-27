@@ -1,0 +1,11 @@
+{
+  "id": "setup.video_sync_offset",
+  "label": "Video Sync Offset...",
+  "menu": [
+    "Setup"
+  ],
+  "shortcut": null,
+  "params": "{frames?: ±, samples?: ±} — offset between audio and video playback",
+  "enabled": true,
+  "disabled_reason": null
+}

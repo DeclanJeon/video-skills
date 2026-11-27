@@ -1,0 +1,54 @@
+F..                                                                      [100%]
+=================================== FAILURES ===================================
+_ test_native_text_when_actual_font_and_quote_are_read_back_and_every_rgba_frame_is_safe _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-235/test_native_text_when_actual_f0')
+
+    def test_native_text_when_actual_font_and_quote_are_read_back_and_every_rgba_frame_is_safe(tmp_path):
+        store,backend,order,cap=setup(tmp_path)
+        packet=backend.prepare(order,cap,store.read_recorded().intake.authority)
+        job=store.record_reservation(packet,0)
+        result=backend.execute(packet);assert result.phase=="succeeded"
+>       value=backend.observe(store.read_recorded().jobs[0])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_native_text.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+postproduction/backends/effectcraft.py:168: in observe
+    manifest = verify_frames(plan,evidence,self.store.path.parent)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/backends/effect_plate.py:35: in verify_frames
+    facts = inspect_rgba(verified_file(root,pin),recipe.color)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = PosixPath('/tmp/pytest-of-declan/pytest-235/test_native_text_when_actual_f0/native-text/run-d69f9d653d4541e890ce9644f474a17a/plate_00000.png')
+color = '#ffffff'
+
+    def inspect_rgba(path: Path, color: str) -> ImageFacts:
+        """Verify concrete8-bit RGBA PNG, full decode and color/transparent fringe behavior."""
+        with path.open("rb") as stream:
+            header = stream.read(33)
+        if (len(header) != 33 or header[:8] != b"\x89PNG\r\n\x1a\n"
+            or header[12:16] != b"IHDR" or header[24] != 8 or header[25] != 6):
+            raise ContractError("alpha", "actual8-bit RGBA PNG required; RGB/JPEG is not an alpha plate")
+        width,height = int.from_bytes(header[16:20],"big"),int.from_bytes(header[20:24],"big")
+        try:
+            result = subprocess.run(
+                ["ffmpeg","-v","error","-xerror","-protocol_whitelist","file,pipe","-i",str(path),
+                 "-frames:v","1","-f","rawvideo","-pix_fmt","rgba","-"],capture_output=True,check=True,timeout=20)
+        except (OSError,subprocess.CalledProcessError,subprocess.TimeoutExpired) as exc:
+            raise ContractError("alpha", "independent RGBA full decode failed") from exc
+        raw = result.stdout
+        if len(raw) != width*height*4:
+            raise ContractError("alpha", "decoded plate byte count differs from declared dimensions")
+        alpha = raw[3::4]
+        indices = tuple(i for i,a in enumerate(alpha) if a)
+        if not indices or min(alpha) != 0 or max(alpha) != 255:
+>           raise ContractError("alpha", "expected graphic and transparent background were not observed")
+E           postproduction.errors.ContractError: alpha: expected graphic and transparent background were not observed
+
+postproduction/backends/image_probe.py:38: ContractError
+=========================== short test summary info ============================
+FAILED tests/test_native_text.py::test_native_text_when_actual_font_and_quote_are_read_back_and_every_rgba_frame_is_safe
+1 failed, 2 passed in 9.70s

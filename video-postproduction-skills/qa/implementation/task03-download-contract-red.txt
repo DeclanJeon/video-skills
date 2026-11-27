@@ -1,0 +1,304 @@
+FFFFF                                                                    [100%]
+=================================== FAILURES ===================================
+________ test_download_when_exact_allowed_host_and_expected_bytes_match ________
+
+module = 'environment.download', name = 'fetch_artifact'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.download', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.download'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-165/test_download_when_exact_allow0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7540317bb820>
+
+    def test_download_when_exact_allowed_host_and_expected_bytes_match(tmp_path,monkeypatch):
+>       fn=require("environment.download","fetch_artifact")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_download_contract.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.download', name = 'fetch_artifact'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.download'
+
+tests/conftest.py:10: Failed
+____ test_download_when_redirect_would_escape_approved_host_never_connects _____
+
+module = 'environment.download', name = 'fetch_artifact'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.download', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.download'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-165/test_download_when_redirect_wo0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x754031634640>
+
+    def test_download_when_redirect_would_escape_approved_host_never_connects(tmp_path,monkeypatch):
+>       fn=require("environment.download","fetch_artifact")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_download_contract.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.download', name = 'fetch_artifact'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.download'
+
+tests/conftest.py:10: Failed
+__ test_download_when_archive_hash_is_not_expected_has_no_published_artifact ___
+
+module = 'environment.download', name = 'fetch_artifact'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.download', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.download'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-165/test_download_when_archive_has0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x754031626330>
+
+    def test_download_when_archive_hash_is_not_expected_has_no_published_artifact(tmp_path,monkeypatch):
+>       fn=require("environment.download","fetch_artifact")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_download_contract.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.download', name = 'fetch_artifact'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.download'
+
+tests/conftest.py:10: Failed
+__ test_download_when_byte_budget_is_exceeded_stops_and_cleans_owned_partial ___
+
+module = 'environment.download', name = 'fetch_artifact'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.download', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.download'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-165/test_download_when_byte_budget0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7540315d38a0>
+
+    def test_download_when_byte_budget_is_exceeded_stops_and_cleans_owned_partial(tmp_path,monkeypatch):
+>       fn=require("environment.download","fetch_artifact")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_download_contract.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.download', name = 'fetch_artifact'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.download'
+
+tests/conftest.py:10: Failed
+__ test_download_when_existing_cache_belongs_to_prior_work_is_not_overwritten __
+
+module = 'environment.download', name = 'fetch_artifact'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.download', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.download'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-165/test_download_when_existing_ca0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7540315d3bd0>
+
+    def test_download_when_existing_cache_belongs_to_prior_work_is_not_overwritten(tmp_path,monkeypatch):
+>       fn=require("environment.download","fetch_artifact")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_download_contract.py:64: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.download', name = 'fetch_artifact'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.download'
+
+tests/conftest.py:10: Failed
+=========================== short test summary info ============================
+FAILED tests/test_download_contract.py::test_download_when_exact_allowed_host_and_expected_bytes_match
+FAILED tests/test_download_contract.py::test_download_when_redirect_would_escape_approved_host_never_connects
+FAILED tests/test_download_contract.py::test_download_when_archive_hash_is_not_expected_has_no_published_artifact
+FAILED tests/test_download_contract.py::test_download_when_byte_budget_is_exceeded_stops_and_cleans_owned_partial
+FAILED tests/test_download_contract.py::test_download_when_existing_cache_belongs_to_prior_work_is_not_overwritten
+5 failed in 0.09s

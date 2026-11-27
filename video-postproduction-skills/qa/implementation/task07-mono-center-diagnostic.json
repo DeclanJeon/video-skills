@@ -1,0 +1,11 @@
+{
+  "scope": "actual isolated native Mono-center diagnostic, not listening certification",
+  "fitted_center_coefficient": 0.7079457238122496,
+  "candidate_max_sample_errors": {
+    "sqrt_half": 8.408882876864698e-05,
+    "minus3dB": 1.1584784284646155e-08
+  },
+  "source_channels": 1,
+  "native_output_channels": 2,
+  "source_gain_db": -6
+}

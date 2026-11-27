@@ -1,0 +1,182 @@
+{
+  "$defs": {
+    "Digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "Frame": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "Nonempty": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "Pin": {
+      "additionalProperties": false,
+      "description": "Versioned exact bytes at a safe project-relative POSIX path.",
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "path": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "sha256": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "path",
+        "sha256"
+      ],
+      "title": "Pin",
+      "type": "object"
+    },
+    "Positive": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "SourceRange": {
+      "additionalProperties": false,
+      "description": "Half-open source frame interval, never an invented exterior handle.",
+      "properties": {
+        "start": {
+          "$ref": "#/$defs/Frame"
+        },
+        "end": {
+          "$ref": "#/$defs/Positive"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "SourceRange",
+      "type": "object"
+    },
+    "SourceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "clip_id": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "take_id": {
+          "$ref": "#/$defs/Nonempty"
+        }
+      },
+      "required": [
+        "clip_id",
+        "take_id"
+      ],
+      "title": "SourceRef",
+      "type": "object"
+    },
+    "WordStamp": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "characters": {
+          "$ref": "#/$defs/SourceRange"
+        },
+        "source_range": {
+          "$ref": "#/$defs/SourceRange"
+        }
+      },
+      "required": [
+        "text",
+        "characters",
+        "source_range"
+      ],
+      "title": "WordStamp",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "post-caption-source/1",
+      "title": "Format",
+      "type": "string"
+    },
+    "id": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "source": {
+      "$ref": "#/$defs/SourceRef"
+    },
+    "source_range": {
+      "$ref": "#/$defs/SourceRange"
+    },
+    "text": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "speaker": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "kind": {
+      "enum": [
+        "dialogue",
+        "translation",
+        "editorial",
+        "title"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "words": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/WordStamp"
+      },
+      "title": "Words",
+      "type": "array"
+    },
+    "timing_evidence": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Pin"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "approval_kind": {
+      "const": "reported",
+      "title": "Approval Kind",
+      "type": "string"
+    },
+    "approval": {
+      "$ref": "#/$defs/Pin"
+    },
+    "word_highlight": {
+      "default": false,
+      "title": "Word Highlight",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "format",
+    "id",
+    "source",
+    "source_range",
+    "text",
+    "speaker",
+    "kind",
+    "approval_kind",
+    "approval"
+  ],
+  "title": "SourceCaption",
+  "type": "object"
+}

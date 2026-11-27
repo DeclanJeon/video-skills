@@ -1,0 +1,16 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_recipe_when_fractional_font_size_would_be_silently_truncated_by_independent_measurement _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-238/test_recipe_when_fractional_fo0')
+
+    def test_recipe_when_fractional_font_size_would_be_silently_truncated_by_independent_measurement(tmp_path):
+        path,raw=recipe(tmp_path,font_size=24.5)
+>       with pytest.raises(require("errors","ContractError")):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_templates.py:53: Failed
+=========================== short test summary info ============================
+FAILED tests/test_templates.py::test_recipe_when_fractional_font_size_would_be_silently_truncated_by_independent_measurement
+1 failed, 6 deselected in 0.41s

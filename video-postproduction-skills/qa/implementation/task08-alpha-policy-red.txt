@@ -1,0 +1,28 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_ test_alpha_when_font_coverage_has_no_fully_opaque_pixel_still_requires_straight_rgb _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-236/test_alpha_when_font_coverage_0')
+
+    def test_alpha_when_font_coverage_has_no_fully_opaque_pixel_still_requires_straight_rgb(tmp_path):
+        path=tmp_path/"coverage.png";im=Image.new("RGBA",(8,8));im.putpixel((3,3),(255,255,255,239));im.save(path)
+>       actual=require("backends.image_probe","inspect_rgba")(path,"#ffffff","coverage")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: inspect_rgba() takes 2 positional arguments but 3 were given
+
+tests/test_image_probe.py:9: TypeError
+____ test_alpha_when_font_rgb_is_premultiplied_cannot_claim_straight_alpha _____
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-236/test_alpha_when_font_rgb_is_pr0')
+
+    def test_alpha_when_font_rgb_is_premultiplied_cannot_claim_straight_alpha(tmp_path):
+        path=tmp_path/"premult.png";im=Image.new("RGBA",(8,8));im.putpixel((3,3),(128,128,128,128));im.save(path)
+        with pytest.raises(require("errors","ContractError")):
+>           require("backends.image_probe","inspect_rgba")(path,"#ffffff","coverage")
+E           TypeError: inspect_rgba() takes 2 positional arguments but 3 were given
+
+tests/test_image_probe.py:18: TypeError
+=========================== short test summary info ============================
+FAILED tests/test_image_probe.py::test_alpha_when_font_coverage_has_no_fully_opaque_pixel_still_requires_straight_rgb
+FAILED tests/test_image_probe.py::test_alpha_when_font_rgb_is_premultiplied_cannot_claim_straight_alpha
+2 failed in 0.38s

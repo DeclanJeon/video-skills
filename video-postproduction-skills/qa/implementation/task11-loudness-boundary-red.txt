@@ -1,0 +1,27 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_loudness_when_exact_decimal_tolerance_boundary_is_not_floating_point_rejected _
+
+tone = (PosixPath('/tmp/pytest-of-declan/pytest-307/test_loudness_when_exact_decim0'), Pin(id='reference.wav', version='1', path='reference.wav', sha256='c460ccbc46d8d14c794ac42b736a735000a18b257d8e02d016c662f30492439e'))
+
+    def test_loudness_when_exact_decimal_tolerance_boundary_is_not_floating_point_rejected(tone):
+        root,asset=tone
+        actual=require('loudness_models','LoudnessMeasurement')(artifact=asset,integrated_lufs=-19.9,true_peak_dbtp=-20.0)
+        policy=require('loudness_models','LoudnessPolicy')(integrated_lufs=-20.0,tolerance_lu=0.1,max_true_peak_dbtp=-19.0)
+>       require('loudness','verify_loudness')(actual,policy)
+
+tests/test_loudness.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+actual = LoudnessMeasurement(artifact=Pin(id='reference.wav', version='1', path='reference.wav', sha256='c460ccbc46d8d14c794ac4...735000a18b257d8e02d016c662f30492439e'), method='ffmpeg_ebur128_true_peak', integrated_lufs=-19.9, true_peak_dbtp=-20.0)
+policy = LoudnessPolicy(integrated_lufs=-20.0, tolerance_lu=0.1, max_true_peak_dbtp=-19.0)
+
+    def verify_loudness(actual: LoudnessMeasurement, policy: LoudnessPolicy) -> None:
+        if abs(actual.integrated_lufs-policy.integrated_lufs)>policy.tolerance_lu:
+>           raise ContractError("loudness","actual final integrated LUFS differs from explicit project target/tolerance")
+E           postproduction.errors.ContractError: loudness: actual final integrated LUFS differs from explicit project target/tolerance
+
+postproduction/loudness.py:38: ContractError
+=========================== short test summary info ============================
+FAILED tests/test_loudness.py::test_loudness_when_exact_decimal_tolerance_boundary_is_not_floating_point_rejected
+1 failed in 0.33s

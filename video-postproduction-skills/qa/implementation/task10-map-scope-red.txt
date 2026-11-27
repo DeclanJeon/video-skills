@@ -1,0 +1,29 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails[changed-mapping] _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-286/test_acceptance_when_mapping_e0')
+damage = 'changed-mapping'
+
+    @pytest.mark.parametrize('damage',['missing-id','missing-node','failed-node','skipped-node','setup-error','changed-source','changed-mapping','truncated-results'])
+    def test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails(tmp_path,damage):
+        mapping,results,scope=fixtures(tmp_path)
+        if damage=='missing-id':
+            data=json.loads(mapping.read_text());data['scenarios'].pop();mapping.write_text(json.dumps(data))
+        elif damage=='missing-node':results.write_text('<testsuites><testsuite tests="0" failures="0" errors="0"/></testsuites>')
+        elif damage in ['failed-node','skipped-node','setup-error']:
+            tag={'failed-node':'failure','skipped-node':'skipped','setup-error':'error'}[damage]
+            results.write_text(f'<testsuites><testsuite tests="1"><testcase classname="tests.test_fixture" name="test_contract"><{tag}/></testcase></testsuite></testsuites>')
+        elif damage=='changed-source':(tmp_path/'tests/test_fixture.py').write_text('raise RuntimeError("changed")')
+        elif damage=='changed-mapping':
+            data=json.loads(mapping.read_text());data['scenarios'][0]['purpose']='changed after the run';mapping.write_text(json.dumps(data))
+        else:results.write_text('<testsuites><testcase')
+        result=require('acceptance','check_acceptance')(tmp_path,mapping,results,scope)
+>       assert result.ok is False and result.issues
+E       AssertionError: assert (True is False)
+E        +  where True = AcceptanceCheck(ok=True, mapped_scenarios=52, passed_cases=1, fully_perceptually_verified=False, issues=(), scenarios=...est_contract',), scopes=('structural_fixture',), unverified=('parser fixture, not actual native scenario evidence',)))).ok
+
+tests/test_acceptance.py:43: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_acceptance.py::test_acceptance_when_mapping_execution_or_scope_is_incomplete_it_fails[changed-mapping]
+1 failed in 0.14s

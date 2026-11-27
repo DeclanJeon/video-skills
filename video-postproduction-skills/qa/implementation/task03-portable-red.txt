@@ -1,0 +1,629 @@
+FFFFFFFFF                                                                [100%]
+=================================== FAILURES ===================================
+__________ test_portable_when_archive_contains_owned_relative_program __________
+
+module = 'environment.portable', name = 'PortableSpec'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.portable', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.portable'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-161/test_portable_when_archive_con0')
+
+    def test_portable_when_archive_contains_owned_relative_program(tmp_path):
+        source=archive(tmp_path,[("bin/filmcraft-cli","#!/bin/sh\necho fixture\n","file")])
+>       files=unpack(source,tmp_path/"new-tool")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_portable_installer.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_portable_installer.py:20: in unpack
+    spec=require("environment.portable","PortableSpec")(cli_name="filmcraft-cli",max_unpacked_bytes=limit)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.portable', name = 'PortableSpec'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.portable'
+
+tests/conftest.py:10: Failed
+___ test_portable_when_payload_escapes_or_cannot_supply_unique_cli[members0] ___
+
+module = 'environment.portable', name = 'PortableSpec'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.portable', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.portable'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-161/test_portable_when_payload_esc0')
+members = [('../outside', 'bad', 'file')]
+
+    @pytest.mark.parametrize("members",[
+        [("../outside","bad","file")],[("/outside","bad","file")],
+        [("escape","../../outside","symlink"),("escape/filmcraft-cli","bad","file")],
+        [("bin/filmcraft-cli","/usr/bin/python3","symlink")],
+        [("one/filmcraft-cli","first","file"),("two/filmcraft-cli","second","file")],
+        [("no-cli.txt","not a native program","file")],
+    ])
+    def test_portable_when_payload_escapes_or_cannot_supply_unique_cli(tmp_path,members):
+        source=archive(tmp_path,members)
+        with pytest.raises(require("errors","ContractError")):
+>           unpack(source,tmp_path/"new-tool")
+
+tests/test_portable_installer.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_portable_installer.py:20: in unpack
+    spec=require("environment.portable","PortableSpec")(cli_name="filmcraft-cli",max_unpacked_bytes=limit)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.portable', name = 'PortableSpec'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.portable'
+
+tests/conftest.py:10: Failed
+___ test_portable_when_payload_escapes_or_cannot_supply_unique_cli[members1] ___
+
+module = 'environment.portable', name = 'PortableSpec'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.portable', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.portable'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-161/test_portable_when_payload_esc1')
+members = [('/outside', 'bad', 'file')]
+
+    @pytest.mark.parametrize("members",[
+        [("../outside","bad","file")],[("/outside","bad","file")],
+        [("escape","../../outside","symlink"),("escape/filmcraft-cli","bad","file")],
+        [("bin/filmcraft-cli","/usr/bin/python3","symlink")],
+        [("one/filmcraft-cli","first","file"),("two/filmcraft-cli","second","file")],
+        [("no-cli.txt","not a native program","file")],
+    ])
+    def test_portable_when_payload_escapes_or_cannot_supply_unique_cli(tmp_path,members):
+        source=archive(tmp_path,members)
+        with pytest.raises(require("errors","ContractError")):
+>           unpack(source,tmp_path/"new-tool")
+
+tests/test_portable_installer.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_portable_installer.py:20: in unpack
+    spec=require("environment.portable","PortableSpec")(cli_name="filmcraft-cli",max_unpacked_bytes=limit)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.portable', name = 'PortableSpec'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.portable'
+
+tests/conftest.py:10: Failed
+___ test_portable_when_payload_escapes_or_cannot_supply_unique_cli[members2] ___
+
+module = 'environment.portable', name = 'PortableSpec'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.portable', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.portable'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-161/test_portable_when_payload_esc2')
+members = [('escape', '../../outside', 'symlink'), ('escape/filmcraft-cli', 'bad', 'file')]
+
+    @pytest.mark.parametrize("members",[
+        [("../outside","bad","file")],[("/outside","bad","file")],
+        [("escape","../../outside","symlink"),("escape/filmcraft-cli","bad","file")],
+        [("bin/filmcraft-cli","/usr/bin/python3","symlink")],
+        [("one/filmcraft-cli","first","file"),("two/filmcraft-cli","second","file")],
+        [("no-cli.txt","not a native program","file")],
+    ])
+    def test_portable_when_payload_escapes_or_cannot_supply_unique_cli(tmp_path,members):
+        source=archive(tmp_path,members)
+        with pytest.raises(require("errors","ContractError")):
+>           unpack(source,tmp_path/"new-tool")
+
+tests/test_portable_installer.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_portable_installer.py:20: in unpack
+    spec=require("environment.portable","PortableSpec")(cli_name="filmcraft-cli",max_unpacked_bytes=limit)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.portable', name = 'PortableSpec'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.portable'
+
+tests/conftest.py:10: Failed
+___ test_portable_when_payload_escapes_or_cannot_supply_unique_cli[members3] ___
+
+module = 'environment.portable', name = 'PortableSpec'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.portable', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.portable'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-161/test_portable_when_payload_esc3')
+members = [('bin/filmcraft-cli', '/usr/bin/python3', 'symlink')]
+
+    @pytest.mark.parametrize("members",[
+        [("../outside","bad","file")],[("/outside","bad","file")],
+        [("escape","../../outside","symlink"),("escape/filmcraft-cli","bad","file")],
+        [("bin/filmcraft-cli","/usr/bin/python3","symlink")],
+        [("one/filmcraft-cli","first","file"),("two/filmcraft-cli","second","file")],
+        [("no-cli.txt","not a native program","file")],
+    ])
+    def test_portable_when_payload_escapes_or_cannot_supply_unique_cli(tmp_path,members):
+        source=archive(tmp_path,members)
+        with pytest.raises(require("errors","ContractError")):
+>           unpack(source,tmp_path/"new-tool")
+
+tests/test_portable_installer.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_portable_installer.py:20: in unpack
+    spec=require("environment.portable","PortableSpec")(cli_name="filmcraft-cli",max_unpacked_bytes=limit)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.portable', name = 'PortableSpec'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.portable'
+
+tests/conftest.py:10: Failed
+___ test_portable_when_payload_escapes_or_cannot_supply_unique_cli[members4] ___
+
+module = 'environment.portable', name = 'PortableSpec'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.portable', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.portable'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-161/test_portable_when_payload_esc4')
+members = [('one/filmcraft-cli', 'first', 'file'), ('two/filmcraft-cli', 'second', 'file')]
+
+    @pytest.mark.parametrize("members",[
+        [("../outside","bad","file")],[("/outside","bad","file")],
+        [("escape","../../outside","symlink"),("escape/filmcraft-cli","bad","file")],
+        [("bin/filmcraft-cli","/usr/bin/python3","symlink")],
+        [("one/filmcraft-cli","first","file"),("two/filmcraft-cli","second","file")],
+        [("no-cli.txt","not a native program","file")],
+    ])
+    def test_portable_when_payload_escapes_or_cannot_supply_unique_cli(tmp_path,members):
+        source=archive(tmp_path,members)
+        with pytest.raises(require("errors","ContractError")):
+>           unpack(source,tmp_path/"new-tool")
+
+tests/test_portable_installer.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_portable_installer.py:20: in unpack
+    spec=require("environment.portable","PortableSpec")(cli_name="filmcraft-cli",max_unpacked_bytes=limit)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.portable', name = 'PortableSpec'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.portable'
+
+tests/conftest.py:10: Failed
+___ test_portable_when_payload_escapes_or_cannot_supply_unique_cli[members5] ___
+
+module = 'environment.portable', name = 'PortableSpec'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.portable', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.portable'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-161/test_portable_when_payload_esc5')
+members = [('no-cli.txt', 'not a native program', 'file')]
+
+    @pytest.mark.parametrize("members",[
+        [("../outside","bad","file")],[("/outside","bad","file")],
+        [("escape","../../outside","symlink"),("escape/filmcraft-cli","bad","file")],
+        [("bin/filmcraft-cli","/usr/bin/python3","symlink")],
+        [("one/filmcraft-cli","first","file"),("two/filmcraft-cli","second","file")],
+        [("no-cli.txt","not a native program","file")],
+    ])
+    def test_portable_when_payload_escapes_or_cannot_supply_unique_cli(tmp_path,members):
+        source=archive(tmp_path,members)
+        with pytest.raises(require("errors","ContractError")):
+>           unpack(source,tmp_path/"new-tool")
+
+tests/test_portable_installer.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_portable_installer.py:20: in unpack
+    spec=require("environment.portable","PortableSpec")(cli_name="filmcraft-cli",max_unpacked_bytes=limit)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.portable', name = 'PortableSpec'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.portable'
+
+tests/conftest.py:10: Failed
+_________ test_portable_when_unpacked_bytes_exceed_the_approved_bound __________
+
+module = 'environment.portable', name = 'PortableSpec'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.portable', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.portable'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-161/test_portable_when_unpacked_by0')
+
+    def test_portable_when_unpacked_bytes_exceed_the_approved_bound(tmp_path):
+        source=archive(tmp_path,[("filmcraft-cli","X"*100,"file")])
+        with pytest.raises(require("errors","ContractError"),match="limit"):
+>           unpack(source,tmp_path/"new-tool",limit=20)
+
+tests/test_portable_installer.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_portable_installer.py:20: in unpack
+    spec=require("environment.portable","PortableSpec")(cli_name="filmcraft-cli",max_unpacked_bytes=limit)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.portable', name = 'PortableSpec'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.portable'
+
+tests/conftest.py:10: Failed
+__________ test_portable_when_target_already_belongs_to_someone_else ___________
+
+module = 'environment.portable', name = 'PortableSpec'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.portable', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.portable'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-161/test_portable_when_target_alre0')
+
+    def test_portable_when_target_already_belongs_to_someone_else(tmp_path):
+        target=tmp_path/"existing";target.mkdir();(target/"project").write_text("owned by another terminal")
+        source=archive(tmp_path,[("filmcraft-cli","new","file")])
+        with pytest.raises(require("errors","ContractError"),match="existing"):
+>           unpack(source,target)
+
+tests/test_portable_installer.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_portable_installer.py:20: in unpack
+    spec=require("environment.portable","PortableSpec")(cli_name="filmcraft-cli",max_unpacked_bytes=limit)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.portable', name = 'PortableSpec'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.portable'
+
+tests/conftest.py:10: Failed
+=========================== short test summary info ============================
+FAILED tests/test_portable_installer.py::test_portable_when_archive_contains_owned_relative_program
+FAILED tests/test_portable_installer.py::test_portable_when_payload_escapes_or_cannot_supply_unique_cli[members0]
+FAILED tests/test_portable_installer.py::test_portable_when_payload_escapes_or_cannot_supply_unique_cli[members1]
+FAILED tests/test_portable_installer.py::test_portable_when_payload_escapes_or_cannot_supply_unique_cli[members2]
+FAILED tests/test_portable_installer.py::test_portable_when_payload_escapes_or_cannot_supply_unique_cli[members3]
+FAILED tests/test_portable_installer.py::test_portable_when_payload_escapes_or_cannot_supply_unique_cli[members4]
+FAILED tests/test_portable_installer.py::test_portable_when_payload_escapes_or_cannot_supply_unique_cli[members5]
+FAILED tests/test_portable_installer.py::test_portable_when_unpacked_bytes_exceed_the_approved_bound
+FAILED tests/test_portable_installer.py::test_portable_when_target_already_belongs_to_someone_else
+9 failed in 0.15s

@@ -1,0 +1,7 @@
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/ledger.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/ledger.py:64:17 - error: Type of "TypeAdapter" is Any (reportAny)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/ledger.py:64:17 - error: Type of "dump_json" is Any (reportAny)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/ledger.py:64:17 - error: Argument type is Any
+    인수가 "model_validate_json" 함수의 "json_data" 매개 변수에 해당합니다. (reportAny)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/ledger.py:64:52 - error: Type of "JsonValue" is Any (reportAny)
+4 errors, 0 warnings, 0 notes

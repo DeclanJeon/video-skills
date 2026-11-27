@@ -1,0 +1,54 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+_ test_portable_reconcile_when_exact_cache_and_absent_target_are_physically_inspected _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-213/test_portable_reconcile_when_e0')
+
+    def test_portable_reconcile_when_exact_cache_and_absent_target_are_physically_inspected(tmp_path):
+        driver,p,artifact=setup(tmp_path)
+>       actual=driver.inspect_installation(p)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'CraftPortableDriver' object has no attribute 'inspect_installation'
+
+tests/test_portable_recovery.py:19: AttributeError
+_ test_portable_reconcile_when_complete_matching_payload_does_not_install_again _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-213/test_portable_reconcile_when_c0')
+
+    def test_portable_reconcile_when_complete_matching_payload_does_not_install_again(tmp_path):
+        driver,p,artifact=setup(tmp_path);files=driver.install(p,artifact)
+>       actual=driver.inspect_installation(p)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'CraftPortableDriver' object has no attribute 'inspect_installation'
+
+tests/test_portable_recovery.py:28: AttributeError
+_ test_portable_reconcile_when_existing_or_extra_user_bytes_are_preserved_as_unknown _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-213/test_portable_reconcile_when_e1')
+
+    def test_portable_reconcile_when_existing_or_extra_user_bytes_are_preserved_as_unknown(tmp_path):
+        driver,p,artifact=setup(tmp_path);driver.install(p,artifact)
+        (driver.target/"user-file.txt").write_text("keep me")
+>       actual=driver.inspect_installation(p)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'CraftPortableDriver' object has no attribute 'inspect_installation'
+
+tests/test_portable_recovery.py:36: AttributeError
+____ test_portable_reconcile_when_source_binary_changed_cannot_claim_ready _____
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-213/test_portable_reconcile_when_s0')
+
+    def test_portable_reconcile_when_source_binary_changed_cannot_claim_ready(tmp_path):
+        driver,p,artifact=setup(tmp_path);files=driver.install(p,artifact)
+        files[0].write_text("#!/bin/sh\necho replaced\n")
+>       actual=driver.inspect_installation(p)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'CraftPortableDriver' object has no attribute 'inspect_installation'
+
+tests/test_portable_recovery.py:44: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_portable_recovery.py::test_portable_reconcile_when_exact_cache_and_absent_target_are_physically_inspected
+FAILED tests/test_portable_recovery.py::test_portable_reconcile_when_complete_matching_payload_does_not_install_again
+FAILED tests/test_portable_recovery.py::test_portable_reconcile_when_existing_or_extra_user_bytes_are_preserved_as_unknown
+FAILED tests/test_portable_recovery.py::test_portable_reconcile_when_source_binary_changed_cannot_claim_ready
+4 failed in 0.26s

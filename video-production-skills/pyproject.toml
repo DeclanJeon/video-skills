@@ -1,0 +1,19 @@
+[project]
+name = "video-production-skills"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = ["pydantic>=2.14", "typer>=0.29"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers"
+
+[tool.basedpyright]
+include = ["production"]
+typeCheckingMode = "all"
+# Exhaustive match/case intentionally retains assert_never for future variants.
+reportUnnecessaryComparison = "none"
+reportUnreachable = "none"
+
+[tool.ruff.lint]
+select = ["ALL"]

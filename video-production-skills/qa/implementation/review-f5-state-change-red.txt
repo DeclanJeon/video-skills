@@ -1,0 +1,21 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______________ test_time_elision_when_prop_change_is_unapproved _______________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-54/test_time_elision_when_prop_ch0')
+
+    def test_time_elision_when_prop_change_is_unapproved(seed,tmp_path):
+        # Given: time jump exists, but not permission to change the prop's owner.
+        plan=seed.batch.joins[0].model_copy(update={"relation":"time_elision","allowed_changes":("light:afternoon->dusk",)})
+        state=all_selected(seed.model_copy(update={"batch":seed.batch.model_copy(update={"joins":(plan,*seed.batch.joins[1:])})}),tmp_path)
+        report=joins_for(state)[0].model_copy(update={"observed_changes":("prop:empty->held",)})
+        # When / Then: a relationship label does not authorize arbitrary state changes.
+>       with pytest.raises(ContractError,match="change"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_handoff.py:138: Failed
+=========================== short test summary info ============================
+FAILED tests/test_handoff.py::test_time_elision_when_prop_change_is_unapproved
+1 failed in 0.06s

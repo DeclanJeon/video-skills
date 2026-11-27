@@ -1,0 +1,483 @@
+FFFFFFFFFFFF.F.                                                          [100%]
+=================================== FAILURES ===================================
+_____________________ test_bound_request_when_inputs_ready _____________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-2/test_bound_request_when_inputs0')
+
+    def test_bound_request_when_inputs_ready(seed, capability, authority, tmp_path):
+        # Given: explicit local capability, approval and ready native receipt.
+        # When: preparing only (no remote call).
+>       request = prepare(seed, capability, authority, tmp_path)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_bindings.py:19: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_bindings.py:13: in prepare
+    return require("bindings", "prepare_request")(seed, "C1", capability, authority, (binding or native(seed),), tmp_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'bindings', name = 'prepare_request'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing bindings runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7991b30e3270>('production.bindings')
+E        +    where <function find_spec at 0x7991b30e3270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+________ test_reject_binding_when_native_contract_wrong[change0-ready] _________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-2/test_reject_binding_when_nativ0')
+change = {'ready': False}, code = 'ready'
+
+    @pytest.mark.parametrize("change,code", [
+        ({"ready": False}, "ready"),
+        ({"role": "invented"}, "role"),
+        ({"modality": "invented"}, "modality"),
+        ({"source_clip": ClipId("C2")}, "binding"),
+    ])
+    def test_reject_binding_when_native_contract_wrong(seed, capability, authority, tmp_path, change, code):
+        # Given: a claimed receipt inconsistent with the request contract.
+        binding = native(seed).model_copy(update=change)
+        # When / Then: prepare fails closed.
+        with pytest.raises(ContractError, match=code):
+>           prepare(seed, capability, authority, tmp_path, binding)
+
+tests/test_bindings.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_bindings.py:13: in prepare
+    return require("bindings", "prepare_request")(seed, "C1", capability, authority, (binding or native(seed),), tmp_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'bindings', name = 'prepare_request'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing bindings runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7991b30e3270>('production.bindings')
+E        +    where <function find_spec at 0x7991b30e3270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_________ test_reject_binding_when_native_contract_wrong[change1-role] _________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-2/test_reject_binding_when_nativ1')
+change = {'role': 'invented'}, code = 'role'
+
+    @pytest.mark.parametrize("change,code", [
+        ({"ready": False}, "ready"),
+        ({"role": "invented"}, "role"),
+        ({"modality": "invented"}, "modality"),
+        ({"source_clip": ClipId("C2")}, "binding"),
+    ])
+    def test_reject_binding_when_native_contract_wrong(seed, capability, authority, tmp_path, change, code):
+        # Given: a claimed receipt inconsistent with the request contract.
+        binding = native(seed).model_copy(update=change)
+        # When / Then: prepare fails closed.
+        with pytest.raises(ContractError, match=code):
+>           prepare(seed, capability, authority, tmp_path, binding)
+
+tests/test_bindings.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_bindings.py:13: in prepare
+    return require("bindings", "prepare_request")(seed, "C1", capability, authority, (binding or native(seed),), tmp_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'bindings', name = 'prepare_request'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing bindings runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7991b30e3270>('production.bindings')
+E        +    where <function find_spec at 0x7991b30e3270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_______ test_reject_binding_when_native_contract_wrong[change2-modality] _______
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-2/test_reject_binding_when_nativ2')
+change = {'modality': 'invented'}, code = 'modality'
+
+    @pytest.mark.parametrize("change,code", [
+        ({"ready": False}, "ready"),
+        ({"role": "invented"}, "role"),
+        ({"modality": "invented"}, "modality"),
+        ({"source_clip": ClipId("C2")}, "binding"),
+    ])
+    def test_reject_binding_when_native_contract_wrong(seed, capability, authority, tmp_path, change, code):
+        # Given: a claimed receipt inconsistent with the request contract.
+        binding = native(seed).model_copy(update=change)
+        # When / Then: prepare fails closed.
+        with pytest.raises(ContractError, match=code):
+>           prepare(seed, capability, authority, tmp_path, binding)
+
+tests/test_bindings.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_bindings.py:13: in prepare
+    return require("bindings", "prepare_request")(seed, "C1", capability, authority, (binding or native(seed),), tmp_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'bindings', name = 'prepare_request'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing bindings runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7991b30e3270>('production.bindings')
+E        +    where <function find_spec at 0x7991b30e3270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_______ test_reject_binding_when_native_contract_wrong[change3-binding] ________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-2/test_reject_binding_when_nativ3')
+change = {'source_clip': 'C2'}, code = 'binding'
+
+    @pytest.mark.parametrize("change,code", [
+        ({"ready": False}, "ready"),
+        ({"role": "invented"}, "role"),
+        ({"modality": "invented"}, "modality"),
+        ({"source_clip": ClipId("C2")}, "binding"),
+    ])
+    def test_reject_binding_when_native_contract_wrong(seed, capability, authority, tmp_path, change, code):
+        # Given: a claimed receipt inconsistent with the request contract.
+        binding = native(seed).model_copy(update=change)
+        # When / Then: prepare fails closed.
+        with pytest.raises(ContractError, match=code):
+>           prepare(seed, capability, authority, tmp_path, binding)
+
+tests/test_bindings.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_bindings.py:13: in prepare
+    return require("bindings", "prepare_request")(seed, "C1", capability, authority, (binding or native(seed),), tmp_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'bindings', name = 'prepare_request'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing bindings runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7991b30e3270>('production.bindings')
+E        +    where <function find_spec at 0x7991b30e3270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+____________ test_reference_limit_when_required_count_exceeds_limit ____________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-2/test_reference_limit_when_requ0')
+
+    def test_reference_limit_when_required_count_exceeds_limit(seed, capability, authority, tmp_path):
+        # Given: provider accepts zero refs but identity is mandatory.
+        cap = capability.model_copy(update={"max_references": 0})
+        # When / Then: reference is not silently dropped.
+        with pytest.raises(ContractError, match="limit"):
+>           prepare(seed, cap, authority, tmp_path)
+
+tests/test_bindings.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_bindings.py:13: in prepare
+    return require("bindings", "prepare_request")(seed, "C1", capability, authority, (binding or native(seed),), tmp_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'bindings', name = 'prepare_request'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing bindings runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7991b30e3270>('production.bindings')
+E        +    where <function find_spec at 0x7991b30e3270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_________________ test_transfer_when_asset_hash_not_authorized _________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-2/test_transfer_when_asset_hash_0')
+
+    def test_transfer_when_asset_hash_not_authorized(seed, capability, authority, tmp_path):
+        # Given: existence of local identity does not authorize transmission.
+        approval = authority.model_copy(update={"allowed_hashes": ()})
+        # When / Then: upload plan is blocked.
+        with pytest.raises(ContractError, match="authority"):
+>           prepare(seed, capability, approval, tmp_path)
+
+tests/test_bindings.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_bindings.py:13: in prepare
+    return require("bindings", "prepare_request")(seed, "C1", capability, authority, (binding or native(seed),), tmp_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'bindings', name = 'prepare_request'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing bindings runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7991b30e3270>('production.bindings')
+E        +    where <function find_spec at 0x7991b30e3270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+______________ test_missing_video_role_when_required_predecessor _______________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-2/test_missing_video_role_when_r0')
+
+    def test_missing_video_role_when_required_predecessor(seed, capability, authority, tmp_path):
+        # Given: predecessor reference is required but not accepted.
+        ref = Reference(source_clip=ClipId("C2"), role="state", modality="video", imports=("pose",))
+        clip = seed.batch.clips[0].model_copy(update={"references": (ref,)})
+        state = seed.model_copy(update={"batch": seed.batch.model_copy(update={"clips": (clip, *seed.batch.clips[1:])})})
+        # When / Then: no image/text substitution.
+        with pytest.raises(ContractError, match="dependency"):
+>           prepare(state, capability, authority, tmp_path)
+
+tests/test_bindings.py:62: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_bindings.py:13: in prepare
+    return require("bindings", "prepare_request")(seed, "C1", capability, authority, (binding or native(seed),), tmp_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'bindings', name = 'prepare_request'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing bindings runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7991b30e3270>('production.bindings')
+E        +    where <function find_spec at 0x7991b30e3270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+______________________ test_stale_file_when_bytes_changed ______________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-2/test_stale_file_when_bytes_cha0')
+
+    def test_stale_file_when_bytes_changed(seed, capability, authority, tmp_path):
+        # Given: manifest points to a now-changed source.
+        (tmp_path / seed.batch.clips[0].assets[0].path).write_text("changed")
+        # When / Then: hash verification catches stale bytes.
+        with pytest.raises(ContractError, match="hash"):
+>           prepare(seed, capability, authority, tmp_path)
+
+tests/test_bindings.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_bindings.py:13: in prepare
+    return require("bindings", "prepare_request")(seed, "C1", capability, authority, (binding or native(seed),), tmp_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'bindings', name = 'prepare_request'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing bindings runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7991b30e3270>('production.bindings')
+E        +    where <function find_spec at 0x7991b30e3270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_____________ test_unsafe_path_when_pin_escapes_project[../escape] _____________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-2/test_unsafe_path_when_pin_esca0')
+path = '../escape'
+
+    @pytest.mark.parametrize("path", ["../escape", "/etc/passwd"])
+    def test_unsafe_path_when_pin_escapes_project(seed, capability, authority, tmp_path, path):
+        # Given: malicious relative or absolute source path.
+        asset = seed.batch.clips[0].assets[0].model_copy(update={"path": path})
+        binding = native(seed).model_copy(update={"pin": asset})
+        clip = seed.batch.clips[0].model_copy(update={"assets": (asset,)})
+        state = seed.model_copy(update={"batch": seed.batch.model_copy(update={"clips": (clip, *seed.batch.clips[1:])})})
+        # When / Then: data outside the owned root is never read.
+        with pytest.raises(ContractError, match="path"):
+>           prepare(state, capability, authority, tmp_path, binding)
+
+tests/test_bindings.py:82: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_bindings.py:13: in prepare
+    return require("bindings", "prepare_request")(seed, "C1", capability, authority, (binding or native(seed),), tmp_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'bindings', name = 'prepare_request'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing bindings runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7991b30e3270>('production.bindings')
+E        +    where <function find_spec at 0x7991b30e3270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+____________ test_unsafe_path_when_pin_escapes_project[/etc/passwd] ____________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-2/test_unsafe_path_when_pin_esca1')
+path = '/etc/passwd'
+
+    @pytest.mark.parametrize("path", ["../escape", "/etc/passwd"])
+    def test_unsafe_path_when_pin_escapes_project(seed, capability, authority, tmp_path, path):
+        # Given: malicious relative or absolute source path.
+        asset = seed.batch.clips[0].assets[0].model_copy(update={"path": path})
+        binding = native(seed).model_copy(update={"pin": asset})
+        clip = seed.batch.clips[0].model_copy(update={"assets": (asset,)})
+        state = seed.model_copy(update={"batch": seed.batch.model_copy(update={"clips": (clip, *seed.batch.clips[1:])})})
+        # When / Then: data outside the owned root is never read.
+        with pytest.raises(ContractError, match="path"):
+>           prepare(state, capability, authority, tmp_path, binding)
+
+tests/test_bindings.py:82: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_bindings.py:13: in prepare
+    return require("bindings", "prepare_request")(seed, "C1", capability, authority, (binding or native(seed),), tmp_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'bindings', name = 'prepare_request'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing bindings runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7991b30e3270>('production.bindings')
+E        +    where <function find_spec at 0x7991b30e3270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+______________ test_paid_alternative_when_unlimited_not_available ______________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-2/test_paid_alternative_when_unl0')
+
+    def test_paid_alternative_when_unlimited_not_available(seed, capability, authority, tmp_path):
+        # Given: composer showed credit cost or purchase screen.
+        cap = capability.model_copy(update={"observed_mode": "purchase"})
+        # When / Then: approved unlimited is not replaced with credits.
+        with pytest.raises(ContractError, match="mode"):
+>           prepare(seed, cap, authority, tmp_path)
+
+tests/test_bindings.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_bindings.py:13: in prepare
+    return require("bindings", "prepare_request")(seed, "C1", capability, authority, (binding or native(seed),), tmp_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'bindings', name = 'prepare_request'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing bindings runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7991b30e3270>('production.bindings')
+E        +    where <function find_spec at 0x7991b30e3270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+____________________ test_descendants_when_source_replaced _____________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-2/test_descendants_when_source_r0')
+
+    def test_descendants_when_source_replaced(seed, tmp_path):
+        # Given: C3 consumed C1; C2 is independent.
+        state = linked(seed)
+        c1, c2 = selection(state, tmp_path), selection(state, tmp_path, "C2")
+        state = state.model_copy(update={"selections": (c1, c2)})
+        c3 = selection(state, tmp_path, "C3")
+        state = state.model_copy(update={"selections": (*state.selections, c3)})
+        # When: replacing the upstream selection.
+>       new = require("revisions", "replace_selection")(state, c1.model_copy(update={"acceptance_revision": 2}))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_revisions.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'revisions', name = 'replace_selection'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing revisions runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7991b30e3270>('production.revisions')
+E        +    where <function find_spec at 0x7991b30e3270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_bindings.py::test_bound_request_when_inputs_ready - Asserti...
+FAILED tests/test_bindings.py::test_reject_binding_when_native_contract_wrong[change0-ready]
+FAILED tests/test_bindings.py::test_reject_binding_when_native_contract_wrong[change1-role]
+FAILED tests/test_bindings.py::test_reject_binding_when_native_contract_wrong[change2-modality]
+FAILED tests/test_bindings.py::test_reject_binding_when_native_contract_wrong[change3-binding]
+FAILED tests/test_bindings.py::test_reference_limit_when_required_count_exceeds_limit
+FAILED tests/test_bindings.py::test_transfer_when_asset_hash_not_authorized
+FAILED tests/test_bindings.py::test_missing_video_role_when_required_predecessor
+FAILED tests/test_bindings.py::test_stale_file_when_bytes_changed - Assertion...
+FAILED tests/test_bindings.py::test_unsafe_path_when_pin_escapes_project[../escape]
+FAILED tests/test_bindings.py::test_unsafe_path_when_pin_escapes_project[/etc/passwd]
+FAILED tests/test_bindings.py::test_paid_alternative_when_unlimited_not_available
+FAILED tests/test_revisions.py::test_descendants_when_source_replaced - Asser...
+13 failed, 2 passed in 0.16s

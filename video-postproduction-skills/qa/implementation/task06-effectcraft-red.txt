@@ -1,0 +1,462 @@
+FFFFFFF                                                                  [100%]
+=================================== FAILURES ===================================
+_ test_effectcraft_when_actual_rgba_sequence_and_keys_are_independently_verified _
+
+module = 'backends.effectcraft', name = 'EffectCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.effectcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.effectcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-195/test_effectcraft_when_actual_r0')
+
+    def test_effectcraft_when_actual_rgba_sequence_and_keys_are_independently_verified(tmp_path):
+>       store,backend,packet,value=rendered(tmp_path)
+                                   ^^^^^^^^^^^^^^^^^^
+
+tests/test_effectcraft.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_effectcraft.py:26: in rendered
+    store,backend,order,cap=setup(root)
+                            ^^^^^^^^^^^
+tests/test_effectcraft.py:20: in setup
+    backend=require("backends.effectcraft","EffectCraftBackend")(store,root/"effect-native")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.effectcraft', name = 'EffectCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.effectcraft'
+
+tests/conftest.py:10: Failed
+_ test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes0] _
+
+module = 'backends.effectcraft', name = 'EffectCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.effectcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.effectcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-195/test_effectcraft_when_unapprov0')
+changes = {'fps': {'num': 30, 'den': 1}}
+
+    @pytest.mark.parametrize("changes",[{"fps":{"num":30,"den":1}},{"width":200},{"authorApp":"ppro"},{"frame_count":0}])
+    def test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected(tmp_path,changes):
+>       store,backend,order,cap=setup(tmp_path,**changes)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_effectcraft.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_effectcraft.py:20: in setup
+    backend=require("backends.effectcraft","EffectCraftBackend")(store,root/"effect-native")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.effectcraft', name = 'EffectCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.effectcraft'
+
+tests/conftest.py:10: Failed
+_ test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes1] _
+
+module = 'backends.effectcraft', name = 'EffectCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.effectcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.effectcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-195/test_effectcraft_when_unapprov1')
+changes = {'width': 200}
+
+    @pytest.mark.parametrize("changes",[{"fps":{"num":30,"den":1}},{"width":200},{"authorApp":"ppro"},{"frame_count":0}])
+    def test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected(tmp_path,changes):
+>       store,backend,order,cap=setup(tmp_path,**changes)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_effectcraft.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_effectcraft.py:20: in setup
+    backend=require("backends.effectcraft","EffectCraftBackend")(store,root/"effect-native")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.effectcraft', name = 'EffectCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.effectcraft'
+
+tests/conftest.py:10: Failed
+_ test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes2] _
+
+module = 'backends.effectcraft', name = 'EffectCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.effectcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.effectcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-195/test_effectcraft_when_unapprov2')
+changes = {'authorApp': 'ppro'}
+
+    @pytest.mark.parametrize("changes",[{"fps":{"num":30,"den":1}},{"width":200},{"authorApp":"ppro"},{"frame_count":0}])
+    def test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected(tmp_path,changes):
+>       store,backend,order,cap=setup(tmp_path,**changes)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_effectcraft.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_effectcraft.py:20: in setup
+    backend=require("backends.effectcraft","EffectCraftBackend")(store,root/"effect-native")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.effectcraft', name = 'EffectCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.effectcraft'
+
+tests/conftest.py:10: Failed
+_ test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes3] _
+
+module = 'backends.effectcraft', name = 'EffectCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.effectcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.effectcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-195/test_effectcraft_when_unapprov3')
+changes = {'frame_count': 0}
+
+    @pytest.mark.parametrize("changes",[{"fps":{"num":30,"den":1}},{"width":200},{"authorApp":"ppro"},{"frame_count":0}])
+    def test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected(tmp_path,changes):
+>       store,backend,order,cap=setup(tmp_path,**changes)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_effectcraft.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_effectcraft.py:20: in setup
+    backend=require("backends.effectcraft","EffectCraftBackend")(store,root/"effect-native")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.effectcraft', name = 'EffectCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.effectcraft'
+
+tests/conftest.py:10: Failed
+_____ test_effectcraft_when_any_plate_frame_is_missing_cannot_materialize ______
+
+module = 'backends.effectcraft', name = 'EffectCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.effectcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.effectcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-195/test_effectcraft_when_any_plat0')
+
+    def test_effectcraft_when_any_plate_frame_is_missing_cannot_materialize(tmp_path):
+>       store,backend,packet,value=rendered(tmp_path)
+                                   ^^^^^^^^^^^^^^^^^^
+
+tests/test_effectcraft.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_effectcraft.py:26: in rendered
+    store,backend,order,cap=setup(root)
+                            ^^^^^^^^^^^
+tests/test_effectcraft.py:20: in setup
+    backend=require("backends.effectcraft","EffectCraftBackend")(store,root/"effect-native")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.effectcraft', name = 'EffectCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.effectcraft'
+
+tests/conftest.py:10: Failed
+___ test_effectcraft_when_native_comp_or_keys_were_edited_requires_reimport ____
+
+module = 'backends.effectcraft', name = 'EffectCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.effectcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.effectcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-195/test_effectcraft_when_native_c0')
+
+    def test_effectcraft_when_native_comp_or_keys_were_edited_requires_reimport(tmp_path):
+>       store,backend,packet,value=rendered(tmp_path)
+                                   ^^^^^^^^^^^^^^^^^^
+
+tests/test_effectcraft.py:62: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_effectcraft.py:26: in rendered
+    store,backend,order,cap=setup(root)
+                            ^^^^^^^^^^^
+tests/test_effectcraft.py:20: in setup
+    backend=require("backends.effectcraft","EffectCraftBackend")(store,root/"effect-native")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.effectcraft', name = 'EffectCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.effectcraft'
+
+tests/conftest.py:10: Failed
+=========================== short test summary info ============================
+FAILED tests/test_effectcraft.py::test_effectcraft_when_actual_rgba_sequence_and_keys_are_independently_verified
+FAILED tests/test_effectcraft.py::test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes0]
+FAILED tests/test_effectcraft.py::test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes1]
+FAILED tests/test_effectcraft.py::test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes2]
+FAILED tests/test_effectcraft.py::test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes3]
+FAILED tests/test_effectcraft.py::test_effectcraft_when_any_plate_frame_is_missing_cannot_materialize
+FAILED tests/test_effectcraft.py::test_effectcraft_when_native_comp_or_keys_were_edited_requires_reimport
+7 failed in 6.79s

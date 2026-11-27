@@ -1,0 +1,357 @@
+{
+  "$defs": {
+    "Digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "Discovery": {
+      "enum": [
+        "path",
+        "package_db",
+        "desktop",
+        "known_locations",
+        "required_cli"
+      ],
+      "title": "Discovery",
+      "type": "string"
+    },
+    "Frame": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "InstalledPackage": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "version": {
+          "$ref": "#/$defs/Nonempty"
+        }
+      },
+      "required": [
+        "name",
+        "version"
+      ],
+      "title": "InstalledPackage",
+      "type": "object"
+    },
+    "Nonempty": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "System": {
+      "enum": [
+        "Linux",
+        "Windows",
+        "Darwin"
+      ],
+      "title": "System",
+      "type": "string"
+    },
+    "Tool": {
+      "enum": [
+        "filmcraft",
+        "effectcraft",
+        "soundcraft",
+        "autoclip",
+        "resolve",
+        "premiere",
+        "after_effects",
+        "ffmpeg",
+        "ffprobe"
+      ],
+      "title": "Tool",
+      "type": "string"
+    },
+    "ToolObservation": {
+      "additionalProperties": false,
+      "properties": {
+        "tool": {
+          "$ref": "#/$defs/Tool"
+        },
+        "cli_path": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Nonempty"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "cli_sha256": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Digest"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "version": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Nonempty"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "package_name": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Nonempty"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "desktop_entries": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Nonempty"
+          },
+          "title": "Desktop Entries",
+          "type": "array"
+        },
+        "known_app_locations": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Nonempty"
+          },
+          "title": "Known App Locations",
+          "type": "array"
+        },
+        "checked": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Discovery"
+          },
+          "title": "Checked",
+          "type": "array"
+        },
+        "errors": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Nonempty"
+          },
+          "title": "Errors",
+          "type": "array"
+        }
+      },
+      "required": [
+        "tool"
+      ],
+      "title": "ToolObservation",
+      "type": "object"
+    },
+    "ToolRequirement": {
+      "additionalProperties": false,
+      "properties": {
+        "tool": {
+          "$ref": "#/$defs/Tool"
+        },
+        "feature": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "versions": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Nonempty"
+          },
+          "title": "Versions",
+          "type": "array"
+        },
+        "needs_cli": {
+          "default": true,
+          "title": "Needs Cli",
+          "type": "boolean"
+        },
+        "required": {
+          "default": true,
+          "title": "Required",
+          "type": "boolean"
+        },
+        "omission_reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Nonempty"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "systems": {
+          "default": [
+            "Linux",
+            "Windows",
+            "Darwin"
+          ],
+          "items": {
+            "$ref": "#/$defs/System"
+          },
+          "title": "Systems",
+          "type": "array"
+        },
+        "architectures": {
+          "default": [
+            "x86_64",
+            "aarch64",
+            "AMD64",
+            "arm64"
+          ],
+          "items": {
+            "$ref": "#/$defs/Nonempty"
+          },
+          "title": "Architectures",
+          "type": "array"
+        },
+        "min_disk_bytes": {
+          "$ref": "#/$defs/Frame",
+          "default": 0
+        },
+        "min_memory_bytes": {
+          "$ref": "#/$defs/Frame",
+          "default": 0
+        },
+        "requires_verified_gpu": {
+          "default": false,
+          "title": "Requires Verified Gpu",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "tool",
+        "feature"
+      ],
+      "title": "ToolRequirement",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "host_id": {
+      "$ref": "#/$defs/Digest"
+    },
+    "system": {
+      "$ref": "#/$defs/System"
+    },
+    "architecture": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "programs": {
+      "items": {
+        "$ref": "#/$defs/ToolObservation"
+      },
+      "title": "Programs",
+      "type": "array"
+    },
+    "packages": {
+      "items": {
+        "$ref": "#/$defs/InstalledPackage"
+      },
+      "title": "Packages",
+      "type": "array"
+    },
+    "disk_available_bytes": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Frame"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "memory_available_bytes": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Frame"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "gpu_status": {
+      "enum": [
+        "unknown",
+        "identified",
+        "verified"
+      ],
+      "title": "Gpu Status",
+      "type": "string"
+    },
+    "gpu_info": {
+      "items": {
+        "$ref": "#/$defs/Nonempty"
+      },
+      "title": "Gpu Info",
+      "type": "array"
+    },
+    "evidence_kind": {
+      "enum": [
+        "read_only_host",
+        "contract_fixture"
+      ],
+      "title": "Evidence Kind",
+      "type": "string"
+    },
+    "inspected_at": {
+      "format": "date-time",
+      "title": "Inspected At",
+      "type": "string"
+    },
+    "active_tools": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Tool"
+      },
+      "title": "Active Tools",
+      "type": "array"
+    },
+    "package_lock_status": {
+      "default": "unknown",
+      "enum": [
+        "free",
+        "busy",
+        "unknown"
+      ],
+      "title": "Package Lock Status",
+      "type": "string"
+    },
+    "requirements": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ToolRequirement"
+      },
+      "title": "Requirements",
+      "type": "array"
+    }
+  },
+  "required": [
+    "host_id",
+    "system",
+    "architecture",
+    "programs",
+    "packages",
+    "disk_available_bytes",
+    "memory_available_bytes",
+    "gpu_status",
+    "gpu_info",
+    "evidence_kind",
+    "inspected_at"
+  ],
+  "title": "HostSnapshot",
+  "type": "object"
+}

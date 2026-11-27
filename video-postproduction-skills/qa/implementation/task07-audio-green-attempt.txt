@@ -1,0 +1,20 @@
+..F................................                                      [100%]
+=================================== FAILURES ===================================
+_____ test_stem_when_header_or_independent_origin_is_not_actual[changes1] ______
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-202/test_stem_when_header_or_indep1')
+changes = {'channels': 1}
+
+    @pytest.mark.parametrize("changes",[{"sample_count":23999},{"channels":1},{"sample_rate":44100},
+        {"origin":"derived_from_mixed","role":"DX"}])
+    def test_stem_when_header_or_independent_origin_is_not_actual(tmp_path,changes):
+        raw=stem(tmp_path,**changes)
+        parsed=require("audio_models","StemAsset").model_validate_json(json.dumps(raw))
+>       with pytest.raises(require("errors","ContractError")):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_audio.py:24: Failed
+=========================== short test summary info ============================
+FAILED tests/test_audio.py::test_stem_when_header_or_independent_origin_is_not_actual[changes1]
+1 failed, 34 passed in 4.86s

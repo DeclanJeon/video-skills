@@ -1,0 +1,13 @@
+{
+  "block_markers": {
+    "style": "[style]",
+    "identity": "[identity]",
+    "composition": "[composition]",
+    "negative": "[negative]"
+  },
+  "panel": null,
+  "sheet_baseline": null,
+  "identity_sources": [],
+  "references": [],
+  "sources": {}
+}

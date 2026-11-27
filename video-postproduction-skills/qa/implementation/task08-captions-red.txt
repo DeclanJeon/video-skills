@@ -1,0 +1,395 @@
+FFFFFF                                                                   [100%]
+=================================== FAILURES ===================================
+___ test_captions_when_source_times_map_to_current_master_without_paraphrase ___
+
+module = 'caption_models', name = 'SourceCaption'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.caption_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.caption_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-229/test_captions_when_source_time0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_captions_when_source_times_map_to_current_master_without_paraphrase(project):
+        path,store,state,production=prepare(project)
+>       cue=source(path,state)
+            ^^^^^^^^^^^^^^^^^^
+
+tests/test_captions.py:19: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_captions.py:13: in source
+    return require("caption_models","SourceCaption").model_validate_json(json.dumps({
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'caption_models', name = 'SourceCaption'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.caption_models'
+
+tests/conftest.py:10: Failed
+_ test_captions_when_text_speaker_or_translation_is_not_in_exact_approved_source_rejects[changes0] _
+
+module = 'caption_models', name = 'SourceCaption'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.caption_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.caption_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-229/test_captions_when_text_speake0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+changes = {'text': 'Changed quote'}
+
+    @pytest.mark.parametrize("changes",[{"text":"Changed quote"},{"speaker":"Actor B"},{"kind":"translation"}])
+    def test_captions_when_text_speaker_or_translation_is_not_in_exact_approved_source_rejects(project,changes):
+        path,store,state,production=prepare(project)
+>       cue=source(path,state,**changes)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_captions.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_captions.py:13: in source
+    return require("caption_models","SourceCaption").model_validate_json(json.dumps({
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'caption_models', name = 'SourceCaption'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.caption_models'
+
+tests/conftest.py:10: Failed
+_ test_captions_when_text_speaker_or_translation_is_not_in_exact_approved_source_rejects[changes1] _
+
+module = 'caption_models', name = 'SourceCaption'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.caption_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.caption_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-229/test_captions_when_text_speake1/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+changes = {'speaker': 'Actor B'}
+
+    @pytest.mark.parametrize("changes",[{"text":"Changed quote"},{"speaker":"Actor B"},{"kind":"translation"}])
+    def test_captions_when_text_speaker_or_translation_is_not_in_exact_approved_source_rejects(project,changes):
+        path,store,state,production=prepare(project)
+>       cue=source(path,state,**changes)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_captions.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_captions.py:13: in source
+    return require("caption_models","SourceCaption").model_validate_json(json.dumps({
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'caption_models', name = 'SourceCaption'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.caption_models'
+
+tests/conftest.py:10: Failed
+_ test_captions_when_text_speaker_or_translation_is_not_in_exact_approved_source_rejects[changes2] _
+
+module = 'caption_models', name = 'SourceCaption'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.caption_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.caption_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-229/test_captions_when_text_speake2/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+changes = {'kind': 'translation'}
+
+    @pytest.mark.parametrize("changes",[{"text":"Changed quote"},{"speaker":"Actor B"},{"kind":"translation"}])
+    def test_captions_when_text_speaker_or_translation_is_not_in_exact_approved_source_rejects(project,changes):
+        path,store,state,production=prepare(project)
+>       cue=source(path,state,**changes)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_captions.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_captions.py:13: in source
+    return require("caption_models","SourceCaption").model_validate_json(json.dumps({
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'caption_models', name = 'SourceCaption'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.caption_models'
+
+tests/conftest.py:10: Failed
+___ test_captions_when_sentence_timing_cannot_be_invented_as_word_timestamps ___
+
+module = 'caption_models', name = 'SourceCaption'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.caption_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.caption_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-229/test_captions_when_sentence_ti0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_captions_when_sentence_timing_cannot_be_invented_as_word_timestamps(project):
+        path,store,state,production=prepare(project)
+        with pytest.raises(require("errors","ContractError")):
+>           cue=source(path,state,word_highlight=True)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_captions.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_captions.py:13: in source
+    return require("caption_models","SourceCaption").model_validate_json(json.dumps({
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'caption_models', name = 'SourceCaption'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.caption_models'
+
+tests/conftest.py:10: Failed
+________ test_captions_when_old_cues_after_timeline_revision_are_stale _________
+
+module = 'caption_models', name = 'SourceCaption'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.caption_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.caption_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-229/test_captions_when_old_cues_af0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_captions_when_old_cues_after_timeline_revision_are_stale(project):
+        path,store,state,production=prepare(project)
+>       cue=source(path,state)
+            ^^^^^^^^^^^^^^^^^^
+
+tests/test_captions.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_captions.py:13: in source
+    return require("caption_models","SourceCaption").model_validate_json(json.dumps({
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'caption_models', name = 'SourceCaption'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.caption_models'
+
+tests/conftest.py:10: Failed
+=========================== short test summary info ============================
+FAILED tests/test_captions.py::test_captions_when_source_times_map_to_current_master_without_paraphrase
+FAILED tests/test_captions.py::test_captions_when_text_speaker_or_translation_is_not_in_exact_approved_source_rejects[changes0]
+FAILED tests/test_captions.py::test_captions_when_text_speaker_or_translation_is_not_in_exact_approved_source_rejects[changes1]
+FAILED tests/test_captions.py::test_captions_when_text_speaker_or_translation_is_not_in_exact_approved_source_rejects[changes2]
+FAILED tests/test_captions.py::test_captions_when_sentence_timing_cannot_be_invented_as_word_timestamps
+FAILED tests/test_captions.py::test_captions_when_old_cues_after_timeline_revision_are_stale
+6 failed in 2.02s

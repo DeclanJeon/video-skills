@@ -1,0 +1,222 @@
+{
+  "valid": true,
+  "planned_cases": 34,
+  "executed_pytest_cases": 33,
+  "cases": {
+    "T01": {
+      "nodes": [
+        "tests/test_dependencies.py::test_independent_ready_when_predecessor_not_accepted"
+      ],
+      "status": "passed"
+    },
+    "T02": {
+      "nodes": [
+        "tests/test_bindings.py::test_multiple_history_sources_when_same_clip_consumes_both"
+      ],
+      "status": "passed"
+    },
+    "T03": {
+      "nodes": [
+        "tests/test_dependencies.py::test_cycle_when_clips_require_each_other"
+      ],
+      "status": "passed"
+    },
+    "T04": {
+      "nodes": [
+        "tests/test_quality.py::test_conditional_when_no_receiver_or_fix",
+        "tests/test_revisions.py::test_descendants_when_source_replaced"
+      ],
+      "status": "passed"
+    },
+    "T05": {
+      "nodes": [
+        "tests/test_bindings.py::test_missing_video_role_when_required_predecessor"
+      ],
+      "status": "passed"
+    },
+    "T06": {
+      "nodes": [
+        "tests/test_bindings.py::test_reference_limit_when_required_count_exceeds_limit"
+      ],
+      "status": "passed"
+    },
+    "T07": {
+      "nodes": [
+        "tests/test_execution.py::test_unknown_slot_when_submit_response_lost",
+        "tests/test_recovery.py::test_unknown_reservation_when_process_restarts"
+      ],
+      "status": "passed"
+    },
+    "T08": {
+      "nodes": [
+        "tests/test_execution.py::test_terminal_when_download_not_completed"
+      ],
+      "status": "passed"
+    },
+    "T09": {
+      "nodes": [
+        "tests/test_revisions.py::test_descendants_when_source_replaced"
+      ],
+      "status": "passed"
+    },
+    "T10": {
+      "nodes": [
+        "tests/test_handoff.py::test_reaction_first_when_approved_reveal_order"
+      ],
+      "status": "passed"
+    },
+    "T11": {
+      "nodes": [
+        "tests/test_quality.py::test_input_as_output_when_download_matches_reference"
+      ],
+      "status": "passed"
+    },
+    "T12": {
+      "nodes": [
+        "tests/test_quality.py::test_listening_when_audio_required"
+      ],
+      "status": "passed"
+    },
+    "T13": {
+      "nodes": [
+        "tests/test_quality.py::test_missing_requirement_when_all_frames_decode"
+      ],
+      "status": "passed"
+    },
+    "T14": {
+      "nodes": [
+        "tests/test_bindings.py::test_paid_alternative_when_unlimited_not_available"
+      ],
+      "status": "passed"
+    },
+    "T15": {
+      "nodes": [
+        "tests/test_handoff.py::test_conditional_when_face_defect_imported"
+      ],
+      "status": "passed"
+    },
+    "T16": {
+      "nodes": [
+        "tests/test_handoff.py::test_delivery_when_boundary_missing"
+      ],
+      "status": "passed"
+    },
+    "T17": {
+      "nodes": [
+        "tests/test_adapters.py::test_coverage_source_when_batch_erases_approved_item"
+      ],
+      "status": "passed"
+    },
+    "T18": {
+      "nodes": [
+        "tests/test_bindings.py::test_stale_file_when_bytes_changed",
+        "tests/test_cli.py::test_cli_invalid_json_when_input_malformed"
+      ],
+      "status": "passed"
+    },
+    "T19": {
+      "nodes": [
+        "tests/test_bindings.py::test_transfer_when_asset_hash_not_authorized"
+      ],
+      "status": "passed"
+    },
+    "T20": {
+      "nodes": [
+        "tests/test_quality.py::test_unsupported_source_range_when_vfr_has_no_pts"
+      ],
+      "status": "passed"
+    },
+    "T21": {
+      "nodes": [
+        "tests/test_recovery.py::test_unknown_reservation_when_process_restarts"
+      ],
+      "status": "passed"
+    },
+    "T22": {
+      "nodes": [
+        "tests/test_bindings.py::test_multiple_history_sources_when_same_clip_consumes_both"
+      ],
+      "status": "passed"
+    },
+    "T23": {
+      "nodes": [
+        "tests/test_handoff.py::test_join_when_other_take_revision_reviewed",
+        "tests/test_revisions.py::test_fingerprint_when_same_bytes_range_changed"
+      ],
+      "status": "passed"
+    },
+    "T24": {
+      "nodes": [
+        "tests/test_handoff.py::test_delivery_when_clip_is_missing",
+        "tests/test_handoff.py::test_flow_when_only_frames_were_seen"
+      ],
+      "status": "passed"
+    },
+    "T25": {
+      "nodes": [
+        "tests/test_coverage.py::test_first_missing_shot_when_queue_omits_clip"
+      ],
+      "status": "passed"
+    },
+    "T26": {
+      "nodes": [
+        "tests/test_coverage.py::test_multi_shot_when_one_event_unmapped"
+      ],
+      "status": "passed"
+    },
+    "T27": {
+      "nodes": [
+        "tests/test_quality.py::test_late_commit_when_design_changed",
+        "tests/test_revisions.py::test_descendants_when_source_replaced"
+      ],
+      "status": "passed"
+    },
+    "T28": {
+      "nodes": [
+        "tests/test_quality.py::test_late_commit_when_design_changed",
+        "tests/test_recovery.py::test_cas_when_another_writer_published"
+      ],
+      "status": "passed"
+    },
+    "T29": {
+      "nodes": [
+        "tests/test_revisions.py::test_fingerprint_when_same_bytes_range_changed"
+      ],
+      "status": "passed"
+    },
+    "T30": {
+      "nodes": [
+        "tests/test_execution.py::test_unknown_slot_when_submit_response_lost"
+      ],
+      "status": "passed"
+    },
+    "T31": {
+      "nodes": [
+        "tests/test_handoff.py::test_reaction_first_when_approved_reveal_order",
+        "tests/test_handoff.py::test_reveal_when_observed_order_violates_board"
+      ],
+      "status": "passed"
+    },
+    "T32": {
+      "nodes": [
+        "tests/test_execution.py::test_terminal_when_download_not_completed"
+      ],
+      "status": "passed"
+    },
+    "T33": {
+      "nodes": [
+        "tests/test_execution.py::test_external_job_when_capacity_two",
+        "tests/test_execution.py::test_available_when_account_occupancy_unknown"
+      ],
+      "status": "passed"
+    },
+    "T34": {
+      "nodes": [
+        "tests/test_quality.py::test_missing_requirement_when_all_frames_decode",
+        "tests/test_adapters.py::test_coverage_source_when_batch_erases_approved_item"
+      ],
+      "status": "passed"
+    }
+  },
+  "scope": "local contract tests, reported QA fixture semantics, real local technical decode; no provider/agent-behavior certification"
+}

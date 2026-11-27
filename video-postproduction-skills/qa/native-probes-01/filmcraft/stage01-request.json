@@ -1,0 +1,49 @@
+{
+  "argv": [
+    "/usr/bin/filmcraft-cli",
+    "--compact",
+    "--save-as",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/filmcraft/native.fcproj",
+    "run",
+    "-"
+  ],
+  "steps": [
+    {
+      "id": "file.newProject",
+      "params": {
+        "name": "Synthetic isolated technical probe"
+      }
+    },
+    {
+      "id": "file.newSequence",
+      "params": {
+        "name": "Synthetic",
+        "width": 160,
+        "height": 90,
+        "fps": 24,
+        "sampleRate": 48000,
+        "video": 1,
+        "audio": 1
+      }
+    },
+    {
+      "id": "file.import",
+      "params": {
+        "paths": [
+          "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/sources/source1.mp4",
+          "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/sources/source2.mp4",
+          "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/sources/source3.mp4"
+        ]
+      }
+    },
+    {
+      "id": "project.inspect",
+      "params": {}
+    }
+  ],
+  "pid": 793583,
+  "returncode": 0,
+  "timed_out": false,
+  "network_denied": true,
+  "scope": "real private native project/import probe only; not final QA"
+}

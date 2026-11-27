@@ -1,0 +1,555 @@
+{
+  "root": "/home/declan/Documents/쇼츠템플릿",
+  "files": 139,
+  "extensions": {
+    ".png": 43,
+    ".jpg": 9,
+    ".json": 27,
+    ".prgraphic": 27,
+    ".mp4": 27,
+    ".mogrt": 6
+  },
+  "definitions": [
+    {
+      "path": "Freeticon_기본_모션자막_21종/01_Scale up/definition.json",
+      "sha256": "772a2dc0ab4b945a830d93a5fc2ba2fb2b1748d3eab953590c3c3987473715ca",
+      "name": "01_Scale up",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 1000,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/01_Scale up_fast/definition.json",
+      "sha256": "64536967a41ed723724232819c09d7c4c0f80f57062ecfd878817ecfa22c3db4",
+      "name": "01_Scale up_fast",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 1000,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/01_Scale up_smooth/definition.json",
+      "sha256": "b3fef59fd396df8addb9f671e3ef0e198b7a66a70e585c7c03f7bd7ce3f223c4",
+      "name": "01_Scale up_smooth",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 1000,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/02_Scale down_fast/definition.json",
+      "sha256": "260370d73bb90763d3876d9d047dcf2f6d05c562293d8faeb46e8d54917fafcf",
+      "name": "02_Scale down_fast",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 1000,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/02_Scale down_smooth/definition.json",
+      "sha256": "b93b5836df11cf24f3c32b915edcb16ccdaa4ae77d29887627ba0779d18e49a9",
+      "name": "02_Scale down_smooth",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 1000,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/03_Scale In/definition.json",
+      "sha256": "bf20e8eceb2027e1a8b13d2998b05a07bf40bdd0594fbf1e981ec20de7bbd4f5",
+      "name": "03_Scale In",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 1000,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/03_Scale In_fast/definition.json",
+      "sha256": "5cb73e2ed7768468186f58be5dab7e391d1657b42be8ca105bba10bc45e77c5a",
+      "name": "03_Scale In_fast",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 1000,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/04_Fade-in on both sides/definition.json",
+      "sha256": "bdc9567a9071a6f84e8c4c72374dccac4b0a4d82bdadb7567e1779ec8f1c8a0d",
+      "name": "04_Fade-in on both sides",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 1000,
+        "value": 3003
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/05_Wiggle/definition.json",
+      "sha256": "bdfd7963cb308c817ca65aadfc85bd8d945aa420138ad1ad31df35565a70f6ee",
+      "name": "05_Wiggle",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 15000,
+        "value": 149149
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/05_Wiggle_Strongly/definition.json",
+      "sha256": "a6c82521eb56ae89eecc08ae1f9063a5ac4f8948863b568811aa64ff055abecd",
+      "name": "05_Wiggle_Strongly",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 15000,
+        "value": 149149
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/06_wave_A/definition.json",
+      "sha256": "d5959812d64f667395746c3086275096e64741638e4b8f4f64b3054a9dffc74f",
+      "name": "06_wave_A",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 1000,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/06_wave_B/definition.json",
+      "sha256": "7f7ef7956dcf738abb207d0e9b8159352f34e1cdd9f94875c33d75b7f1c5509f",
+      "name": "06_wave_B",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 1000,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/06_wave_C/definition.json",
+      "sha256": "5b158e6ab4361fb17b66116cc4190204fb196ac225e3689b63701ea73e943f2c",
+      "name": "06_wave_C",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 1000,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/07_wriggle/definition.json",
+      "sha256": "f19a51887e06d2ec7d494114256323dd9530867945ca960ec1d827d384931a40",
+      "name": "07_wriggle",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 500,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/07_wriggle_fast/definition.json",
+      "sha256": "89d845c103d932d62ad7d14b3f8295c059e2447726890e72fe228fd6013bf74c",
+      "name": "07_wriggle_fast",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 30000,
+        "value": 61061
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/08_Color Neon Sign_Pastel/definition.json",
+      "sha256": "fad9fdd481f6b02f6c50f3917264b70e860008479e1fe5e3e174766d64fb596e",
+      "name": "08_Color Neon Sign_Pastel",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 250,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/08_Color neon sign/definition.json",
+      "sha256": "30dd62baa8b975a71100ff87563c23833afef94cd2f8a222a1f46b12a6ac69d6",
+      "name": "08_Color neon sign",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 250,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/08_Color neon sign_rainbow/definition.json",
+      "sha256": "ef2120b61563a362c2f42a8b55daa2a1e03a539e0b40967240e59a9730ab50ed",
+      "name": "08_Color neon sign_rainbow",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 30000,
+        "value": 121121
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/09_Glitch_A/definition.json",
+      "sha256": "9d9cc9b8173f6f653ca2ced81da6d8ef57159adb214bbef7001553e4bf1431cd",
+      "name": "09_Glitch_A",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 1000,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/09_Glitch_B/definition.json",
+      "sha256": "3b34c1c97ac1c29d96b3867ecebb4a81191e45ae542ea1f7050e24918b408184",
+      "name": "09_Glitch_B",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 1000,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_기본_모션자막_21종/09_Glitch_C/definition.json",
+      "sha256": "a01eded0e8e143811fba67e0b9bf10fba0bb41a7bc0fd15555d11822f365c993",
+      "name": "09_Glitch_C",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "Paperlogy-6SemiBold"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 1000,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_핑크_모션자막_5종/Lovely Pink Text_00/definition.json",
+      "sha256": "f57eeda86458e7235aaeafcf29e9973e08cf64b9151986070e76f389a1deab36",
+      "name": "Lovely Pink Text_00",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "HakgyoansimBareonbatangB"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 250,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_핑크_모션자막_5종/Lovely Pink Text_01/definition.json",
+      "sha256": "0b8839f36826d58c793b2c449dc82fec3b42f583421fbc8882cf3da36e2e153c",
+      "name": "Lovely Pink Text_01",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "HakgyoansimBareonbatangB"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 250,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_핑크_모션자막_5종/Lovely Pink Text_02/definition.json",
+      "sha256": "5b82ee79e8ac7a5d64abfff42cadce0b7256867abba92647791447ab3cb528ea",
+      "name": "Lovely Pink Text_02",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "HakgyoansimBareonbatangB"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 250,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_핑크_모션자막_5종/Lovely Pink Text_03/definition.json",
+      "sha256": "3e07e818703ec00aacdd0754e65f1f0aae7680c261fb773be1762bd08f3ab3b6",
+      "name": "Lovely Pink Text_03",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "HakgyoansimBareonbatangB"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 250,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_핑크_모션자막_5종/Lovely Pink Text_04/definition.json",
+      "sha256": "f961f3c66ade72125aaf08113d0cdd1ef1a76dde61463b46cf713e709b68be2e",
+      "name": "Lovely Pink Text_04",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "HakgyoansimBareonbatangB"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 250,
+        "value": 1001
+      },
+      "license_id": ""
+    },
+    {
+      "path": "Freeticon_핑크_모션자막_5종/Lovely Pink Text_05/definition.json",
+      "sha256": "2706aca488e514031b78de7cac5f04464e33a459fb70f48ad085f082d28b4b4e",
+      "name": "Lovely Pink Text_05",
+      "author_app": "ppro",
+      "fonts": {
+        "ko_KR": [
+          "HakgyoansimBareonbatangB"
+        ]
+      },
+      "frame_size": {
+        "x": 1920,
+        "y": 1080
+      },
+      "duration_metadata": {
+        "scale": 250,
+        "value": 1001
+      },
+      "license_id": ""
+    }
+  ],
+  "redistribution": "No template binaries/images copied into the skill design package; external references only"
+}

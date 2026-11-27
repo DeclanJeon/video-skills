@@ -1,0 +1,20 @@
+{
+  "roots": [
+    "/home/declan/.agents/skills",
+    "/home/declan/.pi/agent/skills",
+    "/home/declan/.codex/skills",
+    "/home/declan/.claude/skills",
+    "/home/declan/.gemini/skills",
+    "/home/declan/.config/opencode/skills"
+  ],
+  "orchestrator": 1,
+  "preproductionSkills": 20,
+  "productionSkills": 5,
+  "postproductionSkills": 0,
+  "postStatus": "directory registered; no SKILL.md entry exists",
+  "legacyRegisteredSkills": 0,
+  "compatibilityAuditor": true,
+  "videoDiagnostics": [],
+  "existingUnrelatedDiagnostics": 3,
+  "scope": "filesystem registrations and installed Pi loader; live sessions require reload"
+}

@@ -1,0 +1,45 @@
+Run a file of engine commands, one `ID JSON` per line
+
+Blank lines and lines starting with # are skipped. A failing line stops the script unless --keep-going is given.
+
+Usage: soundcraft-cli script [OPTIONS] <FILE>
+
+Arguments:
+  <FILE>
+          The script to run
+
+Options:
+      --keep-going
+          Continue after command errors and finish requested output, then exit nonzero if any command failed. Malformed JSON stops immediately
+
+      --in <S.scraft>
+          Open this session first
+
+      --demo
+          Start from the demo session
+          
+          [alias: --sample]
+
+      --bounce <OUT>
+          Bounce the mix to this file at the end; without --start and --end, the whole session
+
+      --start <T>
+          Where the bounce starts: seconds (12.5) or a time string
+
+      --end <T>
+          Where the bounce ends: seconds (12.5) or a time string
+
+      --save <S.scraft>
+          Save the session to this file at the end, replacing it
+
+      --inspect
+          Print the session as JSON at the end
+
+      --compact
+          Print the --inspect JSON on one line instead of pretty-printed
+
+      --in-place
+          Allow a --save that is the --in session, replacing the original
+
+  -h, --help
+          Print help (see a summary with '-h')

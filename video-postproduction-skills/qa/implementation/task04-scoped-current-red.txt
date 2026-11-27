@@ -1,0 +1,97 @@
+FFF.                                                                     [100%]
+=================================== FAILURES ===================================
+______ test_work_when_consumed_dependency_bytes_changed_cannot_be_current ______
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-198/test_work_when_consumed_depend0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_work_when_consumed_dependency_bytes_changed_cannot_be_current(project):
+        path,store,state,production=prepare(project)
+        dep=pin(path.parent,"consumed-recipe-dependency.txt","selected concept/license fixture")
+        order=order_for(state,dependencies=[dep.model_dump()])
+>       require("revisions","verify_work_inputs")(state,order,path)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_revisions.py:19: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'revisions', name = 'verify_work_inputs'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+            pytest.fail(f"implementation module missing: {exc}")
+        if not hasattr(loaded,name):
+>           pytest.fail(f"public contract missing: {module}.{name}")
+E           Failed: public contract missing: revisions.verify_work_inputs
+
+tests/conftest.py:12: Failed
+_ test_work_when_live_producer_invalidates_consumed_or_unrelated_source[0-True] _
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-198/test_work_when_live_producer_i0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+which = 0, blocked = True
+
+    @pytest.mark.parametrize("which,blocked",[(0,True),(2,False)])
+    def test_work_when_live_producer_invalidates_consumed_or_unrelated_source(project,which,blocked):
+        path,store,state,production=prepare(project)
+        order=order_for(state)
+        raw=json.loads(path.read_text());raw["production"]["selections"][which]["valid"]=False
+        path.write_text(json.dumps(raw))
+        if blocked:
+            with pytest.raises(require("errors","ContractError")):
+>               require("revisions","verify_work_inputs")(state,order,path)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_revisions.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'revisions', name = 'verify_work_inputs'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+            pytest.fail(f"implementation module missing: {exc}")
+        if not hasattr(loaded,name):
+>           pytest.fail(f"public contract missing: {module}.{name}")
+E           Failed: public contract missing: revisions.verify_work_inputs
+
+tests/conftest.py:12: Failed
+_ test_work_when_live_producer_invalidates_consumed_or_unrelated_source[2-False] _
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-198/test_work_when_live_producer_i1/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+which = 2, blocked = False
+
+    @pytest.mark.parametrize("which,blocked",[(0,True),(2,False)])
+    def test_work_when_live_producer_invalidates_consumed_or_unrelated_source(project,which,blocked):
+        path,store,state,production=prepare(project)
+        order=order_for(state)
+        raw=json.loads(path.read_text());raw["production"]["selections"][which]["valid"]=False
+        path.write_text(json.dumps(raw))
+        if blocked:
+            with pytest.raises(require("errors","ContractError")):
+                require("revisions","verify_work_inputs")(state,order,path)
+        else:
+>           require("revisions","verify_work_inputs")(state,order,path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_revisions.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'revisions', name = 'verify_work_inputs'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+            pytest.fail(f"implementation module missing: {exc}")
+        if not hasattr(loaded,name):
+>           pytest.fail(f"public contract missing: {module}.{name}")
+E           Failed: public contract missing: revisions.verify_work_inputs
+
+tests/conftest.py:12: Failed
+=========================== short test summary info ============================
+FAILED tests/test_revisions.py::test_work_when_consumed_dependency_bytes_changed_cannot_be_current
+FAILED tests/test_revisions.py::test_work_when_live_producer_invalidates_consumed_or_unrelated_source[0-True]
+FAILED tests/test_revisions.py::test_work_when_live_producer_invalidates_consumed_or_unrelated_source[2-False]
+3 failed, 1 passed in 6.69s

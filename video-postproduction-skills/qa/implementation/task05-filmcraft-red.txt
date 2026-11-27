@@ -1,0 +1,460 @@
+FFFFFFF                                                                  [100%]
+=================================== FAILURES ===================================
+__ test_filmcraft_when_real_native_three_cut_project_and_export_are_verified ___
+
+module = 'backends.filmcraft', name = 'FilmCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.filmcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.filmcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-188/test_filmcraft_when_real_nativ0')
+
+    def test_filmcraft_when_real_native_three_cut_project_and_export_are_verified(tmp_path):
+>       store,backend,packet,value=rendered(tmp_path)
+                                   ^^^^^^^^^^^^^^^^^^
+
+tests/test_filmcraft.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_filmcraft.py:25: in rendered
+    store,backend,packet,cap=setup(root)
+                             ^^^^^^^^^^^
+tests/test_filmcraft.py:18: in setup
+    backend=require("backends.filmcraft","FilmCraftBackend")(store,root/"native-work")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.filmcraft', name = 'FilmCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.filmcraft'
+
+tests/conftest.py:10: Failed
+__________ test_filmcraft_when_no_actual_reservation_cannot_dispatch ___________
+
+module = 'backends.filmcraft', name = 'FilmCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.filmcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.filmcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-188/test_filmcraft_when_no_actual_0')
+
+    def test_filmcraft_when_no_actual_reservation_cannot_dispatch(tmp_path):
+>       store,backend,packet,cap=setup(tmp_path)
+                                 ^^^^^^^^^^^^^^^
+
+tests/test_filmcraft.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_filmcraft.py:18: in setup
+    backend=require("backends.filmcraft","FilmCraftBackend")(store,root/"native-work")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.filmcraft', name = 'FilmCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.filmcraft'
+
+tests/conftest.py:10: Failed
+_________ test_filmcraft_when_prepared_binary_has_drifted_is_rejected __________
+
+module = 'backends.filmcraft', name = 'FilmCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.filmcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.filmcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-188/test_filmcraft_when_prepared_b0')
+
+    def test_filmcraft_when_prepared_binary_has_drifted_is_rejected(tmp_path):
+>       store,backend,packet,cap=setup(tmp_path)
+                                 ^^^^^^^^^^^^^^^
+
+tests/test_filmcraft.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_filmcraft.py:18: in setup
+    backend=require("backends.filmcraft","FilmCraftBackend")(store,root/"native-work")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.filmcraft', name = 'FilmCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.filmcraft'
+
+tests/conftest.py:10: Failed
+___________ test_filmcraft_when_completed_native_job_is_not_replayed ___________
+
+module = 'backends.filmcraft', name = 'FilmCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.filmcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.filmcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-188/test_filmcraft_when_completed_0')
+
+    def test_filmcraft_when_completed_native_job_is_not_replayed(tmp_path):
+>       store,backend,packet,value=rendered(tmp_path)
+                                   ^^^^^^^^^^^^^^^^^^
+
+tests/test_filmcraft.py:68: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_filmcraft.py:25: in rendered
+    store,backend,packet,cap=setup(root)
+                             ^^^^^^^^^^^
+tests/test_filmcraft.py:18: in setup
+    backend=require("backends.filmcraft","FilmCraftBackend")(store,root/"native-work")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.filmcraft', name = 'FilmCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.filmcraft'
+
+tests/conftest.py:10: Failed
+_ test_filmcraft_when_source_is_replaced_after_export_cannot_adopt_old_picture _
+
+module = 'backends.filmcraft', name = 'FilmCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.filmcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.filmcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-188/test_filmcraft_when_source_is_0')
+
+    def test_filmcraft_when_source_is_replaced_after_export_cannot_adopt_old_picture(tmp_path):
+>       store,backend,packet,value=rendered(tmp_path)
+                                   ^^^^^^^^^^^^^^^^^^
+
+tests/test_filmcraft.py:76: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_filmcraft.py:25: in rendered
+    store,backend,packet,cap=setup(root)
+                             ^^^^^^^^^^^
+tests/test_filmcraft.py:18: in setup
+    backend=require("backends.filmcraft","FilmCraftBackend")(store,root/"native-work")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.filmcraft', name = 'FilmCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.filmcraft'
+
+tests/conftest.py:10: Failed
+_ test_filmcraft_when_native_project_range_was_manually_changed_requires_reimport _
+
+module = 'backends.filmcraft', name = 'FilmCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.filmcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.filmcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-188/test_filmcraft_when_native_pro0')
+
+    def test_filmcraft_when_native_project_range_was_manually_changed_requires_reimport(tmp_path):
+>       store,backend,packet,value=rendered(tmp_path)
+                                   ^^^^^^^^^^^^^^^^^^
+
+tests/test_filmcraft.py:84: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_filmcraft.py:25: in rendered
+    store,backend,packet,cap=setup(root)
+                             ^^^^^^^^^^^
+tests/test_filmcraft.py:18: in setup
+    backend=require("backends.filmcraft","FilmCraftBackend")(store,root/"native-work")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.filmcraft', name = 'FilmCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.filmcraft'
+
+tests/conftest.py:10: Failed
+________ test_filmcraft_when_export_file_is_partial_cannot_materialize _________
+
+module = 'backends.filmcraft', name = 'FilmCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.filmcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.filmcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-188/test_filmcraft_when_export_fil0')
+
+    def test_filmcraft_when_export_file_is_partial_cannot_materialize(tmp_path):
+>       store,backend,packet,value=rendered(tmp_path)
+                                   ^^^^^^^^^^^^^^^^^^
+
+tests/test_filmcraft.py:95: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_filmcraft.py:25: in rendered
+    store,backend,packet,cap=setup(root)
+                             ^^^^^^^^^^^
+tests/test_filmcraft.py:18: in setup
+    backend=require("backends.filmcraft","FilmCraftBackend")(store,root/"native-work")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.filmcraft', name = 'FilmCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.filmcraft'
+
+tests/conftest.py:10: Failed
+=========================== short test summary info ============================
+FAILED tests/test_filmcraft.py::test_filmcraft_when_real_native_three_cut_project_and_export_are_verified
+FAILED tests/test_filmcraft.py::test_filmcraft_when_no_actual_reservation_cannot_dispatch
+FAILED tests/test_filmcraft.py::test_filmcraft_when_prepared_binary_has_drifted_is_rejected
+FAILED tests/test_filmcraft.py::test_filmcraft_when_completed_native_job_is_not_replayed
+FAILED tests/test_filmcraft.py::test_filmcraft_when_source_is_replaced_after_export_cannot_adopt_old_picture
+FAILED tests/test_filmcraft.py::test_filmcraft_when_native_project_range_was_manually_changed_requires_reimport
+FAILED tests/test_filmcraft.py::test_filmcraft_when_export_file_is_partial_cannot_materialize
+7 failed in 8.19s

@@ -1,0 +1,30 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___________ test_job_identity_when_diagnostic_process_is_interrupted ___________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...ttempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=(), observed_input_issues=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-88/test_job_identity_when_diagnos0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fd075981350>
+
+    def test_job_identity_when_diagnostic_process_is_interrupted(seed,capability,authority,tmp_path,monkeypatch):
+        # Given: diagnostic work can fail after an actual remote acknowledgement is available.
+        store,packet,dependency=live_reservations(seed,capability,authority,tmp_path)
+        def interrupted(state):
+            raise RuntimeError("fixture interruption during mutable-input diagnostics")
+        monkeypatch.setattr(store,"_input_issues",interrupted)
+        receipt=Receipt(phase=Phase.SUBMITTED,job_id="fixture-confirmed-remote-id",evidence="synthetic acknowledgement",request_hash=packet.request_hash)
+        # When: the process is interrupted while computing readiness diagnostics.
+        with pytest.raises(RuntimeError):
+            store.record_observation("A1",receipt,1)
+        # Then: remote identity is already durable, before any mutable-file verification.
+        persisted=State.model_validate(json.loads((tmp_path/"ledger.json").read_text())["production"])
+>       assert persisted.attempts[0].job_id == "fixture-confirmed-remote-id"
+E       AssertionError: assert None == 'fixture-confirmed-remote-id'
+E        +  where None = Attempt(id='A1', prepared=Prepared(clip_id='C1', fingerprint='fddd3b82a69e3358dd8942f4d2003e3c34da3b81740e10146437a35b...31b71a19addcff39b4a9ac2d588f71e11b149ab'), phase=<Phase.SUBMITTING: 'submitting'>, job_id=None, terminal_evidence=None).job_id
+
+tests/test_observation_recovery.py:143: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_observation_recovery.py::test_job_identity_when_diagnostic_process_is_interrupted
+1 failed in 0.07s

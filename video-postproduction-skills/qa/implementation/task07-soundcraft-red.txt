@@ -1,0 +1,532 @@
+FFFFFFFF                                                                 [100%]
+=================================== FAILURES ===================================
+_ test_soundcraft_when_actual_layout_sample_offsets_and_gain_match_independent_audio[False] _
+
+module = 'backends.soundcraft', name = 'SoundCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.soundcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.soundcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-204/test_soundcraft_when_actual_la0')
+mono = False
+
+    @pytest.mark.parametrize("mono",[False,True])
+    def test_soundcraft_when_actual_layout_sample_offsets_and_gain_match_independent_audio(tmp_path,mono):
+>       store,backend,packet,value=rendered(tmp_path,mono)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_soundcraft.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_soundcraft.py:36: in rendered
+    store,backend,order,cap=setup(root,mono=mono)
+                            ^^^^^^^^^^^^^^^^^^^^^
+tests/test_soundcraft.py:30: in setup
+    backend=require("backends.soundcraft","SoundCraftBackend")(store,root/"sound-native")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.soundcraft', name = 'SoundCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.soundcraft'
+
+tests/conftest.py:10: Failed
+_ test_soundcraft_when_actual_layout_sample_offsets_and_gain_match_independent_audio[True] _
+
+module = 'backends.soundcraft', name = 'SoundCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.soundcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.soundcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-204/test_soundcraft_when_actual_la1')
+mono = True
+
+    @pytest.mark.parametrize("mono",[False,True])
+    def test_soundcraft_when_actual_layout_sample_offsets_and_gain_match_independent_audio(tmp_path,mono):
+>       store,backend,packet,value=rendered(tmp_path,mono)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_soundcraft.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_soundcraft.py:36: in rendered
+    store,backend,order,cap=setup(root,mono=mono)
+                            ^^^^^^^^^^^^^^^^^^^^^
+tests/test_soundcraft.py:30: in setup
+    backend=require("backends.soundcraft","SoundCraftBackend")(store,root/"sound-native")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.soundcraft', name = 'SoundCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.soundcraft'
+
+tests/conftest.py:10: Failed
+_ test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed[changes0] _
+
+module = 'backends.soundcraft', name = 'SoundCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.soundcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.soundcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-204/test_soundcraft_when_unsupport0')
+changes = {'channels': 6}
+
+    @pytest.mark.parametrize("changes",[{"channels":6},{"sample_rate":44100},{"sample_count":95000},{"format":"AAF"}])
+    def test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed(tmp_path,changes):
+>       store,backend,order,cap=setup(tmp_path,**changes)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_soundcraft.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_soundcraft.py:30: in setup
+    backend=require("backends.soundcraft","SoundCraftBackend")(store,root/"sound-native")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.soundcraft', name = 'SoundCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.soundcraft'
+
+tests/conftest.py:10: Failed
+_ test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed[changes1] _
+
+module = 'backends.soundcraft', name = 'SoundCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.soundcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.soundcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-204/test_soundcraft_when_unsupport1')
+changes = {'sample_rate': 44100}
+
+    @pytest.mark.parametrize("changes",[{"channels":6},{"sample_rate":44100},{"sample_count":95000},{"format":"AAF"}])
+    def test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed(tmp_path,changes):
+>       store,backend,order,cap=setup(tmp_path,**changes)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_soundcraft.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_soundcraft.py:30: in setup
+    backend=require("backends.soundcraft","SoundCraftBackend")(store,root/"sound-native")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.soundcraft', name = 'SoundCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.soundcraft'
+
+tests/conftest.py:10: Failed
+_ test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed[changes2] _
+
+module = 'backends.soundcraft', name = 'SoundCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.soundcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.soundcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-204/test_soundcraft_when_unsupport2')
+changes = {'sample_count': 95000}
+
+    @pytest.mark.parametrize("changes",[{"channels":6},{"sample_rate":44100},{"sample_count":95000},{"format":"AAF"}])
+    def test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed(tmp_path,changes):
+>       store,backend,order,cap=setup(tmp_path,**changes)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_soundcraft.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_soundcraft.py:30: in setup
+    backend=require("backends.soundcraft","SoundCraftBackend")(store,root/"sound-native")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.soundcraft', name = 'SoundCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.soundcraft'
+
+tests/conftest.py:10: Failed
+_ test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed[changes3] _
+
+module = 'backends.soundcraft', name = 'SoundCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.soundcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.soundcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-204/test_soundcraft_when_unsupport3')
+changes = {'format': 'AAF'}
+
+    @pytest.mark.parametrize("changes",[{"channels":6},{"sample_rate":44100},{"sample_count":95000},{"format":"AAF"}])
+    def test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed(tmp_path,changes):
+>       store,backend,order,cap=setup(tmp_path,**changes)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_soundcraft.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_soundcraft.py:30: in setup
+    backend=require("backends.soundcraft","SoundCraftBackend")(store,root/"sound-native")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.soundcraft', name = 'SoundCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.soundcraft'
+
+tests/conftest.py:10: Failed
+___ test_soundcraft_when_actual_bounce_replaced_with_silence_is_not_adopted ____
+
+module = 'backends.soundcraft', name = 'SoundCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.soundcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.soundcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-204/test_soundcraft_when_actual_bo0')
+
+    def test_soundcraft_when_actual_bounce_replaced_with_silence_is_not_adopted(tmp_path):
+>       store,backend,packet,value=rendered(tmp_path)
+                                   ^^^^^^^^^^^^^^^^^^
+
+tests/test_soundcraft.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_soundcraft.py:36: in rendered
+    store,backend,order,cap=setup(root,mono=mono)
+                            ^^^^^^^^^^^^^^^^^^^^^
+tests/test_soundcraft.py:30: in setup
+    backend=require("backends.soundcraft","SoundCraftBackend")(store,root/"sound-native")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.soundcraft', name = 'SoundCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.soundcraft'
+
+tests/conftest.py:10: Failed
+_ test_soundcraft_when_native_track_or_sample_offset_changes_requires_reimport _
+
+module = 'backends.soundcraft', name = 'SoundCraftBackend'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.soundcraft', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends.soundcraft'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-204/test_soundcraft_when_native_tr0')
+
+    def test_soundcraft_when_native_track_or_sample_offset_changes_requires_reimport(tmp_path):
+>       store,backend,packet,value=rendered(tmp_path)
+                                   ^^^^^^^^^^^^^^^^^^
+
+tests/test_soundcraft.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_soundcraft.py:36: in rendered
+    store,backend,order,cap=setup(root,mono=mono)
+                            ^^^^^^^^^^^^^^^^^^^^^
+tests/test_soundcraft.py:30: in setup
+    backend=require("backends.soundcraft","SoundCraftBackend")(store,root/"sound-native")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.soundcraft', name = 'SoundCraftBackend'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends.soundcraft'
+
+tests/conftest.py:10: Failed
+=========================== short test summary info ============================
+FAILED tests/test_soundcraft.py::test_soundcraft_when_actual_layout_sample_offsets_and_gain_match_independent_audio[False]
+FAILED tests/test_soundcraft.py::test_soundcraft_when_actual_layout_sample_offsets_and_gain_match_independent_audio[True]
+FAILED tests/test_soundcraft.py::test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed[changes0]
+FAILED tests/test_soundcraft.py::test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed[changes1]
+FAILED tests/test_soundcraft.py::test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed[changes2]
+FAILED tests/test_soundcraft.py::test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed[changes3]
+FAILED tests/test_soundcraft.py::test_soundcraft_when_actual_bounce_replaced_with_silence_is_not_adopted
+FAILED tests/test_soundcraft.py::test_soundcraft_when_native_track_or_sample_offset_changes_requires_reimport
+8 failed in 9.95s

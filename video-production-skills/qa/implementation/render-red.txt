@@ -1,0 +1,40 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+____________ test_render_when_actual_selected_sources_are_available ____________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-30/test_render_when_actual_select0')
+
+    def test_render_when_actual_selected_sources_are_available(seed,tmp_path):
+        # Given: three technically decodable local fixtures with reported QA selections.
+        from test_handoff import all_selected, joins_for
+        from production.models import SourceRange
+        state = all_selected(seed,tmp_path)
+        items=[]
+        for i,s in enumerate(state.selections):
+            asset=make_video(tmp_path,f"render-source-{i}.mp4",color=("blue","green","red")[i])
+            items.append(s.model_copy(update={"take":s.take.model_copy(update={"asset":asset}),"review":s.review.model_copy(update={"playback":s.review.playback.model_copy(update={"asset_hash":asset.sha256})})}))
+        state=state.model_copy(update={"selections":tuple(items)})
+        state=state.model_copy(update={"join_reviews":joins_for(state)})
+        # When: producing a local full-flow review artifact, not a final master.
+>       proof=require("render","render_review")(state,tmp_path,"review/rough.mp4")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_media.py:51: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'render', name = 'render_review'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing render runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7dc86caa7270>('production.render')
+E        +    where <function find_spec at 0x7dc86caa7270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:17: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_media.py::test_render_when_actual_selected_sources_are_available
+1 failed in 0.64s

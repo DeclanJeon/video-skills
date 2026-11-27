@@ -1,0 +1,435 @@
+{
+  "$defs": {
+    "AskedQuestion": {
+      "additionalProperties": false,
+      "properties": {
+        "question": {
+          "$ref": "#/$defs/QuestionDraft"
+        },
+        "message_ref": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "channel": {
+          "$ref": "#/$defs/ConsentChannel"
+        },
+        "asked_at": {
+          "format": "date-time",
+          "title": "Asked At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "question",
+        "message_ref",
+        "channel",
+        "asked_at"
+      ],
+      "title": "AskedQuestion",
+      "type": "object"
+    },
+    "ConsentChannel": {
+      "enum": [
+        "operator_message",
+        "interactive_tty",
+        "contract_fixture"
+      ],
+      "type": "string"
+    },
+    "DependencyPlan": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "version": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "write_paths": {
+          "items": {
+            "$ref": "#/$defs/Nonempty"
+          },
+          "title": "Write Paths",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "write_paths"
+      ],
+      "title": "DependencyPlan",
+      "type": "object"
+    },
+    "Digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "Frame": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "InstallConsent": {
+      "additionalProperties": false,
+      "properties": {
+        "question_id": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "question_ref": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "host_id": {
+          "$ref": "#/$defs/Digest"
+        },
+        "plan_digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "answer": {
+          "enum": [
+            "approve",
+            "decline"
+          ],
+          "title": "Answer",
+          "type": "string"
+        },
+        "actor": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "response_ref": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "response_text": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "channel": {
+          "$ref": "#/$defs/ConsentChannel"
+        },
+        "answered_at": {
+          "format": "date-time",
+          "title": "Answered At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "question_id",
+        "question_ref",
+        "host_id",
+        "plan_digest",
+        "answer",
+        "actor",
+        "response_ref",
+        "response_text",
+        "channel",
+        "answered_at"
+      ],
+      "title": "InstallConsent",
+      "type": "object"
+    },
+    "InstallationPlan": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "host_id": {
+          "$ref": "#/$defs/Digest"
+        },
+        "host_fingerprint": {
+          "$ref": "#/$defs/Digest"
+        },
+        "tool": {
+          "$ref": "#/$defs/Tool"
+        },
+        "version": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "system": {
+          "$ref": "#/$defs/System"
+        },
+        "architecture": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "source_url": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "source_sha256": {
+          "$ref": "#/$defs/Digest"
+        },
+        "source_evidence": {
+          "$ref": "#/$defs/Pin"
+        },
+        "source_evidence_kind": {
+          "enum": [
+            "official_checksum",
+            "official_signature",
+            "self_hash_unverified",
+            "contract_fixture"
+          ],
+          "title": "Source Evidence Kind",
+          "type": "string"
+        },
+        "dependencies": {
+          "items": {
+            "$ref": "#/$defs/DependencyPlan"
+          },
+          "title": "Dependencies",
+          "type": "array"
+        },
+        "write_paths": {
+          "items": {
+            "$ref": "#/$defs/Nonempty"
+          },
+          "title": "Write Paths",
+          "type": "array"
+        },
+        "permissions": {
+          "items": {
+            "enum": [
+              "user",
+              "admin",
+              "reboot"
+            ],
+            "type": "string"
+          },
+          "title": "Permissions",
+          "type": "array"
+        },
+        "network_hosts": {
+          "items": {
+            "$ref": "#/$defs/Nonempty"
+          },
+          "title": "Network Hosts",
+          "type": "array"
+        },
+        "estimated_download_bytes": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Frame"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "estimated_disk_bytes": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Frame"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cost": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Cost"
+        },
+        "currency": {
+          "enum": [
+            "USD",
+            "KRW",
+            "EUR"
+          ],
+          "title": "Currency",
+          "type": "string"
+        },
+        "license_steps": {
+          "items": {
+            "$ref": "#/$defs/Nonempty"
+          },
+          "title": "License Steps",
+          "type": "array"
+        },
+        "existing_change": {
+          "enum": [
+            "new",
+            "repair",
+            "upgrade"
+          ],
+          "title": "Existing Change",
+          "type": "string"
+        },
+        "rollback": {
+          "items": {
+            "$ref": "#/$defs/Nonempty"
+          },
+          "title": "Rollback",
+          "type": "array"
+        },
+        "allow_unverified_publisher": {
+          "default": false,
+          "title": "Allow Unverified Publisher",
+          "type": "boolean"
+        },
+        "max_download_bytes": {
+          "$ref": "#/$defs/Positive",
+          "default": 1073741824
+        },
+        "max_unpacked_bytes": {
+          "$ref": "#/$defs/Positive",
+          "default": 4294967296
+        }
+      },
+      "required": [
+        "id",
+        "host_id",
+        "host_fingerprint",
+        "tool",
+        "version",
+        "system",
+        "architecture",
+        "source_url",
+        "source_sha256",
+        "source_evidence",
+        "source_evidence_kind",
+        "dependencies",
+        "write_paths",
+        "permissions",
+        "network_hosts",
+        "estimated_download_bytes",
+        "estimated_disk_bytes",
+        "cost",
+        "currency",
+        "license_steps",
+        "existing_change",
+        "rollback"
+      ],
+      "title": "InstallationPlan",
+      "type": "object"
+    },
+    "Nonempty": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "Pin": {
+      "additionalProperties": false,
+      "description": "Versioned exact bytes at a safe project-relative POSIX path.",
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "path": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "sha256": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "path",
+        "sha256"
+      ],
+      "title": "Pin",
+      "type": "object"
+    },
+    "Positive": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "QuestionDraft": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "host_id": {
+          "$ref": "#/$defs/Digest"
+        },
+        "plan_digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "text": {
+          "$ref": "#/$defs/Nonempty"
+        }
+      },
+      "required": [
+        "id",
+        "host_id",
+        "plan_digest",
+        "text"
+      ],
+      "title": "QuestionDraft",
+      "type": "object"
+    },
+    "System": {
+      "enum": [
+        "Linux",
+        "Windows",
+        "Darwin"
+      ],
+      "title": "System",
+      "type": "string"
+    },
+    "Tool": {
+      "enum": [
+        "filmcraft",
+        "effectcraft",
+        "soundcraft",
+        "autoclip",
+        "resolve",
+        "premiere",
+        "after_effects",
+        "ffmpeg",
+        "ffprobe"
+      ],
+      "title": "Tool",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "install_plan": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/InstallationPlan"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "question": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AskedQuestion"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "consent": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/InstallConsent"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "title": "InstallAuthority",
+  "type": "object"
+}

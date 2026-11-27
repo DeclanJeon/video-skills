@@ -1,0 +1,154 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_ test_backend_when_unconsumed_live_selection_is_invalid_can_prepare_and_reserve_scoped_work _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-217/test_backend_when_unconsumed_l0')
+
+    def test_backend_when_unconsumed_live_selection_is_invalid_can_prepare_and_reserve_scoped_work(tmp_path):
+>       store,backend,order,cap=scoped(tmp_path)
+                                ^^^^^^^^^^^^^^^^
+
+tests/test_scoped_backend.py:15: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_scoped_backend.py:10: in scoped
+    order=order.model_copy(update={"source_refs":(order.source_refs[0],)})
+                                                  ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = RequestPacket(order=WorkOrder(id='NATIVE-PICTURE', domain=<Domain.PICTURE: 'picture'>, branch='main', backend=<Tool.FI...fps":{"num":24,"den":1},"sample_rate":48000,"channels":2,"container":"mp4","video_codec":"h264","audio_codec":"aac"}}')
+item = 'source_refs'
+
+    def __getattr__(self, item: str) -> Any:
+        private_attributes = object.__getattribute__(self, '__private_attributes__')
+        if item in private_attributes:
+            attribute = private_attributes[item]
+            if hasattr(attribute, '__get__'):
+                return attribute.__get__(self, type(self))  # type: ignore
+    
+            try:
+                # Note: self.__pydantic_private__ cannot be None if self.__private_attributes__ has items
+                return self.__pydantic_private__[item]  # type: ignore
+            except KeyError as exc:
+                raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}') from exc
+        else:
+            # `__pydantic_extra__` can fail to be set if the model is not yet fully initialized.
+            # See `BaseModel.__repr_args__` for more details
+            try:
+                pydantic_extra = object.__getattribute__(self, '__pydantic_extra__')
+            except AttributeError:
+                pydantic_extra = None
+    
+            if pydantic_extra and item in pydantic_extra:
+                return pydantic_extra[item]
+            else:
+                if hasattr(self.__class__, item):
+                    return super().__getattribute__(item)  # Raises AttributeError if appropriate
+                else:
+                    # this is the current error
+>                   raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+E                   AttributeError: 'RequestPacket' object has no attribute 'source_refs'
+
+/home/declan/.local/lib/python3.14/site-packages/pydantic/main.py:1105: AttributeError
+_ test_backend_when_unconsumed_source_disappears_can_render_only_current_consumed_source _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-217/test_backend_when_unconsumed_s0')
+
+    def test_backend_when_unconsumed_source_disappears_can_render_only_current_consumed_source(tmp_path):
+>       store,backend,order,cap=scoped(tmp_path)
+                                ^^^^^^^^^^^^^^^^
+
+tests/test_scoped_backend.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_scoped_backend.py:10: in scoped
+    order=order.model_copy(update={"source_refs":(order.source_refs[0],)})
+                                                  ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = RequestPacket(order=WorkOrder(id='NATIVE-PICTURE', domain=<Domain.PICTURE: 'picture'>, branch='main', backend=<Tool.FI...fps":{"num":24,"den":1},"sample_rate":48000,"channels":2,"container":"mp4","video_codec":"h264","audio_codec":"aac"}}')
+item = 'source_refs'
+
+    def __getattr__(self, item: str) -> Any:
+        private_attributes = object.__getattribute__(self, '__private_attributes__')
+        if item in private_attributes:
+            attribute = private_attributes[item]
+            if hasattr(attribute, '__get__'):
+                return attribute.__get__(self, type(self))  # type: ignore
+    
+            try:
+                # Note: self.__pydantic_private__ cannot be None if self.__private_attributes__ has items
+                return self.__pydantic_private__[item]  # type: ignore
+            except KeyError as exc:
+                raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}') from exc
+        else:
+            # `__pydantic_extra__` can fail to be set if the model is not yet fully initialized.
+            # See `BaseModel.__repr_args__` for more details
+            try:
+                pydantic_extra = object.__getattribute__(self, '__pydantic_extra__')
+            except AttributeError:
+                pydantic_extra = None
+    
+            if pydantic_extra and item in pydantic_extra:
+                return pydantic_extra[item]
+            else:
+                if hasattr(self.__class__, item):
+                    return super().__getattribute__(item)  # Raises AttributeError if appropriate
+                else:
+                    # this is the current error
+>                   raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+E                   AttributeError: 'RequestPacket' object has no attribute 'source_refs'
+
+/home/declan/.local/lib/python3.14/site-packages/pydantic/main.py:1105: AttributeError
+___ test_backend_when_global_profile_pin_changes_cannot_prepare_scoped_work ____
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-217/test_backend_when_global_profi0')
+
+    def test_backend_when_global_profile_pin_changes_cannot_prepare_scoped_work(tmp_path):
+>       store,backend,order,cap=scoped(tmp_path)
+                                ^^^^^^^^^^^^^^^^
+
+tests/test_scoped_backend.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_scoped_backend.py:10: in scoped
+    order=order.model_copy(update={"source_refs":(order.source_refs[0],)})
+                                                  ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = RequestPacket(order=WorkOrder(id='NATIVE-PICTURE', domain=<Domain.PICTURE: 'picture'>, branch='main', backend=<Tool.FI...fps":{"num":24,"den":1},"sample_rate":48000,"channels":2,"container":"mp4","video_codec":"h264","audio_codec":"aac"}}')
+item = 'source_refs'
+
+    def __getattr__(self, item: str) -> Any:
+        private_attributes = object.__getattribute__(self, '__private_attributes__')
+        if item in private_attributes:
+            attribute = private_attributes[item]
+            if hasattr(attribute, '__get__'):
+                return attribute.__get__(self, type(self))  # type: ignore
+    
+            try:
+                # Note: self.__pydantic_private__ cannot be None if self.__private_attributes__ has items
+                return self.__pydantic_private__[item]  # type: ignore
+            except KeyError as exc:
+                raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}') from exc
+        else:
+            # `__pydantic_extra__` can fail to be set if the model is not yet fully initialized.
+            # See `BaseModel.__repr_args__` for more details
+            try:
+                pydantic_extra = object.__getattribute__(self, '__pydantic_extra__')
+            except AttributeError:
+                pydantic_extra = None
+    
+            if pydantic_extra and item in pydantic_extra:
+                return pydantic_extra[item]
+            else:
+                if hasattr(self.__class__, item):
+                    return super().__getattribute__(item)  # Raises AttributeError if appropriate
+                else:
+                    # this is the current error
+>                   raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+E                   AttributeError: 'RequestPacket' object has no attribute 'source_refs'
+
+/home/declan/.local/lib/python3.14/site-packages/pydantic/main.py:1105: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_scoped_backend.py::test_backend_when_unconsumed_live_selection_is_invalid_can_prepare_and_reserve_scoped_work
+FAILED tests/test_scoped_backend.py::test_backend_when_unconsumed_source_disappears_can_render_only_current_consumed_source
+FAILED tests/test_scoped_backend.py::test_backend_when_global_profile_pin_changes_cannot_prepare_scoped_work
+3 failed in 8.83s

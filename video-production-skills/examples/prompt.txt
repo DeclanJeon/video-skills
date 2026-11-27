@@ -1,0 +1,1 @@
+Technical offline fixture: an empty yard. This is not a provider request.

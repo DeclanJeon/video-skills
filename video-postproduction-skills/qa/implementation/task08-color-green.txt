@@ -1,0 +1,37 @@
+.FF.                                                                     [100%]
+=================================== FAILURES ===================================
+_ test_color_when_explicit_assignment_retains_unknown_detection_and_actual_evidence _
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-241/test_color_when_explicit_assig0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_color_when_explicit_assignment_retains_unknown_detection_and_actual_evidence(project):
+        path,store,state,production=prepare(project)
+        source=state.intake.sources[0].asset
+        evidence=json_pin(path.parent,"color-assignment.json",{"scope":"reported fixture source assignment, not measured gamut"})
+>       assignment=require("color_models","ColorAssignment")(source=source,space="Rec709",evidence=evidence,origin="assigned")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for ColorAssignment
+E       evidence
+E         Input should be a valid dictionary or instance of Pin [type=model_type, input_value=Pin(id='color-assignment....'color-assignment.json'), input_type=Pin]
+E           For further information visit https://errors.pydantic.dev/2.14/v/model_type
+
+tests/test_color.py:20: ValidationError
+________ test_color_when_assignment_is_bound_to_another_source_rejects _________
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-241/test_color_when_assignment_is_0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_color_when_assignment_is_bound_to_another_source_rejects(project):
+        path,store,state,production=prepare(project)
+        evidence=json_pin(path.parent,"color-assignment.json",{"scope":"fixture"})
+>       assignment=require("color_models","ColorAssignment")(source=state.intake.sources[1].asset,space="Rec709",evidence=evidence,origin="assigned")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for ColorAssignment
+E       evidence
+E         Input should be a valid dictionary or instance of Pin [type=model_type, input_value=Pin(id='color-assignment....'color-assignment.json'), input_type=Pin]
+E           For further information visit https://errors.pydantic.dev/2.14/v/model_type
+
+tests/test_color.py:30: ValidationError
+=========================== short test summary info ============================
+FAILED tests/test_color.py::test_color_when_explicit_assignment_retains_unknown_detection_and_actual_evidence
+FAILED tests/test_color.py::test_color_when_assignment_is_bound_to_another_source_rejects
+2 failed, 2 passed in 1.73s

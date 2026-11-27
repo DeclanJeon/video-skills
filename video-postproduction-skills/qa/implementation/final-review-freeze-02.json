@@ -1,0 +1,16 @@
+{
+  "format": "post-final-review-freeze/1",
+  "source_scope": "qa/implementation/review01-test-scope.json",
+  "source_scope_sha256": "a538f078e86f759a603128bcb7f430f649407017acc717f9cfa8526d0f657792",
+  "goal_snapshot": "qa/implementation/final-review-goal-02.md",
+  "goal_snapshot_sha256": "a577981d162b136f66de6267d3f772dc7ea2114da66e37516b07e5e9f5220cd0",
+  "tests": "qa/implementation/review01-test-results.xml",
+  "test_count": 423,
+  "test_exit": 0,
+  "qualified_scenarios": 52,
+  "qualified_cases": 319,
+  "protected": 216,
+  "original_reviewer_run": "b4c4dfad-129f-493f-8d15-cc5a440c4289",
+  "review_kind": "same-retained-reviewer-remediation-recheck",
+  "previous_verdict": "NOT APPROVED"
+}

@@ -1,0 +1,98 @@
+{
+  "host_id": "747d7d414f4d95df4fda6717eeb2c3ce80dd5dddf9f13acbacbf1d193f6fcef4",
+  "system": "Linux",
+  "architecture": "x86_64",
+  "programs": [
+    {
+      "tool": "filmcraft",
+      "cli_path": "/usr/bin/filmcraft-cli",
+      "cli_sha256": "2fbc2865ee89f345b06747d7275d82274c740b4d7b42e16583ed534fdd69d7e9",
+      "version": "0.20.1-1",
+      "package_name": "filmcraft",
+      "desktop_entries": [
+        "/usr/share/applications/ai.storyteller.filmcraft.desktop"
+      ],
+      "known_app_locations": [
+        "/usr/bin/filmcraft-cli"
+      ],
+      "checked": [
+        "path",
+        "package_db",
+        "desktop",
+        "known_locations",
+        "required_cli"
+      ],
+      "errors": []
+    },
+    {
+      "tool": "effectcraft",
+      "cli_path": "/usr/bin/effectcraft-cli",
+      "cli_sha256": "6debb4c8078557b81870c7439a89bec36bbef37740fe4c44205aa63b183ec799",
+      "version": "0.25.1-1",
+      "package_name": "effectcraft",
+      "desktop_entries": [
+        "/usr/share/applications/ai.storyteller.effectcraft.desktop"
+      ],
+      "known_app_locations": [
+        "/usr/bin/effectcraft-cli"
+      ],
+      "checked": [
+        "path",
+        "package_db",
+        "desktop",
+        "known_locations",
+        "required_cli"
+      ],
+      "errors": []
+    },
+    {
+      "tool": "soundcraft",
+      "cli_path": "/usr/bin/soundcraft-cli",
+      "cli_sha256": "2df074d0baa4d2781591d8623d59d4b22df43ec5bd194da2c18c34f6c7c30589",
+      "version": "0.20.1-1",
+      "package_name": "soundcraft",
+      "desktop_entries": [
+        "/usr/share/applications/ai.storyteller.soundcraft.desktop"
+      ],
+      "known_app_locations": [
+        "/usr/bin/soundcraft-cli"
+      ],
+      "checked": [
+        "path",
+        "package_db",
+        "desktop",
+        "known_locations",
+        "required_cli"
+      ],
+      "errors": []
+    }
+  ],
+  "packages": [
+    {
+      "name": "artcraft-launcher",
+      "version": "0.20.0-1"
+    },
+    {
+      "name": "effectcraft",
+      "version": "0.25.1-1"
+    },
+    {
+      "name": "filmcraft",
+      "version": "0.20.1-1"
+    },
+    {
+      "name": "soundcraft",
+      "version": "0.20.1-1"
+    }
+  ],
+  "disk_available_bytes": 86889189376,
+  "memory_available_bytes": 15116234752,
+  "gpu_status": "identified",
+  "gpu_info": [
+    "04:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir [Radeon Vega Series / Radeon Vega Mobile Series] [1002:1636] (rev d3)"
+  ],
+  "evidence_kind": "read_only_host",
+  "inspected_at": "2026-11-26T15:56:16.658020Z",
+  "active_tools": [],
+  "package_lock_status": "unknown"
+}

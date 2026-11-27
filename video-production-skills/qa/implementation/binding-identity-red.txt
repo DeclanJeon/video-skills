@@ -1,0 +1,36 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___________ test_required_binding_when_namespaced_keys_would_collide ___________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...pproved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-67/test_required_binding_when_nam0')
+
+    def test_required_binding_when_namespaced_keys_would_collide(seed,capability,authority,tmp_path):
+        # Given: two distinct source/role identities that collide when joined with ':'.
+        from conftest import configurations
+        from test_revisions import selection
+        source_id=ClipId("C1:state")
+        second=seed.batch.clips[1].model_copy(update={"id":source_id})
+        refs=(Reference(source_clip=ClipId("C1"),role="state:image",modality="video",imports=("pose",)),Reference(source_clip=source_id,role="image",modality="video",imports=("pose",)))
+        third=seed.batch.clips[2].model_copy(update={"references":refs})
+        joins=(seed.batch.joins[0].model_copy(update={"after":source_id}),seed.batch.joins[1].model_copy(update={"before":source_id}))
+        batch=seed.batch.model_copy(update={"clips":(seed.batch.clips[0],second,third),"edit_order":(ClipId("C1"),source_id,ClipId("C3")),"joins":joins})
+        state=seed.model_copy(update={"batch":batch})
+        a,b=selection(seed,tmp_path),selection(seed,tmp_path,"C2")
+        fp=require("contracts","fingerprint")(state,source_id)
+        b=b.model_copy(update={"take":b.take.model_copy(update={"clip_id":source_id,"fingerprint":fp}),"reviewed_fingerprint":fp})
+        state=state.model_copy(update={"selections":(a,b)})
+        cap=capability.model_copy(update={"roles":("asset","state:image","image")})
+        auth=authority.model_copy(update={"clips":tuple(c.id for c in state.batch.clips),"configurations":configurations(state,cap),"allowed_hashes":(*authority.allowed_hashes,a.take.asset.sha256,b.take.asset.sha256)})
+        only_first=Binding(pin=a.take.asset,source_clip=refs[0].source_clip,source_range=a.take.source_range,range_revision=a.take.range_revision,acceptance_revision=a.acceptance_revision,role=refs[0].role,modality=refs[0].modality,imports=refs[0].imports,native_asset_id="fixture-first",native_reference_id="fixture-first-ref",ready=True)
+        # When / Then: first reference cannot count as the second missing required binding.
+>       with pytest.raises(ContractError,match="binding"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_bindings.py:151: Failed
+=========================== short test summary info ============================
+FAILED tests/test_bindings.py::test_required_binding_when_namespaced_keys_would_collide
+1 failed in 0.07s

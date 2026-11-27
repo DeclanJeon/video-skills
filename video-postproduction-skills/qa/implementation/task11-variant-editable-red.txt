@@ -1,0 +1,19 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_variant_when_editable_inventory_must_include_own_native_project_not_just_main _
+
+branched = (<postproduction.ledger.PostStore object at 0x71be49fdd2b0>, ArtifactRef(id='FINISH-A1-artifact', job_id='FINISH-A1', ...b9ffda42ba868293a/mix.wav', sha256='7e17d5d9004acb3e70494b9f200fbf423b4b905ec1948fc2e3b332d352b88f2b')), kind='video'))
+
+    def test_variant_when_editable_inventory_must_include_own_native_project_not_just_main(branched):
+        store,main,variant=branched
+        c=contract(store,main,id="EDITABLE-VARIANTS",kind="editable",variants=[variant.id])
+        inventory=require("editable_inventory","editable_inventory")(store.read_recorded(),c,store.path.parent)
+>       assert len(inventory.projects)==6
+E       AssertionError: assert 5 == 6
+E        +  where 5 = len((NativeProjection(source=Pin(id='FINISH-A1-project', version='1', path='finishing-native/run-bbcf9f43d3214a37987aea637...yer.newSolid', 'layer.newText', 'text.fonts', 'layer.setTransform', 'comp.info'), evidence_tier='E2'), frame_count=12)))
+E        +    where (NativeProjection(source=Pin(id='FINISH-A1-project', version='1', path='finishing-native/run-bbcf9f43d3214a37987aea637...yer.newSolid', 'layer.newText', 'text.fonts', 'layer.setTransform', 'comp.info'), evidence_tier='E2'), frame_count=12)) = EditableInventory(projects=(NativeProjection(source=Pin(id='FINISH-A1-project', version='1', path='finishing-native/ru...ce3.mp4', version='1', path='source3.mp4', sha256='b231e37ceb402fe00a69be84ef7e554e0ccd8daf23aa524f302ba7d29235caa2'))).projects
+
+tests/test_variant_delivery.py:61: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_variant_delivery.py::test_variant_when_editable_inventory_must_include_own_native_project_not_just_main
+1 failed in 50.64s

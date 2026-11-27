@@ -1,0 +1,4 @@
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/finishing_admission.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/finishing_admission.py:23:57 - error: Set 항목은 해시가 가능해야 합니다.
+    ‘SourceRef’ 형식을 해시할 수 없습니다. (reportUnhashable)
+1 error, 0 warnings, 0 notes

@@ -1,0 +1,39 @@
+{
+  "observed_at": "2026-11-26T14:10:08.609455+00:00",
+  "apps": {
+    "filmcraft": {
+      "binary": "/usr/bin/filmcraft-cli",
+      "sha256": "2fbc2865ee89f345b06747d7275d82274c740b4d7b42e16583ed534fdd69d7e9",
+      "package_version": "0.20.1-1",
+      "help_exit": 0,
+      "metadata_exit": 0,
+      "command_count": 718,
+      "exercised": "help and command metadata only; no project editing/rendering"
+    },
+    "effectcraft": {
+      "binary": "/usr/bin/effectcraft-cli",
+      "sha256": "6debb4c8078557b81870c7439a89bec36bbef37740fe4c44205aa63b183ec799",
+      "package_version": "0.25.1-1",
+      "help_exit": 0,
+      "metadata_exit": 0,
+      "command_count": 766,
+      "exercised": "help and command metadata only; no project editing/rendering"
+    },
+    "soundcraft": {
+      "binary": "/usr/bin/soundcraft-cli",
+      "sha256": "2df074d0baa4d2781591d8623d59d4b22df43ec5bd194da2c18c34f6c7c30589",
+      "package_version": "0.20.1-1",
+      "help_exit": 0,
+      "metadata_exit": 0,
+      "command_count": 483,
+      "exercised": "help and command metadata only; no project editing/rendering"
+    }
+  },
+  "templates": 139,
+  "definitions": 27,
+  "protected_files": 216,
+  "effectcraft_app_help": "/usr/bin/effectcraft --help exited 1 unknown option; separate effectcraft-cli --help succeeded",
+  "render_verified": false,
+  "independent_design_reviewed": false,
+  "installed_or_updated": false
+}

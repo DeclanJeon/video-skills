@@ -1,0 +1,314 @@
+FFFFFFF.FFFF..                                                           [100%]
+=================================== FAILURES ===================================
+_______ test_observe_ack_when_mutable_inputs_unavailable[missing-input] ________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...pproved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-84/test_observe_ack_when_mutable_0')
+damage = 'missing-input'
+
+    @pytest.mark.parametrize("damage",["missing-input","hash-drift","unrelated-dependency","coverage-missing"])
+    def test_observe_ack_when_mutable_inputs_unavailable(seed,capability,authority,tmp_path,damage):
+        # Given: C1 reserved and C2 unknown; a mutable local input then becomes unusable.
+        store,packet,dependency=live_reservations(seed,capability,authority,tmp_path)
+        if damage == "missing-input":
+            (tmp_path/seed.batch.clips[0].assets[0].path).unlink()
+        elif damage == "hash-drift":
+            (tmp_path/seed.batch.clips[0].assets[0].path).write_text("changed bytes")
+        elif damage == "unrelated-dependency":
+            (tmp_path/dependency.path).unlink()
+        else:
+            (tmp_path/seed.coverage_source.path).unlink()
+        receipt=tmp_path/"ack.json"
+        receipt.write_text(Receipt(phase=Phase.SUBMITTED,job_id="fixture-confirmed-remote-id",evidence="synthetic exact acknowledgement",request_hash=packet.request_hash).model_dump_json())
+        # When: recording a known historical remote fact through the actual CLI.
+        result=cli("observe",tmp_path/"ledger.json","A1",receipt,1)
+        # Then: acknowledged job ID is durable; unavailable inputs do not open new work.
+>       assert result.returncode == 0,result.stdout+result.stderr
+E       AssertionError: {"status": "blocked", "error": "path: missing regular file face.txt", "submitted": false}
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...ode=2, stdout='{"status": "blocked", "error": "path: missing regular file face.txt", "submitted": false}\n', stderr='').returncode
+
+tests/test_observation_recovery.py:50: AssertionError
+_________ test_observe_ack_when_mutable_inputs_unavailable[hash-drift] _________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...pproved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-84/test_observe_ack_when_mutable_1')
+damage = 'hash-drift'
+
+    @pytest.mark.parametrize("damage",["missing-input","hash-drift","unrelated-dependency","coverage-missing"])
+    def test_observe_ack_when_mutable_inputs_unavailable(seed,capability,authority,tmp_path,damage):
+        # Given: C1 reserved and C2 unknown; a mutable local input then becomes unusable.
+        store,packet,dependency=live_reservations(seed,capability,authority,tmp_path)
+        if damage == "missing-input":
+            (tmp_path/seed.batch.clips[0].assets[0].path).unlink()
+        elif damage == "hash-drift":
+            (tmp_path/seed.batch.clips[0].assets[0].path).write_text("changed bytes")
+        elif damage == "unrelated-dependency":
+            (tmp_path/dependency.path).unlink()
+        else:
+            (tmp_path/seed.coverage_source.path).unlink()
+        receipt=tmp_path/"ack.json"
+        receipt.write_text(Receipt(phase=Phase.SUBMITTED,job_id="fixture-confirmed-remote-id",evidence="synthetic exact acknowledgement",request_hash=packet.request_hash).model_dump_json())
+        # When: recording a known historical remote fact through the actual CLI.
+        result=cli("observe",tmp_path/"ledger.json","A1",receipt,1)
+        # Then: acknowledged job ID is durable; unavailable inputs do not open new work.
+>       assert result.returncode == 0,result.stdout+result.stderr
+E       AssertionError: {"status": "blocked", "error": "hash: face.txt", "submitted": false}
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v....json', '1'], returncode=2, stdout='{"status": "blocked", "error": "hash: face.txt", "submitted": false}\n', stderr='').returncode
+
+tests/test_observation_recovery.py:50: AssertionError
+____ test_observe_ack_when_mutable_inputs_unavailable[unrelated-dependency] ____
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...pproved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-84/test_observe_ack_when_mutable_2')
+damage = 'unrelated-dependency'
+
+    @pytest.mark.parametrize("damage",["missing-input","hash-drift","unrelated-dependency","coverage-missing"])
+    def test_observe_ack_when_mutable_inputs_unavailable(seed,capability,authority,tmp_path,damage):
+        # Given: C1 reserved and C2 unknown; a mutable local input then becomes unusable.
+        store,packet,dependency=live_reservations(seed,capability,authority,tmp_path)
+        if damage == "missing-input":
+            (tmp_path/seed.batch.clips[0].assets[0].path).unlink()
+        elif damage == "hash-drift":
+            (tmp_path/seed.batch.clips[0].assets[0].path).write_text("changed bytes")
+        elif damage == "unrelated-dependency":
+            (tmp_path/dependency.path).unlink()
+        else:
+            (tmp_path/seed.coverage_source.path).unlink()
+        receipt=tmp_path/"ack.json"
+        receipt.write_text(Receipt(phase=Phase.SUBMITTED,job_id="fixture-confirmed-remote-id",evidence="synthetic exact acknowledgement",request_hash=packet.request_hash).model_dump_json())
+        # When: recording a known historical remote fact through the actual CLI.
+        result=cli("observe",tmp_path/"ledger.json","A1",receipt,1)
+        # Then: acknowledged job ID is durable; unavailable inputs do not open new work.
+>       assert result.returncode == 0,result.stdout+result.stderr
+E       AssertionError: {"status": "blocked", "error": "path: missing regular file unrelated-local-dependency.txt", "submitted": false}
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...s": "blocked", "error": "path: missing regular file unrelated-local-dependency.txt", "submitted": false}\n', stderr='').returncode
+
+tests/test_observation_recovery.py:50: AssertionError
+______ test_observe_ack_when_mutable_inputs_unavailable[coverage-missing] ______
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...pproved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-84/test_observe_ack_when_mutable_3')
+damage = 'coverage-missing'
+
+    @pytest.mark.parametrize("damage",["missing-input","hash-drift","unrelated-dependency","coverage-missing"])
+    def test_observe_ack_when_mutable_inputs_unavailable(seed,capability,authority,tmp_path,damage):
+        # Given: C1 reserved and C2 unknown; a mutable local input then becomes unusable.
+        store,packet,dependency=live_reservations(seed,capability,authority,tmp_path)
+        if damage == "missing-input":
+            (tmp_path/seed.batch.clips[0].assets[0].path).unlink()
+        elif damage == "hash-drift":
+            (tmp_path/seed.batch.clips[0].assets[0].path).write_text("changed bytes")
+        elif damage == "unrelated-dependency":
+            (tmp_path/dependency.path).unlink()
+        else:
+            (tmp_path/seed.coverage_source.path).unlink()
+        receipt=tmp_path/"ack.json"
+        receipt.write_text(Receipt(phase=Phase.SUBMITTED,job_id="fixture-confirmed-remote-id",evidence="synthetic exact acknowledgement",request_hash=packet.request_hash).model_dump_json())
+        # When: recording a known historical remote fact through the actual CLI.
+        result=cli("observe",tmp_path/"ledger.json","A1",receipt,1)
+        # Then: acknowledged job ID is durable; unavailable inputs do not open new work.
+>       assert result.returncode == 0,result.stdout+result.stderr
+E       AssertionError: {"status": "blocked", "error": "path: missing regular file approved-coverage.json", "submitted": false}
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...'{"status": "blocked", "error": "path: missing regular file approved-coverage.json", "submitted": false}\n', stderr='').returncode
+
+tests/test_observation_recovery.py:50: AssertionError
+__________ test_observe_terminal_when_local_asset_missing[succeeded] ___________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...pproved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-84/test_observe_terminal_when_loc0')
+phase = <Phase.SUCCEEDED: 'succeeded'>
+
+    @pytest.mark.parametrize("phase",[Phase.SUCCEEDED,Phase.FAILED,Phase.CANCELLED])
+    def test_observe_terminal_when_local_asset_missing(seed,capability,authority,tmp_path,phase):
+        # Given: acknowledged C1 plus unresolved C2, then asset loss.
+        store,packet,dependency=live_reservations(seed,capability,authority,tmp_path,submitted=True)
+        (tmp_path/seed.batch.clips[0].assets[0].path).unlink()
+        receipt=tmp_path/"terminal.json"
+        receipt.write_text(Receipt(phase=phase,job_id="fixture-confirmed-remote-id",evidence="synthetic confirmed terminal receipt",request_hash=packet.request_hash).model_dump_json())
+        # When: reconciling only C1's known terminal fact.
+        result=cli("observe",tmp_path/"ledger.json","A1",receipt,1)
+        # Then: only C1's reservation is freed, even though preparation remains blocked.
+>       assert result.returncode == 0,result.stdout+result.stderr
+E       AssertionError: {"status": "blocked", "error": "path: missing regular file face.txt", "submitted": false}
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...ode=2, stdout='{"status": "blocked", "error": "path: missing regular file face.txt", "submitted": false}\n', stderr='').returncode
+
+tests/test_observation_recovery.py:78: AssertionError
+________ test_observe_terminal_when_local_asset_missing[remote_failed] _________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...pproved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-84/test_observe_terminal_when_loc1')
+phase = <Phase.FAILED: 'remote_failed'>
+
+    @pytest.mark.parametrize("phase",[Phase.SUCCEEDED,Phase.FAILED,Phase.CANCELLED])
+    def test_observe_terminal_when_local_asset_missing(seed,capability,authority,tmp_path,phase):
+        # Given: acknowledged C1 plus unresolved C2, then asset loss.
+        store,packet,dependency=live_reservations(seed,capability,authority,tmp_path,submitted=True)
+        (tmp_path/seed.batch.clips[0].assets[0].path).unlink()
+        receipt=tmp_path/"terminal.json"
+        receipt.write_text(Receipt(phase=phase,job_id="fixture-confirmed-remote-id",evidence="synthetic confirmed terminal receipt",request_hash=packet.request_hash).model_dump_json())
+        # When: reconciling only C1's known terminal fact.
+        result=cli("observe",tmp_path/"ledger.json","A1",receipt,1)
+        # Then: only C1's reservation is freed, even though preparation remains blocked.
+>       assert result.returncode == 0,result.stdout+result.stderr
+E       AssertionError: {"status": "blocked", "error": "path: missing regular file face.txt", "submitted": false}
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...ode=2, stdout='{"status": "blocked", "error": "path: missing regular file face.txt", "submitted": false}\n', stderr='').returncode
+
+tests/test_observation_recovery.py:78: AssertionError
+__________ test_observe_terminal_when_local_asset_missing[cancelled] ___________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...pproved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-84/test_observe_terminal_when_loc2')
+phase = <Phase.CANCELLED: 'cancelled'>
+
+    @pytest.mark.parametrize("phase",[Phase.SUCCEEDED,Phase.FAILED,Phase.CANCELLED])
+    def test_observe_terminal_when_local_asset_missing(seed,capability,authority,tmp_path,phase):
+        # Given: acknowledged C1 plus unresolved C2, then asset loss.
+        store,packet,dependency=live_reservations(seed,capability,authority,tmp_path,submitted=True)
+        (tmp_path/seed.batch.clips[0].assets[0].path).unlink()
+        receipt=tmp_path/"terminal.json"
+        receipt.write_text(Receipt(phase=phase,job_id="fixture-confirmed-remote-id",evidence="synthetic confirmed terminal receipt",request_hash=packet.request_hash).model_dump_json())
+        # When: reconciling only C1's known terminal fact.
+        result=cli("observe",tmp_path/"ledger.json","A1",receipt,1)
+        # Then: only C1's reservation is freed, even though preparation remains blocked.
+>       assert result.returncode == 0,result.stdout+result.stderr
+E       AssertionError: {"status": "blocked", "error": "path: missing regular file face.txt", "submitted": false}
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...ode=2, stdout='{"status": "blocked", "error": "path: missing regular file face.txt", "submitted": false}\n', stderr='').returncode
+
+tests/test_observation_recovery.py:78: AssertionError
+___ test_generated_admission_when_consumed_source_pin_drifts[approval-False] ___
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...pproved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-84/test_generated_admission_when_0')
+optional = False, damage = 'approval'
+
+    @pytest.mark.parametrize("optional",[False,True])
+    @pytest.mark.parametrize("damage",["approval","media"])
+    def test_generated_admission_when_consumed_source_pin_drifts(seed,capability,authority,tmp_path,optional,damage):
+        # Given: C3's own approval is distinct; a required or chosen optional source was consumed.
+        state,source,take,review,packet=linked_running(seed,capability,authority,tmp_path,separate_approval=True,optional_reference=optional)
+        state=completed(state,packet)
+        path=source.approval.evidence.path if damage == "approval" else source.take.asset.path
+        (tmp_path/path).write_text("CONSUMED SOURCE PROOF REVOKED / BYTES REPLACED")
+        # When / Then: unchanged own-approval and fingerprint do not authorize stale consumed proof.
+        verified_file(tmp_path,packet.authority.evidence)
+        assert require("contracts","fingerprint")(state,"C3") == take.fingerprint
+>       with pytest.raises(ContractError,match="hash"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_consumed_approval.py:25: Failed
+___ test_generated_admission_when_consumed_source_pin_drifts[approval-True] ____
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...pproved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-84/test_generated_admission_when_1')
+optional = True, damage = 'approval'
+
+    @pytest.mark.parametrize("optional",[False,True])
+    @pytest.mark.parametrize("damage",["approval","media"])
+    def test_generated_admission_when_consumed_source_pin_drifts(seed,capability,authority,tmp_path,optional,damage):
+        # Given: C3's own approval is distinct; a required or chosen optional source was consumed.
+        state,source,take,review,packet=linked_running(seed,capability,authority,tmp_path,separate_approval=True,optional_reference=optional)
+        state=completed(state,packet)
+        path=source.approval.evidence.path if damage == "approval" else source.take.asset.path
+        (tmp_path/path).write_text("CONSUMED SOURCE PROOF REVOKED / BYTES REPLACED")
+        # When / Then: unchanged own-approval and fingerprint do not authorize stale consumed proof.
+        verified_file(tmp_path,packet.authority.evidence)
+        assert require("contracts","fingerprint")(state,"C3") == take.fingerprint
+>       with pytest.raises(ContractError,match="hash"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_consumed_approval.py:25: Failed
+____ test_generated_admission_when_consumed_source_pin_drifts[media-False] _____
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...pproved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-84/test_generated_admission_when_2')
+optional = False, damage = 'media'
+
+    @pytest.mark.parametrize("optional",[False,True])
+    @pytest.mark.parametrize("damage",["approval","media"])
+    def test_generated_admission_when_consumed_source_pin_drifts(seed,capability,authority,tmp_path,optional,damage):
+        # Given: C3's own approval is distinct; a required or chosen optional source was consumed.
+        state,source,take,review,packet=linked_running(seed,capability,authority,tmp_path,separate_approval=True,optional_reference=optional)
+        state=completed(state,packet)
+        path=source.approval.evidence.path if damage == "approval" else source.take.asset.path
+        (tmp_path/path).write_text("CONSUMED SOURCE PROOF REVOKED / BYTES REPLACED")
+        # When / Then: unchanged own-approval and fingerprint do not authorize stale consumed proof.
+        verified_file(tmp_path,packet.authority.evidence)
+        assert require("contracts","fingerprint")(state,"C3") == take.fingerprint
+>       with pytest.raises(ContractError,match="hash"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_consumed_approval.py:25: Failed
+_____ test_generated_admission_when_consumed_source_pin_drifts[media-True] _____
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...pproved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-84/test_generated_admission_when_3')
+optional = True, damage = 'media'
+
+    @pytest.mark.parametrize("optional",[False,True])
+    @pytest.mark.parametrize("damage",["approval","media"])
+    def test_generated_admission_when_consumed_source_pin_drifts(seed,capability,authority,tmp_path,optional,damage):
+        # Given: C3's own approval is distinct; a required or chosen optional source was consumed.
+        state,source,take,review,packet=linked_running(seed,capability,authority,tmp_path,separate_approval=True,optional_reference=optional)
+        state=completed(state,packet)
+        path=source.approval.evidence.path if damage == "approval" else source.take.asset.path
+        (tmp_path/path).write_text("CONSUMED SOURCE PROOF REVOKED / BYTES REPLACED")
+        # When / Then: unchanged own-approval and fingerprint do not authorize stale consumed proof.
+        verified_file(tmp_path,packet.authority.evidence)
+        assert require("contracts","fingerprint")(state,"C3") == take.fingerprint
+>       with pytest.raises(ContractError,match="hash"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_consumed_approval.py:25: Failed
+=========================== short test summary info ============================
+FAILED tests/test_observation_recovery.py::test_observe_ack_when_mutable_inputs_unavailable[missing-input]
+FAILED tests/test_observation_recovery.py::test_observe_ack_when_mutable_inputs_unavailable[hash-drift]
+FAILED tests/test_observation_recovery.py::test_observe_ack_when_mutable_inputs_unavailable[unrelated-dependency]
+FAILED tests/test_observation_recovery.py::test_observe_ack_when_mutable_inputs_unavailable[coverage-missing]
+FAILED tests/test_observation_recovery.py::test_observe_terminal_when_local_asset_missing[succeeded]
+FAILED tests/test_observation_recovery.py::test_observe_terminal_when_local_asset_missing[remote_failed]
+FAILED tests/test_observation_recovery.py::test_observe_terminal_when_local_asset_missing[cancelled]
+FAILED tests/test_consumed_approval.py::test_generated_admission_when_consumed_source_pin_drifts[approval-False]
+FAILED tests/test_consumed_approval.py::test_generated_admission_when_consumed_source_pin_drifts[approval-True]
+FAILED tests/test_consumed_approval.py::test_generated_admission_when_consumed_source_pin_drifts[media-False]
+FAILED tests/test_consumed_approval.py::test_generated_admission_when_consumed_source_pin_drifts[media-True]
+11 failed, 3 passed in 7.61s

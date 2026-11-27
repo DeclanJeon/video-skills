@@ -1,0 +1,40 @@
+# Local caches and environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+node_modules/
+.coverage
+.coverage.*
+htmlcov/
+.DS_Store
+
+# Credentials: examples only, never live values
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+credentials.json
+cookies.json
+
+# Local agent state and nested repository metadata (preserve on disk)
+.ultragoal/
+.superpowers/
+**/.git/
+
+# External resource bridge and reference source material are not redistributed
+/compat/video-production-assets/scripts
+/video-preproduction-skills/docs/examples/ref-prompt-01/
+
+# Private scratch bundles and transient process artifacts
+*.tar.gz
+*.tgz
+*.zip
+*.lock
+*.tmp
+*~

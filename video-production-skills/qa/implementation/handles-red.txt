@@ -1,0 +1,27 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______________ test_handles_when_extra_source_frames_not_reviewed ______________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-26/test_handles_when_extra_source0')
+
+    def test_handles_when_extra_source_frames_not_reviewed(seed, tmp_path):
+        # Given: extra raw frames exist but selected playback did not review them.
+        state = all_selected(seed,tmp_path)
+        first = state.selections[0]
+        first = first.model_copy(update={"take":first.take.model_copy(update={"frame_count":72})})
+        state = state.model_copy(update={"selections":(first,*state.selections[1:])})
+        state = state.model_copy(update={"join_reviews":joins_for(state)})
+        # When: handing off the checked range.
+        result = require("handoff","build_handoff")(state,flow_for(state),"receiver","rights")
+        # Then: unreviewed margins are not promised as usable editing handles.
+>       assert result.handles[0] == ("C1",0,0)
+E       AssertionError: assert ('C1', 0, 24) == ('C1', 0, 0)
+E         
+E         At index 2 diff: 24 != 0
+E         Use -v to get more diff
+
+tests/test_handoff.py:118: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_handoff.py::test_handles_when_extra_source_frames_not_reviewed
+1 failed in 0.04s

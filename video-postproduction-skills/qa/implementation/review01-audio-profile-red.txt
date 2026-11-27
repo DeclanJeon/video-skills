@@ -1,0 +1,331 @@
+FFFFFF                                                                   [100%]
+=================================== FAILURES ===================================
+_ test_picture_when_explicit_audio_codec_is_unsupported_rejects_before_dispatch _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-313/test_picture_when_explicit_aud0')
+
+    def test_picture_when_explicit_audio_codec_is_unsupported_rejects_before_dispatch(tmp_path):
+>       with pytest.raises(require("errors","ContractError")) as raised:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_review_audio_profile.py:8: Failed
+___ test_encoding_when_actual_picture_matches_explicit_audio_profile_passes ____
+
+module = 'profile_checks', name = 'verify_encoding'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.profile_checks', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.profile_checks'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+actual_audio_picture = (<postproduction.ledger.PostStore object at 0x707eae5016d0>, JobObservation(receipt=JobReceipt(phase=<JobPhase.SUCCEED...ne, channels=None, audio_mapping=(), related_assets=(), artifact_mapping=(), evidence_kind='native_technical_fixture'))
+
+    def test_encoding_when_actual_picture_matches_explicit_audio_profile_passes(actual_audio_picture):
+        store,value=actual_audio_picture
+>       require("profile_checks","verify_encoding")(store.path.parent,value.artifact,store.read_recorded().intake.profile)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_review_audio_profile.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'profile_checks', name = 'verify_encoding'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.profile_checks'
+
+tests/conftest.py:10: Failed
+_ test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects[changes0] _
+
+module = 'profile_checks', name = 'verify_encoding'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.profile_checks', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.profile_checks'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+actual_audio_picture = (<postproduction.ledger.PostStore object at 0x707eae5016d0>, JobObservation(receipt=JobReceipt(phase=<JobPhase.SUCCEED...ne, channels=None, audio_mapping=(), related_assets=(), artifact_mapping=(), evidence_kind='native_technical_fixture'))
+changes = {'audio_codec': 'flac'}
+
+    @pytest.mark.parametrize("changes",[{"audio_codec":"flac"},{"video_codec":"hevc"},{"sample_rate":44100},{"channels":1}])
+    def test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects(actual_audio_picture,changes):
+        store,value=actual_audio_picture
+        profile=store.read_recorded().intake.profile.model_copy(update=changes)
+        with pytest.raises(require("errors","ContractError")) as raised:
+>           require("profile_checks","verify_encoding")(store.path.parent,value.artifact,profile)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_review_audio_profile.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'profile_checks', name = 'verify_encoding'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.profile_checks'
+
+tests/conftest.py:10: Failed
+_ test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects[changes1] _
+
+module = 'profile_checks', name = 'verify_encoding'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.profile_checks', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.profile_checks'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+actual_audio_picture = (<postproduction.ledger.PostStore object at 0x707eae5016d0>, JobObservation(receipt=JobReceipt(phase=<JobPhase.SUCCEED...ne, channels=None, audio_mapping=(), related_assets=(), artifact_mapping=(), evidence_kind='native_technical_fixture'))
+changes = {'video_codec': 'hevc'}
+
+    @pytest.mark.parametrize("changes",[{"audio_codec":"flac"},{"video_codec":"hevc"},{"sample_rate":44100},{"channels":1}])
+    def test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects(actual_audio_picture,changes):
+        store,value=actual_audio_picture
+        profile=store.read_recorded().intake.profile.model_copy(update=changes)
+        with pytest.raises(require("errors","ContractError")) as raised:
+>           require("profile_checks","verify_encoding")(store.path.parent,value.artifact,profile)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_review_audio_profile.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'profile_checks', name = 'verify_encoding'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.profile_checks'
+
+tests/conftest.py:10: Failed
+_ test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects[changes2] _
+
+module = 'profile_checks', name = 'verify_encoding'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.profile_checks', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.profile_checks'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+actual_audio_picture = (<postproduction.ledger.PostStore object at 0x707eae5016d0>, JobObservation(receipt=JobReceipt(phase=<JobPhase.SUCCEED...ne, channels=None, audio_mapping=(), related_assets=(), artifact_mapping=(), evidence_kind='native_technical_fixture'))
+changes = {'sample_rate': 44100}
+
+    @pytest.mark.parametrize("changes",[{"audio_codec":"flac"},{"video_codec":"hevc"},{"sample_rate":44100},{"channels":1}])
+    def test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects(actual_audio_picture,changes):
+        store,value=actual_audio_picture
+        profile=store.read_recorded().intake.profile.model_copy(update=changes)
+        with pytest.raises(require("errors","ContractError")) as raised:
+>           require("profile_checks","verify_encoding")(store.path.parent,value.artifact,profile)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_review_audio_profile.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'profile_checks', name = 'verify_encoding'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.profile_checks'
+
+tests/conftest.py:10: Failed
+_ test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects[changes3] _
+
+module = 'profile_checks', name = 'verify_encoding'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.profile_checks', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.profile_checks'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+actual_audio_picture = (<postproduction.ledger.PostStore object at 0x707eae5016d0>, JobObservation(receipt=JobReceipt(phase=<JobPhase.SUCCEED...ne, channels=None, audio_mapping=(), related_assets=(), artifact_mapping=(), evidence_kind='native_technical_fixture'))
+changes = {'channels': 1}
+
+    @pytest.mark.parametrize("changes",[{"audio_codec":"flac"},{"video_codec":"hevc"},{"sample_rate":44100},{"channels":1}])
+    def test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects(actual_audio_picture,changes):
+        store,value=actual_audio_picture
+        profile=store.read_recorded().intake.profile.model_copy(update=changes)
+        with pytest.raises(require("errors","ContractError")) as raised:
+>           require("profile_checks","verify_encoding")(store.path.parent,value.artifact,profile)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_review_audio_profile.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'profile_checks', name = 'verify_encoding'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.profile_checks'
+
+tests/conftest.py:10: Failed
+=========================== short test summary info ============================
+FAILED tests/test_review_audio_profile.py::test_picture_when_explicit_audio_codec_is_unsupported_rejects_before_dispatch
+FAILED tests/test_review_audio_profile.py::test_encoding_when_actual_picture_matches_explicit_audio_profile_passes
+FAILED tests/test_review_audio_profile.py::test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects[changes0]
+FAILED tests/test_review_audio_profile.py::test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects[changes1]
+FAILED tests/test_review_audio_profile.py::test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects[changes2]
+FAILED tests/test_review_audio_profile.py::test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects[changes3]
+6 failed in 9.89s

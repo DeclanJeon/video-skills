@@ -1,0 +1,96 @@
+...F..F.....FF.                                                          [100%]
+=================================== FAILURES ===================================
+_ test_picture_when_actual_approved_sources_have_mixed_fps_conform_is_required _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-294/test_picture_when_actual_appro0')
+
+    def test_picture_when_actual_approved_sources_have_mixed_fps_conform_is_required(tmp_path):
+        # Given: actual approved 24/30/24fps source files, not merely edited declarations.
+>       fixture(tmp_path,rates=(24,30,24))
+
+tests/test_native_guards.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/support.py:76: in fixture
+    rendered=audio_review_fixture(root,state) if with_audio else render_review(state,root,"review-only.mp4")
+                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+state = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...y QA', continuous_playback=True, observed_changes=())), change_evidence=(), scope_history=(), observed_input_issues=())
+root = PosixPath('/tmp/pytest-of-declan/pytest-294/test_picture_when_actual_appro0')
+output = 'review-only.mp4'
+
+    def render_review(state: State, root: Path, output: str) -> ReviewRender:
+        source_slices = slices(state)
+        target = _output(root, output)
+        manifest_path = _output(root, output + ".sources.json")
+        sources = [verified_file(root,s.source) for s in source_slices]
+        probes = [probe_media(root,s.source) for s in source_slices]
+        if len({(p.width,p.height,p.fps,p.has_audio) for p in probes}) != 1 or not all(p.cfr for p in probes):
+>           raise ContractError("conform", "mixed formats/audio/VFR need an explicitly approved conform route")
+E           production.models.ContractError: conform: mixed formats/audio/VFR need an explicitly approved conform route
+
+../video-production-skills/production/render.py:68: ContractError
+_ test_picture_when_export_reports_offline_or_warning_cannot_materialize[warnings] _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-294/test_picture_when_export_repor1')
+diagnostic = 'warnings'
+
+    @pytest.mark.parametrize("diagnostic",["offlineMedia","warnings"])
+    def test_picture_when_export_reports_offline_or_warning_cannot_materialize(tmp_path,diagnostic):
+        store,backend,packet,value=rendered(tmp_path)
+        plan=require("backends.film_models","FilmPlan").model_validate_json(packet.payload)
+        stdout=plan.workspace/"stage3.stdout"
+        raw=json.loads(stdout.read_text())
+        raw[diagnostic]=["injected export diagnostic; not a genuine vendor warning"]
+        stdout.write_text(json.dumps(raw))
+>       with pytest.raises(require("errors","ContractError")):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_native_guards.py:78: Failed
+_ test_finishing_when_actual_export_diagnostic_is_not_clean_cannot_materialize[warnings] _
+
+finished = (<postproduction.ledger.PostStore object at 0x7bce9c32d590>, FinishingBackend(store=<postproduction.ledger.PostStore o...rt=0, end=288000), timeline_range=SourceRange(start=0, end=1524096000000))), evidence_kind='native_technical_fixture'))
+diagnostic = 'warnings'
+
+    @pytest.mark.parametrize("diagnostic",["offlineMedia","warnings","result_path"])
+    def test_finishing_when_actual_export_diagnostic_is_not_clean_cannot_materialize(finished,diagnostic):
+        store,backend,packet,value=finished
+        plan=require("finishing_models","FinishingPlan").model_validate_json(packet.payload)
+        path=plan.workspace/"stage3.stdout";before=path.read_bytes()
+        raw=json.loads(before)
+        if diagnostic=="result_path":raw["result"]["path"]="unrelated-output.mp4"
+        else:raw[diagnostic]=["injected diagnostic, not actual vendor warning"]
+        path.write_text(json.dumps(raw))
+        try:
+>           with pytest.raises(require("errors","ContractError")):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE ContractError
+
+tests/test_finishing.py:62: Failed
+_ test_finishing_when_actual_export_diagnostic_is_not_clean_cannot_materialize[result_path] _
+
+finished = (<postproduction.ledger.PostStore object at 0x7bce9c32d590>, FinishingBackend(store=<postproduction.ledger.PostStore o...rt=0, end=288000), timeline_range=SourceRange(start=0, end=1524096000000))), evidence_kind='native_technical_fixture'))
+diagnostic = 'result_path'
+
+    @pytest.mark.parametrize("diagnostic",["offlineMedia","warnings","result_path"])
+    def test_finishing_when_actual_export_diagnostic_is_not_clean_cannot_materialize(finished,diagnostic):
+        store,backend,packet,value=finished
+        plan=require("finishing_models","FinishingPlan").model_validate_json(packet.payload)
+        path=plan.workspace/"stage3.stdout";before=path.read_bytes()
+        raw=json.loads(before)
+        if diagnostic=="result_path":raw["result"]["path"]="unrelated-output.mp4"
+        else:raw[diagnostic]=["injected diagnostic, not actual vendor warning"]
+        path.write_text(json.dumps(raw))
+        try:
+>           with pytest.raises(require("errors","ContractError")):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE ContractError
+
+tests/test_finishing.py:62: Failed
+=========================== short test summary info ============================
+FAILED tests/test_native_guards.py::test_picture_when_actual_approved_sources_have_mixed_fps_conform_is_required
+FAILED tests/test_native_guards.py::test_picture_when_export_reports_offline_or_warning_cannot_materialize[warnings]
+FAILED tests/test_finishing.py::test_finishing_when_actual_export_diagnostic_is_not_clean_cannot_materialize[warnings]
+FAILED tests/test_finishing.py::test_finishing_when_actual_export_diagnostic_is_not_clean_cannot_materialize[result_path]
+4 failed, 11 passed in 70.10s (0:01:10)

@@ -1,0 +1,1 @@
+[{"enabled":false,"id":"layer.newSolid","label":"Solid...","menu":["Layer","New"],"params":"{name?, color? #hex|[r,g,b], width?, height?, pixelAspect?}","shortcut":"Cmd+Y","why":"no composition is open"}]

@@ -1,0 +1,14 @@
+{
+  "defaultShortcut": "Cmd+Shift+S",
+  "enabled": true,
+  "id": "file.saveAs",
+  "label": "Save As…",
+  "menu": [
+    "File"
+  ],
+  "params": "{\"path\":str}",
+  "shortcut": "Cmd+Shift+S",
+  "shortcuts": [
+    "Cmd+Shift+S"
+  ]
+}

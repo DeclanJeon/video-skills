@@ -1,0 +1,6 @@
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/acceptance.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/acceptance.py:70:21 - error: 매개 변수 기본값 식 내에서는 함수 호출 및 변경 가능한 개체를 사용할 수 없습니다. (reportCallInDefaultInitializer)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/acceptance.py:71:19 - error: 매개 변수 기본값 식 내에서는 함수 호출 및 변경 가능한 개체를 사용할 수 없습니다. (reportCallInDefaultInitializer)
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/source_scope.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/source_scope.py:19:19 - error: 매개 변수 "id", "version"에 대한 인수가 없습니다. (reportCallIssue)
+3 errors, 0 warnings, 0 notes

@@ -1,0 +1,59 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+___________________ test_probe_when_real_local_video_decodes ___________________
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-14/test_probe_when_real_local_vid0')
+
+    def test_probe_when_real_local_video_decodes(tmp_path):
+        # Given: generated technical fixture (not a story clip/provider output).
+        source = make_video(tmp_path)
+        # When: probing and fully decoding actual bytes.
+>       result = require("media", "probe_media")(tmp_path, source)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_media.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'media', name = 'probe_media'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing media runtime
+E       assert None
+E        +  where None = <function find_spec at 0x72e7653e3270>('production.media')
+E        +    where <function find_spec at 0x72e7653e3270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:17: AssertionError
+__________________ test_probe_when_text_pretends_to_be_video ___________________
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-14/test_probe_when_text_pretends_0')
+
+    def test_probe_when_text_pretends_to_be_video(tmp_path):
+        # Given: a valid file hash but no decodable media.
+        source = pin(tmp_path,"invalid.mp4","not video")
+        # When / Then: a file extension and claimed metadata are not sufficient.
+        with pytest.raises(ContractError, match="decode"):
+>           require("media", "probe_media")(tmp_path, source)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_media.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'media', name = 'probe_media'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing media runtime
+E       assert None
+E        +  where None = <function find_spec at 0x72e7653e3270>('production.media')
+E        +    where <function find_spec at 0x72e7653e3270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:17: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_media.py::test_probe_when_real_local_video_decodes - Assert...
+FAILED tests/test_media.py::test_probe_when_text_pretends_to_be_video - Asser...
+2 failed in 0.17s

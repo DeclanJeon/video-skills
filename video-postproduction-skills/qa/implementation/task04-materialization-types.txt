@@ -1,0 +1,20 @@
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py: error: 가져오기 체인에서 순환이 검색되었습니다.
+    /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py
+    /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/ledger.py
+    /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/materialization.py (reportImportCycles)
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/filmcraft.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/filmcraft.py: error: 가져오기 체인에서 순환이 검색되었습니다.
+    /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/filmcraft.py
+    /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/ledger.py
+    /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/materialization.py (reportImportCycles)
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/soundcraft.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/soundcraft.py: error: 가져오기 체인에서 순환이 검색되었습니다.
+    /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/soundcraft.py
+    /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/ledger.py
+    /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/materialization.py (reportImportCycles)
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/ledger.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/ledger.py: error: 가져오기 체인에서 순환이 검색되었습니다.
+    /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/ledger.py
+    /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/materialization.py (reportImportCycles)
+4 errors, 0 warnings, 0 notes

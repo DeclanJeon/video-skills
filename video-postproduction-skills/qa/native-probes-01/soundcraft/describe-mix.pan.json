@@ -1,0 +1,9 @@
+{
+  "id": "mix.pan",
+  "label": "Set Pan",
+  "menu": [],
+  "shortcut": null,
+  "params": "{tracks?, pan: -1..1, index?: 0|1}",
+  "enabled": false,
+  "disabled_reason": "nothing is selected"
+}

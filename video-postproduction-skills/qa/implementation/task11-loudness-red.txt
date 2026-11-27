@@ -1,0 +1,498 @@
+FFFFFFFF                                                                 [100%]
+=================================== FAILURES ===================================
+___ test_loudness_when_actual_stereo_reference_is_measured_not_native_meter ____
+
+module = 'loudness', name = 'measure_loudness'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.loudness', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.loudness'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tone = (PosixPath('/tmp/pytest-of-declan/pytest-297/test_loudness_when_actual_ster0'), Pin(id='reference.wav', version='1', path='reference.wav', sha256='c460ccbc46d8d14c794ac42b736a735000a18b257d8e02d016c662f30492439e'))
+
+    def test_loudness_when_actual_stereo_reference_is_measured_not_native_meter(tone):
+        root,asset=tone
+>       value=require('loudness','measure_loudness')(root,asset)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_loudness.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'loudness', name = 'measure_loudness'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.loudness'
+
+tests/conftest.py:10: Failed
+_ test_loudness_when_explicit_project_targets_fail_independently[-20.0--19.0-True] _
+
+module = 'loudness_models', name = 'LoudnessPolicy'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.loudness_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.loudness_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tone = (PosixPath('/tmp/pytest-of-declan/pytest-297/test_loudness_when_explicit_pr0'), Pin(id='reference.wav', version='1', path='reference.wav', sha256='c460ccbc46d8d14c794ac42b736a735000a18b257d8e02d016c662f30492439e'))
+target = -20.0, peak = -19.0, want = True
+
+    @pytest.mark.parametrize('target,peak,want',[(-20.0,-19.0,True),(-14.0,-19.0,False),(-20.0,-21.0,False)])
+    def test_loudness_when_explicit_project_targets_fail_independently(tone,target,peak,want):
+        root,asset=tone
+>       policy=require('loudness_models','LoudnessPolicy')(integrated_lufs=target,tolerance_lu=0.5,max_true_peak_dbtp=peak)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_loudness.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'loudness_models', name = 'LoudnessPolicy'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.loudness_models'
+
+tests/conftest.py:10: Failed
+_ test_loudness_when_explicit_project_targets_fail_independently[-14.0--19.0-False] _
+
+module = 'loudness_models', name = 'LoudnessPolicy'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.loudness_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.loudness_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tone = (PosixPath('/tmp/pytest-of-declan/pytest-297/test_loudness_when_explicit_pr1'), Pin(id='reference.wav', version='1', path='reference.wav', sha256='c460ccbc46d8d14c794ac42b736a735000a18b257d8e02d016c662f30492439e'))
+target = -14.0, peak = -19.0, want = False
+
+    @pytest.mark.parametrize('target,peak,want',[(-20.0,-19.0,True),(-14.0,-19.0,False),(-20.0,-21.0,False)])
+    def test_loudness_when_explicit_project_targets_fail_independently(tone,target,peak,want):
+        root,asset=tone
+>       policy=require('loudness_models','LoudnessPolicy')(integrated_lufs=target,tolerance_lu=0.5,max_true_peak_dbtp=peak)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_loudness.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'loudness_models', name = 'LoudnessPolicy'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.loudness_models'
+
+tests/conftest.py:10: Failed
+_ test_loudness_when_explicit_project_targets_fail_independently[-20.0--21.0-False] _
+
+module = 'loudness_models', name = 'LoudnessPolicy'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.loudness_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.loudness_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tone = (PosixPath('/tmp/pytest-of-declan/pytest-297/test_loudness_when_explicit_pr2'), Pin(id='reference.wav', version='1', path='reference.wav', sha256='c460ccbc46d8d14c794ac42b736a735000a18b257d8e02d016c662f30492439e'))
+target = -20.0, peak = -21.0, want = False
+
+    @pytest.mark.parametrize('target,peak,want',[(-20.0,-19.0,True),(-14.0,-19.0,False),(-20.0,-21.0,False)])
+    def test_loudness_when_explicit_project_targets_fail_independently(tone,target,peak,want):
+        root,asset=tone
+>       policy=require('loudness_models','LoudnessPolicy')(integrated_lufs=target,tolerance_lu=0.5,max_true_peak_dbtp=peak)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_loudness.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'loudness_models', name = 'LoudnessPolicy'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.loudness_models'
+
+tests/conftest.py:10: Failed
+________ test_loudness_when_source_changes_cannot_reuse_old_measurement ________
+
+module = 'loudness', name = 'measure_loudness'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.loudness', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.loudness'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tone = (PosixPath('/tmp/pytest-of-declan/pytest-297/test_loudness_when_source_chan0'), Pin(id='reference.wav', version='1', path='reference.wav', sha256='c460ccbc46d8d14c794ac42b736a735000a18b257d8e02d016c662f30492439e'))
+
+    def test_loudness_when_source_changes_cannot_reuse_old_measurement(tone):
+        root,asset=tone
+        (root/asset.path).write_bytes(b'replaced')
+        with pytest.raises(require('errors','ContractError')):
+>           require('loudness','measure_loudness')(root,asset)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_loudness.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'loudness', name = 'measure_loudness'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.loudness'
+
+tests/conftest.py:10: Failed
+_ test_loudness_when_profile_targets_are_invalid_not_silently_accepted[changes0] _
+
+module = 'loudness_models', name = 'LoudnessPolicy'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.loudness_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.loudness_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+changes = {'integrated_lufs': nan}
+
+    @pytest.mark.parametrize('changes',[{'integrated_lufs':float('nan')},{'tolerance_lu':-1.0},{'max_true_peak_dbtp':1.0}])
+    def test_loudness_when_profile_targets_are_invalid_not_silently_accepted(changes):
+        from pydantic import ValidationError
+        raw={'integrated_lufs':-20.0,'tolerance_lu':0.5,'max_true_peak_dbtp':-1.0,**changes}
+>       with pytest.raises(ValidationError):require('loudness_models','LoudnessPolicy').model_validate(raw)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_loudness.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'loudness_models', name = 'LoudnessPolicy'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.loudness_models'
+
+tests/conftest.py:10: Failed
+_ test_loudness_when_profile_targets_are_invalid_not_silently_accepted[changes1] _
+
+module = 'loudness_models', name = 'LoudnessPolicy'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.loudness_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.loudness_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+changes = {'tolerance_lu': -1.0}
+
+    @pytest.mark.parametrize('changes',[{'integrated_lufs':float('nan')},{'tolerance_lu':-1.0},{'max_true_peak_dbtp':1.0}])
+    def test_loudness_when_profile_targets_are_invalid_not_silently_accepted(changes):
+        from pydantic import ValidationError
+        raw={'integrated_lufs':-20.0,'tolerance_lu':0.5,'max_true_peak_dbtp':-1.0,**changes}
+>       with pytest.raises(ValidationError):require('loudness_models','LoudnessPolicy').model_validate(raw)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_loudness.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'loudness_models', name = 'LoudnessPolicy'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.loudness_models'
+
+tests/conftest.py:10: Failed
+_ test_loudness_when_profile_targets_are_invalid_not_silently_accepted[changes2] _
+
+module = 'loudness_models', name = 'LoudnessPolicy'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.loudness_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.loudness_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+changes = {'max_true_peak_dbtp': 1.0}
+
+    @pytest.mark.parametrize('changes',[{'integrated_lufs':float('nan')},{'tolerance_lu':-1.0},{'max_true_peak_dbtp':1.0}])
+    def test_loudness_when_profile_targets_are_invalid_not_silently_accepted(changes):
+        from pydantic import ValidationError
+        raw={'integrated_lufs':-20.0,'tolerance_lu':0.5,'max_true_peak_dbtp':-1.0,**changes}
+>       with pytest.raises(ValidationError):require('loudness_models','LoudnessPolicy').model_validate(raw)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_loudness.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'loudness_models', name = 'LoudnessPolicy'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.loudness_models'
+
+tests/conftest.py:10: Failed
+=========================== short test summary info ============================
+FAILED tests/test_loudness.py::test_loudness_when_actual_stereo_reference_is_measured_not_native_meter
+FAILED tests/test_loudness.py::test_loudness_when_explicit_project_targets_fail_independently[-20.0--19.0-True]
+FAILED tests/test_loudness.py::test_loudness_when_explicit_project_targets_fail_independently[-14.0--19.0-False]
+FAILED tests/test_loudness.py::test_loudness_when_explicit_project_targets_fail_independently[-20.0--21.0-False]
+FAILED tests/test_loudness.py::test_loudness_when_source_changes_cannot_reuse_old_measurement
+FAILED tests/test_loudness.py::test_loudness_when_profile_targets_are_invalid_not_silently_accepted[changes0]
+FAILED tests/test_loudness.py::test_loudness_when_profile_targets_are_invalid_not_silently_accepted[changes1]
+FAILED tests/test_loudness.py::test_loudness_when_profile_targets_are_invalid_not_silently_accepted[changes2]
+8 failed in 0.61s

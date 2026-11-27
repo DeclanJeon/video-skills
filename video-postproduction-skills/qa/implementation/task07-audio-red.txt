@@ -1,0 +1,385 @@
+FFFFFF                                                                   [100%]
+=================================== FAILURES ===================================
+________ test_audio_when_real_pcm_is_independently_decoded_and_measured ________
+
+module = 'audio', name = 'probe_audio'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.audio', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.audio'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-201/test_audio_when_real_pcm_is_in0')
+
+    def test_audio_when_real_pcm_is_independently_decoded_and_measured(tmp_path):
+        source=tone(tmp_path)
+        pin=require("models","Pin").model_validate_json(source.model_dump_json())
+>       facts=require("audio","probe_audio")(tmp_path,pin)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_audio.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'audio', name = 'probe_audio'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.audio'
+
+tests/conftest.py:10: Failed
+_____ test_stem_when_header_or_independent_origin_is_not_actual[changes0] ______
+
+module = 'audio_models', name = 'StemAsset'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.audio_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.audio_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-201/test_stem_when_header_or_indep0')
+changes = {'sample_count': 23999}
+
+    @pytest.mark.parametrize("changes",[{"sample_count":23999},{"channels":1},{"sample_rate":44100},
+        {"origin":"derived_from_mixed","role":"DX"}])
+    def test_stem_when_header_or_independent_origin_is_not_actual(tmp_path,changes):
+        raw=stem(tmp_path,**changes)
+>       parsed=require("audio_models","StemAsset").model_validate_json(json.dumps(raw))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_audio.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'audio_models', name = 'StemAsset'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.audio_models'
+
+tests/conftest.py:10: Failed
+_____ test_stem_when_header_or_independent_origin_is_not_actual[changes1] ______
+
+module = 'audio_models', name = 'StemAsset'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.audio_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.audio_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-201/test_stem_when_header_or_indep1')
+changes = {'channels': 1}
+
+    @pytest.mark.parametrize("changes",[{"sample_count":23999},{"channels":1},{"sample_rate":44100},
+        {"origin":"derived_from_mixed","role":"DX"}])
+    def test_stem_when_header_or_independent_origin_is_not_actual(tmp_path,changes):
+        raw=stem(tmp_path,**changes)
+>       parsed=require("audio_models","StemAsset").model_validate_json(json.dumps(raw))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_audio.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'audio_models', name = 'StemAsset'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.audio_models'
+
+tests/conftest.py:10: Failed
+_____ test_stem_when_header_or_independent_origin_is_not_actual[changes2] ______
+
+module = 'audio_models', name = 'StemAsset'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.audio_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.audio_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-201/test_stem_when_header_or_indep2')
+changes = {'sample_rate': 44100}
+
+    @pytest.mark.parametrize("changes",[{"sample_count":23999},{"channels":1},{"sample_rate":44100},
+        {"origin":"derived_from_mixed","role":"DX"}])
+    def test_stem_when_header_or_independent_origin_is_not_actual(tmp_path,changes):
+        raw=stem(tmp_path,**changes)
+>       parsed=require("audio_models","StemAsset").model_validate_json(json.dumps(raw))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_audio.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'audio_models', name = 'StemAsset'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.audio_models'
+
+tests/conftest.py:10: Failed
+_____ test_stem_when_header_or_independent_origin_is_not_actual[changes3] ______
+
+module = 'audio_models', name = 'StemAsset'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.audio_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.audio_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-201/test_stem_when_header_or_indep3')
+changes = {'origin': 'derived_from_mixed', 'role': 'DX'}
+
+    @pytest.mark.parametrize("changes",[{"sample_count":23999},{"channels":1},{"sample_rate":44100},
+        {"origin":"derived_from_mixed","role":"DX"}])
+    def test_stem_when_header_or_independent_origin_is_not_actual(tmp_path,changes):
+        raw=stem(tmp_path,**changes)
+>       parsed=require("audio_models","StemAsset").model_validate_json(json.dumps(raw))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_audio.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'audio_models', name = 'StemAsset'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.audio_models'
+
+tests/conftest.py:10: Failed
+__ test_intake_when_required_actual_separate_stem_is_supplied_can_be_adopted ___
+
+root = PosixPath('/tmp/pytest-of-declan/pytest-201/test_intake_when_required_actu0')
+request_path = PosixPath('/tmp/pytest-of-declan/pytest-201/test_intake_when_required_actu0/request.json')
+ledger = None
+
+    def load_intake(root: Path, request_path: Path, ledger: Path | None = None) -> PostIntake:
+        """Parse and re-observe the complete input set; no registry write or remote calls."""
+        root = root.absolute()
+        absolute_request = request_path if request_path.is_absolute() else root/request_path
+        try:
+            relative_request = absolute_request.relative_to(root)
+        except ValueError as exc:
+            raise ContractError("path", "request must be project-local") from exc
+        request_file = confined_path(root,relative_request.as_posix())
+        if not request_file.is_file():
+            raise ContractError("file", "request must be a regular project-local record")
+        try:
+>           request = IntakeRequest.model_validate_json(request_file.read_bytes())
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           pydantic_core._pydantic_core.ValidationError: 1 validation error for IntakeRequest
+E           stems
+E             Extra inputs are not permitted [type=extra_forbidden, input_value=[{'id': 'toneA', 'role': ...toneA-provenance.txt'}}], input_type=list]
+E               For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
+
+postproduction/intake.py:88: ValidationError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-201/test_intake_when_required_actu0')
+
+    def test_intake_when_required_actual_separate_stem_is_supplied_can_be_adopted(tmp_path):
+        request,production,handoff=fixture(tmp_path)
+        provided=stem(tmp_path)
+        request["stems"]=[provided]
+        brief=json.loads((tmp_path/"brief.json").read_text());brief["required_stems"]=[provided["id"]]
+        update_request(tmp_path,request,"brief","brief.json",brief)
+        modify_authority(tmp_path,request,brief_digest=request["brief"]["sha256"],allowed_changes=["audio"])
+        (tmp_path/"request.json").write_text(json.dumps(request))
+>       result=require("intake","load_intake")(tmp_path,tmp_path/"request.json")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_audio.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/tmp/pytest-of-declan/pytest-201/test_intake_when_required_actu0')
+request_path = PosixPath('/tmp/pytest-of-declan/pytest-201/test_intake_when_required_actu0/request.json')
+ledger = None
+
+    def load_intake(root: Path, request_path: Path, ledger: Path | None = None) -> PostIntake:
+        """Parse and re-observe the complete input set; no registry write or remote calls."""
+        root = root.absolute()
+        absolute_request = request_path if request_path.is_absolute() else root/request_path
+        try:
+            relative_request = absolute_request.relative_to(root)
+        except ValueError as exc:
+            raise ContractError("path", "request must be project-local") from exc
+        request_file = confined_path(root,relative_request.as_posix())
+        if not request_file.is_file():
+            raise ContractError("file", "request must be a regular project-local record")
+        try:
+            request = IntakeRequest.model_validate_json(request_file.read_bytes())
+        except (OSError,ValidationError) as exc:
+>           raise ContractError("intake", "invalid intake request record") from exc
+E           postproduction.errors.ContractError: intake: invalid intake request record
+
+postproduction/intake.py:90: ContractError
+=========================== short test summary info ============================
+FAILED tests/test_audio.py::test_audio_when_real_pcm_is_independently_decoded_and_measured
+FAILED tests/test_audio.py::test_stem_when_header_or_independent_origin_is_not_actual[changes0]
+FAILED tests/test_audio.py::test_stem_when_header_or_independent_origin_is_not_actual[changes1]
+FAILED tests/test_audio.py::test_stem_when_header_or_independent_origin_is_not_actual[changes2]
+FAILED tests/test_audio.py::test_stem_when_header_or_independent_origin_is_not_actual[changes3]
+FAILED tests/test_audio.py::test_intake_when_required_actual_separate_stem_is_supplied_can_be_adopted
+6 failed in 2.60s

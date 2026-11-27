@@ -1,0 +1,15 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_encoding_when_container_brand_is_unknown_does_not_invent_mp4_compliance _
+
+    def test_encoding_when_container_brand_is_unknown_does_not_invent_mp4_compliance():
+        actual=require('profile_checks','Container').model_validate({'format_name':'mov,mp4,m4a,3gp,3g2,mj2','tags':{}})
+>       assert require('profile_checks','container_matches')('mp4',actual) is False
+E       AssertionError: assert True is False
+E        +  where True = <function container_matches at 0x721e5c85c510>('mp4', Container(format_name='mov,mp4,m4a,3gp,3g2,mj2', tags=ContainerTags(major_brand='')))
+E        +    where <function container_matches at 0x721e5c85c510> = require('profile_checks', 'container_matches')
+
+tests/test_review_audio_profile.py:40: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_review_audio_profile.py::test_encoding_when_container_brand_is_unknown_does_not_invent_mp4_compliance
+1 failed in 0.23s

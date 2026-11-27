@@ -1,0 +1,76 @@
+{
+  "format": "video-postproduction-package/1",
+  "name": "video-postproduction-skills",
+  "version": "0.1.0",
+  "entry": "SKILL.md",
+  "automatic_invocation": false,
+  "installed_globally": false,
+  "roles": [
+    {
+      "id": "postproduction-supervisor",
+      "path": "postproduction-supervisor/SKILL.md"
+    },
+    {
+      "id": "picture-editor",
+      "path": "picture-editor/SKILL.md"
+    },
+    {
+      "id": "motion-compositor",
+      "path": "motion-compositor/SKILL.md"
+    },
+    {
+      "id": "color-finisher",
+      "path": "color-finisher/SKILL.md"
+    },
+    {
+      "id": "sound-editor-mixer",
+      "path": "sound-editor-mixer/SKILL.md"
+    },
+    {
+      "id": "caption-editor",
+      "path": "caption-editor/SKILL.md"
+    },
+    {
+      "id": "finishing-operator",
+      "path": "finishing-operator/SKILL.md"
+    },
+    {
+      "id": "postproduction-qa",
+      "path": "postproduction-qa/SKILL.md"
+    }
+  ],
+  "schemas": [
+    "schemas/post-state.schema.json",
+    "schemas/intake-request.schema.json",
+    "schemas/edit-proposal.schema.json",
+    "schemas/work-order.schema.json",
+    "schemas/installation-plan.schema.json",
+    "schemas/install-authority.schema.json",
+    "schemas/host-snapshot.schema.json",
+    "schemas/style-recipe.schema.json",
+    "schemas/caption-source.schema.json",
+    "schemas/quality-submission.schema.json",
+    "schemas/delivery-contract.schema.json",
+    "schemas/intake-revision.schema.json",
+    "schemas/finishing-recipe.schema.json",
+    "schemas/delivery-profile.schema.json"
+  ],
+  "examples": [
+    "examples/README.md",
+    "examples/profile.json",
+    "examples/awaiting-install-authority.json",
+    "examples/picture-order.json"
+  ],
+  "validation_scope": [
+    "schema",
+    "local_cli",
+    "native_technical_fixture",
+    "deterministic_role_contract"
+  ],
+  "unverified": [
+    "LLM pressure compliance not tested with extra agents under parent-only authorization",
+    "genuine new vendor installation",
+    "other OS",
+    "authenticated human playback/listening or legal/consent issuer"
+  ]
+}

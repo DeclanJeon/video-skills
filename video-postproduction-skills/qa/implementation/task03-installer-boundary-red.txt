@@ -1,0 +1,49 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_ test_installer_when_driver_reports_empty_installed_paths_cannot_claim_readiness _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-159/test_installer_when_driver_rep0')
+
+    def test_installer_when_driver_reports_empty_installed_paths_cannot_claim_readiness(tmp_path):
+        h,p,driver,events,runner=prepared(tmp_path)
+        driver.install=lambda p,artifact:()
+        driver.smoke=lambda p,files:require("environment.install_models","SmokeResult")(passed=True,evidence="simulated false success",network_denied=True)
+        result=runner.execute(p,h,authority(p,h))
+>       assert result.status!="ready"
+E       AssertionError: assert <EnvStatus.READY: 'ready'> != 'ready'
+E        +  where <EnvStatus.READY: 'ready'> = InstallReceipt(host_id='bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', tool=<Tool.FILMCRAFT: 'film...rue)), smoke=SmokeResult(passed=True, evidence='simulated false success', network_denied=True), real_media_ready=False).status
+
+tests/test_installers.py:132: AssertionError
+________ test_installer_when_download_receipt_is_outside_approved_cache ________
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-159/test_installer_when_download_r0')
+
+    def test_installer_when_download_receipt_is_outside_approved_cache(tmp_path):
+        h,p,driver,events,runner=prepared(tmp_path)
+        outside=tmp_path/"unapproved-artifact";outside.write_bytes(b"temporary fixture artifact")
+        driver.fetch=lambda p:outside
+        result=runner.execute(p,h,authority(p,h))
+>       assert result.status!="ready"
+E       AssertionError: assert <EnvStatus.READY: 'ready'> != 'ready'
+E        +  where <EnvStatus.READY: 'ready'> = InstallReceipt(host_id='bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', tool=<Tool.FILMCRAFT: 'film...=SmokeResult(passed=True, evidence='temporary stub stdout=fixture-ready', network_denied=True), real_media_ready=False).status
+
+tests/test_installers.py:141: AssertionError
+_ test_host_lease_when_same_resource_owner_is_reentered_must_not_release_first_lock _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-159/test_host_lease_when_same_reso0')
+
+    def test_host_lease_when_same_resource_owner_is_reentered_must_not_release_first_lock(tmp_path):
+        Lease=require("environment.install_lease","HostToolLease")
+        h=missing_host();p=plan(h)
+        owner=Lease(tmp_path/"leases",h.host_id,p.tool)
+        with owner:
+>           with pytest.raises(require("errors","ContractError")):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE ContractError
+
+tests/test_installers.py:150: Failed
+=========================== short test summary info ============================
+FAILED tests/test_installers.py::test_installer_when_driver_reports_empty_installed_paths_cannot_claim_readiness
+FAILED tests/test_installers.py::test_installer_when_download_receipt_is_outside_approved_cache
+FAILED tests/test_installers.py::test_host_lease_when_same_resource_owner_is_reentered_must_not_release_first_lock
+3 failed in 0.24s

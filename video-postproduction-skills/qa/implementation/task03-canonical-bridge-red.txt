@@ -1,0 +1,223 @@
+FFFFF                                                                    [100%]
+=================================== FAILURES ===================================
+_ test_environment_bridge_when_fixture_installer_facts_preserve_other_namespaces _
+
+module = 'environment.project_bridge', name = 'InstallProjectBridge'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.project_bridge', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.project_bridge'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-221/test_environment_bridge_when_f0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_environment_bridge_when_fixture_installer_facts_preserve_other_namespaces(project):
+        path,store,state,production=prepare(project);store.initialize(state)
+        root=path.parent/"owned-installer";root.mkdir()
+        h,p,driver,events,runner=prepared(root)
+>       bridge=require("environment.project_bridge","InstallProjectBridge")(store,context(h,p))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_environment_bridge.py:19: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.project_bridge', name = 'InstallProjectBridge'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.project_bridge'
+
+tests/conftest.py:10: Failed
+________ test_environment_when_source_lost_installed_fact_still_commits ________
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-221/test_environment_when_source_l0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_environment_when_source_lost_installed_fact_still_commits(project):
+        path,store,state,production=prepare(project);store.initialize(state)
+        (path.parent/"source1.mp4").unlink()
+>       result=store.record_environment(prepared_observation(),0)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'PostStore' object has no attribute 'record_environment'
+
+tests/test_environment_bridge.py:45: AttributeError
+__ test_environment_when_diagnostic_crashes_installed_fact_is_already_durable __
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-221/test_environment_when_diagnost0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7c17be8ebe10>
+
+    def test_environment_when_diagnostic_crashes_installed_fact_is_already_durable(project,monkeypatch):
+        path,store,state,production=prepare(project);store.initialize(state)
+        monkeypatch.setattr(store,"input_issues",lambda state:(_ for _ in ()).throw(RuntimeError("diagnostic crash")))
+>       with pytest.raises(RuntimeError):store.record_environment(prepared_observation(),0)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'PostStore' object has no attribute 'record_environment'
+
+tests/test_environment_bridge.py:53: AttributeError
+_____ test_environment_when_generic_transaction_cannot_forge_ready_history _____
+
+module = 'environment.observation_models', name = 'EnvironmentObservation'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.observation_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.observation_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-221/test_environment_when_generic_0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_environment_when_generic_transaction_cannot_forge_ready_history(project):
+        path,store,state,production=prepare(project);store.initialize(state)
+        with pytest.raises(require("errors","ContractError")):
+            with store.transaction(0) as tx:
+>               tx.state=tx.state.model_copy(update={"environment_events":(prepared_observation(),)})
+                                                                           ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_environment_bridge.py:61: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_environment_bridge.py:38: in prepared_observation
+    return require("environment.observation_models","EnvironmentObservation")(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.observation_models', name = 'EnvironmentObservation'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.observation_models'
+
+tests/conftest.py:10: Failed
+_____ test_environment_when_initial_state_cannot_invent_installed_history ______
+
+module = 'environment.observation_models', name = 'EnvironmentObservation'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.observation_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.observation_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-221/test_environment_when_initial_0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_environment_when_initial_state_cannot_invent_installed_history(project):
+        path,store,state,production=prepare(project)
+>       state=state.model_copy(update={"environment_events":(prepared_observation(),)})
+                                                             ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_environment_bridge.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_environment_bridge.py:38: in prepared_observation
+    return require("environment.observation_models","EnvironmentObservation")(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.observation_models', name = 'EnvironmentObservation'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.observation_models'
+
+tests/conftest.py:10: Failed
+=========================== short test summary info ============================
+FAILED tests/test_environment_bridge.py::test_environment_bridge_when_fixture_installer_facts_preserve_other_namespaces
+FAILED tests/test_environment_bridge.py::test_environment_when_source_lost_installed_fact_still_commits
+FAILED tests/test_environment_bridge.py::test_environment_when_diagnostic_crashes_installed_fact_is_already_durable
+FAILED tests/test_environment_bridge.py::test_environment_when_generic_transaction_cannot_forge_ready_history
+FAILED tests/test_environment_bridge.py::test_environment_when_initial_state_cannot_invent_installed_history
+5 failed in 5.10s

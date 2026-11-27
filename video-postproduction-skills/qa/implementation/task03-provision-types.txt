@@ -1,0 +1,8 @@
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/environment/install_lease.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/environment/install_lease.py:4:8 - error: 가져오기 "os"에 액세스하지 않았습니다. (reportUnusedImport)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/environment/install_lease.py:22:6 - error: "contextmanager" 함수는 더 이상 사용되지 않습니다.
+    Annotating the return type as `-> Iterator[Foo]` with `@contextmanager` is deprecated. Use `-> Generator[Foo]` instead. (reportDeprecated)
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/environment/provision.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/environment/provision.py:99:37 - error: "Literal['approved']" 및 "Literal['installing']" 형식이 겹치지 않으므로 조건은 항상 False로 평가됩니다. (reportUnnecessaryComparison)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/environment/provision.py:104:41 - error: "Literal['approved']" 및 "Literal['installing']" 형식이 겹치지 않으므로 조건은 항상 False로 평가됩니다. (reportUnnecessaryComparison)
+4 errors, 0 warnings, 0 notes

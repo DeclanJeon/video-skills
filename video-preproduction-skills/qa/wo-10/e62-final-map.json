@@ -1,0 +1,70 @@
+{
+  "id": "IMG-S01-C02-P2",
+  "panel": "S01-C02-P2",
+  "moment": "7.4 s global, end panel, S01-C02.b2",
+  "block_markers": {
+    "style": "[style]",
+    "framing": "[framing]",
+    "shot": "[shot]",
+    "identity": "[identity]",
+    "action": "[action]",
+    "composition": "[composition]",
+    "setting": "[setting]",
+    "props": "[props]",
+    "negative": "[negative]"
+  },
+  "sheet_baseline": "SHT-01@v1",
+  "identity_sources": [
+    "CHR-01@v1#anchor",
+    "WRD-01a@v1#prompt"
+  ],
+  "references": [],
+  "sources": {
+    "style": [
+      "LOOK-01@v1",
+      "WLD@v1#palette"
+    ],
+    "framing": [
+      "BRF@v1",
+      "STB@v1",
+      "CAM-02@v1"
+    ],
+    "shot": [
+      "CAM-02@v1"
+    ],
+    "identity": [
+      "CHR-01@v1#anchor",
+      "WRD-01a@v1#prompt"
+    ],
+    "action": [
+      "STB@v1",
+      "CNT@v1#S01-C02.perf",
+      "DNT@v1#S01"
+    ],
+    "composition": [
+      "STB@v1",
+      "CTY@v1#axis-01",
+      "CAM-02@v1"
+    ],
+    "setting": [
+      "LOC-01@v1#layers",
+      "LOC-01@v1#plan",
+      "SET-01@v1",
+      "ENV-01@v1",
+      "LGT-01@v1",
+      "WLD@v1#rules"
+    ],
+    "props": [
+      "PRP-01@v1#state-b",
+      "PRP-02@v1#state-b",
+      "CTY@v1#state-01"
+    ],
+    "negative": [
+      "WLD@v1#forbidden",
+      "BRF@v1",
+      "common:no-text"
+    ]
+  },
+  "model": null,
+  "prompt_language": "en+ko"
+}

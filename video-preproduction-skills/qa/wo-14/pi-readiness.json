@@ -1,0 +1,12 @@
+[
+  {
+    "code": "package",
+    "target": "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/contents-production-skills-v2",
+    "detail": "manifest is not a release; WO-13 evidence and cutover authorization are separate"
+  },
+  {
+    "code": "equipment",
+    "target": "codex-imagen",
+    "detail": "not found at this target; runtime support remains unverified"
+  }
+]

@@ -1,0 +1,257 @@
+FFFFF                                                                    [100%]
+=================================== FAILURES ===================================
+____ test_ensure_when_same_program_is_adequate_reuses_without_install_plan _____
+
+module = 'environment.workflow', name = 'ensure_environment'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.workflow', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.workflow'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_ensure_when_same_program_is_adequate_reuses_without_install_plan():
+        a=require("environment.consent_models","InstallAuthority")()
+>       value=require("environment.workflow","ensure_environment")((requirement(),),host(),a)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_environment_workflow.py:10: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.workflow', name = 'ensure_environment'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.workflow'
+
+tests/conftest.py:10: Failed
+___ test_ensure_when_missing_but_no_concrete_plan_has_no_fabricated_question ___
+
+module = 'environment.workflow', name = 'ensure_environment'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.workflow', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.workflow'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_ensure_when_missing_but_no_concrete_plan_has_no_fabricated_question():
+        a=require("environment.consent_models","InstallAuthority")()
+>       value=require("environment.workflow","ensure_environment")((requirement(),),missing_host(),a)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_environment_workflow.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.workflow', name = 'ensure_environment'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.workflow'
+
+tests/conftest.py:10: Failed
+_ test_ensure_when_plan_exists_but_question_not_asked_returns_only_full_draft __
+
+    def test_ensure_when_plan_exists_but_question_not_asked_returns_only_full_draft():
+        h=missing_host();p=plan(h)
+>       a=require("environment.consent_models","InstallAuthority")(install_plan=p)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for InstallAuthority
+E       install_plan
+E         Extra inputs are not permitted [type=extra_forbidden, input_value=InstallationPlan(id='inst...packed_bytes=4294967296), input_type=InstallationPlan]
+E           For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
+
+tests/test_environment_workflow.py:26: ValidationError
+_ test_ensure_when_exact_recorded_question_response_selects_only_matching_action[decline-declined] _
+
+module = 'environment.workflow', name = 'ensure_environment'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.workflow', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.workflow'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+answer = 'decline', status = 'declined'
+
+    @pytest.mark.parametrize("answer,status",[("decline","declined"),("approve","approved")])
+    def test_ensure_when_exact_recorded_question_response_selects_only_matching_action(answer,status):
+        h=missing_host();p=plan(h)
+        a=authority(p,h,answer).model_copy(update={"install_plan":p})
+>       value=require("environment.workflow","ensure_environment")((requirement(),),h,a)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_environment_workflow.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.workflow', name = 'ensure_environment'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.workflow'
+
+tests/conftest.py:10: Failed
+_ test_ensure_when_exact_recorded_question_response_selects_only_matching_action[approve-approved] _
+
+module = 'environment.workflow', name = 'ensure_environment'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.workflow', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.workflow'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+answer = 'approve', status = 'approved'
+
+    @pytest.mark.parametrize("answer,status",[("decline","declined"),("approve","approved")])
+    def test_ensure_when_exact_recorded_question_response_selects_only_matching_action(answer,status):
+        h=missing_host();p=plan(h)
+        a=authority(p,h,answer).model_copy(update={"install_plan":p})
+>       value=require("environment.workflow","ensure_environment")((requirement(),),h,a)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_environment_workflow.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.workflow', name = 'ensure_environment'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.workflow'
+
+tests/conftest.py:10: Failed
+=========================== short test summary info ============================
+FAILED tests/test_environment_workflow.py::test_ensure_when_same_program_is_adequate_reuses_without_install_plan
+FAILED tests/test_environment_workflow.py::test_ensure_when_missing_but_no_concrete_plan_has_no_fabricated_question
+FAILED tests/test_environment_workflow.py::test_ensure_when_plan_exists_but_question_not_asked_returns_only_full_draft
+FAILED tests/test_environment_workflow.py::test_ensure_when_exact_recorded_question_response_selects_only_matching_action[decline-declined]
+FAILED tests/test_environment_workflow.py::test_ensure_when_exact_recorded_question_response_selects_only_matching_action[approve-approved]
+5 failed in 0.17s

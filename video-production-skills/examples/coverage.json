@@ -1,0 +1,25 @@
+{
+  "format": "production-coverage/1",
+  "requirements": [
+    {
+      "id": "R01",
+      "shot": "SH01",
+      "panels": [
+        "P01"
+      ],
+      "modality": "video",
+      "locator": "fixture/shot1"
+    }
+  ],
+  "asset_uses": [
+    {
+      "shot": "SH01",
+      "pin": {
+        "id": "synthetic-identity.txt",
+        "version": "1",
+        "sha256": "516662394ad013b0dc1e526c5dd0a1112b41de1ad2db292d49da59655b4170a9",
+        "path": "synthetic-identity.txt"
+      }
+    }
+  ]
+}

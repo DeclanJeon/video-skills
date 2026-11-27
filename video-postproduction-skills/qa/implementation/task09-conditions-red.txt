@@ -1,0 +1,19 @@
+.F                                                                       [100%]
+=================================== FAILURES ===================================
+_ test_condition_when_unknown_or_old_ticket_cannot_be_laundered_as_resolution __
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-254/test_condition_when_unknown_or0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_condition_when_unknown_or_old_ticket_cannot_be_laundered_as_resolution(project):
+        path,store,state,production=prepare(project)
+        ticket=require("conditions","fix_tickets")(conditional(state).intake)[0]
+        report=packet(path,state,ticket)
+>       assert require("conditions","resolutions_ready")(state,report,path) is False
+E       AssertionError: assert True is False
+E        +  where True = <function resolutions_ready at 0x7df86ab24f60>(PostState(format='post-state/1', revision=0, intake=PostIntake(request=IntakeRequest(project_id='synthetic-post', snap...ers=(), jobs=(), artifacts=(), environment_events=(), invalidations=(), reviews=(), notes=(), observed_input_issues=()), QualitySubmission(id='FIX-CLAIM', mode='technical_fixture', artifact_id='not-an-adopted-master', artifact=Pin(id='sour...ce9b051396565ef65ba53ea667175fd6964c071b46'), video_observed=True, audio_observed=False, side_effects_reviewed=True),)), PosixPath('/tmp/pytest-of-declan/pytest-254/test_condition_when_unknown_or0/project.json'))
+E        +    where <function resolutions_ready at 0x7df86ab24f60> = require('conditions', 'resolutions_ready')
+
+tests/test_conditions.py:37: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_conditions.py::test_condition_when_unknown_or_old_ticket_cannot_be_laundered_as_resolution
+1 failed, 1 passed in 1.00s

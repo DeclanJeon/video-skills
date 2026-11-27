@@ -1,0 +1,46 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_____________ test_package_checker_when_roles_and_links_are_valid ______________
+
+    def test_package_checker_when_roles_and_links_are_valid():
+        # Given: a repository-local skill pack.
+        root = Path(__file__).resolve().parents[1]
+        script = root/"scripts/check_package.py"
+>       assert script.exists(), "package checker not implemented"
+E       AssertionError: package checker not implemented
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-production-skills/scripts/check_package.py').exists
+
+tests/test_package.py:12: AssertionError
+____________________ test_acceptance_map_when_nodes_resolve ____________________
+
+    def test_acceptance_map_when_nodes_resolve():
+        # Given: named executable acceptance bindings, not prose snapshots.
+        root = Path(__file__).resolve().parents[1]
+        path = root/"docs/acceptance-map.json"
+>       assert path.exists(), "acceptance map not implemented"
+E       AssertionError: acceptance map not implemented
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-production-skills/docs/acceptance-map.json').exists
+
+tests/test_package.py:24: AssertionError
+_______________ test_templates_when_json_schema_matches_runtime ________________
+
+    def test_templates_when_json_schema_matches_runtime():
+        # Given: public boundary schemas checked into package resources.
+        root = Path(__file__).resolve().parents[1]
+        schema = root/"schemas/state.schema.json"
+>       assert schema.exists(), "state JSON Schema not implemented"
+E       AssertionError: state JSON Schema not implemented
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-production-skills/schemas/state.schema.json').exists
+
+tests/test_package.py:36: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_package.py::test_package_checker_when_roles_and_links_are_valid
+FAILED tests/test_package.py::test_acceptance_map_when_nodes_resolve - Assert...
+FAILED tests/test_package.py::test_templates_when_json_schema_matches_runtime
+3 failed in 0.03s

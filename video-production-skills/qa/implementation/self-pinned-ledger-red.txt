@@ -1,0 +1,52 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_ test_initialization_when_mutable_ledger_would_invalidate_its_own_source[False] _
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...ttempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=(), observed_input_issues=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-91/test_initialization_when_mutab0')
+envelope = False
+
+    @pytest.mark.parametrize("envelope",[False,True])
+    def test_initialization_when_mutable_ledger_would_invalidate_its_own_source(seed,tmp_path,envelope):
+        # Given: approved source or exported origin points at the very file init would mutate.
+        from conftest import pin
+        payload={"format":"production-coverage/1","requirements":[r.model_dump() for r in seed.approved_coverage]}
+        origin=pin(tmp_path,"ledger.json",json.dumps(payload))
+        source=origin
+        if envelope:
+            source=pin(tmp_path,"scope.json",json.dumps({**payload,"origin":origin.model_dump()}))
+        state=seed.model_copy(update={"coverage_source":source})
+        before=(tmp_path/"ledger.json").read_bytes()
+        # When / Then: require an immutable snapshot, never create an immediately stale self-pin.
+>       with pytest.raises(ContractError,match="scope"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_recovery.py:150: Failed
+_ test_initialization_when_mutable_ledger_would_invalidate_its_own_source[True] _
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...ttempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=(), observed_input_issues=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-91/test_initialization_when_mutab1')
+envelope = True
+
+    @pytest.mark.parametrize("envelope",[False,True])
+    def test_initialization_when_mutable_ledger_would_invalidate_its_own_source(seed,tmp_path,envelope):
+        # Given: approved source or exported origin points at the very file init would mutate.
+        from conftest import pin
+        payload={"format":"production-coverage/1","requirements":[r.model_dump() for r in seed.approved_coverage]}
+        origin=pin(tmp_path,"ledger.json",json.dumps(payload))
+        source=origin
+        if envelope:
+            source=pin(tmp_path,"scope.json",json.dumps({**payload,"origin":origin.model_dump()}))
+        state=seed.model_copy(update={"coverage_source":source})
+        before=(tmp_path/"ledger.json").read_bytes()
+        # When / Then: require an immutable snapshot, never create an immediately stale self-pin.
+>       with pytest.raises(ContractError,match="scope"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_recovery.py:150: Failed
+=========================== short test summary info ============================
+FAILED tests/test_recovery.py::test_initialization_when_mutable_ledger_would_invalidate_its_own_source[False]
+FAILED tests/test_recovery.py::test_initialization_when_mutable_ledger_would_invalidate_its_own_source[True]
+2 failed in 0.06s

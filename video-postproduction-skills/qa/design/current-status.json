@@ -1,0 +1,10 @@
+{
+  "status": "latest-user-consent-policy-amended-awaiting-goal-activation",
+  "previous_review_scope": "qa/design/reviewed-scope-01.sha256",
+  "old_review_is_current_implementation_approval": false,
+  "new_project_root": "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills",
+  "upstream_location_blocker_resolved": true,
+  "goal_status": "draft",
+  "native_render_verified": false,
+  "installed": false
+}

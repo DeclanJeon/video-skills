@@ -1,0 +1,34 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_smoke_when_existing_portable_cli_and_required_siblings_are_only_readonly_payload _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-311/test_smoke_when_existing_porta0')
+
+    def test_smoke_when_existing_portable_cli_and_required_siblings_are_only_readonly_payload(tmp_path):
+        target=tmp_path/"portable";target.mkdir()
+        actual=target/"filmcraft-real";shutil.copy2("/usr/bin/filmcraft-cli",actual)
+        resource=target/"resources"/"required.txt";resource.parent.mkdir();resource.write_text("fixture-resource")
+        private=tmp_path/"unrelated-secret.txt";private.write_text("must be hidden")
+        cli=target/"filmcraft-cli"
+        cli.write_text("#!/usr/bin/python3\nfrom pathlib import Path\nimport os,sys\nroot=Path(__file__).parent\n"
+            "assert (root/'resources'/'required.txt').read_text()=='fixture-resource'\n"
+            f"if '--version' not in sys.argv and Path({str(private)!r}).exists(): sys.exit(43)\n"
+            "os.execv(str(root/'filmcraft-real'),[str(root/'filmcraft-real'),*sys.argv[1:]])\n")
+        cli.chmod(0o700)
+        host=subprocess.run([str(cli),"--version"],capture_output=True,check=True,timeout=20)
+        assert b"filmcraft-cli" in host.stdout
+        result=require("environment.native_smoke","NativeSmoke")(tmp_path/"smoke").run(
+            plan(tool="filmcraft",write_paths=[str(target)]),(cli,actual,resource))
+>       assert result.passed is True and result.network_denied is True,result.evidence
+E       AssertionError: actual synthetic smoke failed: smoke: actual native synthetic command failed rc=1, timeout=False: Traceback (most recent call last):
+E           File "/tmp/pytest-of-declan/pytest-311/test_smoke_when_existing_porta0/smoke/0f154d88ee814898a289cc90bb394bb3/.owned-limits.py", line 9, in <module>
+E             os.execv(sys.argv[1],sys.argv[1:])
+E             ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         FileNotFoundError: [Errno 2] No such file or directory
+E       assert (False is True)
+E        +  where False = SmokeResult(passed=False, evidence='actual synthetic smoke failed: smoke: actual native synthetic command failed rc=1,...\n    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory', network_denied=True).passed
+
+tests/test_review_portable_smoke.py:23: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_review_portable_smoke.py::test_smoke_when_existing_portable_cli_and_required_siblings_are_only_readonly_payload
+1 failed in 0.88s

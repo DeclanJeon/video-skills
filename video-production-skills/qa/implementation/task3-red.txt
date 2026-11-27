@@ -1,0 +1,475 @@
+FFFFFFFFFFFFFFFF                                                         [100%]
+=================================== FAILURES ===================================
+_________________ test_unknown_slot_when_submit_response_lost __________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-4/test_unknown_slot_when_submit_0')
+
+    def test_unknown_slot_when_submit_response_lost(seed, capability, authority, tmp_path):
+        # Given: reserved A plus one other account job; capacity is two.
+>       state, packet = reserved(seed, capability, authority, tmp_path)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_execution.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_execution.py:10: in reserved
+    state = require("execution", "reserve")(seed, packet, AttemptId("ATT-1"), 0, tmp_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'execution', name = 'reserve'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing execution runtime
+E       assert None
+E        +  where None = <function find_spec at 0x734a51d47270>('production.execution')
+E        +    where <function find_spec at 0x734a51d47270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_____________________ test_external_job_when_capacity_two ______________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-4/test_external_job_when_capacit0')
+
+    def test_external_job_when_capacity_two(seed, capability, authority, tmp_path):
+        # Given: one job outside this project is observed.
+        # When: computing headroom.
+>       result = require("execution", "available_slots")(seed, capability, authority, 1)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_execution.py:27: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'execution', name = 'available_slots'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing execution runtime
+E       assert None
+E        +  where None = <function find_spec at 0x734a51d47270>('production.execution')
+E        +    where <function find_spec at 0x734a51d47270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_________________ test_duplicate_when_attempt_already_reserved _________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-4/test_duplicate_when_attempt_al0')
+
+    def test_duplicate_when_attempt_already_reserved(seed, capability, authority, tmp_path):
+        # Given: submit identity has already been journaled.
+>       state, packet = reserved(seed, capability, authority, tmp_path)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_execution.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_execution.py:10: in reserved
+    state = require("execution", "reserve")(seed, packet, AttemptId("ATT-1"), 0, tmp_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'execution', name = 'reserve'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing execution runtime
+E       assert None
+E        +  where None = <function find_spec at 0x734a51d47270>('production.execution')
+E        +    where <function find_spec at 0x734a51d47270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+__________________ test_terminal_when_download_not_completed ___________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-4/test_terminal_when_download_no0')
+
+    def test_terminal_when_download_not_completed(seed, capability, authority, tmp_path):
+        # Given: a known remote job succeeded.
+>       state, packet = reserved(seed, capability, authority, tmp_path)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_execution.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_execution.py:10: in reserved
+    state = require("execution", "reserve")(seed, packet, AttemptId("ATT-1"), 0, tmp_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'execution', name = 'reserve'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing execution runtime
+E       assert None
+E        +  where None = <function find_spec at 0x734a51d47270>('production.execution')
+E        +    where <function find_spec at 0x734a51d47270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+______________ test_cancel_when_only_request_without_confirmation ______________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-4/test_cancel_when_only_request_0')
+
+    def test_cancel_when_only_request_without_confirmation(seed, capability, authority, tmp_path):
+        # Given: submitting does not yet identify a remote job.
+>       state, packet = reserved(seed, capability, authority, tmp_path)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_execution.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_execution.py:10: in reserved
+    state = require("execution", "reserve")(seed, packet, AttemptId("ATT-1"), 0, tmp_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'execution', name = 'reserve'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing execution runtime
+E       assert None
+E        +  where None = <function find_spec at 0x734a51d47270>('production.execution')
+E        +    where <function find_spec at 0x734a51d47270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_____________________ test_receipt_when_request_hash_wrong _____________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-4/test_receipt_when_request_hash0')
+
+    def test_receipt_when_request_hash_wrong(seed, capability, authority, tmp_path):
+        # Given: remote event belongs to a different payload.
+>       state, packet = reserved(seed, capability, authority, tmp_path)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_execution.py:62: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_execution.py:10: in reserved
+    state = require("execution", "reserve")(seed, packet, AttemptId("ATT-1"), 0, tmp_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'execution', name = 'reserve'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing execution runtime
+E       assert None
+E        +  where None = <function find_spec at 0x734a51d47270>('production.execution')
+E        +    where <function find_spec at 0x734a51d47270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_______________________ test_result_when_job_id_changed ________________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-4/test_result_when_job_id_change0')
+
+    def test_result_when_job_id_changed(seed, capability, authority, tmp_path):
+        # Given: a bound job.
+>       state, packet = reserved(seed, capability, authority, tmp_path)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_execution.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_execution.py:10: in reserved
+    state = require("execution", "reserve")(seed, packet, AttemptId("ATT-1"), 0, tmp_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'execution', name = 'reserve'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing execution runtime
+E       assert None
+E        +  where None = <function find_spec at 0x734a51d47270>('production.execution')
+E        +    where <function find_spec at 0x734a51d47270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+____________________ test_reservation_when_packet_tampered _____________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-4/test_reservation_when_packet_t0')
+
+    def test_reservation_when_packet_tampered(seed, capability, authority, tmp_path):
+        # Given: text changed after inspection.
+        packet = prepare(seed, capability, authority, tmp_path).model_copy(update={"prompt_text": "DIFFERENT"})
+        # When / Then: exact request digest is checked again.
+        with pytest.raises(ContractError, match="request"):
+>           require("execution", "reserve")(seed, packet, AttemptId("X"), 0, tmp_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_execution.py:83: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'execution', name = 'reserve'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing execution runtime
+E       assert None
+E        +  where None = <function find_spec at 0x734a51d47270>('production.execution')
+E        +    where <function find_spec at 0x734a51d47270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+________________ test_available_when_account_occupancy_unknown _________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+
+    def test_available_when_account_occupancy_unknown(seed, capability, authority):
+        # Given: account occupancy is unavailable rather than zero.
+        # When / Then: do not guess free capacity.
+        with pytest.raises(ContractError, match="occupancy"):
+>           require("execution", "available_slots")(seed, capability, authority, None)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_execution.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'execution', name = 'available_slots'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing execution runtime
+E       assert None
+E        +  where None = <function find_spec at 0x734a51d47270>('production.execution')
+E        +    where <function find_spec at 0x734a51d47270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_____________ test_roundtrip_when_existing_ledger_has_other_fields _____________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-4/test_roundtrip_when_existing_l0')
+
+    def test_roundtrip_when_existing_ledger_has_other_fields(seed, tmp_path):
+        # Given: a real pre-existing project ledger.
+        path = tmp_path/"ledger.json"
+        path.write_text(json.dumps({"schema_version": 1, "artifacts": {}, "unrelated": {"keep": 7}}))
+>       store = require("store", "ProjectStore")(path)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_recovery.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'store', name = 'ProjectStore'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing store runtime
+E       assert None
+E        +  where None = <function find_spec at 0x734a51d47270>('production.store')
+E        +    where <function find_spec at 0x734a51d47270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+____________________ test_cas_when_another_writer_published ____________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-4/test_cas_when_another_writer_p0')
+
+    def test_cas_when_another_writer_published(seed, tmp_path):
+        # Given: durable revision advanced.
+>       store = require("store", "ProjectStore")(tmp_path/"ledger.json")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_recovery.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'store', name = 'ProjectStore'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing store runtime
+E       assert None
+E        +  where None = <function find_spec at 0x734a51d47270>('production.store')
+E        +    where <function find_spec at 0x734a51d47270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+______________________ test_abort_when_transaction_raises ______________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-4/test_abort_when_transaction_ra0')
+
+    def test_abort_when_transaction_raises(seed, tmp_path):
+        # Given: initial durable data.
+>       store = require("store", "ProjectStore")(tmp_path/"ledger.json")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_recovery.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'store', name = 'ProjectStore'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing store runtime
+E       assert None
+E        +  where None = <function find_spec at 0x734a51d47270>('production.store')
+E        +    where <function find_spec at 0x734a51d47270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_________________ test_lock_when_second_process_attempts_write _________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-4/test_lock_when_second_process_0')
+
+    def test_lock_when_second_process_attempts_write(seed, tmp_path):
+        # Given: first writer holds the project lock.
+>       store = require("store", "ProjectStore")(tmp_path/"ledger.json")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_recovery.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'store', name = 'ProjectStore'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing store runtime
+E       assert None
+E        +  where None = <function find_spec at 0x734a51d47270>('production.store')
+E        +    where <function find_spec at 0x734a51d47270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+___________________ test_no_overwrite_when_initialize_twice ____________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-4/test_no_overwrite_when_initial0')
+
+    def test_no_overwrite_when_initialize_twice(seed, tmp_path):
+        # Given: current state exists.
+>       store = require("store", "ProjectStore")(tmp_path/"ledger.json")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_recovery.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'store', name = 'ProjectStore'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing store runtime
+E       assert None
+E        +  where None = <function find_spec at 0x734a51d47270>('production.store')
+E        +    where <function find_spec at 0x734a51d47270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_____________________ test_atomic_write_when_replace_fails _____________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-4/test_atomic_write_when_replace0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x734a4f763360>
+
+    def test_atomic_write_when_replace_fails(seed, tmp_path, monkeypatch):
+        # Given: real existing state and an injected OS replacement error.
+>       store = require("store", "ProjectStore")(tmp_path/"ledger.json")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_recovery.py:74: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'store', name = 'ProjectStore'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing store runtime
+E       assert None
+E        +  where None = <function find_spec at 0x734a51d47270>('production.store')
+E        +    where <function find_spec at 0x734a51d47270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+____________________ test_symlink_when_ledger_is_unmanaged _____________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-4/test_symlink_when_ledger_is_un0')
+
+    def test_symlink_when_ledger_is_unmanaged(seed, tmp_path):
+        # Given: ledger path points at a file owned outside the project.
+        target = tmp_path/"target.json"
+        target.write_text("{}")
+        (tmp_path/"ledger.json").symlink_to(target)
+        # When / Then: refuse following a managed-path symlink.
+        with pytest.raises(ContractError, match="path"):
+>           require("store", "ProjectStore")(tmp_path/"ledger.json").initialize(seed)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_recovery.py:95: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'store', name = 'ProjectStore'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing store runtime
+E       assert None
+E        +  where None = <function find_spec at 0x734a51d47270>('production.store')
+E        +    where <function find_spec at 0x734a51d47270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_execution.py::test_unknown_slot_when_submit_response_lost
+FAILED tests/test_execution.py::test_external_job_when_capacity_two - Asserti...
+FAILED tests/test_execution.py::test_duplicate_when_attempt_already_reserved
+FAILED tests/test_execution.py::test_terminal_when_download_not_completed - A...
+FAILED tests/test_execution.py::test_cancel_when_only_request_without_confirmation
+FAILED tests/test_execution.py::test_receipt_when_request_hash_wrong - Assert...
+FAILED tests/test_execution.py::test_result_when_job_id_changed - AssertionEr...
+FAILED tests/test_execution.py::test_reservation_when_packet_tampered - Asser...
+FAILED tests/test_execution.py::test_available_when_account_occupancy_unknown
+FAILED tests/test_recovery.py::test_roundtrip_when_existing_ledger_has_other_fields
+FAILED tests/test_recovery.py::test_cas_when_another_writer_published - Asser...
+FAILED tests/test_recovery.py::test_abort_when_transaction_raises - Assertion...
+FAILED tests/test_recovery.py::test_lock_when_second_process_attempts_write
+FAILED tests/test_recovery.py::test_no_overwrite_when_initialize_twice - Asse...
+FAILED tests/test_recovery.py::test_atomic_write_when_replace_fails - Asserti...
+FAILED tests/test_recovery.py::test_symlink_when_ledger_is_unmanaged - Assert...
+16 failed in 0.17s

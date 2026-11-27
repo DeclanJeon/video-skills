@@ -1,0 +1,142 @@
+{
+  "$defs": {
+    "Playback": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Asset Hash",
+          "type": "string"
+        },
+        "source_range": {
+          "$ref": "#/$defs/SourceRange"
+        },
+        "reviewer": {
+          "minLength": 1,
+          "title": "Reviewer",
+          "type": "string"
+        },
+        "evidence": {
+          "minLength": 1,
+          "title": "Evidence",
+          "type": "string"
+        },
+        "video_watched": {
+          "title": "Video Watched",
+          "type": "boolean"
+        },
+        "audio_listened": {
+          "default": false,
+          "title": "Audio Listened",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "asset_hash",
+        "source_range",
+        "reviewer",
+        "evidence",
+        "video_watched"
+      ],
+      "title": "Playback",
+      "type": "object"
+    },
+    "SourceRange": {
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        },
+        "end": {
+          "exclusiveMinimum": 0,
+          "title": "End",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "SourceRange",
+      "type": "object"
+    },
+    "Verdict": {
+      "enum": [
+        "accepted",
+        "conditional",
+        "rejected"
+      ],
+      "title": "Verdict",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "verdict": {
+      "$ref": "#/$defs/Verdict"
+    },
+    "fulfilled": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Fulfilled",
+      "type": "array"
+    },
+    "playback": {
+      "$ref": "#/$defs/Playback"
+    },
+    "defects": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Defects",
+      "type": "array"
+    },
+    "post_fix": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Post Fix"
+    },
+    "post_receiver": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Post Receiver"
+    },
+    "conditional_policy": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Conditional Policy"
+    }
+  },
+  "required": [
+    "verdict",
+    "fulfilled",
+    "playback"
+  ],
+  "title": "Review",
+  "type": "object"
+}

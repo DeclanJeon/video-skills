@@ -1,0 +1,11 @@
+{
+  "id": "setup.session",
+  "label": "Session",
+  "menu": [
+    "Setup"
+  ],
+  "shortcut": "Cmd+2",
+  "params": "{frame_rate?: '29.97 Drop'…, bit_depth?: 16|24|32f, timecode_start?: position, name?}",
+  "enabled": true,
+  "disabled_reason": null
+}

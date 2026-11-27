@@ -1,0 +1,42 @@
+{
+  "count": 177,
+  "video": [
+    {
+      "name": "creative-production",
+      "description": "Use when the user requests video production or a storyboard sheet for a video, including partial video work such as shorts/reels editing, re-editing existing video or extracting clips, video captions and lower thirds, ad or promo video scripts, and motion-graphics style for video. Do not use for standalone writing (including turning a video into an article or post), social posts, standalone images, ordinary design, application development, or audio-only work.",
+      "filePath": "/home/declan/.agents/skills/creative-production/SKILL.md",
+      "baseDir": "/home/declan/.agents/skills/creative-production",
+      "sourceInfo": {
+        "path": "/home/declan/.agents/skills/creative-production/SKILL.md",
+        "source": "local",
+        "scope": "temporary",
+        "origin": "top-level",
+        "baseDir": "/home/declan/.agents/skills/creative-production"
+      },
+      "disableModelInvocation": false
+    }
+  ],
+  "diagnostics": [
+    {
+      "type": "warning",
+      "message": "Nested mappings are not allowed in compact mappings at line 2, column 14:\n\ndescription: Use when creating the click and retention hook for Korean AI drama…\n             ^\n",
+      "path": "/home/declan/.agents/skills/kr-yt-hook/SKILL.md"
+    },
+    {
+      "type": "warning",
+      "message": "Nested mappings are not allowed in compact mappings at line 2, column 14:\n\ndescription: Use when planning a Korean AI drama or short-film series on YouTub…\n             ^\n",
+      "path": "/home/declan/.agents/skills/kr-yt-series-packaging/SKILL.md"
+    },
+    {
+      "type": "collision",
+      "message": "name \"flucto-media-research\" collision",
+      "path": "/home/declan/.claude/skills/flucto-media-research/SKILL.md",
+      "collision": {
+        "resourceType": "skill",
+        "name": "flucto-media-research",
+        "winnerPath": "/home/declan/.agents/skills/flucto-media-research/SKILL.md",
+        "loserPath": "/home/declan/.claude/skills/flucto-media-research/SKILL.md"
+      }
+    }
+  ]
+}

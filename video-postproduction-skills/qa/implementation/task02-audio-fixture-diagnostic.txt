@@ -1,0 +1,8 @@
+ContractError render: local review render failed; no remote jobs started
+argv ['ffmpeg', '-v', 'error', '-xerror', '-f', 'concat', '-safe', '1', '-i', '/tmp/post-audio-diagnostic-va45m4oa/.review-render-naaezcpr/concat.txt', '-c', 'copy', '/tmp/post-audio-diagnostic-va45m4oa/.review-render-naaezcpr/review.mp4']
+exit 234
+stderr [aost#0:1/copy @ 0x5f6021d0fb40] Non-monotonic DTS; previous: 96256, current: 96000; Error submitting a packet to the muxer: Invalid argument
+[out#0/mp4 @ 0x5f6021d0d340] Error muxing a packet
+[out#0/mp4 @ 0x5f6021d0d340] Task finished with error: Invalid argument
+[out#0/mp4 @ 0x5f6021d0d340] Terminating thread with error: Invalid argument
+

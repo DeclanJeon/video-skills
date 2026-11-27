@@ -1,0 +1,82 @@
+FF.F                                                                     [100%]
+=================================== FAILURES ===================================
+_ test_first_recovered_receipt_when_intermediate_status_was_not_observed[running] _
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...ttempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=(), observed_input_issues=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-90/test_first_recovered_receipt_w0')
+phase = <Phase.RUNNING: 'running'>
+
+    @pytest.mark.parametrize("phase",[Phase.RUNNING,Phase.SUCCEEDED,Phase.FAILED,Phase.CANCELLED])
+    def test_first_recovered_receipt_when_intermediate_status_was_not_observed(seed,capability,authority,tmp_path,phase):
+        # Given: interruption left the record submitting; later lookup already sees running/terminal.
+        store,packet,dependency=live_reservations(seed,capability,authority,tmp_path)
+        (tmp_path/dependency.path).unlink()
+        receipt=tmp_path/"first-recovered.json"
+        receipt.write_text(Receipt(phase=phase,job_id="fixture-confirmed-remote-id",evidence="synthetic exact recovered remote status",request_hash=packet.request_hash).model_dump_json())
+        # When: saving the actual observed status, without inventing intermediate events.
+        result=cli("observe",tmp_path/"ledger.json","A1",receipt,1)
+        # Then: a known remote identity/status is durable even if acknowledgement was missed.
+>       assert result.returncode == 0,result.stdout+result.stderr
+E       AssertionError: {"status": "blocked", "error": "transition: submitting -> running not permitted", "new_submission": false}
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...status": "blocked", "error": "transition: submitting -> running not permitted", "new_submission": false}\n', stderr='').returncode
+
+tests/test_observation_recovery.py:203: AssertionError
+_ test_first_recovered_receipt_when_intermediate_status_was_not_observed[succeeded] _
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...ttempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=(), observed_input_issues=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-90/test_first_recovered_receipt_w1')
+phase = <Phase.SUCCEEDED: 'succeeded'>
+
+    @pytest.mark.parametrize("phase",[Phase.RUNNING,Phase.SUCCEEDED,Phase.FAILED,Phase.CANCELLED])
+    def test_first_recovered_receipt_when_intermediate_status_was_not_observed(seed,capability,authority,tmp_path,phase):
+        # Given: interruption left the record submitting; later lookup already sees running/terminal.
+        store,packet,dependency=live_reservations(seed,capability,authority,tmp_path)
+        (tmp_path/dependency.path).unlink()
+        receipt=tmp_path/"first-recovered.json"
+        receipt.write_text(Receipt(phase=phase,job_id="fixture-confirmed-remote-id",evidence="synthetic exact recovered remote status",request_hash=packet.request_hash).model_dump_json())
+        # When: saving the actual observed status, without inventing intermediate events.
+        result=cli("observe",tmp_path/"ledger.json","A1",receipt,1)
+        # Then: a known remote identity/status is durable even if acknowledgement was missed.
+>       assert result.returncode == 0,result.stdout+result.stderr
+E       AssertionError: {"status": "blocked", "error": "transition: submitting -> succeeded not permitted", "new_submission": false}
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...atus": "blocked", "error": "transition: submitting -> succeeded not permitted", "new_submission": false}\n', stderr='').returncode
+
+tests/test_observation_recovery.py:203: AssertionError
+_ test_first_recovered_receipt_when_intermediate_status_was_not_observed[cancelled] _
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...ttempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=(), observed_input_issues=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-90/test_first_recovered_receipt_w3')
+phase = <Phase.CANCELLED: 'cancelled'>
+
+    @pytest.mark.parametrize("phase",[Phase.RUNNING,Phase.SUCCEEDED,Phase.FAILED,Phase.CANCELLED])
+    def test_first_recovered_receipt_when_intermediate_status_was_not_observed(seed,capability,authority,tmp_path,phase):
+        # Given: interruption left the record submitting; later lookup already sees running/terminal.
+        store,packet,dependency=live_reservations(seed,capability,authority,tmp_path)
+        (tmp_path/dependency.path).unlink()
+        receipt=tmp_path/"first-recovered.json"
+        receipt.write_text(Receipt(phase=phase,job_id="fixture-confirmed-remote-id",evidence="synthetic exact recovered remote status",request_hash=packet.request_hash).model_dump_json())
+        # When: saving the actual observed status, without inventing intermediate events.
+        result=cli("observe",tmp_path/"ledger.json","A1",receipt,1)
+        # Then: a known remote identity/status is durable even if acknowledgement was missed.
+>       assert result.returncode == 0,result.stdout+result.stderr
+E       AssertionError: {"status": "blocked", "error": "transition: submitting -> cancelled not permitted", "new_submission": false}
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...atus": "blocked", "error": "transition: submitting -> cancelled not permitted", "new_submission": false}\n', stderr='').returncode
+
+tests/test_observation_recovery.py:203: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_observation_recovery.py::test_first_recovered_receipt_when_intermediate_status_was_not_observed[running]
+FAILED tests/test_observation_recovery.py::test_first_recovered_receipt_when_intermediate_status_was_not_observed[succeeded]
+FAILED tests/test_observation_recovery.py::test_first_recovered_receipt_when_intermediate_status_was_not_observed[cancelled]
+3 failed, 1 passed in 1.11s

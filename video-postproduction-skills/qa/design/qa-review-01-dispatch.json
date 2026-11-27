@@ -1,0 +1,21 @@
+{
+  "status": "completed-APPROVE-preserved",
+  "run_id": "d94a7425-3c90-4563-92a0-bf97ee0df353",
+  "fresh_reviewer": true,
+  "authorized_scope": "User requested design QA; one read-only gate/builder reviewer, no children",
+  "scope_manifest": "qa/design/draft-scope.sha256",
+  "scope_sha256": "28f273f73131f75ac05d3d14ce36528212e0fd3300308be78a91c6cd24ed153e",
+  "scope_files": 10,
+  "manual_matrix": "qa/design/manual-qa-01.json",
+  "manual_trace": "qa/design/manual-trace-01.md",
+  "manual_rows": 12,
+  "manual_scope": "design artifact and scenario consistency; no runtime certification",
+  "requested_routed_output": "reviews/postproduction-design-qa-01.md",
+  "verdict": "APPROVE",
+  "source_frozen": true,
+  "runtime_tests_executed": 0,
+  "installed": false,
+  "recovery": "Read saved native completion/report before further action. Do not automatically restart or poll the reviewer. No independent PASS until the actual report and current snapshot are checked.",
+  "preserved_report": "docs/reviews/postproduction-design-qa-01.md",
+  "report_sha256": "bd8ae4513cf84617a574655a4b762c2b7bd44c362b443bc609778a0978d0e9bb"
+}

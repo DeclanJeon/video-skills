@@ -1,0 +1,35 @@
+{
+  "scope": "Installed Pi skill loader across six filesystem roots; not live sessions of other harnesses",
+  "count": 160,
+  "video": [
+    {
+      "name": "video-skills",
+      "path": "/home/declan/.agents/skills/video-skills/SKILL.md",
+      "canonical": "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/SKILL.md"
+    }
+  ],
+  "diagnostics": [
+    {
+      "type": "warning",
+      "message": "Nested mappings are not allowed in compact mappings at line 2, column 14:\n\ndescription: Use when creating the click and retention hook for Korean AI drama…\n             ^\n",
+      "path": "/home/declan/.agents/skills/kr-yt-hook/SKILL.md"
+    },
+    {
+      "type": "warning",
+      "message": "Nested mappings are not allowed in compact mappings at line 2, column 14:\n\ndescription: Use when planning a Korean AI drama or short-film series on YouTub…\n             ^\n",
+      "path": "/home/declan/.agents/skills/kr-yt-series-packaging/SKILL.md"
+    },
+    {
+      "type": "collision",
+      "message": "name \"flucto-media-research\" collision",
+      "path": "/home/declan/.claude/skills/flucto-media-research/SKILL.md",
+      "collision": {
+        "resourceType": "skill",
+        "name": "flucto-media-research",
+        "winnerPath": "/home/declan/.agents/skills/flucto-media-research/SKILL.md",
+        "loserPath": "/home/declan/.claude/skills/flucto-media-research/SKILL.md"
+      }
+    }
+  ],
+  "newDiagnostics": []
+}

@@ -1,0 +1,142 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+____________ test_timeline_reimport_when_valid_decisions_roundtrip _____________
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-175/test_timeline_reimport_when_va0')
+built = PosixPath('/tmp/pytest-of-declan/pytest-175/timeline-source0')
+
+    def test_timeline_reimport_when_valid_decisions_roundtrip(tmp_path,built):
+        intake=prepared(tmp_path,built)
+        timeline=require("timeline","build_timeline")(intake)
+>       assert require("timeline","validate_timeline")(intake,timeline) is None
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_timeline.py:152: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'timeline', name = 'validate_timeline'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+            pytest.fail(f"implementation module missing: {exc}")
+        if not hasattr(loaded,name):
+>           pytest.fail(f"public contract missing: {module}.{name}")
+E           Failed: public contract missing: timeline.validate_timeline
+
+tests/conftest.py:12: Failed
+_ test_timeline_reimport_when_native_or_external_change_forged_canonical_decisions[event_map] _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-175/test_timeline_reimport_when_na0')
+built = PosixPath('/tmp/pytest-of-declan/pytest-175/timeline-source0')
+change = 'event_map'
+
+    @pytest.mark.parametrize("change",["event_map","denominator","interval"])
+    def test_timeline_reimport_when_native_or_external_change_forged_canonical_decisions(tmp_path,built,change):
+        intake=prepared(tmp_path,built)
+        timeline=require("timeline","build_timeline")(intake)
+        if change=="event_map":
+            event=timeline.event_map[0].model_copy(update={"master_range":require("models","SourceRange")(start=1,end=2)})
+            timeline=timeline.model_copy(update={"event_map":(event,*timeline.event_map[1:])})
+        elif change=="denominator":timeline=timeline.model_copy(update={"required_coverage":timeline.required_coverage[:-1]})
+        else:
+            segment=timeline.segments[0].model_copy(update={"timeline_range":require("models","SourceRange")(start=1,end=2)})
+            timeline=timeline.model_copy(update={"segments":(segment,*timeline.segments[1:])})
+        with pytest.raises(require("errors","ContractError")):
+>           require("timeline","validate_timeline")(intake,timeline)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_timeline.py:167: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'timeline', name = 'validate_timeline'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+            pytest.fail(f"implementation module missing: {exc}")
+        if not hasattr(loaded,name):
+>           pytest.fail(f"public contract missing: {module}.{name}")
+E           Failed: public contract missing: timeline.validate_timeline
+
+tests/conftest.py:12: Failed
+_ test_timeline_reimport_when_native_or_external_change_forged_canonical_decisions[denominator] _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-175/test_timeline_reimport_when_na1')
+built = PosixPath('/tmp/pytest-of-declan/pytest-175/timeline-source0')
+change = 'denominator'
+
+    @pytest.mark.parametrize("change",["event_map","denominator","interval"])
+    def test_timeline_reimport_when_native_or_external_change_forged_canonical_decisions(tmp_path,built,change):
+        intake=prepared(tmp_path,built)
+        timeline=require("timeline","build_timeline")(intake)
+        if change=="event_map":
+            event=timeline.event_map[0].model_copy(update={"master_range":require("models","SourceRange")(start=1,end=2)})
+            timeline=timeline.model_copy(update={"event_map":(event,*timeline.event_map[1:])})
+        elif change=="denominator":timeline=timeline.model_copy(update={"required_coverage":timeline.required_coverage[:-1]})
+        else:
+            segment=timeline.segments[0].model_copy(update={"timeline_range":require("models","SourceRange")(start=1,end=2)})
+            timeline=timeline.model_copy(update={"segments":(segment,*timeline.segments[1:])})
+        with pytest.raises(require("errors","ContractError")):
+>           require("timeline","validate_timeline")(intake,timeline)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_timeline.py:167: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'timeline', name = 'validate_timeline'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+            pytest.fail(f"implementation module missing: {exc}")
+        if not hasattr(loaded,name):
+>           pytest.fail(f"public contract missing: {module}.{name}")
+E           Failed: public contract missing: timeline.validate_timeline
+
+tests/conftest.py:12: Failed
+_ test_timeline_reimport_when_native_or_external_change_forged_canonical_decisions[interval] _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-175/test_timeline_reimport_when_na2')
+built = PosixPath('/tmp/pytest-of-declan/pytest-175/timeline-source0')
+change = 'interval'
+
+    @pytest.mark.parametrize("change",["event_map","denominator","interval"])
+    def test_timeline_reimport_when_native_or_external_change_forged_canonical_decisions(tmp_path,built,change):
+        intake=prepared(tmp_path,built)
+        timeline=require("timeline","build_timeline")(intake)
+        if change=="event_map":
+            event=timeline.event_map[0].model_copy(update={"master_range":require("models","SourceRange")(start=1,end=2)})
+            timeline=timeline.model_copy(update={"event_map":(event,*timeline.event_map[1:])})
+        elif change=="denominator":timeline=timeline.model_copy(update={"required_coverage":timeline.required_coverage[:-1]})
+        else:
+            segment=timeline.segments[0].model_copy(update={"timeline_range":require("models","SourceRange")(start=1,end=2)})
+            timeline=timeline.model_copy(update={"segments":(segment,*timeline.segments[1:])})
+        with pytest.raises(require("errors","ContractError")):
+>           require("timeline","validate_timeline")(intake,timeline)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_timeline.py:167: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'timeline', name = 'validate_timeline'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+            pytest.fail(f"implementation module missing: {exc}")
+        if not hasattr(loaded,name):
+>           pytest.fail(f"public contract missing: {module}.{name}")
+E           Failed: public contract missing: timeline.validate_timeline
+
+tests/conftest.py:12: Failed
+=========================== short test summary info ============================
+FAILED tests/test_timeline.py::test_timeline_reimport_when_valid_decisions_roundtrip
+FAILED tests/test_timeline.py::test_timeline_reimport_when_native_or_external_change_forged_canonical_decisions[event_map]
+FAILED tests/test_timeline.py::test_timeline_reimport_when_native_or_external_change_forged_canonical_decisions[denominator]
+FAILED tests/test_timeline.py::test_timeline_reimport_when_native_or_external_change_forged_canonical_decisions[interval]
+4 failed, 17 deselected in 1.56s

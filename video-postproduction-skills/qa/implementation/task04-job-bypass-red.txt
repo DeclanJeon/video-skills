@@ -1,0 +1,47 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_ test_transaction_when_historical_job_fact_is_forged_or_removed_cannot_publish _
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-182/test_transaction_when_historic0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_transaction_when_historical_job_fact_is_forged_or_removed_cannot_publish(project):
+        path,store,packet=active(project)
+        before=path.read_bytes()
+        for removed in (False,True):
+>           with pytest.raises(require("errors","ContractError")):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE ContractError
+
+tests/test_jobs.py:84: Failed
+____ test_initialization_when_known_job_facts_are_not_a_clean_new_namespace ____
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-182/test_initialization_when_known0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_initialization_when_known_job_facts_are_not_a_clean_new_namespace(project):
+        path,store,packet=active(project)
+        state=store.read_recorded().model_copy(update={"revision":0})
+        raw=json.loads(path.read_text());raw.pop("postproduction");path.write_text(json.dumps(raw))
+>       with pytest.raises(require("errors","ContractError"),match="initial"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_jobs.py:96: Failed
+_ test_historical_read_when_duplicate_attempt_ids_in_stored_data_are_rejected __
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-182/test_historical_read_when_dupl0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_historical_read_when_duplicate_attempt_ids_in_stored_data_are_rejected(project):
+        path,store,packet=active(project)
+        raw=json.loads(path.read_text());job=raw["postproduction"]["jobs"][0]
+        raw["postproduction"]["jobs"].append(job)
+        path.write_text(json.dumps(raw))
+>       with pytest.raises(require("errors","ContractError"),match="duplicate"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_jobs.py:106: Failed
+=========================== short test summary info ============================
+FAILED tests/test_jobs.py::test_transaction_when_historical_job_fact_is_forged_or_removed_cannot_publish
+FAILED tests/test_jobs.py::test_initialization_when_known_job_facts_are_not_a_clean_new_namespace
+FAILED tests/test_jobs.py::test_historical_read_when_duplicate_attempt_ids_in_stored_data_are_rejected
+3 failed, 9 deselected in 16.46s

@@ -1,0 +1,1 @@
+[{"enabled":false,"id":"layer.transform","label":"Transform","menu":["Layer","Transform"],"params":"{layers?, op: reset|center|fit|fitWidth|fitHeight|flipH|flipV}","why":"no composition is open"}]

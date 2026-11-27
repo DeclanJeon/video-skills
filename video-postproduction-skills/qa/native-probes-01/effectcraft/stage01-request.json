@@ -1,0 +1,51 @@
+{
+  "argv": [
+    "/usr/bin/effectcraft-cli",
+    "--empty",
+    "--save-as",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/effectcraft/native.ecproj",
+    "run",
+    "--commands",
+    "-",
+    "--json"
+  ],
+  "steps": [
+    {
+      "command": "comp.new",
+      "params": {
+        "name": "Probe",
+        "width": 160,
+        "height": 90,
+        "frameRate": 24,
+        "duration": 0.5
+      }
+    },
+    {
+      "command": "layer.newSolid",
+      "params": {
+        "name": "Box",
+        "color": "#FF0000",
+        "width": 40,
+        "height": 30
+      }
+    },
+    {
+      "command": "layer.setTransform",
+      "params": {
+        "prop": "position",
+        "value": [
+          40,
+          45
+        ]
+      }
+    },
+    {
+      "command": "comp.info",
+      "params": {}
+    }
+  ],
+  "pid": 852130,
+  "returncode": 0,
+  "timed_out": false,
+  "network_denied": true
+}

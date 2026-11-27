@@ -1,0 +1,52 @@
+{
+  "argv": [
+    "/usr/bin/filmcraft-cli",
+    "--project",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/finishing/workspace/native.fcproj",
+    "--save",
+    "--compact",
+    "run",
+    "-"
+  ],
+  "commands": [
+    {
+      "id": "timeline.place",
+      "params": {
+        "item": 5,
+        "track": "V1",
+        "time": 0,
+        "sourceIn": 0,
+        "duration": 1524096000000,
+        "insert": false,
+        "video": true,
+        "audio": false
+      }
+    },
+    {
+      "id": "timeline.place",
+      "params": {
+        "item": 6,
+        "track": "V2",
+        "time": 508032000000,
+        "sourceIn": 0,
+        "duration": 127008000000,
+        "insert": false,
+        "video": true,
+        "audio": false
+      }
+    },
+    {
+      "id": "timeline.place",
+      "params": {
+        "item": 7,
+        "track": "A1",
+        "time": 0,
+        "sourceIn": 0,
+        "duration": 508032000000,
+        "insert": false,
+        "video": false,
+        "audio": true
+      }
+    }
+  ]
+}

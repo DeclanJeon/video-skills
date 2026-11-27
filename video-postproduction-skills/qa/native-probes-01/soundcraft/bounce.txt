@@ -1,0 +1,11 @@
+{
+  "id": "file.bounce_mix",
+  "label": "Bounce Mix...",
+  "menu": [
+    "File"
+  ],
+  "shortcut": "Cmd+Alt+B",
+  "params": "{path, format?: wav|aiff|flac, bit_depth?: 16|24|32f, start?, end?, source?: main|bus name, normalize?: false, dither?: true, fold_down?: stereo}",
+  "enabled": true,
+  "disabled_reason": null
+}

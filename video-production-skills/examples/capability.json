@@ -1,0 +1,27 @@
+{
+  "account": "offline-fixture",
+  "model": "offline-fixture",
+  "transport": "offline-receipt",
+  "mode": "fixture-only",
+  "roles": [
+    "asset"
+  ],
+  "modalities": [
+    "image"
+  ],
+  "max_references": 1,
+  "max_active": 1,
+  "durations": [
+    2.0
+  ],
+  "width": 1280,
+  "height": 720,
+  "audio": false,
+  "evidence": {
+    "id": "capability-evidence.txt",
+    "version": "1",
+    "sha256": "52a31edfc16d79f14ebd402a0dd13b9a7d3a9ed7fb079f764b6fe9ef91ddcfc1",
+    "path": "capability-evidence.txt"
+  },
+  "observed_mode": "fixture-only"
+}

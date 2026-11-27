@@ -1,0 +1,116 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+_ test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[branch] _
+
+raw_context = (<postproduction.ledger.PostStore object at 0x78202d221d30>, FinishingBackend(store=<postproduction.ledger.PostStore o...:48000,"channels":2,"container":"mp4","video_codec":"h264","audio_codec":"aac","loudness":null},"total_frames":144}}'))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x78202d3a89d0>
+mismatch = 'branch'
+
+    @pytest.mark.parametrize('mismatch',['branch','recipe-pin','dependencies','capability'])
+    def test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof(raw_context,monkeypatch,mismatch):
+        from quality_support import submission
+        store,backend,original=raw_context;packet,plan=raw_packet(raw_context,mismatch)
+        # Capture ONLY the earlier missing admission contract; binary/path checks, native commands,
+        # reservations, output readback and materialization remain real. This is fixture history, not QA.
+        with monkeypatch.context() as patch:
+            patch.setattr('postproduction.backends.finishing.verify_finishing_packet',
+                lambda state,packet,project:require('finishing_models','FinishingPlan').model_validate_json(packet.payload))
+            job=store.record_reservation(packet,store.read_recorded().revision)
+            assert backend.execute(packet).phase=='succeeded'
+            artifact=store.record_materialization(job.id,store.read_recorded().revision)
+        # Real CURRENT validator restored. Do not erase historical succeeded facts or their bytes.
+        result=require('quality','evaluate_submission')(store.read_recorded(),submission(store,artifact,id='RAW-QA-'+mismatch),store.path)
+>       assert next(g for g in result.gates if g.id=='PG5').status=='fail' and result.scope_passed is False
+E       AssertionError: assert (<QualityVerdict.PASS: 'pass'> == 'fail'
+E         
+E         - fail
+E         + pass)
+
+tests/test_review_finishing_packet.py:61: AssertionError
+_ test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[recipe-pin] _
+
+raw_context = (<postproduction.ledger.PostStore object at 0x78202d221d30>, FinishingBackend(store=<postproduction.ledger.PostStore o...:48000,"channels":2,"container":"mp4","video_codec":"h264","audio_codec":"aac","loudness":null},"total_frames":144}}'))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x78202d487d10>
+mismatch = 'recipe-pin'
+
+    @pytest.mark.parametrize('mismatch',['branch','recipe-pin','dependencies','capability'])
+    def test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof(raw_context,monkeypatch,mismatch):
+        from quality_support import submission
+        store,backend,original=raw_context;packet,plan=raw_packet(raw_context,mismatch)
+        # Capture ONLY the earlier missing admission contract; binary/path checks, native commands,
+        # reservations, output readback and materialization remain real. This is fixture history, not QA.
+        with monkeypatch.context() as patch:
+            patch.setattr('postproduction.backends.finishing.verify_finishing_packet',
+                lambda state,packet,project:require('finishing_models','FinishingPlan').model_validate_json(packet.payload))
+            job=store.record_reservation(packet,store.read_recorded().revision)
+            assert backend.execute(packet).phase=='succeeded'
+            artifact=store.record_materialization(job.id,store.read_recorded().revision)
+        # Real CURRENT validator restored. Do not erase historical succeeded facts or their bytes.
+        result=require('quality','evaluate_submission')(store.read_recorded(),submission(store,artifact,id='RAW-QA-'+mismatch),store.path)
+>       assert next(g for g in result.gates if g.id=='PG5').status=='fail' and result.scope_passed is False
+E       AssertionError: assert (<QualityVerdict.PASS: 'pass'> == 'fail'
+E         
+E         - fail
+E         + pass)
+
+tests/test_review_finishing_packet.py:61: AssertionError
+_ test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[dependencies] _
+
+raw_context = (<postproduction.ledger.PostStore object at 0x78202d221d30>, FinishingBackend(store=<postproduction.ledger.PostStore o...:48000,"channels":2,"container":"mp4","video_codec":"h264","audio_codec":"aac","loudness":null},"total_frames":144}}'))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x78202d69dd00>
+mismatch = 'dependencies'
+
+    @pytest.mark.parametrize('mismatch',['branch','recipe-pin','dependencies','capability'])
+    def test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof(raw_context,monkeypatch,mismatch):
+        from quality_support import submission
+        store,backend,original=raw_context;packet,plan=raw_packet(raw_context,mismatch)
+        # Capture ONLY the earlier missing admission contract; binary/path checks, native commands,
+        # reservations, output readback and materialization remain real. This is fixture history, not QA.
+        with monkeypatch.context() as patch:
+            patch.setattr('postproduction.backends.finishing.verify_finishing_packet',
+                lambda state,packet,project:require('finishing_models','FinishingPlan').model_validate_json(packet.payload))
+            job=store.record_reservation(packet,store.read_recorded().revision)
+            assert backend.execute(packet).phase=='succeeded'
+            artifact=store.record_materialization(job.id,store.read_recorded().revision)
+        # Real CURRENT validator restored. Do not erase historical succeeded facts or their bytes.
+        result=require('quality','evaluate_submission')(store.read_recorded(),submission(store,artifact,id='RAW-QA-'+mismatch),store.path)
+>       assert next(g for g in result.gates if g.id=='PG5').status=='fail' and result.scope_passed is False
+E       AssertionError: assert (<QualityVerdict.PASS: 'pass'> == 'fail'
+E         
+E         - fail
+E         + pass)
+
+tests/test_review_finishing_packet.py:61: AssertionError
+_ test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[capability] _
+
+raw_context = (<postproduction.ledger.PostStore object at 0x78202d221d30>, FinishingBackend(store=<postproduction.ledger.PostStore o...:48000,"channels":2,"container":"mp4","video_codec":"h264","audio_codec":"aac","loudness":null},"total_frames":144}}'))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x78202d26f050>
+mismatch = 'capability'
+
+    @pytest.mark.parametrize('mismatch',['branch','recipe-pin','dependencies','capability'])
+    def test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof(raw_context,monkeypatch,mismatch):
+        from quality_support import submission
+        store,backend,original=raw_context;packet,plan=raw_packet(raw_context,mismatch)
+        # Capture ONLY the earlier missing admission contract; binary/path checks, native commands,
+        # reservations, output readback and materialization remain real. This is fixture history, not QA.
+        with monkeypatch.context() as patch:
+            patch.setattr('postproduction.backends.finishing.verify_finishing_packet',
+                lambda state,packet,project:require('finishing_models','FinishingPlan').model_validate_json(packet.payload))
+            job=store.record_reservation(packet,store.read_recorded().revision)
+            assert backend.execute(packet).phase=='succeeded'
+            artifact=store.record_materialization(job.id,store.read_recorded().revision)
+        # Real CURRENT validator restored. Do not erase historical succeeded facts or their bytes.
+        result=require('quality','evaluate_submission')(store.read_recorded(),submission(store,artifact,id='RAW-QA-'+mismatch),store.path)
+>       assert next(g for g in result.gates if g.id=='PG5').status=='fail' and result.scope_passed is False
+E       AssertionError: assert (<QualityVerdict.PASS: 'pass'> == 'fail'
+E         
+E         - fail
+E         + pass)
+
+tests/test_review_finishing_packet.py:61: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_review_finishing_packet.py::test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[branch]
+FAILED tests/test_review_finishing_packet.py::test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[recipe-pin]
+FAILED tests/test_review_finishing_packet.py::test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[dependencies]
+FAILED tests/test_review_finishing_packet.py::test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[capability]
+4 failed, 6 deselected in 47.92s

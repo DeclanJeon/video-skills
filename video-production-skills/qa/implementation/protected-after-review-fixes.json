@@ -1,0 +1,6 @@
+{
+  "valid": true,
+  "protected_files": 3,
+  "external_mutations": false,
+  "scope": "recorded input hashes unchanged; no external provider calls"
+}

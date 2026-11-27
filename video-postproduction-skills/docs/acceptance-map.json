@@ -1,0 +1,1164 @@
+{
+  "format": "post-acceptance-map/1",
+  "scenarios": [
+    {
+      "id": "P01",
+      "purpose": "Handoff만 있고 요구 본문/필수 보완 snapshot 없음 → 정식 수령 차단",
+      "cases": [
+        "tests/test_intake.py::test_intake_when_mutable_ledger_is_proposed_as_snapshot",
+        "tests/test_intake.py::test_intake_when_required_physical_input_drifts[authority]",
+        "tests/test_intake.py::test_intake_when_required_physical_input_drifts[brief]",
+        "tests/test_intake.py::test_intake_when_required_physical_input_drifts[handoff]",
+        "tests/test_intake.py::test_intake_when_required_physical_input_drifts[profile]",
+        "tests/test_intake.py::test_intake_when_required_physical_input_drifts[schema]",
+        "tests/test_intake.py::test_intake_when_required_physical_input_drifts[snapshot]"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "Actual legal/approval issuer authenticity is not authenticated."
+      ]
+    },
+    {
+      "id": "P02",
+      "purpose": "source/approval 파일 삭제·교체·symlink·range 초과 → 차단",
+      "cases": [
+        "tests/test_intake.py::test_intake_when_request_parent_is_an_internal_symlink",
+        "tests/test_intake.py::test_intake_when_source_is_a_symlink_even_with_matching_hash",
+        "tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[approval]",
+        "tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[handles]",
+        "tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[invalid]",
+        "tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[malformed]",
+        "tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[missing_rough]",
+        "tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[missing_source]",
+        "tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[missing_stem]",
+        "tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[schema]",
+        "tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[scope]",
+        "tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[stale_review]"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": []
+    },
+    {
+      "id": "P03",
+      "purpose": "batch/scope/selection hash가 다른 인계/원장 → 차단",
+      "cases": [
+        "tests/test_authority.py::test_authority_when_evidence_bytes_changed",
+        "tests/test_authority.py::test_authority_when_grant_is_for_other_exact_input[brief_digest-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb]",
+        "tests/test_authority.py::test_authority_when_grant_is_for_other_exact_input[handoff_digest-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa]",
+        "tests/test_authority.py::test_authority_when_grant_is_for_other_exact_input[profile_digest-cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc]",
+        "tests/test_authority.py::test_authority_when_grant_is_for_other_exact_input[project_id-another-project]",
+        "tests/test_authority.py::test_authority_when_grant_is_for_other_exact_input[receiver-another-team]",
+        "tests/test_authority.py::test_authority_when_grant_is_for_other_exact_input[scope_revision-scope-other]",
+        "tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[scope]"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": []
+    },
+    {
+      "id": "P04",
+      "purpose": "원본 mixed stereo만 있는데 stem 세 개를 제공했다고 주장 → 차단",
+      "cases": [
+        "tests/test_audio.py::test_audio_when_real_pcm_is_independently_decoded_and_measured",
+        "tests/test_audio.py::test_intake_when_required_actual_separate_stem_is_supplied_can_be_adopted",
+        "tests/test_audio.py::test_stem_when_actual_supplied_mono_is_not_mislabeled_as_stereo",
+        "tests/test_audio.py::test_stem_when_header_or_independent_origin_is_not_actual[changes0]",
+        "tests/test_audio.py::test_stem_when_header_or_independent_origin_is_not_actual[changes1]",
+        "tests/test_audio.py::test_stem_when_header_or_independent_origin_is_not_actual[changes2]",
+        "tests/test_audio.py::test_stem_when_header_or_independent_origin_is_not_actual[changes3]",
+        "tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[missing_stem]"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "No source separation or fabricated stems."
+      ]
+    },
+    {
+      "id": "P05",
+      "purpose": "외측 handle0인데 range 밖 dissolve 사용 → 차단; 범위 내 승인 overlap은 별도 허용",
+      "cases": [
+        "tests/test_timeline.py::test_overlap_when_anchor_or_permission_is_missing[False-allowed0]",
+        "tests/test_timeline.py::test_overlap_when_anchor_or_permission_is_missing[True-allowed1]",
+        "tests/test_timeline.py::test_overlap_when_important_anchor_would_be_covered",
+        "tests/test_timeline.py::test_overlap_when_interior_frames_and_protected_events_survive",
+        "tests/test_timeline.py::test_trim_when_outside_reviewed_handles_or_cutting_required_event[trim0]",
+        "tests/test_timeline.py::test_trim_when_outside_reviewed_handles_or_cutting_required_event[trim1]"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "Interior overlap decision contract is tested; native overlap rendering is not qualified."
+      ]
+    },
+    {
+      "id": "P06",
+      "purpose": "mixed FPS/VFR·timecode/PTS가 검증되지 않음 → conform 필요/차단",
+      "cases": [
+        "tests/test_media.py::test_probe_when_fractional_clock_must_not_be_upstream_float",
+        "tests/test_media.py::test_probe_when_local_name_hides_network_playlist",
+        "tests/test_media.py::test_probe_when_media_bytes_do_not_match_pin",
+        "tests/test_native_guards.py::test_source_when_actual_mixed_fps_cannot_enter_handoff_without_verified_conform",
+        "tests/test_native_guards.py::test_source_when_actual_pts_are_variable_cannot_be_admitted_without_conform"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "Actual mixed 24/30/24 source handoff is denied by the unchanged upstream conform gate; actual VFR PTS denied by post admission. No automatic conform renderer is claimed."
+      ]
+    },
+    {
+      "id": "P07",
+      "purpose": "24000/1001·30000/1001·48k sample 변환/반올림 → 명시 정책 내 누적 동기",
+      "cases": [
+        "tests/test_clock.py::test_clock_when_exact_common_film_and_audio_rates[-24-source3-target3--48000]",
+        "tests/test_clock.py::test_clock_when_exact_common_film_and_audio_rates[24000-source0-target0-48048000]",
+        "tests/test_clock.py::test_clock_when_exact_common_film_and_audio_rates[30000-source1-target1-48048000]",
+        "tests/test_clock.py::test_clock_when_exact_common_film_and_audio_rates[48-source2-target2-508032000000]",
+        "tests/test_clock.py::test_clock_when_exact_policy_would_lose_half_a_frame",
+        "tests/test_clock.py::test_clock_when_fractional_result_requires_declared_rounding[ceil-1]",
+        "tests/test_clock.py::test_clock_when_fractional_result_requires_declared_rounding[floor-0]",
+        "tests/test_clock.py::test_clock_when_fractional_result_requires_declared_rounding[nearest-1]",
+        "tests/test_clock.py::test_clock_when_unknown_rounding_policy_is_supplied"
+      ],
+      "scopes": [
+        "structural"
+      ],
+      "unverified": [
+        "Rates and exact/declared rounding are tested; no multi-hour native render."
+      ]
+    },
+    {
+      "id": "P08",
+      "purpose": "일부 source만 써 필수 사건/대사 삭제 → 차단, 분모 유지",
+      "cases": [
+        "tests/test_coverage_gate.py::test_coverage_when_one_of_multiple_required_occurrences_is_hidden_cannot_count_requirement_complete",
+        "tests/test_quality.py::test_quality_when_original_required_denominator_is_reduced_cannot_pass",
+        "tests/test_timeline.py::test_coverage_when_clip_with_required_event_is_omitted",
+        "tests/test_timeline.py::test_trim_when_outside_reviewed_handles_or_cutting_required_event[trim0]",
+        "tests/test_timeline.py::test_trim_when_outside_reviewed_handles_or_cutting_required_event[trim1]"
+      ],
+      "scopes": [
+        "synthetic_contract",
+        "reported_semantic_fixture"
+      ],
+      "unverified": [
+        "No actual human interpretation of a dramatic event."
+      ]
+    },
+    {
+      "id": "P09",
+      "purpose": "overlay가 필수 접촉/표정을 가림, 음악이 대사를 묻음 → coverage 실패",
+      "cases": [
+        "tests/test_coverage_gate.py::test_coverage_when_one_of_multiple_required_occurrences_is_hidden_cannot_count_requirement_complete",
+        "tests/test_quality.py::test_quality_when_playback_or_listening_unverified_cannot_be_final_pass[audio_listening]",
+        "tests/test_quality.py::test_quality_when_playback_or_listening_unverified_cannot_be_final_pass[video_playback]",
+        "tests/test_templates.py::test_recipe_when_real_measured_bounds_overflow_or_occlude_protected_mask"
+      ],
+      "scopes": [
+        "reported_semantic_fixture",
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "Mask geometry and reported observed-coverage denial tested; genuine viewing/listening and actual dialogue masking remain unverified."
+      ]
+    },
+    {
+      "id": "P10",
+      "purpose": "approved nonlinear reveal/time elision 유지와 무승인 반전 누설 → 각각 허용/차단",
+      "cases": [
+        "tests/test_timeline.py::test_non_linear_when_already_approved_upstream_order_is_not_corrected",
+        "tests/test_timeline.py::test_reorder_when_it_is_or_is_not_explicitly_authorized[allowed0]",
+        "tests/test_timeline.py::test_reorder_when_it_is_or_is_not_explicitly_authorized[allowed1]"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "Actual dramatic spoiler/continuity interpretation is not authenticated."
+      ]
+    },
+    {
+      "id": "P11",
+      "purpose": "readonly prepare가 파일/앱을 수정함 → 실패",
+      "cases": [
+        "tests/test_cli.py::test_cli_when_unknown_or_bad_json_is_rejected_before_native_dispatch",
+        "tests/test_filmcraft.py::test_filmcraft_when_no_actual_reservation_cannot_dispatch",
+        "tests/test_native_guards.py::test_prepare_when_existing_capability_is_known_does_not_write_native_source_or_ledger[effectcraft]",
+        "tests/test_native_guards.py::test_prepare_when_existing_capability_is_known_does_not_write_native_source_or_ledger[filmcraft]",
+        "tests/test_native_guards.py::test_prepare_when_existing_capability_is_known_does_not_write_native_source_or_ledger[soundcraft]",
+        "tests/test_review_portable_smoke.py::test_backend_when_reusing_existing_self_contained_cli_outside_system_mounts_runs_it",
+        "tests/test_review_portable_smoke.py::test_smoke_when_existing_portable_cli_and_required_siblings_are_only_readonly_payload"
+      ],
+      "scopes": [
+        "native_technical_fixture",
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "Preparation filesystem purity verified after capability inspection for all three adapters; inspect creates only owned private inspection workspace."
+      ]
+    },
+    {
+      "id": "P12",
+      "purpose": "세 CLI에 동일한 가짜 batch 문법 적용 → 실패, 각 protocol로 교정",
+      "cases": [
+        "tests/test_cli.py::test_cli_when_actual_native_prepare_run_observe_and_restart_refusal[effectcraft]",
+        "tests/test_cli.py::test_cli_when_actual_native_prepare_run_observe_and_restart_refusal[filmcraft]",
+        "tests/test_cli.py::test_cli_when_actual_native_prepare_run_observe_and_restart_refusal[soundcraft]",
+        "tests/test_finishing.py::test_finishing_when_actual_native_inputs_rejoin_and_independent_video_audio_are_present"
+      ],
+      "scopes": [
+        "native_technical_fixture"
+      ],
+      "unverified": []
+    },
+    {
+      "id": "P13",
+      "purpose": "import한 native resource ID와 실제 timeline clip/range readback 불일치 → 차단",
+      "cases": [
+        "tests/test_effectcraft.py::test_effectcraft_when_native_comp_or_keys_were_edited_requires_reimport",
+        "tests/test_filmcraft.py::test_filmcraft_when_native_project_range_was_manually_changed_requires_reimport",
+        "tests/test_finishing.py::test_finishing_when_native_manual_projection_changes_requires_reimport",
+        "tests/test_review_finishing_binding.py::test_finishing_when_reused_current_assets_do_not_match_destination_edit_map_rejects[caption-map]",
+        "tests/test_review_finishing_binding.py::test_finishing_when_reused_current_assets_do_not_match_destination_edit_map_rejects[mix-lock]",
+        "tests/test_review_finishing_binding.py::test_finishing_when_reused_current_assets_do_not_match_destination_edit_map_rejects[picture]",
+        "tests/test_review_finishing_binding.py::test_finishing_when_reverse_picture_and_its_own_mix_are_bound_renders_blue_first",
+        "tests/test_review_finishing_binding.py::test_quality_when_legacy_wrong_branch_output_is_materialized_cannot_reuse_old_proof",
+        "tests/test_review_finishing_packet.py::test_finishing_when_only_input_adoption_registry_flags_change_native_projection_still_matches",
+        "tests/test_review_finishing_packet.py::test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect[branch]",
+        "tests/test_review_finishing_packet.py::test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect[capability]",
+        "tests/test_review_finishing_packet.py::test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect[dependencies]",
+        "tests/test_review_finishing_packet.py::test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect[domain]",
+        "tests/test_review_finishing_packet.py::test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect[recipe-pin]",
+        "tests/test_review_finishing_packet.py::test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[branch]",
+        "tests/test_review_finishing_packet.py::test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[capability]",
+        "tests/test_review_finishing_packet.py::test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[dependencies]",
+        "tests/test_review_finishing_packet.py::test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[recipe-pin]",
+        "tests/test_soundcraft.py::test_soundcraft_when_native_track_or_sample_offset_changes_requires_reimport"
+      ],
+      "scopes": [
+        "native_technical_fixture"
+      ],
+      "unverified": []
+    },
+    {
+      "id": "P14",
+      "purpose": "FilmCraft offline placeholder·export warning/exit1 → 최종본 채택 차단",
+      "cases": [
+        "tests/test_filmcraft.py::test_filmcraft_when_export_file_is_partial_cannot_materialize",
+        "tests/test_finishing.py::test_finishing_when_actual_export_diagnostic_is_not_clean_cannot_materialize[offlineMedia]",
+        "tests/test_finishing.py::test_finishing_when_actual_export_diagnostic_is_not_clean_cannot_materialize[result_path]",
+        "tests/test_finishing.py::test_finishing_when_actual_export_diagnostic_is_not_clean_cannot_materialize[warnings]",
+        "tests/test_media.py::test_probe_when_fractional_clock_must_not_be_upstream_float",
+        "tests/test_media.py::test_probe_when_local_name_hides_network_playlist",
+        "tests/test_media.py::test_probe_when_media_bytes_do_not_match_pin",
+        "tests/test_native_guards.py::test_picture_when_export_reports_offline_or_warning_cannot_materialize[offlineMedia]",
+        "tests/test_native_guards.py::test_picture_when_export_reports_offline_or_warning_cannot_materialize[warnings]",
+        "tests/test_review_audio_profile.py::test_encoding_when_actual_picture_matches_explicit_audio_profile_passes",
+        "tests/test_review_audio_profile.py::test_encoding_when_container_brand_is_unknown_does_not_invent_mp4_compliance",
+        "tests/test_review_audio_profile.py::test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects[changes0]",
+        "tests/test_review_audio_profile.py::test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects[changes1]",
+        "tests/test_review_audio_profile.py::test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects[changes2]",
+        "tests/test_review_audio_profile.py::test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects[changes3]",
+        "tests/test_review_audio_profile.py::test_picture_when_explicit_audio_codec_is_unsupported_rejects_before_dispatch",
+        "tests/test_review_audio_profile.py::test_picture_when_raw_reserved_packet_requests_unsupported_codec_cannot_bypass_prepare"
+      ],
+      "scopes": [
+        "native_technical_fixture",
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "Actual native export followed by injected offline/warning/foreign result diagnostic; injected diagnostic is not a genuine vendor-emitted warning."
+      ]
+    },
+    {
+      "id": "P15",
+      "purpose": "EffectCraft alpha premultiply/색·fps/길이 손실 → 차단/수정",
+      "cases": [
+        "tests/test_effectcraft.py::test_effectcraft_when_actual_rgba_sequence_and_keys_are_independently_verified",
+        "tests/test_effectcraft.py::test_effectcraft_when_any_plate_frame_is_missing_cannot_materialize",
+        "tests/test_effectcraft.py::test_effectcraft_when_native_comp_or_keys_were_edited_requires_reimport",
+        "tests/test_effectcraft.py::test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes0]",
+        "tests/test_effectcraft.py::test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes1]",
+        "tests/test_effectcraft.py::test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes2]",
+        "tests/test_effectcraft.py::test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes3]",
+        "tests/test_finishing.py::test_finishing_when_consumed_plate_frame_is_lost_cannot_adopt_unchanged_final_file",
+        "tests/test_image_probe.py::test_alpha_when_font_coverage_has_no_fully_opaque_pixel_still_requires_straight_rgb",
+        "tests/test_image_probe.py::test_alpha_when_font_rgb_is_premultiplied_cannot_claim_straight_alpha"
+      ],
+      "scopes": [
+        "native_technical_fixture",
+        "synthetic_contract"
+      ],
+      "unverified": []
+    },
+    {
+      "id": "P16",
+      "purpose": "FilmCraft AAF export만으로 SoundCraft AAF import 가능 선언 → 차단; 검증한 audio+offset 경로",
+      "cases": [
+        "tests/test_soundcraft.py::test_soundcraft_when_actual_layout_sample_offsets_and_gain_match_independent_audio[False]",
+        "tests/test_soundcraft.py::test_soundcraft_when_actual_layout_sample_offsets_and_gain_match_independent_audio[True]",
+        "tests/test_soundcraft.py::test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed[changes0]",
+        "tests/test_soundcraft.py::test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed[changes1]",
+        "tests/test_soundcraft.py::test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed[changes2]",
+        "tests/test_soundcraft.py::test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed[changes3]"
+      ],
+      "scopes": [
+        "native_technical_fixture"
+      ],
+      "unverified": [
+        "No AAF import or universal interchange claim."
+      ]
+    },
+    {
+      "id": "P17",
+      "purpose": "unsupported proprietary/native 효과/폰트 누락을 universal round-trip 성공으로 표시 → 차단",
+      "cases": [
+        "tests/test_delivery.py::test_delivery_when_editable_native_projects_relink_with_exact_receiver_font_receipt",
+        "tests/test_delivery.py::test_delivery_when_receiver_or_real_stem_or_editable_font_dependency_missing_blocks[change0]",
+        "tests/test_delivery.py::test_delivery_when_receiver_or_real_stem_or_editable_font_dependency_missing_blocks[change1]",
+        "tests/test_delivery.py::test_delivery_when_receiver_or_real_stem_or_editable_font_dependency_missing_blocks[change2]",
+        "tests/test_effectcraft.py::test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes0]",
+        "tests/test_effectcraft.py::test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes1]",
+        "tests/test_effectcraft.py::test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes2]",
+        "tests/test_effectcraft.py::test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes3]",
+        "tests/test_templates.py::test_recipe_when_missing_requested_face_cannot_hide_fallback[HakgyoansimBareonbatangB]",
+        "tests/test_templates.py::test_recipe_when_missing_requested_face_cannot_hide_fallback[Paperlogy-6SemiBold]"
+      ],
+      "scopes": [
+        "native_technical_fixture",
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "Plugin/proprietary effect interchange is unsupported, not round-trip success."
+      ]
+    },
+    {
+      "id": "P18",
+      "purpose": "명령 실패 뒤 일부만 적용/프로젝트 미저장 → partial, 재대조 전 중복 적용 금지",
+      "cases": [
+        "tests/test_effectcraft.py::test_effectcraft_when_native_comp_or_keys_were_edited_requires_reimport",
+        "tests/test_filmcraft.py::test_filmcraft_when_completed_native_job_is_not_replayed",
+        "tests/test_jobs.py::test_reserve_when_existing_uncertain_work_cannot_be_dispatched_again",
+        "tests/test_native_guards.py::test_picture_when_real_second_native_batch_partially_fails_cannot_blindly_replay",
+        "tests/test_publication_faults.py::test_native_when_second_canonical_write_fails_keeps_first_actual_process_fact"
+      ],
+      "scopes": [
+        "native_technical_fixture",
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "Actual second native batch executes a valid edit then an invalid command; no forced crash/kill of user apps or blind native retry."
+      ]
+    },
+    {
+      "id": "P19",
+      "purpose": "사용자 앱/포트에 무단 연결·recover·kill/덮어쓰기 → 거절",
+      "cases": [
+        "tests/test_install_rollback.py::test_rollback_when_extra_user_file_is_detected_does_not_delete_any_target",
+        "tests/test_install_rollback.py::test_rollback_when_known_new_exact_payload_and_no_live_process_removes_only_owned_target",
+        "tests/test_install_rollback.py::test_rollback_when_owned_binary_was_edited_is_preserved_for_operator",
+        "tests/test_portable_recovery.py::test_portable_reconcile_when_own_scope_process_is_live_leaves_it_running",
+        "tests/test_sandbox.py::test_sandbox_when_external_network_is_unreachable_before_app_first_run",
+        "tests/test_sandbox.py::test_sandbox_when_home_is_private_and_stdin_stdout_are_preserved",
+        "tests/test_sandbox.py::test_sandbox_when_source_media_is_readonly_and_unapproved_file_is_hidden",
+        "tests/test_sandbox.py::test_sandbox_when_workspace_is_unowned_nonempty_refuses_before_dispatch"
+      ],
+      "scopes": [
+        "native_technical_fixture",
+        "synthetic_contract"
+      ],
+      "unverified": []
+    },
+    {
+      "id": "P20",
+      "purpose": "렌더 timeout/crash 후 실제 job이 살아 있음 → unknown 보존, 자동 중복 렌더 금지",
+      "cases": [
+        "tests/test_install_recovery.py::test_recovery_when_process_or_effect_scope_is_unknown_never_replays",
+        "tests/test_jobs.py::test_reserve_when_existing_uncertain_work_cannot_be_dispatched_again",
+        "tests/test_portable_recovery.py::test_portable_reconcile_when_own_scope_process_is_live_leaves_it_running"
+      ],
+      "scopes": [
+        "synthetic_contract",
+        "real_readonly"
+      ],
+      "unverified": [
+        "No forcibly crashed real vendor GUI session or process kill."
+      ]
+    },
+    {
+      "id": "P21",
+      "purpose": "확인된 job ID 뒤 입력 손상·진단 쓰기 실패 → 사실은 보존, 현재 채택 별도 차단",
+      "cases": [
+        "tests/test_environment_bridge.py::test_environment_when_diagnostic_crashes_installed_fact_is_already_durable",
+        "tests/test_filmcraft.py::test_filmcraft_when_transcript_storage_fails_known_native_process_fact_is_already_durable",
+        "tests/test_jobs.py::test_observation_when_diagnostic_crashes_facts_were_published_first",
+        "tests/test_jobs.py::test_observation_when_required_media_is_lost_still_persists_known_process"
+      ],
+      "scopes": [
+        "native_technical_fixture",
+        "synthetic_contract"
+      ],
+      "unverified": []
+    },
+    {
+      "id": "P22",
+      "purpose": "동시 post/production writer·다른 root fields·CAS/원문 충돌 → 보존/명확한 실패",
+      "cases": [
+        "tests/test_ledger.py::test_post_store_when_external_owner_changes_bytes_during_transaction",
+        "tests/test_ledger.py::test_post_store_when_initializing_preserves_actual_other_namespaces",
+        "tests/test_ledger.py::test_post_store_when_input_bytes_are_lost_historical_facts_remain_readable",
+        "tests/test_ledger.py::test_post_store_when_ledger_or_lock_is_a_symlink_is_refused",
+        "tests/test_ledger.py::test_post_store_when_model_copy_bypassed_types_is_reparsed_at_publication",
+        "tests/test_ledger.py::test_post_store_when_original_production_writer_holds_public_lock_inode",
+        "tests/test_ledger.py::test_post_store_when_stale_namespace_revision_cannot_publish",
+        "tests/test_ledger.py::test_post_store_when_transaction_changes_only_post_revision",
+        "tests/test_publication_faults.py::test_native_when_second_canonical_write_fails_keeps_first_actual_process_fact",
+        "tests/test_publication_faults.py::test_publication_when_atomic_replace_fails_preserves_previous_complete_document"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "Real OS rename and second canonical publication failures exercised. Arbitrary power loss or lock-ignoring writers are not a universal filesystem CAS guarantee."
+      ]
+    },
+    {
+      "id": "P23",
+      "purpose": "준비/QA 뒤 source/range/approval 교체 → 과거 성공 보존/current 채택 거절",
+      "cases": [
+        "tests/test_adoption_revision.py::test_adoption_when_explicit_revision_archives_old_source_and_preserves_reserved_history",
+        "tests/test_adoption_revision.py::test_adoption_when_generic_transaction_cannot_replace_intake_or_forge_history",
+        "tests/test_adoption_revision.py::test_adoption_when_previous_source_fingerprint_wrong_cannot_replace_current_namespace",
+        "tests/test_delivery.py::test_delivery_when_source_replaced_after_render_blocks_local_package",
+        "tests/test_filmcraft.py::test_filmcraft_when_source_is_replaced_after_export_cannot_adopt_old_picture",
+        "tests/test_review_finishing_binding.py::test_finishing_when_reused_current_assets_do_not_match_destination_edit_map_rejects[caption-map]",
+        "tests/test_review_finishing_binding.py::test_finishing_when_reused_current_assets_do_not_match_destination_edit_map_rejects[mix-lock]",
+        "tests/test_review_finishing_binding.py::test_finishing_when_reused_current_assets_do_not_match_destination_edit_map_rejects[picture]",
+        "tests/test_review_finishing_binding.py::test_finishing_when_reverse_picture_and_its_own_mix_are_bound_renders_blue_first",
+        "tests/test_review_finishing_binding.py::test_quality_when_legacy_wrong_branch_output_is_materialized_cannot_reuse_old_proof"
+      ],
+      "scopes": [
+        "native_technical_fixture",
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "Replacement is tested before adoption/publication; arbitrary microsecond race coverage is not claimed."
+      ]
+    },
+    {
+      "id": "P24",
+      "purpose": "실제 소비한 optional dependency가 invalid/conditional-import 충돌/stale → 재채택 거절",
+      "cases": [
+        "tests/test_consumed_optional.py::test_optional_when_consumed_requires_current_and_usable_but_justified_unconsumed_is_exempt[False-False-False-False]",
+        "tests/test_consumed_optional.py::test_optional_when_consumed_requires_current_and_usable_but_justified_unconsumed_is_exempt[False-True-True-False]",
+        "tests/test_consumed_optional.py::test_optional_when_consumed_requires_current_and_usable_but_justified_unconsumed_is_exempt[True-False-False-True]",
+        "tests/test_consumed_optional.py::test_optional_when_consumed_requires_current_and_usable_but_justified_unconsumed_is_exempt[True-True-False-False]",
+        "tests/test_consumed_optional.py::test_optional_when_consumed_requires_current_and_usable_but_justified_unconsumed_is_exempt[True-True-True-True]",
+        "tests/test_dependency_lineage.py::test_lineage_when_actual_picture_producer_loses_source_affects_only_consumers[False-False]",
+        "tests/test_dependency_lineage.py::test_lineage_when_actual_picture_producer_loses_source_affects_only_consumers[True-True]"
+      ],
+      "scopes": [
+        "synthetic_contract",
+        "native_technical_fixture"
+      ],
+      "unverified": []
+    },
+    {
+      "id": "P25",
+      "purpose": "근거 있는 미선택 optional / imports와 무관한 유효 conditional → 승인 범위 내 유지",
+      "cases": [
+        "tests/test_consumed_optional.py::test_optional_when_consumed_requires_current_and_usable_but_justified_unconsumed_is_exempt[False-False-False-False]",
+        "tests/test_consumed_optional.py::test_optional_when_consumed_requires_current_and_usable_but_justified_unconsumed_is_exempt[False-True-True-False]",
+        "tests/test_consumed_optional.py::test_optional_when_consumed_requires_current_and_usable_but_justified_unconsumed_is_exempt[True-False-False-True]",
+        "tests/test_consumed_optional.py::test_optional_when_consumed_requires_current_and_usable_but_justified_unconsumed_is_exempt[True-True-False-False]",
+        "tests/test_consumed_optional.py::test_optional_when_consumed_requires_current_and_usable_but_justified_unconsumed_is_exempt[True-True-True-True]",
+        "tests/test_scoped_backend.py::test_backend_when_global_profile_pin_changes_cannot_prepare_scoped_work",
+        "tests/test_scoped_backend.py::test_backend_when_unconsumed_live_selection_is_invalid_can_prepare_and_reserve_scoped_work",
+        "tests/test_scoped_backend.py::test_backend_when_unconsumed_source_disappears_can_render_only_current_consumed_source"
+      ],
+      "scopes": [
+        "synthetic_contract",
+        "native_technical_fixture"
+      ],
+      "unverified": []
+    },
+    {
+      "id": "P26",
+      "purpose": "font/recipe/LUT/backend binary 변경 → 관련 결과/QA invalidation, 독립 결과는 유지",
+      "cases": [
+        "tests/test_captions.py::test_captions_when_old_cues_after_timeline_revision_are_stale",
+        "tests/test_filmcraft.py::test_filmcraft_when_prepared_binary_has_drifted_is_rejected",
+        "tests/test_invalidation.py::test_invalidation_when_actual_store_uses_narrow_path_preserving_reservations_and_foreign_data",
+        "tests/test_invalidation.py::test_invalidation_when_changed_consumed_source_does_not_erase_history_or_block_independent_work",
+        "tests/test_invalidation.py::test_invalidation_when_unknown_unconsumed_pin_has_no_false_coverage_or_fingerprint_effect",
+        "tests/test_review_progress.py::test_progress_when_required_variant_invalidates_current_delivery_drops_but_history_remains",
+        "tests/test_revisions.py::test_work_when_consumed_dependency_bytes_changed_cannot_be_current",
+        "tests/test_revisions.py::test_work_when_live_producer_invalidates_consumed_or_unrelated_source[0-True]",
+        "tests/test_revisions.py::test_work_when_live_producer_invalidates_consumed_or_unrelated_source[2-False]",
+        "tests/test_revisions.py::test_work_when_unconsumed_source_caps_change_does_not_invalidate_independent_work"
+      ],
+      "scopes": [
+        "synthetic_contract",
+        "native_technical_fixture"
+      ],
+      "unverified": [
+        "No actual LUT grade or third-party plugin mutation scenario."
+      ]
+    },
+    {
+      "id": "P27",
+      "purpose": "OS font fallback인데 원 템플릿 동일 디자인이라고 인증 → 차단; 승인 대체 후 reflow 허용",
+      "cases": [
+        "tests/test_native_text.py::test_native_text_when_actual_advance_is_wider_than_safe_mask_rejects_before_render",
+        "tests/test_native_text.py::test_native_text_when_actual_existing_korean_font_and_multiline_speaker_source_are_preserved[\\uc548\\ub155]",
+        "tests/test_native_text.py::test_native_text_when_actual_existing_korean_font_and_multiline_speaker_source_are_preserved[\\ud55c\\uad6d\\uc5b4 \\uc790\\ub9c9\\uc740\\n\\uadf8\\ub300\\ub85c \\ubcf4\\uc5ec\\uc694]",
+        "tests/test_native_text.py::test_native_text_when_actual_font_and_quote_are_read_back_and_every_rgba_frame_is_safe",
+        "tests/test_native_text.py::test_native_text_when_master_caption_text_was_changed_without_new_approved_source_rejects",
+        "tests/test_templates.py::test_recipe_when_actual_font_has_no_required_korean_glyphs_cannot_render_tofu",
+        "tests/test_templates.py::test_recipe_when_exact_actual_font_can_shape_literal_text_without_installing",
+        "tests/test_templates.py::test_recipe_when_fractional_font_size_would_be_silently_truncated_by_independent_measurement",
+        "tests/test_templates.py::test_recipe_when_missing_requested_face_cannot_hide_fallback[HakgyoansimBareonbatangB]",
+        "tests/test_templates.py::test_recipe_when_missing_requested_face_cannot_hide_fallback[Paperlogy-6SemiBold]",
+        "tests/test_templates.py::test_recipe_when_performance_number_has_no_real_evidence_is_not_copied_from_preview",
+        "tests/test_templates.py::test_recipe_when_real_measured_bounds_overflow_or_occlude_protected_mask"
+      ],
+      "scopes": [
+        "synthetic_contract",
+        "native_technical_fixture"
+      ],
+      "unverified": [
+        "Original Paperlogy/Hakgyo fonts unavailable; alternate declared fonts are distinct designs."
+      ]
+    },
+    {
+      "id": "P28",
+      "purpose": "MOGRT/ppro 정의를 EffectCraft native template로 무검증 import → 미지원/차단",
+      "cases": [
+        "tests/test_effectcraft.py::test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes0]",
+        "tests/test_effectcraft.py::test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes1]",
+        "tests/test_effectcraft.py::test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes2]",
+        "tests/test_effectcraft.py::test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes3]"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "MOGRT conversion is intentionally not a qualified adapter."
+      ]
+    },
+    {
+      "id": "P29",
+      "purpose": "한국어 장문/강조·복수 화자/하단·오른쪽 UI 침범 → bounds/의미/가독성 실패",
+      "cases": [
+        "tests/test_native_text.py::test_native_text_when_actual_advance_is_wider_than_safe_mask_rejects_before_render",
+        "tests/test_native_text.py::test_native_text_when_actual_existing_korean_font_and_multiline_speaker_source_are_preserved[\\uc548\\ub155]",
+        "tests/test_native_text.py::test_native_text_when_actual_existing_korean_font_and_multiline_speaker_source_are_preserved[\\ud55c\\uad6d\\uc5b4 \\uc790\\ub9c9\\uc740\\n\\uadf8\\ub300\\ub85c \\ubcf4\\uc5ec\\uc694]",
+        "tests/test_native_text.py::test_native_text_when_actual_font_and_quote_are_read_back_and_every_rgba_frame_is_safe",
+        "tests/test_native_text.py::test_native_text_when_master_caption_text_was_changed_without_new_approved_source_rejects",
+        "tests/test_templates.py::test_recipe_when_real_measured_bounds_overflow_or_occlude_protected_mask"
+      ],
+      "scopes": [
+        "native_technical_fixture",
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "Actual AA text/glyph geometry tested; human Korean readability/meaning QA not authenticated."
+      ]
+    },
+    {
+      "id": "P30",
+      "purpose": "edit/retime/audio offset 후 이전 SRT/단어 강조 사용 → stale 차단",
+      "cases": [
+        "tests/test_captions.py::test_captions_when_old_cues_after_timeline_revision_are_stale",
+        "tests/test_captions.py::test_captions_when_sentence_timing_cannot_be_invented_as_word_timestamps",
+        "tests/test_timeline.py::test_speech_map_when_reviewed_mux_audio_is_preserved_in_target_sample_clock"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "Nonidentity retime/ASR generation is not supported."
+      ]
+    },
+    {
+      "id": "P31",
+      "purpose": "ASR/축약/번역이 승인 대사·화자를 바꿈 → 별도 승인 전 차단",
+      "cases": [
+        "tests/test_captions.py::test_captions_when_text_speaker_or_translation_is_not_in_exact_approved_source_rejects[changes0]",
+        "tests/test_captions.py::test_captions_when_text_speaker_or_translation_is_not_in_exact_approved_source_rejects[changes1]",
+        "tests/test_captions.py::test_captions_when_text_speaker_or_translation_is_not_in_exact_approved_source_rejects[changes2]"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": []
+    },
+    {
+      "id": "P32",
+      "purpose": "없는 source separation/클론 음성·무승인 음악 생성/모델 설치 → 거절",
+      "cases": [
+        "tests/test_audio.py::test_audio_when_real_pcm_is_independently_decoded_and_measured",
+        "tests/test_audio.py::test_intake_when_required_actual_separate_stem_is_supplied_can_be_adopted",
+        "tests/test_audio.py::test_stem_when_actual_supplied_mono_is_not_mislabeled_as_stereo",
+        "tests/test_audio.py::test_stem_when_header_or_independent_origin_is_not_actual[changes0]",
+        "tests/test_audio.py::test_stem_when_header_or_independent_origin_is_not_actual[changes1]",
+        "tests/test_audio.py::test_stem_when_header_or_independent_origin_is_not_actual[changes2]",
+        "tests/test_audio.py::test_stem_when_header_or_independent_origin_is_not_actual[changes3]",
+        "tests/test_cli.py::test_cli_when_missing_actual_install_question_cannot_fetch_or_install",
+        "tests/test_install_consent.py::test_install_when_generic_authority_is_not_a_real_question_response[free_policy]",
+        "tests/test_install_consent.py::test_install_when_generic_authority_is_not_a_real_question_response[goal_activated]",
+        "tests/test_install_consent.py::test_install_when_generic_authority_is_not_a_real_question_response[project_local]",
+        "tests/test_install_consent.py::test_install_when_generic_authority_is_not_a_real_question_response[yes]"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "No paid media/voice/music/clone or separation/generation performed."
+      ]
+    },
+    {
+      "id": "P33",
+      "purpose": "실제 음원 LUFS/TP/channel/sync가 profile 초과 → 실패, native meter만으로 인증 금지",
+      "cases": [
+        "tests/test_audio.py::test_audio_when_real_pcm_is_independently_decoded_and_measured",
+        "tests/test_audio.py::test_intake_when_required_actual_separate_stem_is_supplied_can_be_adopted",
+        "tests/test_audio.py::test_stem_when_actual_supplied_mono_is_not_mislabeled_as_stereo",
+        "tests/test_audio.py::test_stem_when_header_or_independent_origin_is_not_actual[changes0]",
+        "tests/test_audio.py::test_stem_when_header_or_independent_origin_is_not_actual[changes1]",
+        "tests/test_audio.py::test_stem_when_header_or_independent_origin_is_not_actual[changes2]",
+        "tests/test_audio.py::test_stem_when_header_or_independent_origin_is_not_actual[changes3]",
+        "tests/test_loudness.py::test_loudness_when_actual_stereo_reference_is_measured_not_native_meter",
+        "tests/test_loudness.py::test_loudness_when_exact_decimal_tolerance_boundary_is_not_floating_point_rejected",
+        "tests/test_loudness.py::test_loudness_when_explicit_project_targets_fail_independently[-14.0--19.0-False]",
+        "tests/test_loudness.py::test_loudness_when_explicit_project_targets_fail_independently[-20.0--19.0-True]",
+        "tests/test_loudness.py::test_loudness_when_explicit_project_targets_fail_independently[-20.0--21.0-False]",
+        "tests/test_loudness.py::test_loudness_when_profile_targets_are_invalid_not_silently_accepted[changes0]",
+        "tests/test_loudness.py::test_loudness_when_profile_targets_are_invalid_not_silently_accepted[changes1]",
+        "tests/test_loudness.py::test_loudness_when_profile_targets_are_invalid_not_silently_accepted[changes2]",
+        "tests/test_loudness.py::test_loudness_when_source_changes_cannot_reuse_old_measurement",
+        "tests/test_loudness_master.py::test_delivery_when_actual_final_loudness_fails_cannot_publish_bundle",
+        "tests/test_loudness_master.py::test_loudness_when_actual_final_meets_explicit_policy_pg5_retains_measurement",
+        "tests/test_loudness_master.py::test_loudness_when_actual_final_misses_profile_cannot_pass_pg5",
+        "tests/test_loudness_master.py::test_loudness_when_public_profile_accepts_explicit_policy_without_imposing_a_platform_preset",
+        "tests/test_quality.py::test_quality_when_playback_or_listening_unverified_cannot_be_final_pass[audio_listening]",
+        "tests/test_quality.py::test_quality_when_playback_or_listening_unverified_cannot_be_final_pass[video_playback]",
+        "tests/test_review_audio_profile.py::test_encoding_when_actual_picture_matches_explicit_audio_profile_passes",
+        "tests/test_review_audio_profile.py::test_encoding_when_container_brand_is_unknown_does_not_invent_mp4_compliance",
+        "tests/test_review_audio_profile.py::test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects[changes0]",
+        "tests/test_review_audio_profile.py::test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects[changes1]",
+        "tests/test_review_audio_profile.py::test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects[changes2]",
+        "tests/test_review_audio_profile.py::test_encoding_when_real_native_output_violates_declared_codec_or_layout_rejects[changes3]",
+        "tests/test_review_audio_profile.py::test_picture_when_explicit_audio_codec_is_unsupported_rejects_before_dispatch",
+        "tests/test_review_audio_profile.py::test_picture_when_raw_reserved_packet_requests_unsupported_codec_cannot_bypass_prepare",
+        "tests/test_soundcraft.py::test_soundcraft_when_actual_bounce_replaced_with_silence_is_not_adopted",
+        "tests/test_soundcraft.py::test_soundcraft_when_actual_layout_sample_offsets_and_gain_match_independent_audio[False]",
+        "tests/test_soundcraft.py::test_soundcraft_when_actual_layout_sample_offsets_and_gain_match_independent_audio[True]",
+        "tests/test_soundcraft.py::test_soundcraft_when_native_track_or_sample_offset_changes_requires_reimport",
+        "tests/test_soundcraft.py::test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed[changes0]",
+        "tests/test_soundcraft.py::test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed[changes1]",
+        "tests/test_soundcraft.py::test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed[changes2]",
+        "tests/test_soundcraft.py::test_soundcraft_when_unsupported_or_mismatched_format_clock_length_is_not_guessed[changes3]"
+      ],
+      "scopes": [
+        "native_technical_fixture",
+        "synthetic_contract",
+        "reported_semantic_fixture"
+      ],
+      "unverified": [
+        "Actual independent EBU R128/true-peak reference tone and current native final AAC checks. Explicit project policy only; no automatic loudness normalization or listening certification."
+      ]
+    },
+    {
+      "id": "P34",
+      "purpose": "conditional fix 작업을 추가만 하고 결함 미해소/부작용 발생 → ticket 미완료",
+      "cases": [
+        "tests/test_conditional_native.py::test_condition_when_only_actual_final_consumed_native_correction_can_resolve[FINISH-False]",
+        "tests/test_conditional_native.py::test_condition_when_only_actual_final_consumed_native_correction_can_resolve[TEXT-True]",
+        "tests/test_conditional_native.py::test_condition_when_only_actual_final_consumed_native_correction_can_resolve[UNUSED-False]",
+        "tests/test_conditions.py::test_condition_when_scheduled_native_effect_does_not_close_current_ticket",
+        "tests/test_conditions.py::test_condition_when_unknown_or_old_ticket_cannot_be_laundered_as_resolution"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "Actual consumed caption correction closes reported fixture conditional; equally current unconsumed/self-master cannot. Genuine human before-after/side-effect perception is not authenticated."
+      ]
+    },
+    {
+      "id": "P35",
+      "purpose": "정지 접촉시트/ffprobe만으로 전구간 시청·청취 PASS → unverified/차단",
+      "cases": [
+        "tests/test_progress.py::test_progress_when_missing_source_cannot_shrink_original_coverage_denominator",
+        "tests/test_progress.py::test_progress_when_native_success_receipt_without_artifact_or_playback_is_not_quality",
+        "tests/test_progress.py::test_progress_when_reserved_only_has_distinct_zero_completion_denominators",
+        "tests/test_quality.py::test_quality_when_playback_or_listening_unverified_cannot_be_final_pass[audio_listening]",
+        "tests/test_quality.py::test_quality_when_playback_or_listening_unverified_cannot_be_final_pass[video_playback]"
+      ],
+      "scopes": [
+        "reported_semantic_fixture",
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "Reported observations are not authenticated human perception."
+      ]
+    },
+    {
+      "id": "P36",
+      "purpose": "preview PASS 후 최종 인코딩에서 audio/caption 누락·프레임/색 변경 → final QA 실패",
+      "cases": [
+        "tests/test_finishing.py::test_finishing_when_actual_final_native_projection_can_be_registered_without_human_adoption",
+        "tests/test_finishing.py::test_finishing_when_actual_native_inputs_rejoin_and_independent_video_audio_are_present",
+        "tests/test_finishing.py::test_finishing_when_consumed_plate_frame_is_lost_cannot_adopt_unchanged_final_file",
+        "tests/test_finishing.py::test_finishing_when_native_manual_projection_changes_requires_reimport",
+        "tests/test_quality.py::test_quality_when_reencoded_or_other_preview_pin_cannot_cover_current_final",
+        "tests/test_soundcraft.py::test_soundcraft_when_actual_bounce_replaced_with_silence_is_not_adopted"
+      ],
+      "scopes": [
+        "native_technical_fixture",
+        "reported_semantic_fixture"
+      ],
+      "unverified": [
+        "Actual final viewing/listening remains outside synthetic fixture certification."
+      ]
+    },
+    {
+      "id": "P37",
+      "purpose": "native 프로젝트·폰트/플러그인 또는 권리/출처 빠진 납품을 MP4만으로 완료 → 차단",
+      "cases": [
+        "tests/test_delivery.py::test_delivery_when_editable_native_projects_relink_with_exact_receiver_font_receipt",
+        "tests/test_delivery.py::test_delivery_when_fixture_report_cannot_be_laundered_into_real_final_master",
+        "tests/test_delivery.py::test_delivery_when_generic_transaction_cannot_forge_delivered_status",
+        "tests/test_delivery.py::test_delivery_when_narrow_commit_records_actual_package_without_changing_native_job_facts",
+        "tests/test_delivery.py::test_delivery_when_real_technical_bundle_checksums_and_no_false_human_release",
+        "tests/test_delivery.py::test_delivery_when_receiver_or_real_stem_or_editable_font_dependency_missing_blocks[change0]",
+        "tests/test_delivery.py::test_delivery_when_receiver_or_real_stem_or_editable_font_dependency_missing_blocks[change1]",
+        "tests/test_delivery.py::test_delivery_when_receiver_or_real_stem_or_editable_font_dependency_missing_blocks[change2]",
+        "tests/test_delivery.py::test_delivery_when_source_replaced_after_render_blocks_local_package",
+        "tests/test_review_attribution.py::test_delivery_when_on_screen_credit_is_explicit_cannot_be_satisfied_by_a_metadata_record",
+        "tests/test_review_attribution.py::test_delivery_when_supplied_consumed_credit_is_preserved_for_main_or_variant[main]",
+        "tests/test_review_attribution.py::test_delivery_when_supplied_consumed_credit_is_preserved_for_main_or_variant[variant]",
+        "tests/test_review_progress.py::test_progress_when_required_variant_invalidates_current_delivery_drops_but_history_remains",
+        "tests/test_variant_delivery.py::test_variant_when_bundle_includes_each_distinct_final_has_its_own_qa_and_lineage",
+        "tests/test_variant_delivery.py::test_variant_when_editable_bundle_reopens_all_six_actual_native_projects",
+        "tests/test_variant_delivery.py::test_variant_when_editable_inventory_must_include_own_native_project_not_just_main",
+        "tests/test_variant_delivery.py::test_variant_when_its_own_output_changes_main_qa_cannot_cover_it",
+        "tests/test_variant_delivery.py::test_variant_when_native_clean_branch_is_actual_distinct_current_output"
+      ],
+      "scopes": [
+        "native_technical_fixture",
+        "reported_semantic_fixture"
+      ],
+      "unverified": [
+        "Receiver rights/font evidence is reported, not legal issuer authentication."
+      ]
+    },
+    {
+      "id": "P38",
+      "purpose": "일부 렌더/failed/unknown/stale/fix pending을 완료로 포함·요구 삭제해100% → 거절",
+      "cases": [
+        "tests/test_progress.py::test_progress_when_missing_source_cannot_shrink_original_coverage_denominator",
+        "tests/test_progress.py::test_progress_when_native_success_receipt_without_artifact_or_playback_is_not_quality",
+        "tests/test_progress.py::test_progress_when_reserved_only_has_distinct_zero_completion_denominators",
+        "tests/test_quality.py::test_quality_when_original_required_denominator_is_reduced_cannot_pass",
+        "tests/test_review_progress.py::test_progress_when_required_variant_invalidates_current_delivery_drops_but_history_remains",
+        "tests/test_timeline.py::test_branch_when_new_variant_does_not_delete_original_denominator",
+        "tests/test_timeline.py::test_branch_when_parent_or_authority_is_missing"
+      ],
+      "scopes": [
+        "synthetic_contract",
+        "reported_semantic_fixture"
+      ],
+      "unverified": []
+    },
+    {
+      "id": "P39",
+      "purpose": "AutoClip diagnostic/ASR/LLM·모델/CDN·게시의 미승인 egress → 실행 차단",
+      "cases": [
+        "tests/test_installer_routes.py::test_optional_vendor_route_when_real_limit_or_required_human_step_is_specific[autoclip-needs_user_action-diagnostics]",
+        "tests/test_native_smoke.py::test_installer_smoke_when_actual_existing_cli_has_native_output_and_network_denial[effectcraft]",
+        "tests/test_native_smoke.py::test_installer_smoke_when_actual_existing_cli_has_native_output_and_network_denial[filmcraft]",
+        "tests/test_native_smoke.py::test_installer_smoke_when_actual_existing_cli_has_native_output_and_network_denial[soundcraft]",
+        "tests/test_sandbox.py::test_sandbox_when_external_network_is_unreachable_before_app_first_run"
+      ],
+      "scopes": [
+        "native_technical_fixture",
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "No AutoClip installed or real-media diagnostic/LLM/CDN egress validation performed."
+      ]
+    },
+    {
+      "id": "P40",
+      "purpose": "허가된 synthetic multi-clip→실제 세 Craft→master/variant 전체 경로, source 재현/재개/최종 QA",
+      "cases": [
+        "tests/test_cli.py::test_cli_when_actual_native_prepare_run_observe_and_restart_refusal[effectcraft]",
+        "tests/test_cli.py::test_cli_when_actual_native_prepare_run_observe_and_restart_refusal[filmcraft]",
+        "tests/test_cli.py::test_cli_when_actual_native_prepare_run_observe_and_restart_refusal[soundcraft]",
+        "tests/test_delivery.py::test_delivery_when_editable_native_projects_relink_with_exact_receiver_font_receipt",
+        "tests/test_delivery.py::test_delivery_when_fixture_report_cannot_be_laundered_into_real_final_master",
+        "tests/test_delivery.py::test_delivery_when_generic_transaction_cannot_forge_delivered_status",
+        "tests/test_delivery.py::test_delivery_when_narrow_commit_records_actual_package_without_changing_native_job_facts",
+        "tests/test_delivery.py::test_delivery_when_real_technical_bundle_checksums_and_no_false_human_release",
+        "tests/test_delivery.py::test_delivery_when_receiver_or_real_stem_or_editable_font_dependency_missing_blocks[change0]",
+        "tests/test_delivery.py::test_delivery_when_receiver_or_real_stem_or_editable_font_dependency_missing_blocks[change1]",
+        "tests/test_delivery.py::test_delivery_when_receiver_or_real_stem_or_editable_font_dependency_missing_blocks[change2]",
+        "tests/test_delivery.py::test_delivery_when_source_replaced_after_render_blocks_local_package",
+        "tests/test_finishing.py::test_finishing_when_actual_final_native_projection_can_be_registered_without_human_adoption",
+        "tests/test_finishing.py::test_finishing_when_actual_native_inputs_rejoin_and_independent_video_audio_are_present",
+        "tests/test_finishing.py::test_finishing_when_consumed_plate_frame_is_lost_cannot_adopt_unchanged_final_file",
+        "tests/test_finishing.py::test_finishing_when_native_manual_projection_changes_requires_reimport",
+        "tests/test_review_attribution.py::test_delivery_when_on_screen_credit_is_explicit_cannot_be_satisfied_by_a_metadata_record",
+        "tests/test_review_attribution.py::test_delivery_when_supplied_consumed_credit_is_preserved_for_main_or_variant[main]",
+        "tests/test_review_attribution.py::test_delivery_when_supplied_consumed_credit_is_preserved_for_main_or_variant[variant]",
+        "tests/test_review_finishing_binding.py::test_finishing_when_reused_current_assets_do_not_match_destination_edit_map_rejects[caption-map]",
+        "tests/test_review_finishing_binding.py::test_finishing_when_reused_current_assets_do_not_match_destination_edit_map_rejects[mix-lock]",
+        "tests/test_review_finishing_binding.py::test_finishing_when_reused_current_assets_do_not_match_destination_edit_map_rejects[picture]",
+        "tests/test_review_finishing_binding.py::test_finishing_when_reverse_picture_and_its_own_mix_are_bound_renders_blue_first",
+        "tests/test_review_finishing_binding.py::test_quality_when_legacy_wrong_branch_output_is_materialized_cannot_reuse_old_proof",
+        "tests/test_timeline.py::test_branch_when_new_variant_does_not_delete_original_denominator",
+        "tests/test_timeline.py::test_branch_when_parent_or_authority_is_missing",
+        "tests/test_variant_delivery.py::test_variant_when_bundle_includes_each_distinct_final_has_its_own_qa_and_lineage",
+        "tests/test_variant_delivery.py::test_variant_when_editable_bundle_reopens_all_six_actual_native_projects",
+        "tests/test_variant_delivery.py::test_variant_when_editable_inventory_must_include_own_native_project_not_just_main",
+        "tests/test_variant_delivery.py::test_variant_when_its_own_output_changes_main_qa_cannot_cover_it",
+        "tests/test_variant_delivery.py::test_variant_when_native_clean_branch_is_actual_distinct_current_output"
+      ],
+      "scopes": [
+        "native_technical_fixture",
+        "reported_semantic_fixture"
+      ],
+      "unverified": [
+        "Actual same-profile main/clean native branch, independent QA, local per-variant QA/provenance and editable six-project reopen. No 9:16 reframe, arbitrary cross-profile transformation or genuine human E4 certification."
+      ]
+    },
+    {
+      "id": "P41",
+      "purpose": "시스템/동일 프로그램 점검 → 필요 시 설치 질문 → 명시적 동의 후 설치·설정·시험·작업 재개. 기존 설치는 재사용",
+      "cases": [
+        "tests/test_cli.py::test_cli_when_actual_host_inspection_reuses_three_existing_editors",
+        "tests/test_environment_workflow.py::test_ensure_when_exact_recorded_question_response_selects_only_matching_action[approve-approved]",
+        "tests/test_environment_workflow.py::test_ensure_when_exact_recorded_question_response_selects_only_matching_action[decline-declined]",
+        "tests/test_environment_workflow.py::test_ensure_when_missing_but_no_concrete_plan_has_no_fabricated_question",
+        "tests/test_environment_workflow.py::test_ensure_when_plan_exists_but_question_not_asked_returns_only_full_draft",
+        "tests/test_environment_workflow.py::test_ensure_when_same_program_is_adequate_reuses_without_install_plan",
+        "tests/test_install_consent.py::test_install_when_answer_exists_without_actual_question_record",
+        "tests/test_install_consent.py::test_install_when_exact_question_response_and_scope_match[approve-approved]",
+        "tests/test_install_consent.py::test_install_when_exact_question_response_and_scope_match[decline-declined]",
+        "tests/test_install_consent.py::test_install_when_generic_authority_is_not_a_real_question_response[free_policy]",
+        "tests/test_install_consent.py::test_install_when_generic_authority_is_not_a_real_question_response[goal_activated]",
+        "tests/test_install_consent.py::test_install_when_generic_authority_is_not_a_real_question_response[project_local]",
+        "tests/test_install_consent.py::test_install_when_generic_authority_is_not_a_real_question_response[yes]",
+        "tests/test_install_consent.py::test_install_when_host_inventory_changed_since_approval",
+        "tests/test_install_consent.py::test_install_when_no_question_or_consent_exists",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change0]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change10]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change11]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change12]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change1]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change2]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change3]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change4]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change5]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change6]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change7]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change8]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change9]",
+        "tests/test_install_consent.py::test_install_when_question_contains_every_scope_and_cost_disclosure",
+        "tests/test_install_consent.py::test_install_when_question_text_was_not_the_full_exact_plan",
+        "tests/test_install_consent.py::test_install_when_question_was_only_prepared_not_asked",
+        "tests/test_install_consent.py::test_install_when_response_belongs_to_other_question_host_or_plan[channel-operator_message]",
+        "tests/test_install_consent.py::test_install_when_response_belongs_to_other_question_host_or_plan[host_id-ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff]",
+        "tests/test_install_consent.py::test_install_when_response_belongs_to_other_question_host_or_plan[plan_digest-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa]",
+        "tests/test_install_consent.py::test_install_when_response_belongs_to_other_question_host_or_plan[question_id-other-question]",
+        "tests/test_install_consent.py::test_install_when_response_belongs_to_other_question_host_or_plan[question_ref-other-message]",
+        "tests/test_package.py::test_package_when_role_entry_matches_explicit_disabled_invocation[caption-editor]",
+        "tests/test_package.py::test_package_when_role_entry_matches_explicit_disabled_invocation[color-finisher]",
+        "tests/test_package.py::test_package_when_role_entry_matches_explicit_disabled_invocation[finishing-operator]",
+        "tests/test_package.py::test_package_when_role_entry_matches_explicit_disabled_invocation[motion-compositor]",
+        "tests/test_package.py::test_package_when_role_entry_matches_explicit_disabled_invocation[picture-editor]",
+        "tests/test_package.py::test_package_when_role_entry_matches_explicit_disabled_invocation[postproduction-qa]",
+        "tests/test_package.py::test_package_when_role_entry_matches_explicit_disabled_invocation[postproduction-supervisor]",
+        "tests/test_package.py::test_package_when_role_entry_matches_explicit_disabled_invocation[sound-editor-mixer]",
+        "tests/test_review_portable_driver.py::test_portable_when_actual_driver_install_inventory_reaches_native_smoke",
+        "tests/test_review_portable_smoke.py::test_backend_when_reusing_existing_self_contained_cli_outside_system_mounts_runs_it",
+        "tests/test_review_portable_smoke.py::test_smoke_when_existing_portable_cli_and_required_siblings_are_only_readonly_payload"
+      ],
+      "scopes": [
+        "synthetic_contract",
+        "real_readonly",
+        "structural"
+      ],
+      "unverified": [
+        "No genuine user install consent or fresh vendor installation. Role frontmatter/link checks are structural, not prose assertions or LLM behavioral certification."
+      ]
+    },
+    {
+      "id": "P42",
+      "purpose": "ArtCraft launcher만 있거나 GUI만 있고 필요한 CLI 없음 → 누락 부분 준비, 모두 설치됐다고 가장하지 않음",
+      "cases": [
+        "tests/test_backend_registry.py::test_registry_when_same_program_is_discovered_at_existing_other_location_reuses_it",
+        "tests/test_environment.py::test_environment_when_gui_package_exists_without_required_cli",
+        "tests/test_environment.py::test_environment_when_launcher_does_not_supply_editor_cli",
+        "tests/test_review_portable_smoke.py::test_backend_when_reusing_existing_self_contained_cli_outside_system_mounts_runs_it",
+        "tests/test_review_portable_smoke.py::test_smoke_when_existing_portable_cli_and_required_siblings_are_only_readonly_payload"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": []
+    },
+    {
+      "id": "P43",
+      "purpose": "OS/arch/GPU/driver·디스크/의존성 조건 불충족 → 설치 전 조치/호환 대안, 불가능한 실행 금지",
+      "cases": [
+        "tests/test_environment.py::test_environment_when_platform_or_resources_are_not_ready[changes0-req_changes0-unsupported]",
+        "tests/test_environment.py::test_environment_when_platform_or_resources_are_not_ready[changes1-req_changes1-unsupported]",
+        "tests/test_environment.py::test_environment_when_platform_or_resources_are_not_ready[changes2-req_changes2-needs_user_action]",
+        "tests/test_environment.py::test_environment_when_platform_or_resources_are_not_ready[changes3-req_changes3-needs_user_action]",
+        "tests/test_environment.py::test_environment_when_platform_or_resources_are_not_ready[changes4-req_changes4-needs_user_action]",
+        "tests/test_review_portable_driver.py::test_portable_when_internal_links_need_unverified_runtime_layout_no_publish[hardlink]",
+        "tests/test_review_portable_driver.py::test_portable_when_internal_links_need_unverified_runtime_layout_no_publish[symlink]"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "No other OS/device execution or driver installation."
+      ]
+    },
+    {
+      "id": "P44",
+      "purpose": "기존 앱/프로젝트 사용 중·버전 충돌 → 무단 upgrade/downgrade/삭제/프로세스 종료 없이 보존",
+      "cases": [
+        "tests/test_install_rollback.py::test_rollback_when_extra_user_file_is_detected_does_not_delete_any_target",
+        "tests/test_install_rollback.py::test_rollback_when_known_new_exact_payload_and_no_live_process_removes_only_owned_target",
+        "tests/test_install_rollback.py::test_rollback_when_owned_binary_was_edited_is_preserved_for_operator",
+        "tests/test_installers.py::test_installer_when_another_terminal_completed_compatible_install_reuses_it",
+        "tests/test_installers.py::test_installer_when_existing_target_must_not_be_overwritten",
+        "tests/test_portable_recovery.py::test_portable_reconcile_when_complete_matching_payload_does_not_install_again",
+        "tests/test_portable_recovery.py::test_portable_reconcile_when_exact_cache_and_absent_target_are_physically_inspected",
+        "tests/test_portable_recovery.py::test_portable_reconcile_when_existing_or_extra_user_bytes_are_preserved_as_unknown",
+        "tests/test_portable_recovery.py::test_portable_reconcile_when_own_scope_process_is_live_leaves_it_running",
+        "tests/test_portable_recovery.py::test_portable_reconcile_when_source_binary_changed_cannot_claim_ready"
+      ],
+      "scopes": [
+        "synthetic_contract",
+        "real_readonly"
+      ],
+      "unverified": []
+    },
+    {
+      "id": "P45",
+      "purpose": "배포처/서명·checksum 불일치 또는 무검토 외부 installer script → 실행 거절",
+      "cases": [
+        "tests/test_download_contract.py::test_download_when_archive_hash_is_not_expected_has_no_published_artifact",
+        "tests/test_download_contract.py::test_download_when_byte_budget_is_exceeded_stops_and_cleans_owned_partial",
+        "tests/test_download_contract.py::test_download_when_exact_allowed_host_and_expected_bytes_match",
+        "tests/test_download_contract.py::test_download_when_existing_cache_belongs_to_prior_work_is_not_overwritten",
+        "tests/test_download_contract.py::test_download_when_redirect_would_escape_approved_host_never_connects",
+        "tests/test_installer_routes.py::test_installer_route_when_publisher_or_release_pin_does_not_match[changes0]",
+        "tests/test_installer_routes.py::test_installer_route_when_publisher_or_release_pin_does_not_match[changes1]",
+        "tests/test_installer_routes.py::test_installer_route_when_publisher_or_release_pin_does_not_match[changes2]",
+        "tests/test_installer_routes.py::test_installer_route_when_publisher_or_release_pin_does_not_match[changes3]",
+        "tests/test_installer_routes.py::test_installer_route_when_self_hash_is_not_publisher_proof",
+        "tests/test_portable_installer.py::test_portable_when_archive_contains_owned_relative_program",
+        "tests/test_portable_installer.py::test_portable_when_payload_escapes_or_cannot_supply_unique_cli[members0]",
+        "tests/test_portable_installer.py::test_portable_when_payload_escapes_or_cannot_supply_unique_cli[members1]",
+        "tests/test_portable_installer.py::test_portable_when_payload_escapes_or_cannot_supply_unique_cli[members2]",
+        "tests/test_portable_installer.py::test_portable_when_payload_escapes_or_cannot_supply_unique_cli[members3]",
+        "tests/test_portable_installer.py::test_portable_when_payload_escapes_or_cannot_supply_unique_cli[members4]",
+        "tests/test_portable_installer.py::test_portable_when_payload_escapes_or_cannot_supply_unique_cli[members5]",
+        "tests/test_portable_installer.py::test_portable_when_target_already_belongs_to_someone_else",
+        "tests/test_portable_installer.py::test_portable_when_unpacked_bytes_exceed_the_approved_bound"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "HTTPS responses/portable archives controlled fixtures, not genuine downloaded vendor binaries/signature validation."
+      ]
+    },
+    {
+      "id": "P46",
+      "purpose": "Resolve/Adobe 판본·유료 사용권·본인 로그인/약관·관리자/재부팅 필요 → 해당 조치만 요청하고 완료 확인 뒤 재개",
+      "cases": [
+        "tests/test_installer_routes.py::test_optional_vendor_route_when_real_limit_or_required_human_step_is_specific[after_effects-unsupported-Linux]",
+        "tests/test_installer_routes.py::test_optional_vendor_route_when_real_limit_or_required_human_step_is_specific[autoclip-needs_user_action-diagnostics]",
+        "tests/test_installer_routes.py::test_optional_vendor_route_when_real_limit_or_required_human_step_is_specific[premiere-unsupported-Linux]",
+        "tests/test_installer_routes.py::test_optional_vendor_route_when_real_limit_or_required_human_step_is_specific[resolve-needs_user_action-Free/Studio]"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "Resolve/Adobe license/login/admin/reboot actions not executed; explicit prerequisites/unsupported hosts returned."
+      ]
+    },
+    {
+      "id": "P47",
+      "purpose": "AutoClip 첫 실행부터 network 차단·진단/미디어 경로 설정/비기밀 egress 시험 → ready 분리, 민감 미디어 유출 금지",
+      "cases": [
+        "tests/test_installer_routes.py::test_optional_vendor_route_when_real_limit_or_required_human_step_is_specific[autoclip-needs_user_action-diagnostics]",
+        "tests/test_sandbox.py::test_sandbox_when_external_network_is_unreachable_before_app_first_run"
+      ],
+      "scopes": [
+        "native_technical_fixture",
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "AutoClip itself not installed/run; no real-media network readiness certification."
+      ]
+    },
+    {
+      "id": "P48",
+      "purpose": "설치 중단/재부팅/실패·다른 package lock 존재 → 현재 transaction 확인, 남의 lock 삭제/무조건 중복 설치 금지",
+      "cases": [
+        "tests/test_install_recovery.py::test_recovery_when_completed_target_exists_does_not_repeat_install",
+        "tests/test_install_recovery.py::test_recovery_when_known_scoped_no_process_and_no_target_reuses_verified_artifact",
+        "tests/test_install_recovery.py::test_recovery_when_old_approval_cannot_cover_new_version_or_paths",
+        "tests/test_install_recovery.py::test_recovery_when_process_or_effect_scope_is_unknown_never_replays",
+        "tests/test_installers.py::test_host_lease_when_same_resource_owner_is_reentered_must_not_release_first_lock",
+        "tests/test_installers.py::test_installer_when_ownership_lock_is_busy_never_fetches_or_removes_foreign_lock",
+        "tests/test_portable_recovery.py::test_portable_reconcile_when_complete_matching_payload_does_not_install_again",
+        "tests/test_portable_recovery.py::test_portable_reconcile_when_exact_cache_and_absent_target_are_physically_inspected",
+        "tests/test_portable_recovery.py::test_portable_reconcile_when_existing_or_extra_user_bytes_are_preserved_as_unknown",
+        "tests/test_portable_recovery.py::test_portable_reconcile_when_own_scope_process_is_live_leaves_it_running",
+        "tests/test_portable_recovery.py::test_portable_reconcile_when_source_binary_changed_cannot_claim_ready",
+        "tests/test_review_portable_driver.py::test_portable_when_actual_recovery_audit_inventory_reaches_native_smoke",
+        "tests/test_review_portable_driver.py::test_portable_when_recovery_sees_foreign_file_never_adds_it_to_payload"
+      ],
+      "scopes": [
+        "synthetic_contract",
+        "real_readonly"
+      ],
+      "unverified": [
+        "No real reboot/shared package manager mutation."
+      ]
+    },
+    {
+      "id": "P49",
+      "purpose": "Python/FFmpeg/font/plugin/model 필요 → 승인한 최소 항목만 올바른 환경에 준비, global 환경 무단 오염 금지",
+      "cases": [
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change0]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change10]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change11]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change12]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change1]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change2]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change3]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change4]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change5]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change6]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change7]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change8]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change9]",
+        "tests/test_installers.py::test_installer_when_scope_changed_does_not_start_driver",
+        "tests/test_templates.py::test_recipe_when_actual_font_has_no_required_korean_glyphs_cannot_render_tofu",
+        "tests/test_templates.py::test_recipe_when_exact_actual_font_can_shape_literal_text_without_installing",
+        "tests/test_templates.py::test_recipe_when_fractional_font_size_would_be_silently_truncated_by_independent_measurement",
+        "tests/test_templates.py::test_recipe_when_missing_requested_face_cannot_hide_fallback[HakgyoansimBareonbatangB]",
+        "tests/test_templates.py::test_recipe_when_missing_requested_face_cannot_hide_fallback[Paperlogy-6SemiBold]",
+        "tests/test_templates.py::test_recipe_when_performance_number_has_no_real_evidence_is_not_copied_from_preview",
+        "tests/test_templates.py::test_recipe_when_real_measured_bounds_overflow_or_occlude_protected_mask"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "No new Python/FFmpeg/font/plugin/model dependency installation."
+      ]
+    },
+    {
+      "id": "P50",
+      "purpose": "installer exit0이나 실제 CLI/smoke/export 실패 → installed와 ready 구분, 소유 범위만 원복/수정 후 재개",
+      "cases": [
+        "tests/test_environment_bridge.py::test_environment_bridge_when_fixture_installer_facts_preserve_other_namespaces",
+        "tests/test_environment_bridge.py::test_environment_when_diagnostic_crashes_installed_fact_is_already_durable",
+        "tests/test_environment_bridge.py::test_environment_when_generic_transaction_cannot_forge_ready_history",
+        "tests/test_environment_bridge.py::test_environment_when_initial_state_cannot_invent_installed_history",
+        "tests/test_environment_bridge.py::test_environment_when_source_lost_installed_fact_still_commits",
+        "tests/test_install_rollback.py::test_rollback_when_extra_user_file_is_detected_does_not_delete_any_target",
+        "tests/test_install_rollback.py::test_rollback_when_known_new_exact_payload_and_no_live_process_removes_only_owned_target",
+        "tests/test_install_rollback.py::test_rollback_when_owned_binary_was_edited_is_preserved_for_operator",
+        "tests/test_installers.py::test_installer_when_exact_fixture_scope_is_approved_and_smoke_runs",
+        "tests/test_installers.py::test_installer_when_exit_zero_but_smoke_fails_is_not_ready",
+        "tests/test_native_smoke.py::test_installer_smoke_when_actual_existing_cli_has_native_output_and_network_denial[effectcraft]",
+        "tests/test_native_smoke.py::test_installer_smoke_when_actual_existing_cli_has_native_output_and_network_denial[filmcraft]",
+        "tests/test_native_smoke.py::test_installer_smoke_when_actual_existing_cli_has_native_output_and_network_denial[soundcraft]",
+        "tests/test_review_portable_smoke.py::test_backend_when_reusing_existing_self_contained_cli_outside_system_mounts_runs_it",
+        "tests/test_review_portable_smoke.py::test_smoke_when_existing_portable_cli_and_required_siblings_are_only_readonly_payload"
+      ],
+      "scopes": [
+        "synthetic_contract",
+        "native_technical_fixture"
+      ],
+      "unverified": [
+        "Actual existing native smoke distinct from contract fixture install callbacks; fresh vendor install remains unperformed."
+      ]
+    },
+    {
+      "id": "P51",
+      "purpose": "무료/project-local/목표 승인만 있고 설치 질문·명시 동의 없음 또는 거절 → download/install side effect 0",
+      "cases": [
+        "tests/test_cli.py::test_cli_when_missing_actual_install_question_cannot_fetch_or_install",
+        "tests/test_install_consent.py::test_install_when_answer_exists_without_actual_question_record",
+        "tests/test_install_consent.py::test_install_when_generic_authority_is_not_a_real_question_response[free_policy]",
+        "tests/test_install_consent.py::test_install_when_generic_authority_is_not_a_real_question_response[goal_activated]",
+        "tests/test_install_consent.py::test_install_when_generic_authority_is_not_a_real_question_response[project_local]",
+        "tests/test_install_consent.py::test_install_when_generic_authority_is_not_a_real_question_response[yes]",
+        "tests/test_install_consent.py::test_install_when_no_question_or_consent_exists",
+        "tests/test_install_consent.py::test_install_when_question_was_only_prepared_not_asked",
+        "tests/test_installers.py::test_installer_when_consent_is_missing_has_zero_fetch_or_install_effects",
+        "tests/test_installers.py::test_installer_when_user_declines_never_fetches"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": [
+        "All actual installer/download side effects remain zero."
+      ]
+    },
+    {
+      "id": "P52",
+      "purpose": "동의 뒤 host/버전/의존성·위치/권한·전송·비용 계획 변경 → 기존 동의 무효, 재질문 전 실행 0",
+      "cases": [
+        "tests/test_install_consent.py::test_install_when_host_inventory_changed_since_approval",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change0]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change10]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change11]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change12]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change1]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change2]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change3]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change4]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change5]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change6]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change7]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change8]",
+        "tests/test_install_consent.py::test_install_when_plan_changes_after_question_requires_new_consent[change9]",
+        "tests/test_install_consent.py::test_install_when_response_belongs_to_other_question_host_or_plan[channel-operator_message]",
+        "tests/test_install_consent.py::test_install_when_response_belongs_to_other_question_host_or_plan[host_id-ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff]",
+        "tests/test_install_consent.py::test_install_when_response_belongs_to_other_question_host_or_plan[plan_digest-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa]",
+        "tests/test_install_consent.py::test_install_when_response_belongs_to_other_question_host_or_plan[question_id-other-question]",
+        "tests/test_install_consent.py::test_install_when_response_belongs_to_other_question_host_or_plan[question_ref-other-message]",
+        "tests/test_install_recovery.py::test_recovery_when_old_approval_cannot_cover_new_version_or_paths"
+      ],
+      "scopes": [
+        "synthetic_contract"
+      ],
+      "unverified": []
+    }
+  ]
+}

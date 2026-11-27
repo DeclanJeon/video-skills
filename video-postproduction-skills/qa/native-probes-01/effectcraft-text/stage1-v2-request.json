@@ -1,0 +1,49 @@
+{
+  "argv": [
+    "/usr/bin/effectcraft-cli",
+    "--empty",
+    "--save-as",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/effectcraft-text/workspace/text.ecproj",
+    "run",
+    "--commands",
+    "-",
+    "--json"
+  ],
+  "commands": [
+    {
+      "command": "comp.new",
+      "params": {
+        "name": "OwnedText",
+        "width": 320,
+        "height": 180,
+        "frameRate": 24,
+        "duration": 0.5
+      }
+    },
+    {
+      "command": "text.fonts",
+      "params": {
+        "query": "DejaVu Sans"
+      }
+    },
+    {
+      "command": "layer.newText",
+      "params": {
+        "text": "Hello",
+        "font": "DejaVu Sans",
+        "style": "Book",
+        "size": 24,
+        "fill": "#ffffff",
+        "position": [
+          30,
+          90
+        ],
+        "edit": false
+      }
+    },
+    {
+      "command": "comp.info",
+      "params": {}
+    }
+  ]
+}

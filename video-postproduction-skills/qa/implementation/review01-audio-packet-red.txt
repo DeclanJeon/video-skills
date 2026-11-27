@@ -1,0 +1,35 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_picture_when_raw_reserved_packet_requests_unsupported_codec_cannot_bypass_prepare _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-328/test_picture_when_raw_reserved0')
+
+    def test_picture_when_raw_reserved_packet_requests_unsupported_codec_cannot_bypass_prepare(tmp_path):
+        import json
+        from uuid import uuid4
+        from support import fixture,update_request,modify_authority
+        request,production,handoff=fixture(tmp_path,with_audio=True)
+        profile=json.loads((tmp_path/'profile.json').read_text());profile['audio_codec']='flac'
+        update_request(tmp_path,request,'profile','profile.json',profile)
+        modify_authority(tmp_path,request,profile_digest=request['profile']['sha256'])
+        path=tmp_path/'project.json';path.write_text(json.dumps({'production':production.model_dump(mode='json')}))
+        intake=require('intake','load_intake')(tmp_path,tmp_path/'request.json',path)
+        timeline=require('timeline','build_timeline')(intake)
+        state=require('state_models','PostState')(intake=intake,timelines=(timeline,))
+        store=require('ledger','PostStore')(path);store.initialize(state)
+        backend=require('backends.filmcraft','FilmCraftBackend')(store,tmp_path/'raw-native')
+        cap=backend.inspect();owner=uuid4().hex
+        order=require('work_models','WorkOrder').model_validate_json(json.dumps({'id':'RAW-UNSUPPORTED','domain':'picture','branch':'main','backend':'filmcraft',
+            'source_refs':[s.source.model_dump() for s in intake.sources],'output':'raw.mp4'}))
+        plan=require('backends.film_models','FilmPlan')(workspace=(backend.workspace/('run-'+owner)).absolute(),owner=owner,capability=cap,
+            timeline=timeline,sources=intake.sources,profile=intake.profile)
+        packet=require('work_models','RequestPacket')(order=order,input_fingerprint=require('revisions','work_fingerprint')(state,order),payload=plan.model_dump_json())
+        store.record_reservation(packet,store.read_recorded().revision)
+>       with pytest.raises(require('errors','ContractError')) as raised:backend.execute(packet)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_review_audio_profile.py:59: Failed
+=========================== short test summary info ============================
+FAILED tests/test_review_audio_profile.py::test_picture_when_raw_reserved_packet_requests_unsupported_codec_cannot_bypass_prepare
+1 failed in 4.90s

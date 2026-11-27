@@ -1,0 +1,6 @@
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/revisions.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/revisions.py:33:12 - error: ‘str’ 및 ‘Never’ 형식이 겹치지 않으므로 식은 항상 False로 평가됩니다. (reportUnnecessaryContains)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/revisions.py:55:46 - error: "tuple[WorkOrder, tuple[Nonempty]]" 형식의 인수를 "append" 함수에서 "tuple[WorkOrder, tuple[()]]" 형식의 "object" 매개 변수에 할당할 수 없습니다.
+    "tuple[Nonempty]"은 "tuple[()]"에 할당할 수 없습니다.
+      Tuple 크기 불일치: 0이(가) 필요하지만 1을(를) 받았습니다. (reportArgumentType)
+2 errors, 0 warnings, 0 notes

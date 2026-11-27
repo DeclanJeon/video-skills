@@ -1,0 +1,200 @@
+.....FFFF...........                                                     [100%]
+=================================== FAILURES ===================================
+_ test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[branch] _
+
+raw_context = (<postproduction.ledger.PostStore object at 0x74c790c55fd0>, FinishingBackend(store=<postproduction.ledger.PostStore o...:48000,"channels":2,"container":"mp4","video_codec":"h264","audio_codec":"aac","loudness":null},"total_frames":144}}'))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x74c791031ba0>
+mismatch = 'branch'
+
+    @pytest.mark.parametrize('mismatch',['branch','recipe-pin','dependencies','capability'])
+    def test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof(raw_context,monkeypatch,mismatch):
+        from quality_support import submission
+        store,backend,original=raw_context;packet,plan=raw_packet(raw_context,mismatch)
+        # Capture ONLY the earlier missing admission contract; binary/path checks, native commands,
+        # reservations, output readback and materialization remain real. This is fixture history, not QA.
+        with monkeypatch.context() as patch:
+            patch.setattr('postproduction.backends.finishing.verify_finishing_packet',
+                lambda state,packet,project:require('finishing_models','FinishingPlan').model_validate_json(packet.payload))
+            job=store.record_reservation(packet,store.read_recorded().revision)
+            assert backend.execute(packet).phase=='succeeded'
+>           artifact=store.record_materialization(job.id,store.read_recorded().revision)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_review_finishing_packet.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+postproduction/ledger.py:184: in record_materialization
+    verify_artifact_current(updated,artifact,self.path)
+postproduction/materialization.py:94: in verify_artifact_current
+    _ = verify_finishing_packet(state,job.packet,project)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/finishing_admission.py:46: in verify_finishing_packet
+    recipe,inputs = bound_finishing_inputs(state,packet.order,project)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+state = PostState(format='post-state/1', revision=92, intake=PostIntake(request=IntakeRequest(project_id='synthetic-post', sna...kind='video')), environment_events=(), invalidations=(), reviews=(), deliveries=(), notes=(), observed_input_issues=())
+order = WorkOrder(id='RAW-branch-b167f46739ab41f0be7b23cd8b12a53d', domain=<Domain.FINISHING: 'finishing'>, branch='reverse', ...ha256='71cfb2f4e2907f9f2508d193cb283d3fe1e7e0bb86ac7ee097b868ae59b82f4f'), output='renders/FINISH.mp4', max_attempts=1)
+project = PosixPath('/tmp/pytest-of-declan/pytest-338/raw-finishing-admission0/project.json')
+
+    def bound_finishing_inputs(state: PostState, order: WorkOrder, project: Path) -> tuple[FinishingRecipe,FinishingInputs]:
+        """Work identity is independent of recipe labels; branch, actual pin and consumption are not."""
+        verify_work_inputs(state,order,project)
+        if (order.domain,order.backend)!=(Domain.FINISHING,Tool.FILMCRAFT):
+            raise ContractError("binding","finishing requires the reserved native finishing domain/backend")
+        if not {Change.COMPOSITE,Change.AUDIO}<=set(state.intake.authority.allowed_changes):
+            raise ContractError("authority","explicit current composition and mix authority required")
+        if order.recipe is None or {(s.clip_id,s.take_id) for s in order.source_refs}!={(s.source.clip_id,s.source.take_id) for s in state.intake.sources}:
+            raise ContractError("coverage","finishing requires explicit recipe and full current source denominator")
+        recipe = read_model(project.parent,order.recipe,FinishingRecipe)
+        if recipe.branch!=order.branch:
+>           raise ContractError("binding","finishing recipe branch differs from reserved destination branch")
+E           postproduction.errors.ContractError: binding: finishing recipe branch differs from reserved destination branch
+
+postproduction/finishing_admission.py:27: ContractError
+_ test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[recipe-pin] _
+
+raw_context = (<postproduction.ledger.PostStore object at 0x74c790c55fd0>, FinishingBackend(store=<postproduction.ledger.PostStore o...:48000,"channels":2,"container":"mp4","video_codec":"h264","audio_codec":"aac","loudness":null},"total_frames":144}}'))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x74c790eafd10>
+mismatch = 'recipe-pin'
+
+    @pytest.mark.parametrize('mismatch',['branch','recipe-pin','dependencies','capability'])
+    def test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof(raw_context,monkeypatch,mismatch):
+        from quality_support import submission
+        store,backend,original=raw_context;packet,plan=raw_packet(raw_context,mismatch)
+        # Capture ONLY the earlier missing admission contract; binary/path checks, native commands,
+        # reservations, output readback and materialization remain real. This is fixture history, not QA.
+        with monkeypatch.context() as patch:
+            patch.setattr('postproduction.backends.finishing.verify_finishing_packet',
+                lambda state,packet,project:require('finishing_models','FinishingPlan').model_validate_json(packet.payload))
+            job=store.record_reservation(packet,store.read_recorded().revision)
+            assert backend.execute(packet).phase=='succeeded'
+>           artifact=store.record_materialization(job.id,store.read_recorded().revision)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_review_finishing_packet.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+postproduction/ledger.py:184: in record_materialization
+    verify_artifact_current(updated,artifact,self.path)
+postproduction/materialization.py:94: in verify_artifact_current
+    _ = verify_finishing_packet(state,job.packet,project)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+state = PostState(format='post-state/1', revision=105, intake=PostIntake(request=IntakeRequest(project_id='synthetic-post', sn...kind='video')), environment_events=(), invalidations=(), reviews=(), deliveries=(), notes=(), observed_input_issues=())
+packet = RequestPacket(order=WorkOrder(id='RAW-recipe-pin-bdb52534369945f68feaa5e25eb422e0', domain=<Domain.FINISHING: 'finishi...":48000,"channels":2,"container":"mp4","video_codec":"h264","audio_codec":"aac","loudness":null},"total_frames":144}}')
+project = PosixPath('/tmp/pytest-of-declan/pytest-338/raw-finishing-admission0/project.json')
+
+    def verify_finishing_packet(state: PostState, packet: RequestPacket, project: Path) -> FinishingPlan:
+        plan = FinishingPlan.model_validate_json(packet.payload)
+        recipe,inputs = bound_finishing_inputs(state,packet.order,project)
+        if (plan.capability.tool!=Tool.FILMCRAFT or plan.recipe_pin!=packet.order.recipe
+            or plan.recipe!=recipe or projection(plan.inputs)!=projection(inputs)
+            or packet.input_fingerprint!=work_fingerprint(state,packet.order)):
+>           raise ContractError("binding","finishing payload recipe pin/inputs/capability must bind exact reserved work")
+E           postproduction.errors.ContractError: binding: finishing payload recipe pin/inputs/capability must bind exact reserved work
+
+postproduction/finishing_admission.py:50: ContractError
+_ test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[dependencies] _
+
+raw_context = (<postproduction.ledger.PostStore object at 0x74c790c55fd0>, FinishingBackend(store=<postproduction.ledger.PostStore o...:48000,"channels":2,"container":"mp4","video_codec":"h264","audio_codec":"aac","loudness":null},"total_frames":144}}'))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x74c790cefac0>
+mismatch = 'dependencies'
+
+    @pytest.mark.parametrize('mismatch',['branch','recipe-pin','dependencies','capability'])
+    def test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof(raw_context,monkeypatch,mismatch):
+        from quality_support import submission
+        store,backend,original=raw_context;packet,plan=raw_packet(raw_context,mismatch)
+        # Capture ONLY the earlier missing admission contract; binary/path checks, native commands,
+        # reservations, output readback and materialization remain real. This is fixture history, not QA.
+        with monkeypatch.context() as patch:
+            patch.setattr('postproduction.backends.finishing.verify_finishing_packet',
+                lambda state,packet,project:require('finishing_models','FinishingPlan').model_validate_json(packet.payload))
+            job=store.record_reservation(packet,store.read_recorded().revision)
+            assert backend.execute(packet).phase=='succeeded'
+>           artifact=store.record_materialization(job.id,store.read_recorded().revision)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_review_finishing_packet.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+postproduction/ledger.py:184: in record_materialization
+    verify_artifact_current(updated,artifact,self.path)
+postproduction/materialization.py:94: in verify_artifact_current
+    _ = verify_finishing_packet(state,job.packet,project)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/finishing_admission.py:46: in verify_finishing_packet
+    recipe,inputs = bound_finishing_inputs(state,packet.order,project)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+state = PostState(format='post-state/1', revision=118, intake=PostIntake(request=IntakeRequest(project_id='synthetic-post', sn...kind='video')), environment_events=(), invalidations=(), reviews=(), deliveries=(), notes=(), observed_input_issues=())
+order = WorkOrder(id='RAW-dependencies-3cd42ed43e5c49de933f67fac8c8314a', domain=<Domain.FINISHING: 'finishing'>, branch='main...ha256='71cfb2f4e2907f9f2508d193cb283d3fe1e7e0bb86ac7ee097b868ae59b82f4f'), output='renders/FINISH.mp4', max_attempts=1)
+project = PosixPath('/tmp/pytest-of-declan/pytest-338/raw-finishing-admission0/project.json')
+
+    def bound_finishing_inputs(state: PostState, order: WorkOrder, project: Path) -> tuple[FinishingRecipe,FinishingInputs]:
+        """Work identity is independent of recipe labels; branch, actual pin and consumption are not."""
+        verify_work_inputs(state,order,project)
+        if (order.domain,order.backend)!=(Domain.FINISHING,Tool.FILMCRAFT):
+            raise ContractError("binding","finishing requires the reserved native finishing domain/backend")
+        if not {Change.COMPOSITE,Change.AUDIO}<=set(state.intake.authority.allowed_changes):
+            raise ContractError("authority","explicit current composition and mix authority required")
+        if order.recipe is None or {(s.clip_id,s.take_id) for s in order.source_refs}!={(s.source.clip_id,s.source.take_id) for s in state.intake.sources}:
+            raise ContractError("coverage","finishing requires explicit recipe and full current source denominator")
+        recipe = read_model(project.parent,order.recipe,FinishingRecipe)
+        if recipe.branch!=order.branch:
+            raise ContractError("binding","finishing recipe branch differs from reserved destination branch")
+        inputs = compile_finishing(state,recipe,project.parent)
+        required = (inputs.picture.pin,*(p.artifact.pin for p in inputs.plates),inputs.mix.pin)
+        if any(p not in order.dependencies for p in required):
+>           raise ContractError("dependency","reserved dependencies must contain actual picture/plate/mix lineage")
+E           postproduction.errors.ContractError: dependency: reserved dependencies must contain actual picture/plate/mix lineage
+
+postproduction/finishing_admission.py:31: ContractError
+_ test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[capability] _
+
+raw_context = (<postproduction.ledger.PostStore object at 0x74c790c55fd0>, FinishingBackend(store=<postproduction.ledger.PostStore o...:48000,"channels":2,"container":"mp4","video_codec":"h264","audio_codec":"aac","loudness":null},"total_frames":144}}'))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x74c790b69750>
+mismatch = 'capability'
+
+    @pytest.mark.parametrize('mismatch',['branch','recipe-pin','dependencies','capability'])
+    def test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof(raw_context,monkeypatch,mismatch):
+        from quality_support import submission
+        store,backend,original=raw_context;packet,plan=raw_packet(raw_context,mismatch)
+        # Capture ONLY the earlier missing admission contract; binary/path checks, native commands,
+        # reservations, output readback and materialization remain real. This is fixture history, not QA.
+        with monkeypatch.context() as patch:
+            patch.setattr('postproduction.backends.finishing.verify_finishing_packet',
+                lambda state,packet,project:require('finishing_models','FinishingPlan').model_validate_json(packet.payload))
+            job=store.record_reservation(packet,store.read_recorded().revision)
+            assert backend.execute(packet).phase=='succeeded'
+>           artifact=store.record_materialization(job.id,store.read_recorded().revision)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_review_finishing_packet.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+postproduction/ledger.py:184: in record_materialization
+    verify_artifact_current(updated,artifact,self.path)
+postproduction/materialization.py:94: in verify_artifact_current
+    _ = verify_finishing_packet(state,job.packet,project)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+state = PostState(format='post-state/1', revision=131, intake=PostIntake(request=IntakeRequest(project_id='synthetic-post', sn...kind='video')), environment_events=(), invalidations=(), reviews=(), deliveries=(), notes=(), observed_input_issues=())
+packet = RequestPacket(order=WorkOrder(id='RAW-capability-7d619c4209674354a6a4168f61a5eaa6', domain=<Domain.FINISHING: 'finishi...":48000,"channels":2,"container":"mp4","video_codec":"h264","audio_codec":"aac","loudness":null},"total_frames":144}}')
+project = PosixPath('/tmp/pytest-of-declan/pytest-338/raw-finishing-admission0/project.json')
+
+    def verify_finishing_packet(state: PostState, packet: RequestPacket, project: Path) -> FinishingPlan:
+        plan = FinishingPlan.model_validate_json(packet.payload)
+        recipe,inputs = bound_finishing_inputs(state,packet.order,project)
+        if (plan.capability.tool!=Tool.FILMCRAFT or plan.recipe_pin!=packet.order.recipe
+            or plan.recipe!=recipe or projection(plan.inputs)!=projection(inputs)
+            or packet.input_fingerprint!=work_fingerprint(state,packet.order)):
+>           raise ContractError("binding","finishing payload recipe pin/inputs/capability must bind exact reserved work")
+E           postproduction.errors.ContractError: binding: finishing payload recipe pin/inputs/capability must bind exact reserved work
+
+postproduction/finishing_admission.py:50: ContractError
+=========================== short test summary info ============================
+FAILED tests/test_review_finishing_packet.py::test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[branch]
+FAILED tests/test_review_finishing_packet.py::test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[recipe-pin]
+FAILED tests/test_review_finishing_packet.py::test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[dependencies]
+FAILED tests/test_review_finishing_packet.py::test_quality_when_actual_historical_raw_packet_is_mismatched_rejects_current_proof[capability]
+4 failed, 16 passed in 147.93s (0:02:27)

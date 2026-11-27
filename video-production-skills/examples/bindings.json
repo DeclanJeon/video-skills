@@ -1,0 +1,23 @@
+[
+  {
+    "pin": {
+      "id": "synthetic-identity.txt",
+      "version": "1",
+      "sha256": "516662394ad013b0dc1e526c5dd0a1112b41de1ad2db292d49da59655b4170a9",
+      "path": "synthetic-identity.txt"
+    },
+    "source_clip": null,
+    "source_range": null,
+    "range_revision": null,
+    "acceptance_revision": null,
+    "role": "asset",
+    "modality": "image",
+    "imports": [
+      "identity"
+    ],
+    "excludes": [],
+    "native_asset_id": "FIXTURE-ASSET-NOT-UPLOADED",
+    "native_reference_id": "FIXTURE-REF-NOT-SELECTED",
+    "ready": true
+  }
+]

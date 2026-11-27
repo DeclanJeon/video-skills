@@ -1,0 +1,130 @@
+{
+  "$defs": {
+    "ClockRate": {
+      "additionalProperties": false,
+      "description": "Exact positive rational units per second (frames, ticks or samples).",
+      "properties": {
+        "num": {
+          "$ref": "#/$defs/Positive"
+        },
+        "den": {
+          "$ref": "#/$defs/Positive"
+        }
+      },
+      "required": [
+        "num",
+        "den"
+      ],
+      "title": "ClockRate",
+      "type": "object"
+    },
+    "CutSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "source": {
+          "$ref": "#/$defs/SourceRef"
+        },
+        "source_range": {
+          "$ref": "#/$defs/SourceRange"
+        },
+        "overlap_frames": {
+          "$ref": "#/$defs/Frame",
+          "default": 0
+        },
+        "speed": {
+          "$ref": "#/$defs/ClockRate",
+          "default": {
+            "num": 1,
+            "den": 1
+          }
+        },
+        "mode": {
+          "default": "forward",
+          "enum": [
+            "forward",
+            "reverse",
+            "freeze"
+          ],
+          "title": "Mode",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "source",
+        "source_range"
+      ],
+      "title": "CutSpec",
+      "type": "object"
+    },
+    "Frame": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "Nonempty": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "Positive": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "SourceRange": {
+      "additionalProperties": false,
+      "description": "Half-open source frame interval, never an invented exterior handle.",
+      "properties": {
+        "start": {
+          "$ref": "#/$defs/Frame"
+        },
+        "end": {
+          "$ref": "#/$defs/Positive"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "SourceRange",
+      "type": "object"
+    },
+    "SourceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "clip_id": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "take_id": {
+          "$ref": "#/$defs/Nonempty"
+        }
+      },
+      "required": [
+        "clip_id",
+        "take_id"
+      ],
+      "title": "SourceRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "branch": {
+      "$ref": "#/$defs/Nonempty",
+      "default": "main"
+    },
+    "cuts": {
+      "items": {
+        "$ref": "#/$defs/CutSpec"
+      },
+      "title": "Cuts",
+      "type": "array"
+    }
+  },
+  "required": [
+    "cuts"
+  ],
+  "title": "EditProposal",
+  "type": "object"
+}

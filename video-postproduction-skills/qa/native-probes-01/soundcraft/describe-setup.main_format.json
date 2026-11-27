@@ -1,0 +1,9 @@
+{
+  "id": "setup.main_format",
+  "label": "Main Output Format",
+  "menu": [],
+  "shortcut": null,
+  "params": "{format: stereo|LCR|Quad|5.0|5.1|6.1|7.0|7.1|7.1.2|5.1.4|7.1.4|9.1.6|1st Order Ambisonics…}",
+  "enabled": true,
+  "disabled_reason": null
+}

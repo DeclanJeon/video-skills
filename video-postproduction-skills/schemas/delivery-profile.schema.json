@@ -1,0 +1,120 @@
+{
+  "$defs": {
+    "ClockRate": {
+      "additionalProperties": false,
+      "description": "Exact positive rational units per second (frames, ticks or samples).",
+      "properties": {
+        "num": {
+          "$ref": "#/$defs/Positive"
+        },
+        "den": {
+          "$ref": "#/$defs/Positive"
+        }
+      },
+      "required": [
+        "num",
+        "den"
+      ],
+      "title": "ClockRate",
+      "type": "object"
+    },
+    "LoudnessPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "integrated_lufs": {
+          "maximum": 0,
+          "minimum": -70,
+          "title": "Integrated Lufs",
+          "type": "number"
+        },
+        "tolerance_lu": {
+          "maximum": 10,
+          "minimum": 0,
+          "title": "Tolerance Lu",
+          "type": "number"
+        },
+        "max_true_peak_dbtp": {
+          "maximum": 0,
+          "minimum": -60,
+          "title": "Max True Peak Dbtp",
+          "type": "number"
+        }
+      },
+      "required": [
+        "integrated_lufs",
+        "tolerance_lu",
+        "max_true_peak_dbtp"
+      ],
+      "title": "LoudnessPolicy",
+      "type": "object"
+    },
+    "Nonempty": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "Positive": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "width": {
+      "$ref": "#/$defs/Positive"
+    },
+    "height": {
+      "$ref": "#/$defs/Positive"
+    },
+    "fps": {
+      "$ref": "#/$defs/ClockRate"
+    },
+    "sample_rate": {
+      "$ref": "#/$defs/Positive"
+    },
+    "channels": {
+      "$ref": "#/$defs/Positive"
+    },
+    "container": {
+      "enum": [
+        "mp4",
+        "mov",
+        "mkv"
+      ],
+      "title": "Container",
+      "type": "string"
+    },
+    "video_codec": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "audio_codec": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "loudness": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/LoudnessPolicy"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "id",
+    "width",
+    "height",
+    "fps",
+    "sample_rate",
+    "channels",
+    "container",
+    "video_codec",
+    "audio_codec"
+  ],
+  "title": "DeliveryProfile",
+  "type": "object"
+}

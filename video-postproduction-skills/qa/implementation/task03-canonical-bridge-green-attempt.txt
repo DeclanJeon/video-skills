@@ -1,0 +1,58 @@
+F....                                                                    [100%]
+=================================== FAILURES ===================================
+_ test_environment_bridge_when_fixture_installer_facts_preserve_other_namespaces _
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-222/test_environment_bridge_when_f0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_environment_bridge_when_fixture_installer_facts_preserve_other_namespaces(project):
+        path,store,state,production=prepare(project);store.initialize(state)
+        root=path.parent/"owned-installer";root.mkdir()
+        h,p,driver,events,runner=prepared(root)
+        bridge=require("environment.project_bridge","InstallProjectBridge")(store,context(h,p))
+        result=require("environment.provision","Provisioner")(driver,bridge.record).execute(p,h,authority(p,h))
+        records=store.read_recorded().environment_events
+        assert result.status=="ready"
+        assert records[-1].event.phase=="ready"
+>       assert records[-1].evidence_kind=="contract_fixture"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_environment_bridge.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = EnvironmentObservation(context=InstallContext(id='INSTALL-RUN-1', host_id='bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb...driver-scoped smoke passed; no real-media or vendor-perceptual certification', installed=True), real_media_ready=False)
+item = 'evidence_kind'
+
+    def __getattr__(self, item: str) -> Any:
+        private_attributes = object.__getattribute__(self, '__private_attributes__')
+        if item in private_attributes:
+            attribute = private_attributes[item]
+            if hasattr(attribute, '__get__'):
+                return attribute.__get__(self, type(self))  # type: ignore
+    
+            try:
+                # Note: self.__pydantic_private__ cannot be None if self.__private_attributes__ has items
+                return self.__pydantic_private__[item]  # type: ignore
+            except KeyError as exc:
+                raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}') from exc
+        else:
+            # `__pydantic_extra__` can fail to be set if the model is not yet fully initialized.
+            # See `BaseModel.__repr_args__` for more details
+            try:
+                pydantic_extra = object.__getattribute__(self, '__pydantic_extra__')
+            except AttributeError:
+                pydantic_extra = None
+    
+            if pydantic_extra and item in pydantic_extra:
+                return pydantic_extra[item]
+            else:
+                if hasattr(self.__class__, item):
+                    return super().__getattribute__(item)  # Raises AttributeError if appropriate
+                else:
+                    # this is the current error
+>                   raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+E                   AttributeError: 'EnvironmentObservation' object has no attribute 'evidence_kind'
+
+/home/declan/.local/lib/python3.14/site-packages/pydantic/main.py:1105: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_environment_bridge.py::test_environment_bridge_when_fixture_installer_facts_preserve_other_namespaces
+1 failed, 4 passed in 13.46s

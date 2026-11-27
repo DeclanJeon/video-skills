@@ -1,0 +1,103 @@
+{
+  "clip_id": "C01",
+  "fingerprint": "0bdc082ef472e6c37626b07a9ffe8403619385b2ee868342269fe47622730519",
+  "capability": {
+    "account": "offline-fixture",
+    "model": "offline-fixture",
+    "transport": "offline-receipt",
+    "mode": "fixture-only",
+    "roles": [
+      "asset"
+    ],
+    "modalities": [
+      "image"
+    ],
+    "max_references": 1,
+    "max_active": 1,
+    "durations": [
+      2.0
+    ],
+    "width": 1280,
+    "height": 720,
+    "audio": false,
+    "evidence": {
+      "id": "capability-evidence.txt",
+      "version": "1",
+      "sha256": "52a31edfc16d79f14ebd402a0dd13b9a7d3a9ed7fb079f764b6fe9ef91ddcfc1",
+      "path": "capability-evidence.txt"
+    },
+    "observed_mode": "fixture-only"
+  },
+  "authority": {
+    "id": "OFFLINE-ONLY",
+    "clips": [
+      "C01"
+    ],
+    "allowed_hashes": [
+      "2e20e775e61b8439af8e6361784683edc6712f64182a05e8978d81226e9afb3a",
+      "516662394ad013b0dc1e526c5dd0a1112b41de1ad2db292d49da59655b4170a9"
+    ],
+    "configurations": [
+      {
+        "clip_id": "C01",
+        "scope_revision": "fixture-1",
+        "coverage_hash": "df68d45751704acf7ac2330921bee52009b67fbeccbcb606d20523e4da8616cc",
+        "clip_hash": "8f4aa7afddb055c8831d7945b5df5727af5b8efb1d297b8c5db3a8764fd074a6",
+        "duration_s": 2.0,
+        "width": 1280,
+        "height": 720,
+        "audio_requested": false,
+        "reuse_source": null,
+        "reuse_range": null
+      }
+    ],
+    "account": "offline-fixture",
+    "model": "offline-fixture",
+    "transport": "offline-receipt",
+    "mode": "fixture-only",
+    "max_attempts": 1,
+    "max_active": 1,
+    "upload": true,
+    "generation": true,
+    "reuse": false,
+    "evidence": {
+      "id": "authority-evidence.txt",
+      "version": "1",
+      "sha256": "1d81ac432872ba6bec421f95ee65371d8885fd6c9b95eaa043d1d92a2d300b06",
+      "path": "authority-evidence.txt"
+    }
+  },
+  "bindings": [
+    {
+      "pin": {
+        "id": "synthetic-identity.txt",
+        "version": "1",
+        "sha256": "516662394ad013b0dc1e526c5dd0a1112b41de1ad2db292d49da59655b4170a9",
+        "path": "synthetic-identity.txt"
+      },
+      "source_clip": null,
+      "source_range": null,
+      "range_revision": null,
+      "acceptance_revision": null,
+      "role": "asset",
+      "modality": "image",
+      "imports": [
+        "identity"
+      ],
+      "excludes": [],
+      "native_asset_id": "FIXTURE-ASSET-NOT-UPLOADED",
+      "native_reference_id": "FIXTURE-REF-NOT-SELECTED",
+      "ready": true
+    }
+  ],
+  "prompt": {
+    "id": "prompt.txt",
+    "version": "1",
+    "sha256": "2e20e775e61b8439af8e6361784683edc6712f64182a05e8978d81226e9afb3a",
+    "path": "prompt.txt"
+  },
+  "prompt_text": "Technical offline fixture: an empty yard. This is not a provider request.\n",
+  "audio_requested": false,
+  "duration_s": 2.0,
+  "request_hash": "017ac21ec41f510d9d010d667e46006be60af881844587303acaec33b89dafba"
+}

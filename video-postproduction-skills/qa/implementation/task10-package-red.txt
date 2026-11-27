@@ -1,0 +1,187 @@
+FFFFFFFFFF                                                               [100%]
+=================================== FAILURES ===================================
+_ test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs[postproduction-supervisor] _
+
+role = 'postproduction-supervisor'
+
+    @pytest.mark.parametrize('role',ROLES)
+    def test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs(role):
+        path=ROOT/role/'SKILL.md'
+>       assert path.is_file()
+E       AssertionError: assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction-supervisor/SKILL.md').is_file
+
+tests/test_package.py:13: AssertionError
+_ test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs[picture-editor] _
+
+role = 'picture-editor'
+
+    @pytest.mark.parametrize('role',ROLES)
+    def test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs(role):
+        path=ROOT/role/'SKILL.md'
+>       assert path.is_file()
+E       AssertionError: assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/picture-editor/SKILL.md').is_file
+
+tests/test_package.py:13: AssertionError
+_ test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs[motion-compositor] _
+
+role = 'motion-compositor'
+
+    @pytest.mark.parametrize('role',ROLES)
+    def test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs(role):
+        path=ROOT/role/'SKILL.md'
+>       assert path.is_file()
+E       AssertionError: assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/motion-compositor/SKILL.md').is_file
+
+tests/test_package.py:13: AssertionError
+_ test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs[color-finisher] _
+
+role = 'color-finisher'
+
+    @pytest.mark.parametrize('role',ROLES)
+    def test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs(role):
+        path=ROOT/role/'SKILL.md'
+>       assert path.is_file()
+E       AssertionError: assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/color-finisher/SKILL.md').is_file
+
+tests/test_package.py:13: AssertionError
+_ test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs[sound-editor-mixer] _
+
+role = 'sound-editor-mixer'
+
+    @pytest.mark.parametrize('role',ROLES)
+    def test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs(role):
+        path=ROOT/role/'SKILL.md'
+>       assert path.is_file()
+E       AssertionError: assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/sound-editor-mixer/SKILL.md').is_file
+
+tests/test_package.py:13: AssertionError
+_ test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs[caption-editor] _
+
+role = 'caption-editor'
+
+    @pytest.mark.parametrize('role',ROLES)
+    def test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs(role):
+        path=ROOT/role/'SKILL.md'
+>       assert path.is_file()
+E       AssertionError: assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/caption-editor/SKILL.md').is_file
+
+tests/test_package.py:13: AssertionError
+_ test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs[finishing-operator] _
+
+role = 'finishing-operator'
+
+    @pytest.mark.parametrize('role',ROLES)
+    def test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs(role):
+        path=ROOT/role/'SKILL.md'
+>       assert path.is_file()
+E       AssertionError: assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/finishing-operator/SKILL.md').is_file
+
+tests/test_package.py:13: AssertionError
+_ test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs[postproduction-qa] _
+
+role = 'postproduction-qa'
+
+    @pytest.mark.parametrize('role',ROLES)
+    def test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs(role):
+        path=ROOT/role/'SKILL.md'
+>       assert path.is_file()
+E       AssertionError: assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction-qa/SKILL.md').is_file
+
+tests/test_package.py:13: AssertionError
+_______ test_package_when_manifest_schema_examples_and_links_are_current _______
+
+    def test_package_when_manifest_schema_examples_and_links_are_current():
+        result=subprocess.run([sys.executable,str(ROOT/'scripts/check_package.py'),'--json'],capture_output=True,text=True,timeout=20)
+>       assert result.returncode==0,result.stdout+result.stderr
+E       AssertionError: /usr/bin/python3: can't open file '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/scripts/check_package.py': [Errno 2] No such file or directory
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...-Automation/video-skills/video-postproduction-skills/scripts/check_package.py': [Errno 2] No such file or directory\n").returncode
+
+tests/test_package.py:24: AssertionError
+_________ test_package_when_schema_or_role_is_missing_checker_rejects __________
+
+module = 'package_checks', name = 'check_package'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.package_checks', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.package_checks'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-279/test_package_when_schema_or_ro0')
+
+    def test_package_when_schema_or_role_is_missing_checker_rejects(tmp_path):
+>       result=require('package_checks','check_package')(tmp_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_package.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'package_checks', name = 'check_package'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.package_checks'
+
+tests/conftest.py:10: Failed
+=========================== short test summary info ============================
+FAILED tests/test_package.py::test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs[postproduction-supervisor]
+FAILED tests/test_package.py::test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs[picture-editor]
+FAILED tests/test_package.py::test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs[motion-compositor]
+FAILED tests/test_package.py::test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs[color-finisher]
+FAILED tests/test_package.py::test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs[sound-editor-mixer]
+FAILED tests/test_package.py::test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs[caption-editor]
+FAILED tests/test_package.py::test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs[finishing-operator]
+FAILED tests/test_package.py::test_package_when_role_has_explicit_scope_ordered_question_gate_and_outputs[postproduction-qa]
+FAILED tests/test_package.py::test_package_when_manifest_schema_examples_and_links_are_current
+FAILED tests/test_package.py::test_package_when_schema_or_role_is_missing_checker_rejects
+10 failed in 0.10s

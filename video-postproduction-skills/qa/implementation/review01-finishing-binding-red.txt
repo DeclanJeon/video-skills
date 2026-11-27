@@ -1,0 +1,49 @@
+FFF.                                                                     [100%]
+=================================== FAILURES ===================================
+_ test_finishing_when_reused_current_assets_do_not_match_destination_edit_map_rejects[picture] _
+
+assets = (<postproduction.ledger.PostStore object at 0x7db6015f1550>, ArtifactRef(id='REVERSE-PICTURE-A1-artifact', job_id='REV...f/plate_00023.png', sha256='54134823fdf85f926630126abc2b7b23acc4e08c1dd33085a2e7d31bbe460279')), kind='rgba_sequence'))
+mismatch = 'picture'
+
+    @pytest.mark.parametrize("mismatch",["picture","mix-lock","caption-map"])
+    def test_finishing_when_reused_current_assets_do_not_match_destination_edit_map_rejects(assets,mismatch):
+        store,picture,mix,oldpicture,oldmix,text=assets
+        request=recipe(oldpicture,oldmix) if mismatch=="picture" else recipe(picture,oldmix) if mismatch=="mix-lock" else recipe(picture,mix,(text,))
+>       with pytest.raises(require("errors","ContractError")):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_review_finishing_binding.py:51: Failed
+_ test_finishing_when_reused_current_assets_do_not_match_destination_edit_map_rejects[mix-lock] _
+
+assets = (<postproduction.ledger.PostStore object at 0x7db6015f1550>, ArtifactRef(id='REVERSE-PICTURE-A1-artifact', job_id='REV...f/plate_00023.png', sha256='54134823fdf85f926630126abc2b7b23acc4e08c1dd33085a2e7d31bbe460279')), kind='rgba_sequence'))
+mismatch = 'mix-lock'
+
+    @pytest.mark.parametrize("mismatch",["picture","mix-lock","caption-map"])
+    def test_finishing_when_reused_current_assets_do_not_match_destination_edit_map_rejects(assets,mismatch):
+        store,picture,mix,oldpicture,oldmix,text=assets
+        request=recipe(oldpicture,oldmix) if mismatch=="picture" else recipe(picture,oldmix) if mismatch=="mix-lock" else recipe(picture,mix,(text,))
+>       with pytest.raises(require("errors","ContractError")):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_review_finishing_binding.py:51: Failed
+_ test_finishing_when_reused_current_assets_do_not_match_destination_edit_map_rejects[caption-map] _
+
+assets = (<postproduction.ledger.PostStore object at 0x7db6015f1550>, ArtifactRef(id='REVERSE-PICTURE-A1-artifact', job_id='REV...f/plate_00023.png', sha256='54134823fdf85f926630126abc2b7b23acc4e08c1dd33085a2e7d31bbe460279')), kind='rgba_sequence'))
+mismatch = 'caption-map'
+
+    @pytest.mark.parametrize("mismatch",["picture","mix-lock","caption-map"])
+    def test_finishing_when_reused_current_assets_do_not_match_destination_edit_map_rejects(assets,mismatch):
+        store,picture,mix,oldpicture,oldmix,text=assets
+        request=recipe(oldpicture,oldmix) if mismatch=="picture" else recipe(picture,oldmix) if mismatch=="mix-lock" else recipe(picture,mix,(text,))
+>       with pytest.raises(require("errors","ContractError")):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_review_finishing_binding.py:51: Failed
+=========================== short test summary info ============================
+FAILED tests/test_review_finishing_binding.py::test_finishing_when_reused_current_assets_do_not_match_destination_edit_map_rejects[picture]
+FAILED tests/test_review_finishing_binding.py::test_finishing_when_reused_current_assets_do_not_match_destination_edit_map_rejects[mix-lock]
+FAILED tests/test_review_finishing_binding.py::test_finishing_when_reused_current_assets_do_not_match_destination_edit_map_rejects[caption-map]
+3 failed, 1 passed in 42.20s

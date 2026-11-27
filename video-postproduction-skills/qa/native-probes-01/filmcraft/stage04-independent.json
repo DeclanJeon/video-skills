@@ -1,0 +1,13 @@
+{
+  "width": 160,
+  "height": 90,
+  "frames": 144,
+  "rate": {
+    "num": 24,
+    "den": 1
+  },
+  "cfr": true,
+  "audio": false,
+  "sha256": "4d209ae8100a9a018e6f4bfee09b9c7b2fee9cc009b71f93fd94cf85540c3efe",
+  "scope": "native technical probe only, not perceptual/delivery certification"
+}

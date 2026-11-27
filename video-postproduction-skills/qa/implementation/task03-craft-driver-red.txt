@@ -1,0 +1,135 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_ test_craft_portable_driver_when_local_synthetic_archive_is_installed_and_callback_checked _
+
+module = 'environment.craft_installer', name = 'CraftPortableDriver'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.craft_installer', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.craft_installer'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-167/test_craft_portable_driver_whe0')
+
+    def test_craft_portable_driver_when_local_synthetic_archive_is_installed_and_callback_checked(tmp_path):
+        import hashlib
+        from test_portable_installer import archive
+        cache=tmp_path/"cache";cache.mkdir()
+        payload=archive(cache,[("bin/filmcraft-cli","#!/bin/sh\\necho synthetic\\n","file")])
+        p=release_plan(tmp_path).model_copy(update={"source_sha256":hashlib.sha256(payload.read_bytes()).hexdigest()})
+        calls=[]
+        def smoke(plan,files):
+            calls.append(files)
+            return require("environment.install_models","SmokeResult")(passed=True,evidence="synthetic callback only, no real vendor certification",network_denied=True)
+>       driver=require("environment.craft_installer","CraftPortableDriver")(tmp_path,tmp_path/"leases",cache,tmp_path/"new-tool",smoke)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_installer_routes.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.craft_installer', name = 'CraftPortableDriver'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.craft_installer'
+
+tests/conftest.py:10: Failed
+____ test_craft_portable_driver_when_cached_payload_changed_before_install _____
+
+module = 'environment.craft_installer', name = 'CraftPortableDriver'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.craft_installer', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.craft_installer'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-167/test_craft_portable_driver_whe1')
+
+    def test_craft_portable_driver_when_cached_payload_changed_before_install(tmp_path):
+        from test_portable_installer import archive
+        cache=tmp_path/"cache";cache.mkdir()
+        payload=archive(cache,[("bin/filmcraft-cli","not the approved bytes","file")])
+        p=release_plan(tmp_path)
+>       driver=require("environment.craft_installer","CraftPortableDriver")(tmp_path,tmp_path/"leases",cache,tmp_path/"new-tool",lambda p,f:None)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_installer_routes.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.craft_installer', name = 'CraftPortableDriver'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.craft_installer'
+
+tests/conftest.py:10: Failed
+=========================== short test summary info ============================
+FAILED tests/test_installer_routes.py::test_craft_portable_driver_when_local_synthetic_archive_is_installed_and_callback_checked
+FAILED tests/test_installer_routes.py::test_craft_portable_driver_when_cached_payload_changed_before_install
+2 failed in 0.17s

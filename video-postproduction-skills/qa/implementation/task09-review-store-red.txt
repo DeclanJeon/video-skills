@@ -1,0 +1,32 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+____ test_quality_when_generic_transaction_cannot_forge_local_gate_reports _____
+
+actual = (<postproduction.ledger.PostStore object at 0x7f7f1e6942f0>, ArtifactRef(id='FINISH-A1-artifact', job_id='FINISH-A1', ...ba57fd84e1ccd50b0/mix.wav', sha256='7e17d5d9004acb3e70494b9f200fbf423b4b905ec1948fc2e3b332d352b88f2b')), kind='video'))
+
+    def test_quality_when_generic_transaction_cannot_forge_local_gate_reports(actual):
+        store,artifact=actual;report=submission(store,artifact,id="FORGED-GENERIC")
+        state=store.read_recorded()
+        result=require("quality","review_artifact")(state,report,store.path)
+>       with pytest.raises(require("errors","ContractError")):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_quality.py:51: Failed
+____ test_quality_when_narrow_review_commit_preserves_foreign_and_job_facts ____
+
+actual = (<postproduction.ledger.PostStore object at 0x7f7f1e6942f0>, ArtifactRef(id='FINISH-A1-artifact', job_id='FINISH-A1', ...ba57fd84e1ccd50b0/mix.wav', sha256='7e17d5d9004acb3e70494b9f200fbf423b4b905ec1948fc2e3b332d352b88f2b')), kind='video'))
+
+    def test_quality_when_narrow_review_commit_preserves_foreign_and_job_facts(actual):
+        import json
+        store,artifact=actual;report=submission(store,artifact,id="NARROW-REVIEW")
+        before=store.read_recorded()
+>       result=store.record_review(report,before.revision)
+               ^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'PostStore' object has no attribute 'record_review'
+
+tests/test_quality.py:59: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_quality.py::test_quality_when_generic_transaction_cannot_forge_local_gate_reports
+FAILED tests/test_quality.py::test_quality_when_narrow_review_commit_preserves_foreign_and_job_facts
+2 failed, 6 deselected in 28.99s

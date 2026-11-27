@@ -1,0 +1,92 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_____ test_cli_when_unknown_or_bad_json_is_rejected_before_native_dispatch _____
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-269/test_cli_when_unknown_or_bad_j0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_cli_when_unknown_or_bad_json_is_rejected_before_native_dispatch(project):
+        path,production=project
+        (path.parent/'request.json').write_text('{"unknown":true}')
+        result=call('intake',path,'--request',path.parent/'request.json')
+        assert result.returncode!=0
+        assert 'Traceback' not in result.stderr
+>       assert json.loads(result.stderr)['error']
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_cli.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.14/json/__init__.py:352: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/json/decoder.py:345: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x762990273a10>
+s = "/usr/bin/python3: can't open file '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/scripts/postproduction.py': [Errno 2] No such file or directory\n"
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/usr/lib/python3.14/json/decoder.py:363: JSONDecodeError
+____ test_cli_when_missing_actual_install_question_cannot_fetch_or_install _____
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-269/test_cli_when_missing_actual_i0')
+
+    def test_cli_when_missing_actual_install_question_cannot_fetch_or_install(tmp_path):
+        from test_install_consent import plan,missing_host
+        p=plan(missing_host(),tool='autoclip',write_paths=[str(tmp_path/'target'),str(tmp_path/'cache'),str(tmp_path/'leases')])
+        file=tmp_path/'install-plan.json';file.write_text(p.model_dump_json())
+        result=call('install',file)
+        assert result.returncode!=0
+>       assert json.loads(result.stderr)['error']
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_cli.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.14/json/__init__.py:352: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/json/decoder.py:345: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x762990273a10>
+s = "/usr/bin/python3: can't open file '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/scripts/postproduction.py': [Errno 2] No such file or directory\n"
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/usr/lib/python3.14/json/decoder.py:363: JSONDecodeError
+=========================== short test summary info ============================
+FAILED tests/test_cli.py::test_cli_when_unknown_or_bad_json_is_rejected_before_native_dispatch
+FAILED tests/test_cli.py::test_cli_when_missing_actual_install_question_cannot_fetch_or_install
+2 failed, 6 deselected in 0.67s

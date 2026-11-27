@@ -1,0 +1,26 @@
+F.                                                                       [100%]
+=================================== FAILURES ===================================
+_ test_lineage_when_actual_picture_producer_loses_source_affects_only_consumers[True-True] _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-243/test_lineage_when_actual_pictu0')
+consumed = True, blocked = True
+
+    @pytest.mark.parametrize("consumed,blocked",[(True,True),(False,False)])
+    def test_lineage_when_actual_picture_producer_loses_source_affects_only_consumers(tmp_path,consumed,blocked):
+        store,backend,packet,value=rendered(tmp_path)
+        state=store.read_recorded();artifact=store.record_materialization(state.jobs[0].id,state.revision)
+        state=store.read_recorded()
+        raw={"id":"INDEPENDENT-CONTEXT","domain":"motion","branch":"main","backend":"effectcraft",
+            "source_refs":[state.intake.sources[0].source.model_dump()],"dependencies":[artifact.pin.model_dump()] if consumed else [],"output":"plates/future.json"}
+        order=require("work_models","WorkOrder").model_validate_json(json.dumps(raw))
+        document=json.loads(store.path.read_text());document["production"]["selections"][2]["valid"]=False
+        store.path.write_text(json.dumps(document))
+        if blocked:
+>           with pytest.raises(require("errors","ContractError")):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE ContractError
+
+tests/test_dependency_lineage.py:19: Failed
+=========================== short test summary info ============================
+FAILED tests/test_dependency_lineage.py::test_lineage_when_actual_picture_producer_loses_source_affects_only_consumers[True-True]
+1 failed, 1 passed in 11.82s

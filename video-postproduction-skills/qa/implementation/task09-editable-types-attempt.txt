@@ -1,0 +1,4 @@
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/editable.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/editable.py:53:9 - error: "append"의 형식을 부분적으로 알 수 없습니다.
+    ‘append’의 유형이 ‘(object: Unknown, /) -> None’입니다. (reportUnknownMemberType)
+1 error, 0 warnings, 0 notes

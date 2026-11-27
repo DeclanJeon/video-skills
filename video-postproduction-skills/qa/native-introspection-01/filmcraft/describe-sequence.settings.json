@@ -1,0 +1,12 @@
+{
+  "defaultShortcut": null,
+  "enabled": false,
+  "id": "sequence.settings",
+  "label": "Sequence Settings…",
+  "menu": [
+    "Sequence"
+  ],
+  "params": "{\"width\":u32?,\"height\":u32?,\"fps\":f64?,\"name\":str?,\"sampleRate\":u32?,\"mix\":\"Stereo|Mono|5.1|Adaptive\"?,\"dropFrame\":bool?,\"videoDisplay\":\"timecode|feet35|feet16|frames\"?,\"maxRenderQuality\":bool?,\"workingSpace\":\"rec709\"|\"rec2100-pq\"|\"rec2100-hlg\"?,\"wideGamut\":bool?,\"autoToneMap\":bool?,\"scaleMotion\":bool=false}",
+  "shortcut": null,
+  "shortcuts": []
+}

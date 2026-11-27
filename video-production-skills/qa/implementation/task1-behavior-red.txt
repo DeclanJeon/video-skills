@@ -1,0 +1,259 @@
+FFFFFFFFF                                                                [100%]
+=================================== FAILURES ===================================
+_____________ test_complete_coverage_when_all_requirements_mapped ______________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...io_required=False)), edit_order=('C1', 'C2', 'C3'), joins=()), attempts=(), selections=(), history=(), join_reviews=())
+
+    def test_complete_coverage_when_all_requirements_mapped(seed):
+        # Given: three approved requirements and their clips.
+>       validate = require("contracts", "validate_batch")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_coverage.py:9: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'contracts', name = 'validate_batch'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing contracts runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7c7d0b607270>('production.contracts')
+E        +    where <function find_spec at 0x7c7d0b607270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+________________ test_first_missing_shot_when_queue_omits_clip _________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...io_required=False)), edit_order=('C1', 'C2', 'C3'), joins=()), attempts=(), selections=(), history=(), join_reviews=())
+
+    def test_first_missing_shot_when_queue_omits_clip(seed):
+        # Given: a batch silently missing its final required clip.
+        batch = seed.batch.model_copy(update={"clips": seed.batch.clips[:-1], "edit_order": seed.batch.edit_order[:-1]})
+        # When / Then: coverage cannot self-certify a reduced queue.
+        with pytest.raises(ContractError, match="coverage"):
+>           require("contracts", "validate_batch")(batch)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_coverage.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'contracts', name = 'validate_batch'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing contracts runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7c7d0b607270>('production.contracts')
+E        +    where <function find_spec at 0x7c7d0b607270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+___________________ test_multi_shot_when_one_event_unmapped ____________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...io_required=False)), edit_order=('C1', 'C2', 'C3'), joins=()), attempts=(), selections=(), history=(), join_reviews=())
+
+    def test_multi_shot_when_one_event_unmapped(seed):
+        # Given: another event within the same shot.
+        extra = Requirement(id="DIALOGUE", shot="SH1", panels=("P1",), modality="audio", locator="script#line2")
+        batch = seed.batch.model_copy(update={"coverage": (*seed.batch.coverage, extra)})
+        # When / Then: matching shot counts does not hide a missing event.
+        with pytest.raises(ContractError, match="coverage"):
+>           require("contracts", "validate_batch")(batch)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_coverage.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'contracts', name = 'validate_batch'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing contracts runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7c7d0b607270>('production.contracts')
+E        +    where <function find_spec at 0x7c7d0b607270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+__________________ test_duplicate_ids_when_batch_is_ambiguous __________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...io_required=False)), edit_order=('C1', 'C2', 'C3'), joins=()), attempts=(), selections=(), history=(), join_reviews=())
+
+    def test_duplicate_ids_when_batch_is_ambiguous(seed):
+        # Given: two clips use the same ID.
+        batch = seed.batch.model_copy(update={"clips": (seed.batch.clips[0], *seed.batch.clips)})
+        # When / Then: duplicate identities are rejected.
+        with pytest.raises(ContractError, match="duplicate"):
+>           require("contracts", "validate_batch")(batch)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_coverage.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'contracts', name = 'validate_batch'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing contracts runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7c7d0b607270>('production.contracts')
+E        +    where <function find_spec at 0x7c7d0b607270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+____________ test_wrong_shot_when_requirement_mapped_to_other_clip _____________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...io_required=False)), edit_order=('C1', 'C2', 'C3'), joins=()), attempts=(), selections=(), history=(), join_reviews=())
+
+    def test_wrong_shot_when_requirement_mapped_to_other_clip(seed):
+        # Given: event R1 is assigned outside SH1.
+        first = seed.batch.clips[0].model_copy(update={"shots": ("OTHER",)})
+        batch = seed.batch.model_copy(update={"clips": (first, *seed.batch.clips[1:])})
+        # When / Then: arbitrary requirement tags do not prove coverage.
+        with pytest.raises(ContractError, match="coverage"):
+>           require("contracts", "validate_batch")(batch)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_coverage.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'contracts', name = 'validate_batch'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing contracts runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7c7d0b607270>('production.contracts')
+E        +    where <function find_spec at 0x7c7d0b607270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_____________ test_independent_ready_when_predecessor_not_accepted _____________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...io_required=False)), edit_order=('C1', 'C2', 'C3'), joins=()), attempts=(), selections=(), history=(), join_reviews=())
+
+    def test_independent_ready_when_predecessor_not_accepted(seed):
+        # Given: C3 needs C1 but C2 is independent.
+        state = linked(seed)
+        # When: computing the ready set.
+>       ready = require("contracts", "ready_clips")(state)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_dependencies.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'contracts', name = 'ready_clips'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing contracts runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7c7d0b607270>('production.contracts')
+E        +    where <function find_spec at 0x7c7d0b607270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+___________________ test_cycle_when_clips_require_each_other ___________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...io_required=False)), edit_order=('C1', 'C2', 'C3'), joins=()), attempts=(), selections=(), history=(), join_reviews=())
+
+    def test_cycle_when_clips_require_each_other(seed):
+        # Given: C1 and C3 depend on each other.
+        state = linked(seed)
+        first = state.batch.clips[0].model_copy(update={"references": (Reference(source_clip=ClipId("C3"), role="state", modality="video", imports=("pose",)),)})
+        batch = state.batch.model_copy(update={"clips": (first, *state.batch.clips[1:])})
+        # When / Then: no submission may start on a cyclic graph.
+        with pytest.raises(ContractError, match="cycle"):
+>           require("contracts", "validate_batch")(batch)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_dependencies.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'contracts', name = 'validate_batch'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing contracts runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7c7d0b607270>('production.contracts')
+E        +    where <function find_spec at 0x7c7d0b607270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_______________ test_dangling_reference_when_source_not_in_batch _______________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...io_required=False)), edit_order=('C1', 'C2', 'C3'), joins=()), attempts=(), selections=(), history=(), join_reviews=())
+
+    def test_dangling_reference_when_source_not_in_batch(seed):
+        # Given: a nonexistent history source is named.
+        state = linked(seed)
+        third = state.batch.clips[2].model_copy(update={"references": (Reference(source_clip=ClipId("MISSING"), role="state", modality="video", imports=("pose",)),)})
+        batch = state.batch.model_copy(update={"clips": (*state.batch.clips[:2], third)})
+        # When / Then: dangling references are not treated as independent.
+        with pytest.raises(ContractError, match="reference"):
+>           require("contracts", "validate_batch")(batch)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_dependencies.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'contracts', name = 'validate_batch'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing contracts runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7c7d0b607270>('production.contracts')
+E        +    where <function find_spec at 0x7c7d0b607270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+______________ test_optional_missing_when_omission_not_justified _______________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...io_required=False)), edit_order=('C1', 'C2', 'C3'), joins=()), attempts=(), selections=(), history=(), join_reviews=())
+
+    def test_optional_missing_when_omission_not_justified(seed):
+        # Given: an optional reference has no omitted-use rationale.
+        ref = Reference(source_clip=ClipId("C1"), role="state", modality="video", imports=("pose",), required=False)
+        third = seed.batch.clips[2].model_copy(update={"references": (ref,)})
+        state = seed.model_copy(update={"batch": seed.batch.model_copy(update={"clips": (*seed.batch.clips[:2], third)})})
+        # When: checking readiness.
+>       ready = require("contracts", "ready_clips")(state)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_dependencies.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'contracts', name = 'ready_clips'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing contracts runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7c7d0b607270>('production.contracts')
+E        +    where <function find_spec at 0x7c7d0b607270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_coverage.py::test_complete_coverage_when_all_requirements_mapped
+FAILED tests/test_coverage.py::test_first_missing_shot_when_queue_omits_clip
+FAILED tests/test_coverage.py::test_multi_shot_when_one_event_unmapped - Asse...
+FAILED tests/test_coverage.py::test_duplicate_ids_when_batch_is_ambiguous - A...
+FAILED tests/test_coverage.py::test_wrong_shot_when_requirement_mapped_to_other_clip
+FAILED tests/test_dependencies.py::test_independent_ready_when_predecessor_not_accepted
+FAILED tests/test_dependencies.py::test_cycle_when_clips_require_each_other
+FAILED tests/test_dependencies.py::test_dangling_reference_when_source_not_in_batch
+FAILED tests/test_dependencies.py::test_optional_missing_when_omission_not_justified
+9 failed in 0.10s

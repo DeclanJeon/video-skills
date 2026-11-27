@@ -1,0 +1,358 @@
+[
+  {
+    "url": "https://raw.githubusercontent.com/zhouxiaoka/autoclip/2f511907a72cbfbb8d86639f6441967b826acb6a/backend/services/diagnostics/consent.py",
+    "exit": 0,
+    "returned_text_sha256": "7e324bc3dde399a8075149140d2ecb86f03eb95aad000050643c05e1f4e781c2",
+    "chars": 5413,
+    "excerpts": [
+      {
+        "line": 1,
+        "text": "\"\"\"Local diagnostics consent. Unset defaults on. This is not analytics and not model training.\"\"\""
+      },
+      {
+        "line": 21,
+        "text": "def consent_path() -> Path:"
+      },
+      {
+        "line": 22,
+        "text": "    return get_data_directory() / \"diagnostics\" / \"consent.json\""
+      },
+      {
+        "line": 51,
+        "text": "            \"endpoint_configured\": False,"
+      },
+      {
+        "line": 55,
+        "text": "def _unset() -> Consent:"
+      },
+      {
+        "line": 56,
+        "text": "    \"\"\"No saved choice. Diagnostics and excerpts upload by default; the notice is only a disclosure.\"\"\""
+      },
+      {
+        "line": 83,
+        "text": "    file = consent_path()"
+      },
+      {
+        "line": 93,
+        "text": "def _stored(consent: Consent) -> dict:"
+      },
+      {
+        "line": 94,
+        "text": "    payload = consent.public()"
+      },
+      {
+        "line": 95,
+        "text": "    payload.pop(\"endpoint_configured\", None)"
+      },
+      {
+        "line": 100,
+        "text": "def _atomic(consent: Consent) -> None:"
+      },
+      {
+        "line": 101,
+        "text": "    file = consent_path()"
+      },
+      {
+        "line": 103,
+        "text": "    payload = _stored(consent)"
+      }
+    ]
+  },
+  {
+    "url": "https://raw.githubusercontent.com/zhouxiaoka/autoclip/2f511907a72cbfbb8d86639f6441967b826acb6a/backend/services/diagnostics/service.py",
+    "exit": 0,
+    "returned_text_sha256": "595fb10df83b67ec21a78da244dbfef390dada06101fbe1ff3df7279853a2bad",
+    "chars": 12171,
+    "excerpts": [
+      {
+        "line": 1,
+        "text": "\"\"\"Preview, one-click submit, and consent changes. Generation state is read, never written.\"\"\""
+      },
+      {
+        "line": 11,
+        "text": "from backend.services.diagnostics.consent import Consent, commit, load"
+      },
+      {
+        "line": 80,
+        "text": "    consent = load()"
+      },
+      {
+        "line": 81,
+        "text": "    view = consent.public()"
+      },
+      {
+        "line": 82,
+        "text": "    view[\"endpoint_configured\"] = bool(upload.endpoint())"
+      },
+      {
+        "line": 86,
+        "text": "        \"consent\": view,"
+      },
+      {
+        "line": 89,
+        "text": "        \"excerpt_limitation\": \"A short excerpt starts at the beginning and can miss a failure that happens later.\","
+      },
+      {
+        "line": 102,
+        "text": "    \"\"\"A new excerpt belongs to this producer until the durable queue accepts it.\"\"\""
+      },
+      {
+        "line": 110,
+        "text": "    owns_excerpt = \"excerpt\" in roles"
+      },
+      {
+        "line": 113,
+        "text": "            directory = get_data_directory() / \"diagnostics\" / \"excerpts\" / item[\"id\"]"
+      },
+      {
+        "line": 117,
+        "text": "                item[\"files\"] = media.materialize(item[\"project_id\"], roles, excerpt_dir=directory, cut=cut)"
+      },
+      {
+        "line": 125,
+        "text": "                and any(row[\"role\"] == \"excerpt\" for row in item[\"files\"])):"
+      },
+      {
+        "line": 126,
+        "text": "            owns_excerpt = False"
+      },
+      {
+        "line": 129,
+        "text": "        if owns_excerpt:"
+      },
+      {
+        "line": 130,
+        "text": "            queue.discard_excerpt(item[\"id\"])"
+      },
+      {
+        "line": 141,
+        "text": "        if role not in {\"excerpt\", \"original\", \"subtitle\"}:"
+      },
+      {
+        "line": 149,
+        "text": "    consent = load()"
+      },
+      {
+        "line": 151,
+        "text": "        if consent.unreadable:"
+      },
+      {
+        "line": 152,
+        "text": "            raise DiagnosticsError(\"consent_unreadable\", 422)"
+      },
+      {
+        "line": 153,
+        "text": "        _previous, consent = commit("
+      },
+      {
+        "line": 154,
+        "text": "            diagnostics=True, media=consent.media, full_original=consent.full_original, informed=True,"
+      },
+      {
+        "line": 173,
+        "text": "        \"epoch\": consent.epoch,"
+      },
+      {
+        "line": 174,
+        "text": "        \"consent_version\": consent.text_version,"
+      },
+      {
+        "line": 187,
+        "text": "    upload.wake()"
+      },
+      {
+        "line": 188,
+        "text": "    if os.getenv(\"AUTOCLIP_DIAGNOSTICS_SYNC\") == \"1\":"
+      },
+      {
+        "line": 200,
+        "text": "def set_consent(*, diagnostics: bool, media: bool, full_original: bool, informed: bool, transport=None) -> Consent:"
+      },
+      {
+        "line": 201,
+        "text": "    previous, consent = commit("
+      },
+      {
+        "line": 205,
+        "text": "    if previous.diagnostics and not consent.diagnostics:"
+      },
+      {
+        "line": 206,
+        "text": "        changed = queue.cancel_before(consent.epoch)"
+      },
+      {
+        "line": 207,
+        "text": "    elif consent.diagnostics:"
+      },
+      {
+        "line": 209,
+        "text": "        if previous.full_original and not consent.full_original:"
+      },
+      {
+        "line": 211,
+        "text": "        if previous.media and not consent.media:"
+      },
+      {
+        "line": 212,
+        "text": "            roles.update({\"excerpt\", \"subtitle\"})"
+      },
+      {
+        "line": 218,
+        "text": "    return consent"
+      },
+      {
+        "line": 222,
+        "text": "    if transport is None and upload.endpoint():"
+      }
+    ]
+  },
+  {
+    "url": "https://raw.githubusercontent.com/zhouxiaoka/autoclip/2f511907a72cbfbb8d86639f6441967b826acb6a/backend/services/diagnostics/upload.py",
+    "exit": 0,
+    "returned_text_sha256": "4d328ce06cf394bd745f26b6c583d12db339314717fa751a11b026f8e4f4d284",
+    "chars": 34432,
+    "excerpts": [
+      {
+        "line": 3,
+        "text": "The built-in Worker is used when neither the environment nor endpoint.json"
+      },
+      {
+        "line": 22,
+        "text": "from backend.services.diagnostics.consent import load as load_consent"
+      },
+      {
+        "line": 48,
+        "text": "DEFAULT_ENDPOINT = \"https://autoclip-diagnostics-api.autoclip-val-3f71ee83.workers.dev\""
+      },
+      {
+        "line": 55,
+        "text": "def _worker_headers(extra: dict | None = None) -> dict[str, str]:"
+      },
+      {
+        "line": 64,
+        "text": "def endpoint() -> str:"
+      },
+      {
+        "line": 65,
+        "text": "    \"\"\"env AUTOCLIP_DIAGNOSTICS_ENDPOINT, then endpoint.json, then the built-in Worker.\"\"\""
+      },
+      {
+        "line": 66,
+        "text": "    env = os.getenv(\"AUTOCLIP_DIAGNOSTICS_ENDPOINT\", \"\").strip()"
+      },
+      {
+        "line": 69,
+        "text": "    file = get_data_directory() / \"diagnostics\" / \"endpoint.json\""
+      },
+      {
+        "line": 73,
+        "text": "        return DEFAULT_ENDPOINT"
+      },
+      {
+        "line": 74,
+        "text": "    value = raw.get(\"endpoint\") if isinstance(raw, dict) else \"\""
+      },
+      {
+        "line": 77,
+        "text": "    return DEFAULT_ENDPOINT"
+      },
+      {
+        "line": 99,
+        "text": "    excerpt = get_data_directory() / \"diagnostics\" / \"excerpts\" / str(item.get(\"id\"))"
+      },
+      {
+        "line": 100,
+        "text": "    roots.append(excerpt)"
+      },
+      {
+        "line": 107,
+        "text": "    consent = load_consent()"
+      },
+      {
+        "line": 108,
+        "text": "    if not isinstance(item.get(\"epoch\"), int) or item[\"epoch\"] != consent.epoch:"
+      },
+      {
+        "line": 113,
+        "text": "    if not consent.diagnostics:"
+      },
+      {
+        "line": 115,
+        "text": "    if \"original\" in roles and not consent.full_original:"
+      },
+      {
+        "line": 117,
+        "text": "    if roles.intersection({\"excerpt\", \"subtitle\"}) and not consent.media:"
+      },
+      {
+        "line": 141,
+        "text": "    \"\"\"Used only when an endpoint is configured. Tests inject their own transport.\"\"\""
+      },
+      {
+        "line": 163,
+        "text": "            headers=_worker_headers({\"Authorization\": f\"Bearer {capability}\"}),"
+      },
+      {
+        "line": 197,
+        "text": "        configured = urlparse(allowed_base or endpoint()).hostname"
+      },
+      {
+        "line": 199,
+        "text": "            raise Offline(\"endpoint_host_rejected\")"
+      },
+      {
+        "line": 203,
+        "text": "            headers=_worker_headers(headers),"
+      },
+      {
+        "line": 250,
+        "text": "    stored_endpoint = current.get(\"cleanup_endpoint\")"
+      },
+      {
+        "line": 251,
+        "text": "    base = stored_endpoint if isinstance(stored_endpoint, str) and stored_endpoint else (endpoint() or \"\")"
+      },
+      {
+        "line": 276,
+        "text": "        return current  # An unknown credential/endpoint is not proof of remote erasure."
+      },
+      {
+        "line": 299,
+        "text": "            queue.discard_excerpt(item[\"id\"])"
+      },
+      {
+        "line": 303,
+        "text": "        if_status={item.get(\"status\"), \"queued\", \"uploading\", \"offline\", \"needs_endpoint\"},"
+      },
+      {
+        "line": 335,
+        "text": "    attached = queue.attach_remote_case(item_id, case_id=case_id, uploads=uploads, endpoint=base,"
+      },
+      {
+        "line": 500,
+        "text": "    base = item.get(\"cleanup_endpoint\") or endpoint()"
+      },
+      {
+        "line": 505,
+        "text": "            item_id, if_version=item.get(\"version\"), status=\"needs_endpoint\", error=\"no_endpoint\", updated_at=queue.now_iso(),"
+      },
+      {
+        "line": 523,
+        "text": "                inflight_create=not bool(session.get(\"case_id\")), cleanup_endpoint=base, status=\"uploading\", updated_at=queue.now_iso(),"
+      },
+      {
+        "line": 532,
+        "text": "                \"consent_version\": item.get(\"consent_version\"),"
+      },
+      {
+        "line": 745,
+        "text": "def wake() -> None:"
+      },
+      {
+        "line": 747,
+        "text": "    if os.getenv(\"AUTOCLIP_DIAGNOSTICS_SYNC\") == \"1\":"
+      }
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "defaultShortcut": null,
+  "enabled": true,
+  "id": "source.setPlayhead",
+  "label": "Set Source Playhead",
+  "menu": [],
+  "params": "{\"time\":ticks|\"frame\":i64|\"seconds\":f64}",
+  "shortcut": null,
+  "shortcuts": []
+}

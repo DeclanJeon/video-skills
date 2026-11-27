@@ -1,0 +1,75 @@
+{
+  "revision": 0,
+  "batch": {
+    "id": "OFFLINE-EXAMPLE",
+    "revision": 1,
+    "scope_revision": "fixture-1",
+    "coverage": [
+      {
+        "id": "R01",
+        "shot": "SH01",
+        "panels": [
+          "P01"
+        ],
+        "modality": "video",
+        "locator": "fixture/shot1"
+      }
+    ],
+    "clips": [
+      {
+        "id": "C01",
+        "shots": [
+          "SH01"
+        ],
+        "requirements": [
+          "R01"
+        ],
+        "duration_s": 2.0,
+        "prompt": {
+          "id": "prompt.txt",
+          "version": "1",
+          "sha256": "2e20e775e61b8439af8e6361784683edc6712f64182a05e8978d81226e9afb3a",
+          "path": "prompt.txt"
+        },
+        "assets": [
+          {
+            "id": "synthetic-identity.txt",
+            "version": "1",
+            "sha256": "516662394ad013b0dc1e526c5dd0a1112b41de1ad2db292d49da59655b4170a9",
+            "path": "synthetic-identity.txt"
+          }
+        ],
+        "dependencies": [],
+        "references": [],
+        "audio_required": false
+      }
+    ],
+    "edit_order": [
+      "C01"
+    ],
+    "joins": []
+  },
+  "approved_coverage": [
+    {
+      "id": "R01",
+      "shot": "SH01",
+      "panels": [
+        "P01"
+      ],
+      "modality": "video",
+      "locator": "fixture/shot1"
+    }
+  ],
+  "coverage_source": {
+    "id": "coverage.json",
+    "version": "1",
+    "sha256": "df68d45751704acf7ac2330921bee52009b67fbeccbcb606d20523e4da8616cc",
+    "path": "coverage.json"
+  },
+  "attempts": [],
+  "selections": [],
+  "history": [],
+  "join_reviews": [],
+  "change_evidence": [],
+  "scope_history": []
+}

@@ -1,0 +1,18 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_delivery_when_on_screen_credit_is_explicit_cannot_be_satisfied_by_a_metadata_record _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-326/test_delivery_when_on_screen_c0')
+
+    def test_delivery_when_on_screen_credit_is_explicit_cannot_be_satisfied_by_a_metadata_record(tmp_path):
+        store,_,_,_=finishing_support.build(tmp_path,attribution=(CREDIT,),attribution_presentation="on_screen")
+        state=store.read_recorded();artifact=store.record_materialization(state.jobs[-1].id,state.revision)
+        report=store.record_review(submission(store,artifact,id="ONSCREEN-QA"),store.read_recorded().revision)
+>       assert report.scope_passed is False and next(g for g in report.gates if g.id=="PG6").status!="pass"
+E       AssertionError: assert (True is False)
+E        +  where True = QualityReport(submission=QualitySubmission(id='ONSCREEN-QA', mode='technical_fixture', artifact_id='FINISH-A1-artifact...l_fixture')), required_total=3, covered_total=3, scope_passed=True, acceptance_kind='technical_fixture', loudness=None).scope_passed
+
+tests/test_review_attribution.py:39: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_review_attribution.py::test_delivery_when_on_screen_credit_is_explicit_cannot_be_satisfied_by_a_metadata_record
+1 failed in 29.21s

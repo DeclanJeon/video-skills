@@ -1,0 +1,57 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_delivery_when_editable_native_projects_relink_with_exact_receiver_font_receipt _
+
+actual = (<postproduction.ledger.PostStore object at 0x78f679ea4440>, ArtifactRef(id='FINISH-A1-artifact', job_id='FINISH-A1', ...59bf5b551e4ba95c9/mix.wav', sha256='7e17d5d9004acb3e70494b9f200fbf423b4b905ec1948fc2e3b332d352b88f2b')), kind='video'))
+
+    def test_delivery_when_editable_native_projects_relink_with_exact_receiver_font_receipt(actual):
+        store,artifact=actual
+        fonts=require("delivery_scope","required_fonts")(store.read_recorded(),contract(store,artifact),store.path.parent)
+        evidence=json_pin(store.path.parent,"receiver-fonts.json",{"scope":"fixture receiver acknowledges exact existing fonts, not remote machine authentication"})
+        permissions=[{"font_sha256":f.sha256,"receiver_present":True,"redistribute":False,"evidence":evidence.model_dump()} for f in fonts]
+        c=contract(store,artifact,id="EDITABLE",kind="editable",font_permissions=permissions,output="deliveries/editable")
+>       bundle=require("delivery","build_delivery")(store.read_recorded(),c,store.path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_delivery.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+postproduction/delivery.py:42: in build_delivery
+    files.extend(copy_editable(state,writer))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/editable.py:56: in copy_editable
+    verify_relinked(inventory,writer.stage,writer.stage.parent/"private-reopen")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+inventory = EditableInventory(projects=(NativeProjection(source=Pin(id='FINISH-A1-project', version='1', path='finishing-native/ru...ce3.mp4', version='1', path='source3.mp4', sha256='b231e37ceb402fe00a69be84ef7e554e0ccd8daf23aa524f302ba7d29235caa2')))
+stage = PosixPath('/tmp/pytest-of-declan/pytest-258/actual-native-delivery0/deliveries/.owned-delivery-ys22v1bi/payload')
+workspace = PosixPath('/tmp/pytest-of-declan/pytest-258/actual-native-delivery0/deliveries/.owned-delivery-ys22v1bi/private-reopen')
+
+    def verify_relinked(inventory: EditableInventory, stage: Path, workspace: Path) -> None:
+        runner = IsolatedProcess(SandboxScope(workspace,"owned-editable-relink",(stage,),memory_bytes=8589934592))
+        for index,native in enumerate(inventory.projects):
+            binary,path = native.capability.binary_path,str(stage/native.destination)
+            match native.capability.tool:
+                case Tool.FILMCRAFT:
+                    output = workspace/f"reopen-{index}.mp4"
+                    result = runner.run((binary,"--project",path,"export",str(output),"--format","h264","--gpu-rendering","off"),timeout=120)
+                    if result.returncode or result.timed_out:
+                        raise ContractError("editable", "actual relinked FilmCraft native reopen/export failed")
+                    report = FilmExport.model_validate_json(result.stdout)
+                    if report.offlineMedia or report.result.frames!=native.frame_count:
+                        raise ContractError("editable", "actual reopened FilmCraft uses offline/missing media or wrong extent")
+                case Tool.EFFECTCRAFT:
+                    command: list[dict[str,JsonValue]] = [{"command":"comp.info","params":{}}]
+                    result = runner.run((binary,"--project",path,"run","--commands","-","--json"),
+                                        stdin=TypeAdapter(list[dict[str,JsonValue]]).dump_json(command))
+                    if result.returncode or result.timed_out:
+                        raise ContractError("editable", "actual EffectCraft composition reopen failed")
+>                   report = EffectRun.model_validate_json(result.stdout)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E                   pydantic_core._pydantic_core.ValidationError: 1 validation error for EffectRun
+E                     Input should be an object [type=model_type, input_value=[{'command': 'comp.info',...workArea': [0.0, 1.0]}}], input_type=list]
+E                       For further information visit https://errors.pydantic.dev/2.14/v/model_type
+
+postproduction/editable_verify.py:34: ValidationError
+=========================== short test summary info ============================
+FAILED tests/test_delivery.py::test_delivery_when_editable_native_projects_relink_with_exact_receiver_font_receipt
+1 failed, 6 deselected in 31.02s

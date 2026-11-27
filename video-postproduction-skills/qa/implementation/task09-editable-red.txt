@@ -1,0 +1,37 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_delivery_when_editable_native_projects_relink_with_exact_receiver_font_receipt _
+
+actual = (<postproduction.ledger.PostStore object at 0x7a165ceb8440>, ArtifactRef(id='FINISH-A1-artifact', job_id='FINISH-A1', ...b9b855a3f45997e50/mix.wav', sha256='7e17d5d9004acb3e70494b9f200fbf423b4b905ec1948fc2e3b332d352b88f2b')), kind='video'))
+
+    def test_delivery_when_editable_native_projects_relink_with_exact_receiver_font_receipt(actual):
+        store,artifact=actual
+        fonts=require("delivery_scope","required_fonts")(store.read_recorded(),contract(store,artifact),store.path.parent)
+        evidence=json_pin(store.path.parent,"receiver-fonts.json",{"scope":"fixture receiver acknowledges exact existing fonts, not remote machine authentication"})
+        permissions=[{"font_sha256":f.sha256,"receiver_present":True,"redistribute":False,"evidence":evidence.model_dump()} for f in fonts]
+        c=contract(store,artifact,id="EDITABLE",kind="editable",font_permissions=permissions,output="deliveries/editable")
+>       bundle=require("delivery","build_delivery")(store.read_recorded(),c,store.path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_delivery.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+state = PostState(format='post-state/1', revision=75, intake=PostIntake(request=IntakeRequest(project_id='synthetic-post', sna...otal=3, covered_total=3, scope_passed=True, acceptance_kind='technical_fixture'),), notes=(), observed_input_issues=())
+contract = DeliveryContract(id='EDITABLE', mode='technical_fixture', kind='editable', artifact_id='FINISH-A1-artifact', receiver=...e3.mp4', version='1', path='source3.mp4', sha256='b231e37ceb402fe00a69be84ef7e554e0ccd8daf23aa524f302ba7d29235caa2'))))
+project = PosixPath('/tmp/pytest-of-declan/pytest-257/actual-native-delivery0/project.json')
+
+    def build_delivery(state: PostState, contract: DeliveryContract, project: Path) -> DeliveryBundle:
+        """Technical fixture remains labeled; formal mode requires current scoped reported final acceptance."""
+        artifact,review = preflight(state,contract,project)
+        root = project.parent
+        target = confined_path(root,contract.output)
+        if target.exists():
+            raise ContractError("existing", "known bundle target exists; never overwrite/replay package publication")
+        if contract.kind=="editable":
+>           raise ContractError("editable", "exact font dependency passed; complete native relink adapter required before editable publication")
+E           postproduction.errors.ContractError: editable: exact font dependency passed; complete native relink adapter required before editable publication
+
+postproduction/delivery.py:26: ContractError
+=========================== short test summary info ============================
+FAILED tests/test_delivery.py::test_delivery_when_editable_native_projects_relink_with_exact_receiver_font_receipt
+1 failed, 6 deselected in 29.13s

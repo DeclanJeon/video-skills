@@ -1,0 +1,14 @@
+{
+  "defaultShortcut": "Cmd+I",
+  "enabled": true,
+  "id": "file.import",
+  "label": "Import…",
+  "menu": [
+    "File"
+  ],
+  "params": "{\"paths\":[str],\"bin\":binId?,\"imageSequence\":bool?,\"replace\":bool?}",
+  "shortcut": "Cmd+I",
+  "shortcuts": [
+    "Cmd+I"
+  ]
+}

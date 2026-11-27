@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "/usr/bin/filmcraft-cli",
+    "--project",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/filmcraft/native.fcproj",
+    "export",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/filmcraft/master-probe.mp4",
+    "--format",
+    "h264",
+    "--gpu-rendering",
+    "off",
+    "--no-audio"
+  ],
+  "pid": 795079,
+  "returncode": 134,
+  "timed_out": false,
+  "network_denied": true
+}

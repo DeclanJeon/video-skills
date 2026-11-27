@@ -1,0 +1,723 @@
+FFFFFFFFFFF                                                              [100%]
+=================================== FAILURES ===================================
+___ test_installer_route_when_craft_linux_portable_source_is_exactly_pinned ____
+
+module = 'environment.installers', name = 'select_route'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.installers', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.installers'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-163/test_installer_route_when_craf0')
+
+    def test_installer_route_when_craft_linux_portable_source_is_exactly_pinned(tmp_path):
+        p=release_plan(tmp_path)
+>       route=require("environment.installers","select_route")(p)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_installer_routes.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.installers', name = 'select_route'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.installers'
+
+tests/conftest.py:10: Failed
+_ test_installer_route_when_publisher_or_release_pin_does_not_match[changes0] __
+
+module = 'environment.release_evidence', name = 'verify_release_evidence'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.release_evidence', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.release_evidence'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-163/test_installer_route_when_publ0')
+changes = {'source_url': 'https://evil.invalid/tool.tar.gz', 'network_hosts': ['evil.invalid']}
+
+    @pytest.mark.parametrize("changes",[
+        {"source_url":"https://evil.invalid/tool.tar.gz","network_hosts":["evil.invalid"]},
+        {"source_url":"https://github.com/unrelated/filmcraft/releases/download/v1/tool.tar.gz"},
+        {"source_sha256":"f"*64},{"version":"different-version"},
+    ])
+    def test_installer_route_when_publisher_or_release_pin_does_not_match(tmp_path,changes):
+        p=release_plan(tmp_path).model_copy(update=changes)
+        with pytest.raises(require("errors","ContractError")):
+>           require("environment.release_evidence","verify_release_evidence")(tmp_path,p)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_installer_routes.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.release_evidence', name = 'verify_release_evidence'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.release_evidence'
+
+tests/conftest.py:10: Failed
+_ test_installer_route_when_publisher_or_release_pin_does_not_match[changes1] __
+
+module = 'environment.release_evidence', name = 'verify_release_evidence'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.release_evidence', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.release_evidence'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-163/test_installer_route_when_publ1')
+changes = {'source_url': 'https://github.com/unrelated/filmcraft/releases/download/v1/tool.tar.gz'}
+
+    @pytest.mark.parametrize("changes",[
+        {"source_url":"https://evil.invalid/tool.tar.gz","network_hosts":["evil.invalid"]},
+        {"source_url":"https://github.com/unrelated/filmcraft/releases/download/v1/tool.tar.gz"},
+        {"source_sha256":"f"*64},{"version":"different-version"},
+    ])
+    def test_installer_route_when_publisher_or_release_pin_does_not_match(tmp_path,changes):
+        p=release_plan(tmp_path).model_copy(update=changes)
+        with pytest.raises(require("errors","ContractError")):
+>           require("environment.release_evidence","verify_release_evidence")(tmp_path,p)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_installer_routes.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.release_evidence', name = 'verify_release_evidence'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.release_evidence'
+
+tests/conftest.py:10: Failed
+_ test_installer_route_when_publisher_or_release_pin_does_not_match[changes2] __
+
+module = 'environment.release_evidence', name = 'verify_release_evidence'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.release_evidence', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.release_evidence'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-163/test_installer_route_when_publ2')
+changes = {'source_sha256': 'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'}
+
+    @pytest.mark.parametrize("changes",[
+        {"source_url":"https://evil.invalid/tool.tar.gz","network_hosts":["evil.invalid"]},
+        {"source_url":"https://github.com/unrelated/filmcraft/releases/download/v1/tool.tar.gz"},
+        {"source_sha256":"f"*64},{"version":"different-version"},
+    ])
+    def test_installer_route_when_publisher_or_release_pin_does_not_match(tmp_path,changes):
+        p=release_plan(tmp_path).model_copy(update=changes)
+        with pytest.raises(require("errors","ContractError")):
+>           require("environment.release_evidence","verify_release_evidence")(tmp_path,p)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_installer_routes.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.release_evidence', name = 'verify_release_evidence'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.release_evidence'
+
+tests/conftest.py:10: Failed
+_ test_installer_route_when_publisher_or_release_pin_does_not_match[changes3] __
+
+module = 'environment.release_evidence', name = 'verify_release_evidence'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.release_evidence', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.release_evidence'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-163/test_installer_route_when_publ3')
+changes = {'version': 'different-version'}
+
+    @pytest.mark.parametrize("changes",[
+        {"source_url":"https://evil.invalid/tool.tar.gz","network_hosts":["evil.invalid"]},
+        {"source_url":"https://github.com/unrelated/filmcraft/releases/download/v1/tool.tar.gz"},
+        {"source_sha256":"f"*64},{"version":"different-version"},
+    ])
+    def test_installer_route_when_publisher_or_release_pin_does_not_match(tmp_path,changes):
+        p=release_plan(tmp_path).model_copy(update=changes)
+        with pytest.raises(require("errors","ContractError")):
+>           require("environment.release_evidence","verify_release_evidence")(tmp_path,p)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_installer_routes.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.release_evidence', name = 'verify_release_evidence'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.release_evidence'
+
+tests/conftest.py:10: Failed
+__________ test_installer_route_when_self_hash_is_not_publisher_proof __________
+
+module = 'environment.release_evidence', name = 'verify_release_evidence'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.release_evidence', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.release_evidence'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-163/test_installer_route_when_self0')
+
+    def test_installer_route_when_self_hash_is_not_publisher_proof(tmp_path):
+        p=release_plan(tmp_path).model_copy(update={"source_evidence_kind":"self_hash_unverified"})
+        with pytest.raises(require("errors","ContractError"),match="publisher"):
+>           require("environment.release_evidence","verify_release_evidence")(tmp_path,p)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_installer_routes.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.release_evidence', name = 'verify_release_evidence'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.release_evidence'
+
+tests/conftest.py:10: Failed
+_ test_installer_route_when_missing_or_changed_source_document_cannot_be_used __
+
+module = 'environment.release_evidence', name = 'verify_release_evidence'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.release_evidence', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.release_evidence'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-163/test_installer_route_when_miss0')
+
+    def test_installer_route_when_missing_or_changed_source_document_cannot_be_used(tmp_path):
+        p=release_plan(tmp_path)
+        (tmp_path/p.source_evidence.path).write_text("changed")
+        with pytest.raises(require("errors","ContractError")):
+>           require("environment.release_evidence","verify_release_evidence")(tmp_path,p)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_installer_routes.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.release_evidence', name = 'verify_release_evidence'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.release_evidence'
+
+tests/conftest.py:10: Failed
+_ test_optional_vendor_route_when_real_limit_or_required_human_step_is_specific[autoclip-needs_user_action-diagnostics] _
+
+module = 'environment.installers', name = 'select_route'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.installers', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.installers'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-163/test_optional_vendor_route_whe0')
+tool = 'autoclip', status = 'needs_user_action', fragment = 'diagnostics'
+
+    @pytest.mark.parametrize("tool,status,fragment",[
+        ("autoclip","needs_user_action","diagnostics"),
+        ("resolve","needs_user_action","Free/Studio"),
+        ("premiere","unsupported","Linux"),
+        ("after_effects","unsupported","Linux"),
+    ])
+    def test_optional_vendor_route_when_real_limit_or_required_human_step_is_specific(tmp_path,tool,status,fragment):
+        p=plan(missing_host(),tool=tool)
+>       route=require("environment.installers","select_route")(p)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_installer_routes.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.installers', name = 'select_route'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.installers'
+
+tests/conftest.py:10: Failed
+_ test_optional_vendor_route_when_real_limit_or_required_human_step_is_specific[resolve-needs_user_action-Free/Studio] _
+
+module = 'environment.installers', name = 'select_route'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.installers', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.installers'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-163/test_optional_vendor_route_whe1')
+tool = 'resolve', status = 'needs_user_action', fragment = 'Free/Studio'
+
+    @pytest.mark.parametrize("tool,status,fragment",[
+        ("autoclip","needs_user_action","diagnostics"),
+        ("resolve","needs_user_action","Free/Studio"),
+        ("premiere","unsupported","Linux"),
+        ("after_effects","unsupported","Linux"),
+    ])
+    def test_optional_vendor_route_when_real_limit_or_required_human_step_is_specific(tmp_path,tool,status,fragment):
+        p=plan(missing_host(),tool=tool)
+>       route=require("environment.installers","select_route")(p)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_installer_routes.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.installers', name = 'select_route'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.installers'
+
+tests/conftest.py:10: Failed
+_ test_optional_vendor_route_when_real_limit_or_required_human_step_is_specific[premiere-unsupported-Linux] _
+
+module = 'environment.installers', name = 'select_route'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.installers', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.installers'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-163/test_optional_vendor_route_whe2')
+tool = 'premiere', status = 'unsupported', fragment = 'Linux'
+
+    @pytest.mark.parametrize("tool,status,fragment",[
+        ("autoclip","needs_user_action","diagnostics"),
+        ("resolve","needs_user_action","Free/Studio"),
+        ("premiere","unsupported","Linux"),
+        ("after_effects","unsupported","Linux"),
+    ])
+    def test_optional_vendor_route_when_real_limit_or_required_human_step_is_specific(tmp_path,tool,status,fragment):
+        p=plan(missing_host(),tool=tool)
+>       route=require("environment.installers","select_route")(p)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_installer_routes.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.installers', name = 'select_route'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.installers'
+
+tests/conftest.py:10: Failed
+_ test_optional_vendor_route_when_real_limit_or_required_human_step_is_specific[after_effects-unsupported-Linux] _
+
+module = 'environment.installers', name = 'select_route'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.installers', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.installers'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-163/test_optional_vendor_route_whe3')
+tool = 'after_effects', status = 'unsupported', fragment = 'Linux'
+
+    @pytest.mark.parametrize("tool,status,fragment",[
+        ("autoclip","needs_user_action","diagnostics"),
+        ("resolve","needs_user_action","Free/Studio"),
+        ("premiere","unsupported","Linux"),
+        ("after_effects","unsupported","Linux"),
+    ])
+    def test_optional_vendor_route_when_real_limit_or_required_human_step_is_specific(tmp_path,tool,status,fragment):
+        p=plan(missing_host(),tool=tool)
+>       route=require("environment.installers","select_route")(p)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_installer_routes.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.installers', name = 'select_route'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.installers'
+
+tests/conftest.py:10: Failed
+=========================== short test summary info ============================
+FAILED tests/test_installer_routes.py::test_installer_route_when_craft_linux_portable_source_is_exactly_pinned
+FAILED tests/test_installer_routes.py::test_installer_route_when_publisher_or_release_pin_does_not_match[changes0]
+FAILED tests/test_installer_routes.py::test_installer_route_when_publisher_or_release_pin_does_not_match[changes1]
+FAILED tests/test_installer_routes.py::test_installer_route_when_publisher_or_release_pin_does_not_match[changes2]
+FAILED tests/test_installer_routes.py::test_installer_route_when_publisher_or_release_pin_does_not_match[changes3]
+FAILED tests/test_installer_routes.py::test_installer_route_when_self_hash_is_not_publisher_proof
+FAILED tests/test_installer_routes.py::test_installer_route_when_missing_or_changed_source_document_cannot_be_used
+FAILED tests/test_installer_routes.py::test_optional_vendor_route_when_real_limit_or_required_human_step_is_specific[autoclip-needs_user_action-diagnostics]
+FAILED tests/test_installer_routes.py::test_optional_vendor_route_when_real_limit_or_required_human_step_is_specific[resolve-needs_user_action-Free/Studio]
+FAILED tests/test_installer_routes.py::test_optional_vendor_route_when_real_limit_or_required_human_step_is_specific[premiere-unsupported-Linux]
+FAILED tests/test_installer_routes.py::test_optional_vendor_route_when_real_limit_or_required_human_step_is_specific[after_effects-unsupported-Linux]
+11 failed in 0.25s

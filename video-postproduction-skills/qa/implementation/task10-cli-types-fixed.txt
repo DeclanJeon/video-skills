@@ -1,0 +1,8 @@
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/cli_environment.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/cli_environment.py:82:26 - error: "CraftPortableDriver" 형식의 인수를 "__init__" 함수에서 "InstallerDriver" 형식의 "driver" 매개 변수에 할당할 수 없습니다.
+    ‘CraftPortableDriver’은(는) ‘InstallerDriver’ 프로토콜과 호환되지 않습니다.
+      "evidence_kind"이(가) 프로토콜에서 ClassVar로 정의되지 않았습니다.
+      "uses_package_manager"이(가) 프로토콜에서 ClassVar로 정의되지 않았습니다. (reportArgumentType)
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/cli_project.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/cli_project.py:23:43 - error: 매개 변수 기본값 식 내에서는 함수 호출 및 변경 가능한 개체를 사용할 수 없습니다. (reportCallInDefaultInitializer)
+2 errors, 0 warnings, 0 notes

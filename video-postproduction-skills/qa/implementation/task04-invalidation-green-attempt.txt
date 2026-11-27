@@ -1,0 +1,68 @@
+FF.                                                                      [100%]
+=================================== FAILURES ===================================
+_ test_invalidation_when_changed_consumed_source_does_not_erase_history_or_block_independent_work _
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-225/test_invalidation_when_changed0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_invalidation_when_changed_consumed_source_does_not_erase_history_or_block_independent_work(project):
+>       path,store,state,a,b,c,artifact=graph(project)
+                                        ^^^^^^^^^^^^^^
+
+tests/test_invalidation.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-225/test_invalidation_when_changed0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def graph(project):
+        path,store,state,production=prepare(project)
+        a=order_for(state,id="A")
+        b=order_for(state,id="B",source_refs=[state.intake.sources[1].source.model_dump()])
+        derived=pin(path.parent,"derived-graph-only.txt","pure graph fixture, not actual native output")
+        c=order_for(state,id="C",source_refs=[state.intake.sources[1].source.model_dump()],dependencies=[derived.model_dump()])
+        state=state.model_copy(update={"orders":(a,b,c)})
+        fp=require("revisions","work_fingerprint")(state,a)
+        packet=require("work_models","RequestPacket")(order=a,input_fingerprint=fp,payload="pure graph, no native dispatch")
+        state=require("jobs","reserve_work")(state,packet)
+>       artifact=require("job_models","ArtifactRef")(id="GRAPH-A",job_id=state.jobs[-1].id,pin=derived,input_fingerprint=fp,adopted=True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for ArtifactRef
+E       pin
+E         Input should be a valid dictionary or instance of Pin [type=model_type, input_value=Pin(id='derived-graph-onl...derived-graph-only.txt'), input_type=Pin]
+E           For further information visit https://errors.pydantic.dev/2.14/v/model_type
+
+tests/test_invalidation.py:20: ValidationError
+_ test_invalidation_when_unknown_unconsumed_pin_has_no_false_coverage_or_fingerprint_effect _
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-225/test_invalidation_when_unknown0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_invalidation_when_unknown_unconsumed_pin_has_no_false_coverage_or_fingerprint_effect(project):
+>       path,store,state,a,b,c,artifact=graph(project)
+                                        ^^^^^^^^^^^^^^
+
+tests/test_invalidation.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-225/test_invalidation_when_unknown0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def graph(project):
+        path,store,state,production=prepare(project)
+        a=order_for(state,id="A")
+        b=order_for(state,id="B",source_refs=[state.intake.sources[1].source.model_dump()])
+        derived=pin(path.parent,"derived-graph-only.txt","pure graph fixture, not actual native output")
+        c=order_for(state,id="C",source_refs=[state.intake.sources[1].source.model_dump()],dependencies=[derived.model_dump()])
+        state=state.model_copy(update={"orders":(a,b,c)})
+        fp=require("revisions","work_fingerprint")(state,a)
+        packet=require("work_models","RequestPacket")(order=a,input_fingerprint=fp,payload="pure graph, no native dispatch")
+        state=require("jobs","reserve_work")(state,packet)
+>       artifact=require("job_models","ArtifactRef")(id="GRAPH-A",job_id=state.jobs[-1].id,pin=derived,input_fingerprint=fp,adopted=True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for ArtifactRef
+E       pin
+E         Input should be a valid dictionary or instance of Pin [type=model_type, input_value=Pin(id='derived-graph-onl...derived-graph-only.txt'), input_type=Pin]
+E           For further information visit https://errors.pydantic.dev/2.14/v/model_type
+
+tests/test_invalidation.py:20: ValidationError
+=========================== short test summary info ============================
+FAILED tests/test_invalidation.py::test_invalidation_when_changed_consumed_source_does_not_erase_history_or_block_independent_work
+FAILED tests/test_invalidation.py::test_invalidation_when_unknown_unconsumed_pin_has_no_false_coverage_or_fingerprint_effect
+2 failed, 1 passed in 8.08s

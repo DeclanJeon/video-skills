@@ -1,0 +1,28 @@
+{
+  "name": "video-preproduction-skills",
+  "version": "0.1.0",
+  "status": "scaffold",
+  "entry_skill": "production-director",
+  "skills": [
+    "production-director",
+    "concept-benchmark",
+    "story-writer",
+    "audience-reaction-qa",
+    "world-designer",
+    "character-designer",
+    "costume-designer",
+    "production-designer",
+    "sound-designer",
+    "assistant-director",
+    "performance-director",
+    "cinematographer",
+    "lighting-director",
+    "vfx-supervisor",
+    "film-editor",
+    "storyboard-artist",
+    "image-prompt-engineer",
+    "video-prompt-engineer",
+    "production-qa",
+    "production-ledger"
+  ]
+}

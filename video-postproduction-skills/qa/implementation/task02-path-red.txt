@@ -1,0 +1,19 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+____________ test_intake_when_request_parent_is_an_internal_symlink ____________
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-128/test_intake_when_request_paren0'), {'project_id': 'synthetic-post', 'snap... 'sha256': '677ca5769bc7f88633e3bcc6f193ce187d165ecc278ace37369d30c8549d2b40', 'path': 'upstream-schema.py.txt'}, ...})
+
+    def test_intake_when_request_parent_is_an_internal_symlink(bundle):
+        root,request=bundle
+        folder=root/"nested";folder.mkdir()
+        shutil.copyfile(root/"request.json",folder/"request.json")
+        (root/"alias").symlink_to(folder,target_is_directory=True)
+>       with pytest.raises(require("errors","ContractError")):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_intake.py:90: Failed
+=========================== short test summary info ============================
+FAILED tests/test_intake.py::test_intake_when_request_parent_is_an_internal_symlink
+1 failed in 0.91s

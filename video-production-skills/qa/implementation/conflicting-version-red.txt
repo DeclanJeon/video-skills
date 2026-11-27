@@ -1,0 +1,22 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+____________ test_panel_pins_when_two_views_disagree_on_same_asset _____________
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-61/test_panel_pins_when_two_views0')
+
+    def test_panel_pins_when_two_views_disagree_on_same_asset(tmp_path):
+        # Given: last-wins parsing would hide the first panel's incompatible version.
+        source,identity=upstream_identity(tmp_path)
+        source["asset_registry"][0]["version"]="2"
+        source["storyboard"]["panels"][0]["asset_version_refs"]={identity.id:"1"}
+        source["storyboard"]["panels"].append({"id":"P2","shot_id":"SH1","beat_ids":["B1"],"asset_version_refs":{identity.id:"2"}})
+        project=tmp_path/"conflicting-panels.json";project.write_text(json.dumps(source))
+        # When / Then: conflicting pinned versions are rejected rather than overwritten.
+>       with pytest.raises(ContractError,match="version"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_review_regressions.py:160: Failed
+=========================== short test summary info ============================
+FAILED tests/test_review_regressions.py::test_panel_pins_when_two_views_disagree_on_same_asset
+1 failed in 0.15s

@@ -1,0 +1,1337 @@
+{
+  "$defs": {
+    "ApprovedConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "clip_id": {
+          "title": "Clip Id",
+          "type": "string"
+        },
+        "scope_revision": {
+          "minLength": 1,
+          "title": "Scope Revision",
+          "type": "string"
+        },
+        "coverage_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Coverage Hash",
+          "type": "string"
+        },
+        "clip_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Clip Hash",
+          "type": "string"
+        },
+        "duration_s": {
+          "exclusiveMinimum": 0,
+          "title": "Duration S",
+          "type": "number"
+        },
+        "width": {
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "integer"
+        },
+        "height": {
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "integer"
+        },
+        "audio_requested": {
+          "title": "Audio Requested",
+          "type": "boolean"
+        },
+        "reuse_source": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Pin"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "reuse_range": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SourceRange"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "clip_id",
+        "scope_revision",
+        "coverage_hash",
+        "clip_hash",
+        "duration_s",
+        "width",
+        "height",
+        "audio_requested"
+      ],
+      "title": "ApprovedConfig",
+      "type": "object"
+    },
+    "Attempt": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "prepared": {
+          "$ref": "#/$defs/Prepared"
+        },
+        "phase": {
+          "$ref": "#/$defs/Phase"
+        },
+        "job_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Job Id"
+        },
+        "terminal_evidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Terminal Evidence"
+        }
+      },
+      "required": [
+        "id",
+        "prepared",
+        "phase"
+      ],
+      "title": "Attempt",
+      "type": "object"
+    },
+    "Authority": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "clips": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Clips",
+          "type": "array"
+        },
+        "allowed_hashes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Allowed Hashes",
+          "type": "array"
+        },
+        "configurations": {
+          "items": {
+            "$ref": "#/$defs/ApprovedConfig"
+          },
+          "title": "Configurations",
+          "type": "array"
+        },
+        "account": {
+          "minLength": 1,
+          "title": "Account",
+          "type": "string"
+        },
+        "model": {
+          "minLength": 1,
+          "title": "Model",
+          "type": "string"
+        },
+        "transport": {
+          "minLength": 1,
+          "title": "Transport",
+          "type": "string"
+        },
+        "mode": {
+          "minLength": 1,
+          "title": "Mode",
+          "type": "string"
+        },
+        "max_attempts": {
+          "default": 1,
+          "exclusiveMinimum": 0,
+          "title": "Max Attempts",
+          "type": "integer"
+        },
+        "max_active": {
+          "default": 1,
+          "exclusiveMinimum": 0,
+          "title": "Max Active",
+          "type": "integer"
+        },
+        "upload": {
+          "default": false,
+          "title": "Upload",
+          "type": "boolean"
+        },
+        "generation": {
+          "default": false,
+          "title": "Generation",
+          "type": "boolean"
+        },
+        "reuse": {
+          "default": false,
+          "title": "Reuse",
+          "type": "boolean"
+        },
+        "evidence": {
+          "$ref": "#/$defs/Pin"
+        }
+      },
+      "required": [
+        "id",
+        "clips",
+        "allowed_hashes",
+        "configurations",
+        "account",
+        "model",
+        "transport",
+        "mode",
+        "evidence"
+      ],
+      "title": "Authority",
+      "type": "object"
+    },
+    "Batch": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "revision": {
+          "default": 1,
+          "exclusiveMinimum": 0,
+          "title": "Revision",
+          "type": "integer"
+        },
+        "scope_revision": {
+          "minLength": 1,
+          "title": "Scope Revision",
+          "type": "string"
+        },
+        "coverage": {
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          },
+          "title": "Coverage",
+          "type": "array"
+        },
+        "clips": {
+          "items": {
+            "$ref": "#/$defs/Clip"
+          },
+          "title": "Clips",
+          "type": "array"
+        },
+        "edit_order": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Edit Order",
+          "type": "array"
+        },
+        "joins": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/JoinPlan"
+          },
+          "title": "Joins",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "scope_revision",
+        "coverage",
+        "clips",
+        "edit_order"
+      ],
+      "title": "Batch",
+      "type": "object"
+    },
+    "Binding": {
+      "additionalProperties": false,
+      "properties": {
+        "pin": {
+          "$ref": "#/$defs/Pin"
+        },
+        "source_clip": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Clip"
+        },
+        "source_range": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SourceRange"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "range_revision": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Range Revision"
+        },
+        "acceptance_revision": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Acceptance Revision"
+        },
+        "role": {
+          "minLength": 1,
+          "title": "Role",
+          "type": "string"
+        },
+        "modality": {
+          "minLength": 1,
+          "title": "Modality",
+          "type": "string"
+        },
+        "imports": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Imports",
+          "type": "array"
+        },
+        "excludes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Excludes",
+          "type": "array"
+        },
+        "native_asset_id": {
+          "minLength": 1,
+          "title": "Native Asset Id",
+          "type": "string"
+        },
+        "native_reference_id": {
+          "minLength": 1,
+          "title": "Native Reference Id",
+          "type": "string"
+        },
+        "ready": {
+          "title": "Ready",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "pin",
+        "role",
+        "modality",
+        "imports",
+        "native_asset_id",
+        "native_reference_id",
+        "ready"
+      ],
+      "title": "Binding",
+      "type": "object"
+    },
+    "Capability": {
+      "additionalProperties": false,
+      "properties": {
+        "account": {
+          "minLength": 1,
+          "title": "Account",
+          "type": "string"
+        },
+        "model": {
+          "minLength": 1,
+          "title": "Model",
+          "type": "string"
+        },
+        "transport": {
+          "minLength": 1,
+          "title": "Transport",
+          "type": "string"
+        },
+        "mode": {
+          "minLength": 1,
+          "title": "Mode",
+          "type": "string"
+        },
+        "roles": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Roles",
+          "type": "array"
+        },
+        "modalities": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Modalities",
+          "type": "array"
+        },
+        "max_references": {
+          "minimum": 0,
+          "title": "Max References",
+          "type": "integer"
+        },
+        "max_active": {
+          "exclusiveMinimum": 0,
+          "title": "Max Active",
+          "type": "integer"
+        },
+        "durations": {
+          "items": {
+            "type": "number"
+          },
+          "title": "Durations",
+          "type": "array"
+        },
+        "width": {
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "integer"
+        },
+        "height": {
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "integer"
+        },
+        "audio": {
+          "title": "Audio",
+          "type": "boolean"
+        },
+        "evidence": {
+          "$ref": "#/$defs/Pin"
+        },
+        "observed_mode": {
+          "minLength": 1,
+          "title": "Observed Mode",
+          "type": "string"
+        }
+      },
+      "required": [
+        "account",
+        "model",
+        "transport",
+        "mode",
+        "roles",
+        "modalities",
+        "max_references",
+        "max_active",
+        "durations",
+        "width",
+        "height",
+        "audio",
+        "evidence",
+        "observed_mode"
+      ],
+      "title": "Capability",
+      "type": "object"
+    },
+    "Clip": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "shots": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Shots",
+          "type": "array"
+        },
+        "requirements": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Requirements",
+          "type": "array"
+        },
+        "duration_s": {
+          "exclusiveMinimum": 0,
+          "title": "Duration S",
+          "type": "number"
+        },
+        "prompt": {
+          "$ref": "#/$defs/Pin"
+        },
+        "assets": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Pin"
+          },
+          "title": "Assets",
+          "type": "array"
+        },
+        "dependencies": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Pin"
+          },
+          "title": "Dependencies",
+          "type": "array"
+        },
+        "references": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Reference"
+          },
+          "title": "References",
+          "type": "array"
+        },
+        "audio_required": {
+          "default": false,
+          "title": "Audio Required",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "shots",
+        "requirements",
+        "duration_s",
+        "prompt"
+      ],
+      "title": "Clip",
+      "type": "object"
+    },
+    "JoinPlan": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "before": {
+          "title": "Before",
+          "type": "string"
+        },
+        "after": {
+          "title": "After",
+          "type": "string"
+        },
+        "relation": {
+          "minLength": 1,
+          "title": "Relation",
+          "type": "string"
+        },
+        "reveal_order": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reveal Order",
+          "type": "array"
+        },
+        "allowed_changes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Allowed Changes",
+          "type": "array"
+        },
+        "locator": {
+          "minLength": 1,
+          "title": "Locator",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "before",
+        "after",
+        "relation",
+        "reveal_order",
+        "locator"
+      ],
+      "title": "JoinPlan",
+      "type": "object"
+    },
+    "JoinReview": {
+      "additionalProperties": false,
+      "properties": {
+        "join_id": {
+          "minLength": 1,
+          "title": "Join Id",
+          "type": "string"
+        },
+        "before_take": {
+          "minLength": 1,
+          "title": "Before Take",
+          "type": "string"
+        },
+        "after_take": {
+          "minLength": 1,
+          "title": "After Take",
+          "type": "string"
+        },
+        "before_revision": {
+          "exclusiveMinimum": 0,
+          "title": "Before Revision",
+          "type": "integer"
+        },
+        "after_revision": {
+          "exclusiveMinimum": 0,
+          "title": "After Revision",
+          "type": "integer"
+        },
+        "before_range_revision": {
+          "exclusiveMinimum": 0,
+          "title": "Before Range Revision",
+          "type": "integer"
+        },
+        "after_range_revision": {
+          "exclusiveMinimum": 0,
+          "title": "After Range Revision",
+          "type": "integer"
+        },
+        "reveal_order": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reveal Order",
+          "type": "array"
+        },
+        "passed": {
+          "title": "Passed",
+          "type": "boolean"
+        },
+        "evidence": {
+          "minLength": 1,
+          "title": "Evidence",
+          "type": "string"
+        },
+        "continuous_playback": {
+          "title": "Continuous Playback",
+          "type": "boolean"
+        },
+        "observed_changes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Observed Changes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "join_id",
+        "before_take",
+        "after_take",
+        "before_revision",
+        "after_revision",
+        "before_range_revision",
+        "after_range_revision",
+        "reveal_order",
+        "passed",
+        "evidence",
+        "continuous_playback"
+      ],
+      "title": "JoinReview",
+      "type": "object"
+    },
+    "Phase": {
+      "enum": [
+        "submitting",
+        "unknown",
+        "submitted",
+        "running",
+        "succeeded",
+        "remote_failed",
+        "cancelled",
+        "not_received",
+        "downloaded"
+      ],
+      "title": "Phase",
+      "type": "string"
+    },
+    "Pin": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "minLength": 1,
+          "title": "Version",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "path": {
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "sha256",
+        "path"
+      ],
+      "title": "Pin",
+      "type": "object"
+    },
+    "Playback": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Asset Hash",
+          "type": "string"
+        },
+        "source_range": {
+          "$ref": "#/$defs/SourceRange"
+        },
+        "reviewer": {
+          "minLength": 1,
+          "title": "Reviewer",
+          "type": "string"
+        },
+        "evidence": {
+          "minLength": 1,
+          "title": "Evidence",
+          "type": "string"
+        },
+        "video_watched": {
+          "title": "Video Watched",
+          "type": "boolean"
+        },
+        "audio_listened": {
+          "default": false,
+          "title": "Audio Listened",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "asset_hash",
+        "source_range",
+        "reviewer",
+        "evidence",
+        "video_watched"
+      ],
+      "title": "Playback",
+      "type": "object"
+    },
+    "Prepared": {
+      "additionalProperties": false,
+      "properties": {
+        "clip_id": {
+          "title": "Clip Id",
+          "type": "string"
+        },
+        "fingerprint": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Fingerprint",
+          "type": "string"
+        },
+        "capability": {
+          "$ref": "#/$defs/Capability"
+        },
+        "authority": {
+          "$ref": "#/$defs/Authority"
+        },
+        "bindings": {
+          "items": {
+            "$ref": "#/$defs/Binding"
+          },
+          "title": "Bindings",
+          "type": "array"
+        },
+        "prompt": {
+          "$ref": "#/$defs/Pin"
+        },
+        "prompt_text": {
+          "minLength": 1,
+          "title": "Prompt Text",
+          "type": "string"
+        },
+        "audio_requested": {
+          "title": "Audio Requested",
+          "type": "boolean"
+        },
+        "duration_s": {
+          "exclusiveMinimum": 0,
+          "title": "Duration S",
+          "type": "number"
+        },
+        "request_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Request Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "clip_id",
+        "fingerprint",
+        "capability",
+        "authority",
+        "bindings",
+        "prompt",
+        "prompt_text",
+        "audio_requested",
+        "duration_s",
+        "request_hash"
+      ],
+      "title": "Prepared",
+      "type": "object"
+    },
+    "Reference": {
+      "additionalProperties": false,
+      "properties": {
+        "source_clip": {
+          "title": "Source Clip",
+          "type": "string"
+        },
+        "role": {
+          "minLength": 1,
+          "title": "Role",
+          "type": "string"
+        },
+        "modality": {
+          "minLength": 1,
+          "title": "Modality",
+          "type": "string"
+        },
+        "imports": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Imports",
+          "type": "array"
+        },
+        "excludes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Excludes",
+          "type": "array"
+        },
+        "required": {
+          "default": true,
+          "title": "Required",
+          "type": "boolean"
+        },
+        "omission_evidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Omission Evidence"
+        }
+      },
+      "required": [
+        "source_clip",
+        "role",
+        "modality",
+        "imports"
+      ],
+      "title": "Reference",
+      "type": "object"
+    },
+    "Requirement": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "shot": {
+          "minLength": 1,
+          "title": "Shot",
+          "type": "string"
+        },
+        "panels": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Panels",
+          "type": "array"
+        },
+        "modality": {
+          "default": "video",
+          "title": "Modality",
+          "type": "string"
+        },
+        "locator": {
+          "minLength": 1,
+          "title": "Locator",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "shot",
+        "panels",
+        "locator"
+      ],
+      "title": "Requirement",
+      "type": "object"
+    },
+    "Review": {
+      "additionalProperties": false,
+      "properties": {
+        "verdict": {
+          "$ref": "#/$defs/Verdict"
+        },
+        "fulfilled": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Fulfilled",
+          "type": "array"
+        },
+        "playback": {
+          "$ref": "#/$defs/Playback"
+        },
+        "defects": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Defects",
+          "type": "array"
+        },
+        "post_fix": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Post Fix"
+        },
+        "post_receiver": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Post Receiver"
+        },
+        "conditional_policy": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Conditional Policy"
+        }
+      },
+      "required": [
+        "verdict",
+        "fulfilled",
+        "playback"
+      ],
+      "title": "Review",
+      "type": "object"
+    },
+    "ScopeChangeRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "$ref": "#/$defs/Pin"
+        },
+        "old_source": {
+          "$ref": "#/$defs/Pin"
+        },
+        "new_source": {
+          "$ref": "#/$defs/Pin"
+        },
+        "old_scope_revision": {
+          "minLength": 1,
+          "title": "Old Scope Revision",
+          "type": "string"
+        },
+        "new_scope_revision": {
+          "minLength": 1,
+          "title": "New Scope Revision",
+          "type": "string"
+        },
+        "removed": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Removed",
+          "type": "array"
+        },
+        "added": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Added",
+          "type": "array"
+        },
+        "changed": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Changed",
+          "type": "array"
+        },
+        "asset_changes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Asset Changes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "evidence",
+        "old_source",
+        "new_source",
+        "old_scope_revision",
+        "new_scope_revision",
+        "removed",
+        "added",
+        "changed",
+        "asset_changes"
+      ],
+      "title": "ScopeChangeRecord",
+      "type": "object"
+    },
+    "Selection": {
+      "additionalProperties": false,
+      "properties": {
+        "take": {
+          "$ref": "#/$defs/Take"
+        },
+        "review": {
+          "$ref": "#/$defs/Review"
+        },
+        "reviewed_fingerprint": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Reviewed Fingerprint",
+          "type": "string"
+        },
+        "approval": {
+          "$ref": "#/$defs/Authority"
+        },
+        "acceptance_revision": {
+          "exclusiveMinimum": 0,
+          "title": "Acceptance Revision",
+          "type": "integer"
+        },
+        "valid": {
+          "default": true,
+          "title": "Valid",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "take",
+        "review",
+        "reviewed_fingerprint",
+        "approval",
+        "acceptance_revision"
+      ],
+      "title": "Selection",
+      "type": "object"
+    },
+    "SourceRange": {
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        },
+        "end": {
+          "exclusiveMinimum": 0,
+          "title": "End",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "SourceRange",
+      "type": "object"
+    },
+    "Take": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "clip_id": {
+          "title": "Clip Id",
+          "type": "string"
+        },
+        "attempt_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Attempt Id"
+        },
+        "origin": {
+          "default": "generated",
+          "enum": [
+            "generated",
+            "approved_reuse"
+          ],
+          "title": "Origin",
+          "type": "string"
+        },
+        "asset": {
+          "$ref": "#/$defs/Pin"
+        },
+        "frame_count": {
+          "exclusiveMinimum": 0,
+          "title": "Frame Count",
+          "type": "integer"
+        },
+        "fps": {
+          "exclusiveMinimum": 0,
+          "title": "Fps",
+          "type": "number"
+        },
+        "cfr": {
+          "default": true,
+          "title": "Cfr",
+          "type": "boolean"
+        },
+        "pts_evidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pts Evidence"
+        },
+        "width": {
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "integer"
+        },
+        "height": {
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "integer"
+        },
+        "has_audio": {
+          "title": "Has Audio",
+          "type": "boolean"
+        },
+        "decode_evidence": {
+          "minLength": 1,
+          "title": "Decode Evidence",
+          "type": "string"
+        },
+        "source_range": {
+          "$ref": "#/$defs/SourceRange"
+        },
+        "range_revision": {
+          "default": 1,
+          "exclusiveMinimum": 0,
+          "title": "Range Revision",
+          "type": "integer"
+        },
+        "fingerprint": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Fingerprint",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "clip_id",
+        "attempt_id",
+        "asset",
+        "frame_count",
+        "fps",
+        "width",
+        "height",
+        "has_audio",
+        "decode_evidence",
+        "source_range",
+        "fingerprint"
+      ],
+      "title": "Take",
+      "type": "object"
+    },
+    "Verdict": {
+      "enum": [
+        "accepted",
+        "conditional",
+        "rejected"
+      ],
+      "title": "Verdict",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "revision": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "batch": {
+      "$ref": "#/$defs/Batch"
+    },
+    "approved_coverage": {
+      "items": {
+        "$ref": "#/$defs/Requirement"
+      },
+      "title": "Approved Coverage",
+      "type": "array"
+    },
+    "coverage_source": {
+      "$ref": "#/$defs/Pin"
+    },
+    "attempts": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Attempt"
+      },
+      "title": "Attempts",
+      "type": "array"
+    },
+    "selections": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Selection"
+      },
+      "title": "Selections",
+      "type": "array"
+    },
+    "history": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Selection"
+      },
+      "title": "History",
+      "type": "array"
+    },
+    "join_reviews": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/JoinReview"
+      },
+      "title": "Join Reviews",
+      "type": "array"
+    },
+    "change_evidence": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Change Evidence",
+      "type": "array"
+    },
+    "scope_history": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ScopeChangeRecord"
+      },
+      "title": "Scope History",
+      "type": "array"
+    },
+    "observed_input_issues": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Observed Input Issues",
+      "type": "array"
+    }
+  },
+  "required": [
+    "batch",
+    "approved_coverage",
+    "coverage_source"
+  ],
+  "title": "State",
+  "type": "object"
+}

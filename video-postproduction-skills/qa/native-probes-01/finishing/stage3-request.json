@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "/usr/bin/filmcraft-cli",
+    "--project",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/finishing/workspace/native.fcproj",
+    "export",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/finishing/workspace/native-finished.mp4",
+    "--format",
+    "h264",
+    "--gpu-rendering",
+    "off"
+  ],
+  "commands": null
+}

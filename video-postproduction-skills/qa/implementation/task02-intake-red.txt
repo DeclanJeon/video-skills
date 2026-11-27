@@ -1,0 +1,1914 @@
+FFFFFFFFFFFFFFFFFFFFFFFFF                                                [100%]
+=================================== FAILURES ===================================
+___ test_intake_when_real_local_sources_and_actual_production_handoff_match ____
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-122/test_intake_when_real_local_so0'), {'project_id': 'synthetic-post', 'snap... 'sha256': '677ca5769bc7f88633e3bcc6f193ce187d165ecc278ace37369d30c8549d2b40', 'path': 'upstream-schema.py.txt'}, ...})
+
+    def test_intake_when_real_local_sources_and_actual_production_handoff_match(bundle):
+        root,request=bundle
+>       value=load(root)
+              ^^^^^^^^^^
+
+tests/test_intake.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_intake.py:23: in load
+    return require("intake","load_intake")(root,root/"request.json")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+__________ test_intake_when_required_physical_input_drifts[snapshot] ___________
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-122/test_intake_when_required_phys0'), {'project_id': 'synthetic-post', 'snap... 'sha256': '677ca5769bc7f88633e3bcc6f193ce187d165ecc278ace37369d30c8549d2b40', 'path': 'upstream-schema.py.txt'}, ...})
+key = 'snapshot'
+
+    @pytest.mark.parametrize("key",["snapshot","handoff","schema","brief","authority","profile"])
+    def test_intake_when_required_physical_input_drifts(bundle,key):
+        root,request=bundle
+        (root/request[key]["path"]).write_text("changed")
+        with pytest.raises(require("errors","ContractError")):
+>           load(root)
+
+tests/test_intake.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_intake.py:23: in load
+    return require("intake","load_intake")(root,root/"request.json")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+___________ test_intake_when_required_physical_input_drifts[handoff] ___________
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-122/test_intake_when_required_phys1'), {'project_id': 'synthetic-post', 'snap... 'sha256': '677ca5769bc7f88633e3bcc6f193ce187d165ecc278ace37369d30c8549d2b40', 'path': 'upstream-schema.py.txt'}, ...})
+key = 'handoff'
+
+    @pytest.mark.parametrize("key",["snapshot","handoff","schema","brief","authority","profile"])
+    def test_intake_when_required_physical_input_drifts(bundle,key):
+        root,request=bundle
+        (root/request[key]["path"]).write_text("changed")
+        with pytest.raises(require("errors","ContractError")):
+>           load(root)
+
+tests/test_intake.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_intake.py:23: in load
+    return require("intake","load_intake")(root,root/"request.json")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+___________ test_intake_when_required_physical_input_drifts[schema] ____________
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-122/test_intake_when_required_phys2'), {'project_id': 'synthetic-post', 'snap... 'sha256': '677ca5769bc7f88633e3bcc6f193ce187d165ecc278ace37369d30c8549d2b40', 'path': 'upstream-schema.py.txt'}, ...})
+key = 'schema'
+
+    @pytest.mark.parametrize("key",["snapshot","handoff","schema","brief","authority","profile"])
+    def test_intake_when_required_physical_input_drifts(bundle,key):
+        root,request=bundle
+        (root/request[key]["path"]).write_text("changed")
+        with pytest.raises(require("errors","ContractError")):
+>           load(root)
+
+tests/test_intake.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_intake.py:23: in load
+    return require("intake","load_intake")(root,root/"request.json")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+____________ test_intake_when_required_physical_input_drifts[brief] ____________
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-122/test_intake_when_required_phys3'), {'project_id': 'synthetic-post', 'snap... 'sha256': '677ca5769bc7f88633e3bcc6f193ce187d165ecc278ace37369d30c8549d2b40', 'path': 'upstream-schema.py.txt'}, ...})
+key = 'brief'
+
+    @pytest.mark.parametrize("key",["snapshot","handoff","schema","brief","authority","profile"])
+    def test_intake_when_required_physical_input_drifts(bundle,key):
+        root,request=bundle
+        (root/request[key]["path"]).write_text("changed")
+        with pytest.raises(require("errors","ContractError")):
+>           load(root)
+
+tests/test_intake.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_intake.py:23: in load
+    return require("intake","load_intake")(root,root/"request.json")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+__________ test_intake_when_required_physical_input_drifts[authority] __________
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-122/test_intake_when_required_phys4'), {'project_id': 'synthetic-post', 'snap... 'sha256': '677ca5769bc7f88633e3bcc6f193ce187d165ecc278ace37369d30c8549d2b40', 'path': 'upstream-schema.py.txt'}, ...})
+key = 'authority'
+
+    @pytest.mark.parametrize("key",["snapshot","handoff","schema","brief","authority","profile"])
+    def test_intake_when_required_physical_input_drifts(bundle,key):
+        root,request=bundle
+        (root/request[key]["path"]).write_text("changed")
+        with pytest.raises(require("errors","ContractError")):
+>           load(root)
+
+tests/test_intake.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_intake.py:23: in load
+    return require("intake","load_intake")(root,root/"request.json")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+___________ test_intake_when_required_physical_input_drifts[profile] ___________
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-122/test_intake_when_required_phys5'), {'project_id': 'synthetic-post', 'snap... 'sha256': '677ca5769bc7f88633e3bcc6f193ce187d165ecc278ace37369d30c8549d2b40', 'path': 'upstream-schema.py.txt'}, ...})
+key = 'profile'
+
+    @pytest.mark.parametrize("key",["snapshot","handoff","schema","brief","authority","profile"])
+    def test_intake_when_required_physical_input_drifts(bundle,key):
+        root,request=bundle
+        (root/request[key]["path"]).write_text("changed")
+        with pytest.raises(require("errors","ContractError")):
+>           load(root)
+
+tests/test_intake.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_intake.py:23: in load
+    return require("intake","load_intake")(root,root/"request.json")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+________ test_intake_when_source_or_contract_cannot_be_adopted[invalid] ________
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-122/test_intake_when_source_or_con0'), {'project_id': 'synthetic-post', 'snap... 'sha256': '677ca5769bc7f88633e3bcc6f193ce187d165ecc278ace37369d30c8549d2b40', 'path': 'upstream-schema.py.txt'}, ...})
+mutation = 'invalid'
+
+    @pytest.mark.parametrize("mutation",["invalid","missing_source","approval","stale_review","scope","handles","missing_rough","missing_stem","schema","malformed"])
+    def test_intake_when_source_or_contract_cannot_be_adopted(bundle,mutation):
+        root,request=bundle
+        state=json.loads((root/"snapshot.json").read_text())
+        if mutation=="missing_source":
+            (root/"source1.mp4").unlink()
+        elif mutation=="approval":
+            (root/"reuse-approval.txt").write_text("replacement")
+        elif mutation=="missing_rough":
+            (root/"review-only.mp4").unlink()
+        elif mutation=="missing_stem":
+            brief=json.loads((root/"brief.json").read_text());brief["required_stems"]=["clean-dialogue"]
+            update_request(root,request,"brief","brief.json",brief)
+        elif mutation=="schema":
+            update_request(root,request,"schema","upstream-schema.py.txt",{"not":"the active schema"})
+        elif mutation=="malformed":
+            update_request(root,request,"snapshot","snapshot.json",{"batch":"wrong"})
+        elif mutation=="handles":
+            handoff=json.loads((root/"handoff.json").read_text());handoff["handles"][0][1]=1
+            update_request(root,request,"handoff","handoff.json",handoff)
+        else:
+            match mutation:
+                case "invalid":state["selections"][0]["valid"]=False
+                case "stale_review":state["selections"][0]["reviewed_fingerprint"]="a"*64
+                case "scope":state["batch"]["scope_revision"]="unapproved-scope"
+            update_request(root,request,"snapshot","snapshot.json",state)
+        with pytest.raises(require("errors","ContractError")):
+>           load(root)
+
+tests/test_intake.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_intake.py:23: in load
+    return require("intake","load_intake")(root,root/"request.json")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+____ test_intake_when_source_or_contract_cannot_be_adopted[missing_source] _____
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-122/test_intake_when_source_or_con1'), {'project_id': 'synthetic-post', 'snap... 'sha256': '677ca5769bc7f88633e3bcc6f193ce187d165ecc278ace37369d30c8549d2b40', 'path': 'upstream-schema.py.txt'}, ...})
+mutation = 'missing_source'
+
+    @pytest.mark.parametrize("mutation",["invalid","missing_source","approval","stale_review","scope","handles","missing_rough","missing_stem","schema","malformed"])
+    def test_intake_when_source_or_contract_cannot_be_adopted(bundle,mutation):
+        root,request=bundle
+        state=json.loads((root/"snapshot.json").read_text())
+        if mutation=="missing_source":
+            (root/"source1.mp4").unlink()
+        elif mutation=="approval":
+            (root/"reuse-approval.txt").write_text("replacement")
+        elif mutation=="missing_rough":
+            (root/"review-only.mp4").unlink()
+        elif mutation=="missing_stem":
+            brief=json.loads((root/"brief.json").read_text());brief["required_stems"]=["clean-dialogue"]
+            update_request(root,request,"brief","brief.json",brief)
+        elif mutation=="schema":
+            update_request(root,request,"schema","upstream-schema.py.txt",{"not":"the active schema"})
+        elif mutation=="malformed":
+            update_request(root,request,"snapshot","snapshot.json",{"batch":"wrong"})
+        elif mutation=="handles":
+            handoff=json.loads((root/"handoff.json").read_text());handoff["handles"][0][1]=1
+            update_request(root,request,"handoff","handoff.json",handoff)
+        else:
+            match mutation:
+                case "invalid":state["selections"][0]["valid"]=False
+                case "stale_review":state["selections"][0]["reviewed_fingerprint"]="a"*64
+                case "scope":state["batch"]["scope_revision"]="unapproved-scope"
+            update_request(root,request,"snapshot","snapshot.json",state)
+        with pytest.raises(require("errors","ContractError")):
+>           load(root)
+
+tests/test_intake.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_intake.py:23: in load
+    return require("intake","load_intake")(root,root/"request.json")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+_______ test_intake_when_source_or_contract_cannot_be_adopted[approval] ________
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-122/test_intake_when_source_or_con2'), {'project_id': 'synthetic-post', 'snap... 'sha256': '677ca5769bc7f88633e3bcc6f193ce187d165ecc278ace37369d30c8549d2b40', 'path': 'upstream-schema.py.txt'}, ...})
+mutation = 'approval'
+
+    @pytest.mark.parametrize("mutation",["invalid","missing_source","approval","stale_review","scope","handles","missing_rough","missing_stem","schema","malformed"])
+    def test_intake_when_source_or_contract_cannot_be_adopted(bundle,mutation):
+        root,request=bundle
+        state=json.loads((root/"snapshot.json").read_text())
+        if mutation=="missing_source":
+            (root/"source1.mp4").unlink()
+        elif mutation=="approval":
+            (root/"reuse-approval.txt").write_text("replacement")
+        elif mutation=="missing_rough":
+            (root/"review-only.mp4").unlink()
+        elif mutation=="missing_stem":
+            brief=json.loads((root/"brief.json").read_text());brief["required_stems"]=["clean-dialogue"]
+            update_request(root,request,"brief","brief.json",brief)
+        elif mutation=="schema":
+            update_request(root,request,"schema","upstream-schema.py.txt",{"not":"the active schema"})
+        elif mutation=="malformed":
+            update_request(root,request,"snapshot","snapshot.json",{"batch":"wrong"})
+        elif mutation=="handles":
+            handoff=json.loads((root/"handoff.json").read_text());handoff["handles"][0][1]=1
+            update_request(root,request,"handoff","handoff.json",handoff)
+        else:
+            match mutation:
+                case "invalid":state["selections"][0]["valid"]=False
+                case "stale_review":state["selections"][0]["reviewed_fingerprint"]="a"*64
+                case "scope":state["batch"]["scope_revision"]="unapproved-scope"
+            update_request(root,request,"snapshot","snapshot.json",state)
+        with pytest.raises(require("errors","ContractError")):
+>           load(root)
+
+tests/test_intake.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_intake.py:23: in load
+    return require("intake","load_intake")(root,root/"request.json")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+_____ test_intake_when_source_or_contract_cannot_be_adopted[stale_review] ______
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-122/test_intake_when_source_or_con3'), {'project_id': 'synthetic-post', 'snap... 'sha256': '677ca5769bc7f88633e3bcc6f193ce187d165ecc278ace37369d30c8549d2b40', 'path': 'upstream-schema.py.txt'}, ...})
+mutation = 'stale_review'
+
+    @pytest.mark.parametrize("mutation",["invalid","missing_source","approval","stale_review","scope","handles","missing_rough","missing_stem","schema","malformed"])
+    def test_intake_when_source_or_contract_cannot_be_adopted(bundle,mutation):
+        root,request=bundle
+        state=json.loads((root/"snapshot.json").read_text())
+        if mutation=="missing_source":
+            (root/"source1.mp4").unlink()
+        elif mutation=="approval":
+            (root/"reuse-approval.txt").write_text("replacement")
+        elif mutation=="missing_rough":
+            (root/"review-only.mp4").unlink()
+        elif mutation=="missing_stem":
+            brief=json.loads((root/"brief.json").read_text());brief["required_stems"]=["clean-dialogue"]
+            update_request(root,request,"brief","brief.json",brief)
+        elif mutation=="schema":
+            update_request(root,request,"schema","upstream-schema.py.txt",{"not":"the active schema"})
+        elif mutation=="malformed":
+            update_request(root,request,"snapshot","snapshot.json",{"batch":"wrong"})
+        elif mutation=="handles":
+            handoff=json.loads((root/"handoff.json").read_text());handoff["handles"][0][1]=1
+            update_request(root,request,"handoff","handoff.json",handoff)
+        else:
+            match mutation:
+                case "invalid":state["selections"][0]["valid"]=False
+                case "stale_review":state["selections"][0]["reviewed_fingerprint"]="a"*64
+                case "scope":state["batch"]["scope_revision"]="unapproved-scope"
+            update_request(root,request,"snapshot","snapshot.json",state)
+        with pytest.raises(require("errors","ContractError")):
+>           load(root)
+
+tests/test_intake.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_intake.py:23: in load
+    return require("intake","load_intake")(root,root/"request.json")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+_________ test_intake_when_source_or_contract_cannot_be_adopted[scope] _________
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-122/test_intake_when_source_or_con4'), {'project_id': 'synthetic-post', 'snap... 'sha256': '677ca5769bc7f88633e3bcc6f193ce187d165ecc278ace37369d30c8549d2b40', 'path': 'upstream-schema.py.txt'}, ...})
+mutation = 'scope'
+
+    @pytest.mark.parametrize("mutation",["invalid","missing_source","approval","stale_review","scope","handles","missing_rough","missing_stem","schema","malformed"])
+    def test_intake_when_source_or_contract_cannot_be_adopted(bundle,mutation):
+        root,request=bundle
+        state=json.loads((root/"snapshot.json").read_text())
+        if mutation=="missing_source":
+            (root/"source1.mp4").unlink()
+        elif mutation=="approval":
+            (root/"reuse-approval.txt").write_text("replacement")
+        elif mutation=="missing_rough":
+            (root/"review-only.mp4").unlink()
+        elif mutation=="missing_stem":
+            brief=json.loads((root/"brief.json").read_text());brief["required_stems"]=["clean-dialogue"]
+            update_request(root,request,"brief","brief.json",brief)
+        elif mutation=="schema":
+            update_request(root,request,"schema","upstream-schema.py.txt",{"not":"the active schema"})
+        elif mutation=="malformed":
+            update_request(root,request,"snapshot","snapshot.json",{"batch":"wrong"})
+        elif mutation=="handles":
+            handoff=json.loads((root/"handoff.json").read_text());handoff["handles"][0][1]=1
+            update_request(root,request,"handoff","handoff.json",handoff)
+        else:
+            match mutation:
+                case "invalid":state["selections"][0]["valid"]=False
+                case "stale_review":state["selections"][0]["reviewed_fingerprint"]="a"*64
+                case "scope":state["batch"]["scope_revision"]="unapproved-scope"
+            update_request(root,request,"snapshot","snapshot.json",state)
+        with pytest.raises(require("errors","ContractError")):
+>           load(root)
+
+tests/test_intake.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_intake.py:23: in load
+    return require("intake","load_intake")(root,root/"request.json")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+________ test_intake_when_source_or_contract_cannot_be_adopted[handles] ________
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-122/test_intake_when_source_or_con5'), {'project_id': 'synthetic-post', 'snap... 'sha256': '677ca5769bc7f88633e3bcc6f193ce187d165ecc278ace37369d30c8549d2b40', 'path': 'upstream-schema.py.txt'}, ...})
+mutation = 'handles'
+
+    @pytest.mark.parametrize("mutation",["invalid","missing_source","approval","stale_review","scope","handles","missing_rough","missing_stem","schema","malformed"])
+    def test_intake_when_source_or_contract_cannot_be_adopted(bundle,mutation):
+        root,request=bundle
+        state=json.loads((root/"snapshot.json").read_text())
+        if mutation=="missing_source":
+            (root/"source1.mp4").unlink()
+        elif mutation=="approval":
+            (root/"reuse-approval.txt").write_text("replacement")
+        elif mutation=="missing_rough":
+            (root/"review-only.mp4").unlink()
+        elif mutation=="missing_stem":
+            brief=json.loads((root/"brief.json").read_text());brief["required_stems"]=["clean-dialogue"]
+            update_request(root,request,"brief","brief.json",brief)
+        elif mutation=="schema":
+            update_request(root,request,"schema","upstream-schema.py.txt",{"not":"the active schema"})
+        elif mutation=="malformed":
+            update_request(root,request,"snapshot","snapshot.json",{"batch":"wrong"})
+        elif mutation=="handles":
+            handoff=json.loads((root/"handoff.json").read_text());handoff["handles"][0][1]=1
+            update_request(root,request,"handoff","handoff.json",handoff)
+        else:
+            match mutation:
+                case "invalid":state["selections"][0]["valid"]=False
+                case "stale_review":state["selections"][0]["reviewed_fingerprint"]="a"*64
+                case "scope":state["batch"]["scope_revision"]="unapproved-scope"
+            update_request(root,request,"snapshot","snapshot.json",state)
+        with pytest.raises(require("errors","ContractError")):
+>           load(root)
+
+tests/test_intake.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_intake.py:23: in load
+    return require("intake","load_intake")(root,root/"request.json")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+_____ test_intake_when_source_or_contract_cannot_be_adopted[missing_rough] _____
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-122/test_intake_when_source_or_con6'), {'project_id': 'synthetic-post', 'snap... 'sha256': '677ca5769bc7f88633e3bcc6f193ce187d165ecc278ace37369d30c8549d2b40', 'path': 'upstream-schema.py.txt'}, ...})
+mutation = 'missing_rough'
+
+    @pytest.mark.parametrize("mutation",["invalid","missing_source","approval","stale_review","scope","handles","missing_rough","missing_stem","schema","malformed"])
+    def test_intake_when_source_or_contract_cannot_be_adopted(bundle,mutation):
+        root,request=bundle
+        state=json.loads((root/"snapshot.json").read_text())
+        if mutation=="missing_source":
+            (root/"source1.mp4").unlink()
+        elif mutation=="approval":
+            (root/"reuse-approval.txt").write_text("replacement")
+        elif mutation=="missing_rough":
+            (root/"review-only.mp4").unlink()
+        elif mutation=="missing_stem":
+            brief=json.loads((root/"brief.json").read_text());brief["required_stems"]=["clean-dialogue"]
+            update_request(root,request,"brief","brief.json",brief)
+        elif mutation=="schema":
+            update_request(root,request,"schema","upstream-schema.py.txt",{"not":"the active schema"})
+        elif mutation=="malformed":
+            update_request(root,request,"snapshot","snapshot.json",{"batch":"wrong"})
+        elif mutation=="handles":
+            handoff=json.loads((root/"handoff.json").read_text());handoff["handles"][0][1]=1
+            update_request(root,request,"handoff","handoff.json",handoff)
+        else:
+            match mutation:
+                case "invalid":state["selections"][0]["valid"]=False
+                case "stale_review":state["selections"][0]["reviewed_fingerprint"]="a"*64
+                case "scope":state["batch"]["scope_revision"]="unapproved-scope"
+            update_request(root,request,"snapshot","snapshot.json",state)
+        with pytest.raises(require("errors","ContractError")):
+>           load(root)
+
+tests/test_intake.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_intake.py:23: in load
+    return require("intake","load_intake")(root,root/"request.json")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+_____ test_intake_when_source_or_contract_cannot_be_adopted[missing_stem] ______
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-122/test_intake_when_source_or_con7'), {'project_id': 'synthetic-post', 'snap... 'sha256': '677ca5769bc7f88633e3bcc6f193ce187d165ecc278ace37369d30c8549d2b40', 'path': 'upstream-schema.py.txt'}, ...})
+mutation = 'missing_stem'
+
+    @pytest.mark.parametrize("mutation",["invalid","missing_source","approval","stale_review","scope","handles","missing_rough","missing_stem","schema","malformed"])
+    def test_intake_when_source_or_contract_cannot_be_adopted(bundle,mutation):
+        root,request=bundle
+        state=json.loads((root/"snapshot.json").read_text())
+        if mutation=="missing_source":
+            (root/"source1.mp4").unlink()
+        elif mutation=="approval":
+            (root/"reuse-approval.txt").write_text("replacement")
+        elif mutation=="missing_rough":
+            (root/"review-only.mp4").unlink()
+        elif mutation=="missing_stem":
+            brief=json.loads((root/"brief.json").read_text());brief["required_stems"]=["clean-dialogue"]
+            update_request(root,request,"brief","brief.json",brief)
+        elif mutation=="schema":
+            update_request(root,request,"schema","upstream-schema.py.txt",{"not":"the active schema"})
+        elif mutation=="malformed":
+            update_request(root,request,"snapshot","snapshot.json",{"batch":"wrong"})
+        elif mutation=="handles":
+            handoff=json.loads((root/"handoff.json").read_text());handoff["handles"][0][1]=1
+            update_request(root,request,"handoff","handoff.json",handoff)
+        else:
+            match mutation:
+                case "invalid":state["selections"][0]["valid"]=False
+                case "stale_review":state["selections"][0]["reviewed_fingerprint"]="a"*64
+                case "scope":state["batch"]["scope_revision"]="unapproved-scope"
+            update_request(root,request,"snapshot","snapshot.json",state)
+        with pytest.raises(require("errors","ContractError")):
+>           load(root)
+
+tests/test_intake.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_intake.py:23: in load
+    return require("intake","load_intake")(root,root/"request.json")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+________ test_intake_when_source_or_contract_cannot_be_adopted[schema] _________
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-122/test_intake_when_source_or_con8'), {'project_id': 'synthetic-post', 'snap... 'sha256': 'f8fb736283bf042b0710f14dbdbce3c107f3e9617ab7cb6de1de6fc6940ab799', 'path': 'upstream-schema.py.txt'}, ...})
+mutation = 'schema'
+
+    @pytest.mark.parametrize("mutation",["invalid","missing_source","approval","stale_review","scope","handles","missing_rough","missing_stem","schema","malformed"])
+    def test_intake_when_source_or_contract_cannot_be_adopted(bundle,mutation):
+        root,request=bundle
+        state=json.loads((root/"snapshot.json").read_text())
+        if mutation=="missing_source":
+            (root/"source1.mp4").unlink()
+        elif mutation=="approval":
+            (root/"reuse-approval.txt").write_text("replacement")
+        elif mutation=="missing_rough":
+            (root/"review-only.mp4").unlink()
+        elif mutation=="missing_stem":
+            brief=json.loads((root/"brief.json").read_text());brief["required_stems"]=["clean-dialogue"]
+            update_request(root,request,"brief","brief.json",brief)
+        elif mutation=="schema":
+            update_request(root,request,"schema","upstream-schema.py.txt",{"not":"the active schema"})
+        elif mutation=="malformed":
+            update_request(root,request,"snapshot","snapshot.json",{"batch":"wrong"})
+        elif mutation=="handles":
+            handoff=json.loads((root/"handoff.json").read_text());handoff["handles"][0][1]=1
+            update_request(root,request,"handoff","handoff.json",handoff)
+        else:
+            match mutation:
+                case "invalid":state["selections"][0]["valid"]=False
+                case "stale_review":state["selections"][0]["reviewed_fingerprint"]="a"*64
+                case "scope":state["batch"]["scope_revision"]="unapproved-scope"
+            update_request(root,request,"snapshot","snapshot.json",state)
+        with pytest.raises(require("errors","ContractError")):
+>           load(root)
+
+tests/test_intake.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_intake.py:23: in load
+    return require("intake","load_intake")(root,root/"request.json")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+_______ test_intake_when_source_or_contract_cannot_be_adopted[malformed] _______
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-122/test_intake_when_source_or_con9'), {'project_id': 'synthetic-post', 'snap... 'sha256': '677ca5769bc7f88633e3bcc6f193ce187d165ecc278ace37369d30c8549d2b40', 'path': 'upstream-schema.py.txt'}, ...})
+mutation = 'malformed'
+
+    @pytest.mark.parametrize("mutation",["invalid","missing_source","approval","stale_review","scope","handles","missing_rough","missing_stem","schema","malformed"])
+    def test_intake_when_source_or_contract_cannot_be_adopted(bundle,mutation):
+        root,request=bundle
+        state=json.loads((root/"snapshot.json").read_text())
+        if mutation=="missing_source":
+            (root/"source1.mp4").unlink()
+        elif mutation=="approval":
+            (root/"reuse-approval.txt").write_text("replacement")
+        elif mutation=="missing_rough":
+            (root/"review-only.mp4").unlink()
+        elif mutation=="missing_stem":
+            brief=json.loads((root/"brief.json").read_text());brief["required_stems"]=["clean-dialogue"]
+            update_request(root,request,"brief","brief.json",brief)
+        elif mutation=="schema":
+            update_request(root,request,"schema","upstream-schema.py.txt",{"not":"the active schema"})
+        elif mutation=="malformed":
+            update_request(root,request,"snapshot","snapshot.json",{"batch":"wrong"})
+        elif mutation=="handles":
+            handoff=json.loads((root/"handoff.json").read_text());handoff["handles"][0][1]=1
+            update_request(root,request,"handoff","handoff.json",handoff)
+        else:
+            match mutation:
+                case "invalid":state["selections"][0]["valid"]=False
+                case "stale_review":state["selections"][0]["reviewed_fingerprint"]="a"*64
+                case "scope":state["batch"]["scope_revision"]="unapproved-scope"
+            update_request(root,request,"snapshot","snapshot.json",state)
+        with pytest.raises(require("errors","ContractError")):
+>           load(root)
+
+tests/test_intake.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_intake.py:23: in load
+    return require("intake","load_intake")(root,root/"request.json")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+_________ test_intake_when_source_is_a_symlink_even_with_matching_hash _________
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-122/test_intake_when_source_is_a_s0'), {'project_id': 'synthetic-post', 'snap... 'sha256': '677ca5769bc7f88633e3bcc6f193ce187d165ecc278ace37369d30c8549d2b40', 'path': 'upstream-schema.py.txt'}, ...})
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x7e46511e3e10>, _basetemp=PosixPath('/tmp/pytest-of-declan/pytest-122'), _retention_count=3, _retention_policy='all')
+
+    def test_intake_when_source_is_a_symlink_even_with_matching_hash(bundle,tmp_path_factory):
+        root,request=bundle
+        outside=tmp_path_factory.mktemp("external-source")/"source.mp4"
+        shutil.copyfile(root/"source1.mp4",outside)
+        (root/"source1.mp4").unlink();(root/"source1.mp4").symlink_to(outside)
+        with pytest.raises(require("errors","ContractError")):
+>           load(root)
+
+tests/test_intake.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_intake.py:23: in load
+    return require("intake","load_intake")(root,root/"request.json")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+_ test_authority_when_grant_is_for_other_exact_input[project_id-another-project] _
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+built = PosixPath('/tmp/pytest-of-declan/pytest-122/authority-source0')
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-122/test_authority_when_grant_is_f0')
+field = 'project_id', value = 'another-project'
+
+    @pytest.mark.parametrize("field,value",[
+        ("project_id","another-project"),("receiver","another-team"),
+        ("handoff_digest","a"*64),("scope_revision","scope-other"),
+        ("brief_digest","b"*64),("profile_digest","c"*64),
+    ])
+    def test_authority_when_grant_is_for_other_exact_input(built,tmp_path,field,value):
+        shutil.copytree(built,tmp_path,dirs_exist_ok=True)
+        request=json.loads((tmp_path/"request.json").read_text())
+        modify_authority(tmp_path,request,**{field:value})
+        with pytest.raises(require("errors","ContractError"),match="authority"):
+>           require("intake","load_intake")(tmp_path,tmp_path/"request.json")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_authority.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+__ test_authority_when_grant_is_for_other_exact_input[receiver-another-team] ___
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+built = PosixPath('/tmp/pytest-of-declan/pytest-122/authority-source0')
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-122/test_authority_when_grant_is_f1')
+field = 'receiver', value = 'another-team'
+
+    @pytest.mark.parametrize("field,value",[
+        ("project_id","another-project"),("receiver","another-team"),
+        ("handoff_digest","a"*64),("scope_revision","scope-other"),
+        ("brief_digest","b"*64),("profile_digest","c"*64),
+    ])
+    def test_authority_when_grant_is_for_other_exact_input(built,tmp_path,field,value):
+        shutil.copytree(built,tmp_path,dirs_exist_ok=True)
+        request=json.loads((tmp_path/"request.json").read_text())
+        modify_authority(tmp_path,request,**{field:value})
+        with pytest.raises(require("errors","ContractError"),match="authority"):
+>           require("intake","load_intake")(tmp_path,tmp_path/"request.json")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_authority.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+_ test_authority_when_grant_is_for_other_exact_input[handoff_digest-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa] _
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+built = PosixPath('/tmp/pytest-of-declan/pytest-122/authority-source0')
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-122/test_authority_when_grant_is_f2')
+field = 'handoff_digest'
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+    @pytest.mark.parametrize("field,value",[
+        ("project_id","another-project"),("receiver","another-team"),
+        ("handoff_digest","a"*64),("scope_revision","scope-other"),
+        ("brief_digest","b"*64),("profile_digest","c"*64),
+    ])
+    def test_authority_when_grant_is_for_other_exact_input(built,tmp_path,field,value):
+        shutil.copytree(built,tmp_path,dirs_exist_ok=True)
+        request=json.loads((tmp_path/"request.json").read_text())
+        modify_authority(tmp_path,request,**{field:value})
+        with pytest.raises(require("errors","ContractError"),match="authority"):
+>           require("intake","load_intake")(tmp_path,tmp_path/"request.json")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_authority.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+_ test_authority_when_grant_is_for_other_exact_input[scope_revision-scope-other] _
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+built = PosixPath('/tmp/pytest-of-declan/pytest-122/authority-source0')
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-122/test_authority_when_grant_is_f3')
+field = 'scope_revision', value = 'scope-other'
+
+    @pytest.mark.parametrize("field,value",[
+        ("project_id","another-project"),("receiver","another-team"),
+        ("handoff_digest","a"*64),("scope_revision","scope-other"),
+        ("brief_digest","b"*64),("profile_digest","c"*64),
+    ])
+    def test_authority_when_grant_is_for_other_exact_input(built,tmp_path,field,value):
+        shutil.copytree(built,tmp_path,dirs_exist_ok=True)
+        request=json.loads((tmp_path/"request.json").read_text())
+        modify_authority(tmp_path,request,**{field:value})
+        with pytest.raises(require("errors","ContractError"),match="authority"):
+>           require("intake","load_intake")(tmp_path,tmp_path/"request.json")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_authority.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+_ test_authority_when_grant_is_for_other_exact_input[brief_digest-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb] _
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+built = PosixPath('/tmp/pytest-of-declan/pytest-122/authority-source0')
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-122/test_authority_when_grant_is_f4')
+field = 'brief_digest'
+value = 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'
+
+    @pytest.mark.parametrize("field,value",[
+        ("project_id","another-project"),("receiver","another-team"),
+        ("handoff_digest","a"*64),("scope_revision","scope-other"),
+        ("brief_digest","b"*64),("profile_digest","c"*64),
+    ])
+    def test_authority_when_grant_is_for_other_exact_input(built,tmp_path,field,value):
+        shutil.copytree(built,tmp_path,dirs_exist_ok=True)
+        request=json.loads((tmp_path/"request.json").read_text())
+        modify_authority(tmp_path,request,**{field:value})
+        with pytest.raises(require("errors","ContractError"),match="authority"):
+>           require("intake","load_intake")(tmp_path,tmp_path/"request.json")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_authority.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+_ test_authority_when_grant_is_for_other_exact_input[profile_digest-cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc] _
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+built = PosixPath('/tmp/pytest-of-declan/pytest-122/authority-source0')
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-122/test_authority_when_grant_is_f5')
+field = 'profile_digest'
+value = 'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc'
+
+    @pytest.mark.parametrize("field,value",[
+        ("project_id","another-project"),("receiver","another-team"),
+        ("handoff_digest","a"*64),("scope_revision","scope-other"),
+        ("brief_digest","b"*64),("profile_digest","c"*64),
+    ])
+    def test_authority_when_grant_is_for_other_exact_input(built,tmp_path,field,value):
+        shutil.copytree(built,tmp_path,dirs_exist_ok=True)
+        request=json.loads((tmp_path/"request.json").read_text())
+        modify_authority(tmp_path,request,**{field:value})
+        with pytest.raises(require("errors","ContractError"),match="authority"):
+>           require("intake","load_intake")(tmp_path,tmp_path/"request.json")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_authority.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+__________________ test_authority_when_evidence_bytes_changed __________________
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.intake', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.intake'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+built = PosixPath('/tmp/pytest-of-declan/pytest-122/authority-source0')
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-122/test_authority_when_evidence_b0')
+
+    def test_authority_when_evidence_bytes_changed(built,tmp_path):
+        shutil.copytree(built,tmp_path,dirs_exist_ok=True)
+        (tmp_path/"edit-grant.txt").write_text("changed grant")
+        with pytest.raises(require("errors","ContractError")):
+>           require("intake","load_intake")(tmp_path,tmp_path/"request.json")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_authority.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'intake', name = 'load_intake'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.intake'
+
+tests/conftest.py:10: Failed
+=========================== short test summary info ============================
+FAILED tests/test_intake.py::test_intake_when_real_local_sources_and_actual_production_handoff_match
+FAILED tests/test_intake.py::test_intake_when_required_physical_input_drifts[snapshot]
+FAILED tests/test_intake.py::test_intake_when_required_physical_input_drifts[handoff]
+FAILED tests/test_intake.py::test_intake_when_required_physical_input_drifts[schema]
+FAILED tests/test_intake.py::test_intake_when_required_physical_input_drifts[brief]
+FAILED tests/test_intake.py::test_intake_when_required_physical_input_drifts[authority]
+FAILED tests/test_intake.py::test_intake_when_required_physical_input_drifts[profile]
+FAILED tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[invalid]
+FAILED tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[missing_source]
+FAILED tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[approval]
+FAILED tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[stale_review]
+FAILED tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[scope]
+FAILED tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[handles]
+FAILED tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[missing_rough]
+FAILED tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[missing_stem]
+FAILED tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[schema]
+FAILED tests/test_intake.py::test_intake_when_source_or_contract_cannot_be_adopted[malformed]
+FAILED tests/test_intake.py::test_intake_when_source_is_a_symlink_even_with_matching_hash
+FAILED tests/test_authority.py::test_authority_when_grant_is_for_other_exact_input[project_id-another-project]
+FAILED tests/test_authority.py::test_authority_when_grant_is_for_other_exact_input[receiver-another-team]
+FAILED tests/test_authority.py::test_authority_when_grant_is_for_other_exact_input[handoff_digest-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa]
+FAILED tests/test_authority.py::test_authority_when_grant_is_for_other_exact_input[scope_revision-scope-other]
+FAILED tests/test_authority.py::test_authority_when_grant_is_for_other_exact_input[brief_digest-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb]
+FAILED tests/test_authority.py::test_authority_when_grant_is_for_other_exact_input[profile_digest-cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc]
+FAILED tests/test_authority.py::test_authority_when_evidence_bytes_changed - ...
+25 failed in 1.36s

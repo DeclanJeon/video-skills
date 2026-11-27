@@ -1,0 +1,227 @@
+{
+  "$defs": {
+    "ApprovedConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "clip_id": {
+          "title": "Clip Id",
+          "type": "string"
+        },
+        "scope_revision": {
+          "minLength": 1,
+          "title": "Scope Revision",
+          "type": "string"
+        },
+        "coverage_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Coverage Hash",
+          "type": "string"
+        },
+        "clip_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Clip Hash",
+          "type": "string"
+        },
+        "duration_s": {
+          "exclusiveMinimum": 0,
+          "title": "Duration S",
+          "type": "number"
+        },
+        "width": {
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "integer"
+        },
+        "height": {
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "integer"
+        },
+        "audio_requested": {
+          "title": "Audio Requested",
+          "type": "boolean"
+        },
+        "reuse_source": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Pin"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "reuse_range": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SourceRange"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "clip_id",
+        "scope_revision",
+        "coverage_hash",
+        "clip_hash",
+        "duration_s",
+        "width",
+        "height",
+        "audio_requested"
+      ],
+      "title": "ApprovedConfig",
+      "type": "object"
+    },
+    "Pin": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "minLength": 1,
+          "title": "Version",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "path": {
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "sha256",
+        "path"
+      ],
+      "title": "Pin",
+      "type": "object"
+    },
+    "SourceRange": {
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        },
+        "end": {
+          "exclusiveMinimum": 0,
+          "title": "End",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "SourceRange",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "minLength": 1,
+      "title": "Id",
+      "type": "string"
+    },
+    "clips": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Clips",
+      "type": "array"
+    },
+    "allowed_hashes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Allowed Hashes",
+      "type": "array"
+    },
+    "configurations": {
+      "items": {
+        "$ref": "#/$defs/ApprovedConfig"
+      },
+      "title": "Configurations",
+      "type": "array"
+    },
+    "account": {
+      "minLength": 1,
+      "title": "Account",
+      "type": "string"
+    },
+    "model": {
+      "minLength": 1,
+      "title": "Model",
+      "type": "string"
+    },
+    "transport": {
+      "minLength": 1,
+      "title": "Transport",
+      "type": "string"
+    },
+    "mode": {
+      "minLength": 1,
+      "title": "Mode",
+      "type": "string"
+    },
+    "max_attempts": {
+      "default": 1,
+      "exclusiveMinimum": 0,
+      "title": "Max Attempts",
+      "type": "integer"
+    },
+    "max_active": {
+      "default": 1,
+      "exclusiveMinimum": 0,
+      "title": "Max Active",
+      "type": "integer"
+    },
+    "upload": {
+      "default": false,
+      "title": "Upload",
+      "type": "boolean"
+    },
+    "generation": {
+      "default": false,
+      "title": "Generation",
+      "type": "boolean"
+    },
+    "reuse": {
+      "default": false,
+      "title": "Reuse",
+      "type": "boolean"
+    },
+    "evidence": {
+      "$ref": "#/$defs/Pin"
+    }
+  },
+  "required": [
+    "id",
+    "clips",
+    "allowed_hashes",
+    "configurations",
+    "account",
+    "model",
+    "transport",
+    "mode",
+    "evidence"
+  ],
+  "title": "Authority",
+  "type": "object"
+}

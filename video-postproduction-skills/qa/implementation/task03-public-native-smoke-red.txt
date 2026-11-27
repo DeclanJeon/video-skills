@@ -1,0 +1,190 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_ test_installer_smoke_when_actual_existing_cli_has_native_output_and_network_denial[filmcraft] _
+
+module = 'environment.native_smoke', name = 'NativeSmoke'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.native_smoke', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.native_smoke'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-270/test_installer_smoke_when_actu0')
+tool = 'filmcraft'
+
+    @pytest.mark.parametrize('tool',['filmcraft','effectcraft','soundcraft'])
+    def test_installer_smoke_when_actual_existing_cli_has_native_output_and_network_denial(tmp_path,tool):
+        p=plan(tool=tool)
+>       runner=require('environment.native_smoke','NativeSmoke')(tmp_path/'owned-smoke')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_native_smoke.py:11: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.native_smoke', name = 'NativeSmoke'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.native_smoke'
+
+tests/conftest.py:10: Failed
+_ test_installer_smoke_when_actual_existing_cli_has_native_output_and_network_denial[effectcraft] _
+
+module = 'environment.native_smoke', name = 'NativeSmoke'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.native_smoke', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.native_smoke'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-270/test_installer_smoke_when_actu1')
+tool = 'effectcraft'
+
+    @pytest.mark.parametrize('tool',['filmcraft','effectcraft','soundcraft'])
+    def test_installer_smoke_when_actual_existing_cli_has_native_output_and_network_denial(tmp_path,tool):
+        p=plan(tool=tool)
+>       runner=require('environment.native_smoke','NativeSmoke')(tmp_path/'owned-smoke')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_native_smoke.py:11: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.native_smoke', name = 'NativeSmoke'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.native_smoke'
+
+tests/conftest.py:10: Failed
+_ test_installer_smoke_when_actual_existing_cli_has_native_output_and_network_denial[soundcraft] _
+
+module = 'environment.native_smoke', name = 'NativeSmoke'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.environment.native_smoke', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.environment.native_smoke'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-270/test_installer_smoke_when_actu2')
+tool = 'soundcraft'
+
+    @pytest.mark.parametrize('tool',['filmcraft','effectcraft','soundcraft'])
+    def test_installer_smoke_when_actual_existing_cli_has_native_output_and_network_denial(tmp_path,tool):
+        p=plan(tool=tool)
+>       runner=require('environment.native_smoke','NativeSmoke')(tmp_path/'owned-smoke')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_native_smoke.py:11: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'environment.native_smoke', name = 'NativeSmoke'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.environment.native_smoke'
+
+tests/conftest.py:10: Failed
+=========================== short test summary info ============================
+FAILED tests/test_native_smoke.py::test_installer_smoke_when_actual_existing_cli_has_native_output_and_network_denial[filmcraft]
+FAILED tests/test_native_smoke.py::test_installer_smoke_when_actual_existing_cli_has_native_output_and_network_denial[effectcraft]
+FAILED tests/test_native_smoke.py::test_installer_smoke_when_actual_existing_cli_has_native_output_and_network_denial[soundcraft]
+3 failed in 0.18s

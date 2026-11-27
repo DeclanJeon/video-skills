@@ -1,0 +1,105 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_ test_delivery_when_supplied_consumed_credit_is_preserved_for_main_or_variant[main] _
+
+credited = (<postproduction.ledger.PostStore object at 0x7680ed2156a0>, ArtifactRef(id='FINISH-A1-artifact', job_id='FINISH-A1', ...da4909e417cddef1b/mix.wav', sha256='7e17d5d9004acb3e70494b9f200fbf423b4b905ec1948fc2e3b332d352b88f2b')), kind='video'))
+location = 'main'
+
+    @pytest.mark.parametrize("location",["main","variant"])
+    def test_delivery_when_supplied_consumed_credit_is_preserved_for_main_or_variant(credited,location):
+        store,main,clean=credited
+        artifact=main if location=="main" else clean
+        variants=[] if location=="main" else [main.id]
+        c=contract(store,artifact,id="CREDIT-"+location,variants=variants,output="deliveries/credits-"+location)
+        bundle=require("delivery","build_delivery")(store.read_recorded(),c,store.path)
+        root=store.path.parent/bundle.path
+>       assert any(CREDIT in p.read_text() for p in root.rglob("*.json"))
+E       assert False
+E        +  where False = any(<generator object test_delivery_when_supplied_consumed_credit_is_preserved_for_main_or_variant.<locals>.<genexpr> at 0x7680ed22cc80>)
+
+tests/test_review_attribution.py:32: AssertionError
+_ test_delivery_when_supplied_consumed_credit_is_preserved_for_main_or_variant[variant] _
+
+credited = (<postproduction.ledger.PostStore object at 0x7680ed2156a0>, ArtifactRef(id='FINISH-A1-artifact', job_id='FINISH-A1', ...da4909e417cddef1b/mix.wav', sha256='7e17d5d9004acb3e70494b9f200fbf423b4b905ec1948fc2e3b332d352b88f2b')), kind='video'))
+location = 'variant'
+
+    @pytest.mark.parametrize("location",["main","variant"])
+    def test_delivery_when_supplied_consumed_credit_is_preserved_for_main_or_variant(credited,location):
+        store,main,clean=credited
+        artifact=main if location=="main" else clean
+        variants=[] if location=="main" else [main.id]
+        c=contract(store,artifact,id="CREDIT-"+location,variants=variants,output="deliveries/credits-"+location)
+        bundle=require("delivery","build_delivery")(store.read_recorded(),c,store.path)
+        root=store.path.parent/bundle.path
+>       assert any(CREDIT in p.read_text() for p in root.rglob("*.json"))
+E       assert False
+E        +  where False = any(<generator object test_delivery_when_supplied_consumed_credit_is_preserved_for_main_or_variant.<locals>.<genexpr> at 0x7680ee0af760>)
+
+tests/test_review_attribution.py:32: AssertionError
+_ test_delivery_when_on_screen_credit_is_explicit_cannot_be_satisfied_by_a_metadata_record _
+
+path = PosixPath('/tmp/pytest-of-declan/pytest-319/test_delivery_when_on_screen_c0/style.json')
+root = PosixPath('/tmp/pytest-of-declan/pytest-319/test_delivery_when_on_screen_c0')
+
+    def load_recipe(path: Path, root: Path) -> StyleRecipe:
+        """Validate exact installed font/assets/rights references; absence requests setup/approval, never fallback."""
+        absolute = path.absolute()
+        try:
+            relative = absolute.relative_to(root.absolute()).as_posix()
+            file = confined_path(root,relative)
+>           recipe = StyleRecipe.model_validate_json(file.read_bytes())
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           pydantic_core._pydantic_core.ValidationError: 1 validation error for StyleRecipe
+E           attribution_presentation
+E             Extra inputs are not permitted [type=extra_forbidden, input_value='on_screen', input_type=str]
+E               For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
+
+postproduction/templates.py:19: ValidationError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-319/test_delivery_when_on_screen_c0')
+
+    def test_delivery_when_on_screen_credit_is_explicit_cannot_be_satisfied_by_a_metadata_record(tmp_path):
+>       store,_,_,_=finishing_support.build(tmp_path,attribution=(CREDIT,),attribution_presentation="on_screen")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_review_attribution.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/finishing_support.py:44: in build
+    text=render("TEXT","motion","effectcraft",textrecipe,dependencies=extra,source_refs=[refs[0]])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/finishing_support.py:32: in render
+    adapter=cls(store,root/(id+"-native"));cap=adapter.inspect();packet=adapter.prepare(order,cap,store.read_recorded().intake.authority)
+                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/backends/effectcraft.py:76: in prepare
+    text_settings = TextContract(state,self.store.path.parent).settings(order,recipe)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/backends/text_contract.py:32: in settings
+    return self.check(order,recipe)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/backends/text_contract.py:51: in check
+    style = load_recipe(self.root/recipe.style.path,self.root)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = PosixPath('/tmp/pytest-of-declan/pytest-319/test_delivery_when_on_screen_c0/style.json')
+root = PosixPath('/tmp/pytest-of-declan/pytest-319/test_delivery_when_on_screen_c0')
+
+    def load_recipe(path: Path, root: Path) -> StyleRecipe:
+        """Validate exact installed font/assets/rights references; absence requests setup/approval, never fallback."""
+        absolute = path.absolute()
+        try:
+            relative = absolute.relative_to(root.absolute()).as_posix()
+            file = confined_path(root,relative)
+            recipe = StyleRecipe.model_validate_json(file.read_bytes())
+        except (OSError,ValueError,ValidationError) as exc:
+>           raise ContractError("recipe", "invalid actual local conceptual recipe or missing attribution/metric evidence") from exc
+E           postproduction.errors.ContractError: recipe: invalid actual local conceptual recipe or missing attribution/metric evidence
+
+postproduction/templates.py:21: ContractError
+=========================== short test summary info ============================
+FAILED tests/test_review_attribution.py::test_delivery_when_supplied_consumed_credit_is_preserved_for_main_or_variant[main]
+FAILED tests/test_review_attribution.py::test_delivery_when_supplied_consumed_credit_is_preserved_for_main_or_variant[variant]
+FAILED tests/test_review_attribution.py::test_delivery_when_on_screen_credit_is_explicit_cannot_be_satisfied_by_a_metadata_record
+3 failed in 84.15s (0:01:24)

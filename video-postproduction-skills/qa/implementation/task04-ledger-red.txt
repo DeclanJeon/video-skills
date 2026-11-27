@@ -1,0 +1,540 @@
+EEEEEEEE                                                                 [100%]
+==================================== ERRORS ====================================
+_ ERROR at setup of test_post_store_when_initializing_preserves_actual_other_namespaces _
+
+module = 'state_models', name = 'PostState'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.state_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.state_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-173/test_post_store_when_initializ0')
+built = PosixPath('/tmp/pytest-of-declan/pytest-173/post-ledger-source0')
+
+    @pytest.fixture
+    def project(tmp_path,built):
+        shutil.copytree(built,tmp_path,dirs_exist_ok=True)
+        production=json.loads((tmp_path/"snapshot.json").read_text())
+        path=tmp_path/"project.json"
+        path.write_text(json.dumps({"production":production,"foreign":{"owner":"other-terminal","items":[1,2,3]}}))
+        intake=require("intake","load_intake")(tmp_path,tmp_path/"request.json",path)
+        timeline=require("timeline","build_timeline")(intake)
+>       state=require("state_models","PostState")(intake=intake,timelines=(timeline,))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ledger.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'state_models', name = 'PostState'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.state_models'
+
+tests/conftest.py:10: Failed
+_ ERROR at setup of test_post_store_when_transaction_changes_only_post_revision _
+
+module = 'state_models', name = 'PostState'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.state_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.state_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-173/test_post_store_when_transacti0')
+built = PosixPath('/tmp/pytest-of-declan/pytest-173/post-ledger-source0')
+
+    @pytest.fixture
+    def project(tmp_path,built):
+        shutil.copytree(built,tmp_path,dirs_exist_ok=True)
+        production=json.loads((tmp_path/"snapshot.json").read_text())
+        path=tmp_path/"project.json"
+        path.write_text(json.dumps({"production":production,"foreign":{"owner":"other-terminal","items":[1,2,3]}}))
+        intake=require("intake","load_intake")(tmp_path,tmp_path/"request.json",path)
+        timeline=require("timeline","build_timeline")(intake)
+>       state=require("state_models","PostState")(intake=intake,timelines=(timeline,))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ledger.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'state_models', name = 'PostState'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.state_models'
+
+tests/conftest.py:10: Failed
+_ ERROR at setup of test_post_store_when_original_production_writer_holds_public_lock_inode _
+
+module = 'state_models', name = 'PostState'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.state_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.state_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-173/test_post_store_when_original_0')
+built = PosixPath('/tmp/pytest-of-declan/pytest-173/post-ledger-source0')
+
+    @pytest.fixture
+    def project(tmp_path,built):
+        shutil.copytree(built,tmp_path,dirs_exist_ok=True)
+        production=json.loads((tmp_path/"snapshot.json").read_text())
+        path=tmp_path/"project.json"
+        path.write_text(json.dumps({"production":production,"foreign":{"owner":"other-terminal","items":[1,2,3]}}))
+        intake=require("intake","load_intake")(tmp_path,tmp_path/"request.json",path)
+        timeline=require("timeline","build_timeline")(intake)
+>       state=require("state_models","PostState")(intake=intake,timelines=(timeline,))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ledger.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'state_models', name = 'PostState'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.state_models'
+
+tests/conftest.py:10: Failed
+_ ERROR at setup of test_post_store_when_stale_namespace_revision_cannot_publish _
+
+module = 'state_models', name = 'PostState'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.state_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.state_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-173/test_post_store_when_stale_nam0')
+built = PosixPath('/tmp/pytest-of-declan/pytest-173/post-ledger-source0')
+
+    @pytest.fixture
+    def project(tmp_path,built):
+        shutil.copytree(built,tmp_path,dirs_exist_ok=True)
+        production=json.loads((tmp_path/"snapshot.json").read_text())
+        path=tmp_path/"project.json"
+        path.write_text(json.dumps({"production":production,"foreign":{"owner":"other-terminal","items":[1,2,3]}}))
+        intake=require("intake","load_intake")(tmp_path,tmp_path/"request.json",path)
+        timeline=require("timeline","build_timeline")(intake)
+>       state=require("state_models","PostState")(intake=intake,timelines=(timeline,))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ledger.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'state_models', name = 'PostState'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.state_models'
+
+tests/conftest.py:10: Failed
+_ ERROR at setup of test_post_store_when_external_owner_changes_bytes_during_transaction _
+
+module = 'state_models', name = 'PostState'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.state_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.state_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-173/test_post_store_when_external_0')
+built = PosixPath('/tmp/pytest-of-declan/pytest-173/post-ledger-source0')
+
+    @pytest.fixture
+    def project(tmp_path,built):
+        shutil.copytree(built,tmp_path,dirs_exist_ok=True)
+        production=json.loads((tmp_path/"snapshot.json").read_text())
+        path=tmp_path/"project.json"
+        path.write_text(json.dumps({"production":production,"foreign":{"owner":"other-terminal","items":[1,2,3]}}))
+        intake=require("intake","load_intake")(tmp_path,tmp_path/"request.json",path)
+        timeline=require("timeline","build_timeline")(intake)
+>       state=require("state_models","PostState")(intake=intake,timelines=(timeline,))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ledger.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'state_models', name = 'PostState'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.state_models'
+
+tests/conftest.py:10: Failed
+_ ERROR at setup of test_post_store_when_model_copy_bypassed_types_is_reparsed_at_publication _
+
+module = 'state_models', name = 'PostState'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.state_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.state_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-173/test_post_store_when_model_cop0')
+built = PosixPath('/tmp/pytest-of-declan/pytest-173/post-ledger-source0')
+
+    @pytest.fixture
+    def project(tmp_path,built):
+        shutil.copytree(built,tmp_path,dirs_exist_ok=True)
+        production=json.loads((tmp_path/"snapshot.json").read_text())
+        path=tmp_path/"project.json"
+        path.write_text(json.dumps({"production":production,"foreign":{"owner":"other-terminal","items":[1,2,3]}}))
+        intake=require("intake","load_intake")(tmp_path,tmp_path/"request.json",path)
+        timeline=require("timeline","build_timeline")(intake)
+>       state=require("state_models","PostState")(intake=intake,timelines=(timeline,))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ledger.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'state_models', name = 'PostState'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.state_models'
+
+tests/conftest.py:10: Failed
+_ ERROR at setup of test_post_store_when_input_bytes_are_lost_historical_facts_remain_readable _
+
+module = 'state_models', name = 'PostState'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.state_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.state_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-173/test_post_store_when_input_byt0')
+built = PosixPath('/tmp/pytest-of-declan/pytest-173/post-ledger-source0')
+
+    @pytest.fixture
+    def project(tmp_path,built):
+        shutil.copytree(built,tmp_path,dirs_exist_ok=True)
+        production=json.loads((tmp_path/"snapshot.json").read_text())
+        path=tmp_path/"project.json"
+        path.write_text(json.dumps({"production":production,"foreign":{"owner":"other-terminal","items":[1,2,3]}}))
+        intake=require("intake","load_intake")(tmp_path,tmp_path/"request.json",path)
+        timeline=require("timeline","build_timeline")(intake)
+>       state=require("state_models","PostState")(intake=intake,timelines=(timeline,))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ledger.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'state_models', name = 'PostState'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.state_models'
+
+tests/conftest.py:10: Failed
+_ ERROR at setup of test_post_store_when_ledger_or_lock_is_a_symlink_is_refused _
+
+module = 'state_models', name = 'PostState'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.state_models', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.state_models'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-173/test_post_store_when_ledger_or0')
+built = PosixPath('/tmp/pytest-of-declan/pytest-173/post-ledger-source0')
+
+    @pytest.fixture
+    def project(tmp_path,built):
+        shutil.copytree(built,tmp_path,dirs_exist_ok=True)
+        production=json.loads((tmp_path/"snapshot.json").read_text())
+        path=tmp_path/"project.json"
+        path.write_text(json.dumps({"production":production,"foreign":{"owner":"other-terminal","items":[1,2,3]}}))
+        intake=require("intake","load_intake")(tmp_path,tmp_path/"request.json",path)
+        timeline=require("timeline","build_timeline")(intake)
+>       state=require("state_models","PostState")(intake=intake,timelines=(timeline,))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ledger.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'state_models', name = 'PostState'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.state_models'
+
+tests/conftest.py:10: Failed
+=========================== short test summary info ============================
+ERROR tests/test_ledger.py::test_post_store_when_initializing_preserves_actual_other_namespaces
+ERROR tests/test_ledger.py::test_post_store_when_transaction_changes_only_post_revision
+ERROR tests/test_ledger.py::test_post_store_when_original_production_writer_holds_public_lock_inode
+ERROR tests/test_ledger.py::test_post_store_when_stale_namespace_revision_cannot_publish
+ERROR tests/test_ledger.py::test_post_store_when_external_owner_changes_bytes_during_transaction
+ERROR tests/test_ledger.py::test_post_store_when_model_copy_bypassed_types_is_reparsed_at_publication
+ERROR tests/test_ledger.py::test_post_store_when_input_bytes_are_lost_historical_facts_remain_readable
+ERROR tests/test_ledger.py::test_post_store_when_ledger_or_lock_is_a_symlink_is_refused
+8 errors in 2.28s

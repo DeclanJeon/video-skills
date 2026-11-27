@@ -1,0 +1,12 @@
+{
+  "defaultShortcut": null,
+  "enabled": true,
+  "id": "source.open",
+  "label": "Open in Source Monitor",
+  "menu": [],
+  "params": "{\"item\":id?,\"clip\":id?}",
+  "shortcut": null,
+  "shortcuts": [
+    "Shift+O"
+  ]
+}

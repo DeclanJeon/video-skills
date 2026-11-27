@@ -1,0 +1,11 @@
+{
+  "id": "session.new",
+  "label": "New...",
+  "menu": [
+    "File"
+  ],
+  "shortcut": "Cmd+N",
+  "params": "{name?: 'Untitled', sample_rate?: 48000, bit_depth?: 24, template?: blank|demo}",
+  "enabled": true,
+  "disabled_reason": null
+}

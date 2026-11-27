@@ -1,0 +1,31 @@
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py:12:112 - error: 가져오기 "MotionRecipe"에 액세스하지 않았습니다. (reportUnusedImport)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py:178:27 - error: 인수 형식을 부분적으로 알 수 없습니다.
+    인수가 "floor" 함수의 "x" 매개 변수에 해당합니다.
+    인수 형식이 "float | Unknown"입니다. (reportUnknownArgumentType)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py:178:29 - error: "box_width"의 형식을 부분적으로 알 수 없습니다.
+    ‘box_width’의 유형이 ‘int | Unknown’입니다. (reportUnknownMemberType)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py:178:36 - error: "TextRecipe" 클래스의 "box_width" 특성에 액세스할 수 없음
+    특성 "box_width" 알 수 없음 (reportAttributeAccessIssue)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py:178:55 - error: 인수 형식을 부분적으로 알 수 없습니다.
+    인수가 "floor" 함수의 "x" 매개 변수에 해당합니다.
+    인수 형식이 "float | Unknown"입니다. (reportUnknownArgumentType)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py:178:57 - error: "box_height"의 형식을 부분적으로 알 수 없습니다.
+    ‘box_height’의 유형이 ‘int | Unknown’입니다. (reportUnknownMemberType)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py:178:64 - error: "TextRecipe" 클래스의 "box_height" 특성에 액세스할 수 없음
+    특성 "box_height" 알 수 없음 (reportAttributeAccessIssue)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py:179:26 - error: 인수 형식을 부분적으로 알 수 없습니다.
+    인수가 "ceil" 함수의 "x" 매개 변수에 해당합니다.
+    인수 형식이 "float | Unknown"입니다. (reportUnknownArgumentType)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py:179:28 - error: "box_width"의 형식을 부분적으로 알 수 없습니다.
+    ‘box_width’의 유형이 ‘int | Unknown’입니다. (reportUnknownMemberType)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py:179:35 - error: "TextRecipe" 클래스의 "box_width" 특성에 액세스할 수 없음
+    특성 "box_width" 알 수 없음 (reportAttributeAccessIssue)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py:179:53 - error: 인수 형식을 부분적으로 알 수 없습니다.
+    인수가 "ceil" 함수의 "x" 매개 변수에 해당합니다.
+    인수 형식이 "float | Unknown"입니다. (reportUnknownArgumentType)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py:179:55 - error: "box_height"의 형식을 부분적으로 알 수 없습니다.
+    ‘box_height’의 유형이 ‘int | Unknown’입니다. (reportUnknownMemberType)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py:179:62 - error: "TextRecipe" 클래스의 "box_height" 특성에 액세스할 수 없음
+    특성 "box_height" 알 수 없음 (reportAttributeAccessIssue)
+13 errors, 0 warnings, 0 notes

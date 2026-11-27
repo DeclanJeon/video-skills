@@ -1,0 +1,9 @@
+{
+  "id": "mix.volume",
+  "label": "Set Volume",
+  "menu": [],
+  "shortcut": null,
+  "params": "{tracks?, db: -144..12 | delta_db}",
+  "enabled": false,
+  "disabled_reason": "nothing is selected"
+}

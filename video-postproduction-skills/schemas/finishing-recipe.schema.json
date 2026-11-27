@@ -1,0 +1,45 @@
+{
+  "$defs": {
+    "Nonempty": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "post-finishing/1",
+      "title": "Format",
+      "type": "string"
+    },
+    "id": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "branch": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "picture": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "plates": {
+      "items": {
+        "$ref": "#/$defs/Nonempty"
+      },
+      "title": "Plates",
+      "type": "array"
+    },
+    "mix": {
+      "$ref": "#/$defs/Nonempty"
+    }
+  },
+  "required": [
+    "format",
+    "id",
+    "branch",
+    "picture",
+    "plates",
+    "mix"
+  ],
+  "title": "FinishingRecipe",
+  "type": "object"
+}

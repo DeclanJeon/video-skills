@@ -1,0 +1,26 @@
+{
+  "checked_at": "2026-11-26T14:32:17.271322+00:00",
+  "status": "draft-self-consistency-checked-not-independently-reviewed",
+  "design_documents": 7,
+  "planned_acceptance_cases": 50,
+  "executed_acceptance_cases": 0,
+  "csv_records": 38,
+  "protected_files": 216,
+  "protected_unchanged": true,
+  "local_markdown_links_missing": [],
+  "research_run": "8726d09a-e9f9-4790-8d20-8f79a4694382",
+  "research_report_sha256": "ca8253df1c28add0c9b21def0a94fb4eb7dadc7a00b5794ddf51b7e31c0e4367",
+  "new_reviewer_authorized": false,
+  "independent_design_reviewed": false,
+  "user_design_approved": false,
+  "native_render_verified": false,
+  "installed_or_updated": false,
+  "source_template_binaries_copied": false,
+  "required_tool_provisioning_designed": true,
+  "provisioning_executed": false,
+  "last_correction": {
+    "layer": "process/toolbox",
+    "issue": "Missing required programs lacked end-to-end installation and resume ownership",
+    "repair": "PG-E + ensure_environment + per-tool installer recipes, authority, dependency/security smoke and recovery; P41-P50 added"
+  }
+}

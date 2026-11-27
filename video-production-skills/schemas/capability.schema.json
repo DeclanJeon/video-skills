@@ -1,0 +1,131 @@
+{
+  "$defs": {
+    "Pin": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "minLength": 1,
+          "title": "Version",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "path": {
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "sha256",
+        "path"
+      ],
+      "title": "Pin",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "account": {
+      "minLength": 1,
+      "title": "Account",
+      "type": "string"
+    },
+    "model": {
+      "minLength": 1,
+      "title": "Model",
+      "type": "string"
+    },
+    "transport": {
+      "minLength": 1,
+      "title": "Transport",
+      "type": "string"
+    },
+    "mode": {
+      "minLength": 1,
+      "title": "Mode",
+      "type": "string"
+    },
+    "roles": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Roles",
+      "type": "array"
+    },
+    "modalities": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Modalities",
+      "type": "array"
+    },
+    "max_references": {
+      "minimum": 0,
+      "title": "Max References",
+      "type": "integer"
+    },
+    "max_active": {
+      "exclusiveMinimum": 0,
+      "title": "Max Active",
+      "type": "integer"
+    },
+    "durations": {
+      "items": {
+        "type": "number"
+      },
+      "title": "Durations",
+      "type": "array"
+    },
+    "width": {
+      "exclusiveMinimum": 0,
+      "title": "Width",
+      "type": "integer"
+    },
+    "height": {
+      "exclusiveMinimum": 0,
+      "title": "Height",
+      "type": "integer"
+    },
+    "audio": {
+      "title": "Audio",
+      "type": "boolean"
+    },
+    "evidence": {
+      "$ref": "#/$defs/Pin"
+    },
+    "observed_mode": {
+      "minLength": 1,
+      "title": "Observed Mode",
+      "type": "string"
+    }
+  },
+  "required": [
+    "account",
+    "model",
+    "transport",
+    "mode",
+    "roles",
+    "modalities",
+    "max_references",
+    "max_active",
+    "durations",
+    "width",
+    "height",
+    "audio",
+    "evidence",
+    "observed_mode"
+  ],
+  "title": "Capability",
+  "type": "object"
+}

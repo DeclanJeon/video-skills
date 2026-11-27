@@ -1,0 +1,138 @@
+FEE                                                                      [100%]
+==================================== ERRORS ====================================
+_ ERROR at setup of test_loudness_when_actual_final_misses_profile_cannot_pass_pg5 _
+
+root = PosixPath('/tmp/pytest-of-declan/pytest-299/native-final-loudness0')
+pin = Pin(id='profile.json', version='1', path='profile.json', sha256='909b887d083042d8d21860a027296c24026f6801028a02c0232cfbeeb3cd6af6')
+model = <class 'postproduction.edit_models.DeliveryProfile'>
+
+    def read_model[T: BaseModel](root: Path, pin: Pin, model: type[T]) -> T:
+        """Parse a physically verified record, translating boundary parse failures."""
+        path = verified_file(root, pin)
+        try:
+>           return model.model_validate_json(path.read_bytes())
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           pydantic_core._pydantic_core.ValidationError: 1 validation error for DeliveryProfile
+E           loudness
+E             Extra inputs are not permitted [type=extra_forbidden, input_value={'integrated_lufs': -60.0....0, 'tolerance_lu': 0.5}, input_type=dict]
+E               For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
+
+postproduction/files.py:47: ValidationError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x7fb2030ebe10>, _basetemp=PosixPath('/tmp/pytest-of-declan/pytest-299'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def mismatched(tmp_path_factory):
+        root=tmp_path_factory.mktemp("native-final-loudness")
+        # A real declared/pinned target deliberately incompatible with actual synthetic tone mix.
+        policy={"integrated_lufs":-60.0,"tolerance_lu":0.5,"max_true_peak_dbtp":-1.0}
+>       store,backend,packet,value=build(root,loudness=policy)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_loudness_master.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/finishing_support.py:24: in build
+    intake=require("intake","load_intake")(root,root/"request.json",path);timeline=require("timeline","build_timeline")(intake)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/intake.py:98: in load_intake
+    return adopt_request(root,request,ledger)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/intake.py:58: in adopt_request
+    profile=read_model(root,request.profile,DeliveryProfile))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/tmp/pytest-of-declan/pytest-299/native-final-loudness0')
+pin = Pin(id='profile.json', version='1', path='profile.json', sha256='909b887d083042d8d21860a027296c24026f6801028a02c0232cfbeeb3cd6af6')
+model = <class 'postproduction.edit_models.DeliveryProfile'>
+
+    def read_model[T: BaseModel](root: Path, pin: Pin, model: type[T]) -> T:
+        """Parse a physically verified record, translating boundary parse failures."""
+        path = verified_file(root, pin)
+        try:
+            return model.model_validate_json(path.read_bytes())
+        except (OSError, ValidationError) as exc:
+>           raise ContractError("parse", f"invalid {model.__name__} input") from exc
+E           postproduction.errors.ContractError: parse: invalid DeliveryProfile input
+
+postproduction/files.py:49: ContractError
+_ ERROR at setup of test_delivery_when_actual_final_loudness_fails_cannot_publish_bundle _
+
+root = PosixPath('/tmp/pytest-of-declan/pytest-299/native-final-loudness0')
+pin = Pin(id='profile.json', version='1', path='profile.json', sha256='909b887d083042d8d21860a027296c24026f6801028a02c0232cfbeeb3cd6af6')
+model = <class 'postproduction.edit_models.DeliveryProfile'>
+
+    def read_model[T: BaseModel](root: Path, pin: Pin, model: type[T]) -> T:
+        """Parse a physically verified record, translating boundary parse failures."""
+        path = verified_file(root, pin)
+        try:
+>           return model.model_validate_json(path.read_bytes())
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           pydantic_core._pydantic_core.ValidationError: 1 validation error for DeliveryProfile
+E           loudness
+E             Extra inputs are not permitted [type=extra_forbidden, input_value={'integrated_lufs': -60.0....0, 'tolerance_lu': 0.5}, input_type=dict]
+E               For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
+
+postproduction/files.py:47: ValidationError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x7fb2030ebe10>, _basetemp=PosixPath('/tmp/pytest-of-declan/pytest-299'), _retention_count=3, _retention_policy='all')
+
+    @pytest.fixture(scope="module")
+    def mismatched(tmp_path_factory):
+        root=tmp_path_factory.mktemp("native-final-loudness")
+        # A real declared/pinned target deliberately incompatible with actual synthetic tone mix.
+        policy={"integrated_lufs":-60.0,"tolerance_lu":0.5,"max_true_peak_dbtp":-1.0}
+>       store,backend,packet,value=build(root,loudness=policy)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_loudness_master.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/finishing_support.py:24: in build
+    intake=require("intake","load_intake")(root,root/"request.json",path);timeline=require("timeline","build_timeline")(intake)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/intake.py:98: in load_intake
+    return adopt_request(root,request,ledger)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/intake.py:58: in adopt_request
+    profile=read_model(root,request.profile,DeliveryProfile))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/tmp/pytest-of-declan/pytest-299/native-final-loudness0')
+pin = Pin(id='profile.json', version='1', path='profile.json', sha256='909b887d083042d8d21860a027296c24026f6801028a02c0232cfbeeb3cd6af6')
+model = <class 'postproduction.edit_models.DeliveryProfile'>
+
+    def read_model[T: BaseModel](root: Path, pin: Pin, model: type[T]) -> T:
+        """Parse a physically verified record, translating boundary parse failures."""
+        path = verified_file(root, pin)
+        try:
+            return model.model_validate_json(path.read_bytes())
+        except (OSError, ValidationError) as exc:
+>           raise ContractError("parse", f"invalid {model.__name__} input") from exc
+E           postproduction.errors.ContractError: parse: invalid DeliveryProfile input
+
+postproduction/files.py:49: ContractError
+=================================== FAILURES ===================================
+_ test_loudness_when_public_profile_accepts_explicit_policy_without_imposing_a_platform_preset _
+
+    def test_loudness_when_public_profile_accepts_explicit_policy_without_imposing_a_platform_preset():
+        raw={"id":"local","width":160,"height":90,"fps":{"num":24,"den":1},"sample_rate":48000,"channels":2,
+             "container":"mp4","video_codec":"h264","audio_codec":"aac",
+             "loudness":{"integrated_lufs":-20.0,"tolerance_lu":0.5,"max_true_peak_dbtp":-1.0}}
+>       value=require("edit_models","DeliveryProfile").model_validate_json(json.dumps(raw))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for DeliveryProfile
+E       loudness
+E         Extra inputs are not permitted [type=extra_forbidden, input_value={'integrated_lufs': -20.0...x_true_peak_dbtp': -1.0}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
+
+tests/test_loudness_master.py:14: ValidationError
+=========================== short test summary info ============================
+ERROR tests/test_loudness_master.py::test_loudness_when_actual_final_misses_profile_cannot_pass_pg5
+ERROR tests/test_loudness_master.py::test_delivery_when_actual_final_loudness_fails_cannot_publish_bundle
+FAILED tests/test_loudness_master.py::test_loudness_when_public_profile_accepts_explicit_policy_without_imposing_a_platform_preset
+1 failed, 2 errors in 1.48s

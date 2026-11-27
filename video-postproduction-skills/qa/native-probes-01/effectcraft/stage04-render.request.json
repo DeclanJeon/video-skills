@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "/usr/bin/effectcraft-cli",
+    "--project",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/effectcraft/native.ecproj",
+    "render",
+    "--comp",
+    "Probe",
+    "--out",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/effectcraft/plate.png",
+    "--format",
+    "png",
+    "--start",
+    "0",
+    "--end",
+    "0.5",
+    "--fps",
+    "24",
+    "--channels",
+    "rgba",
+    "--audio",
+    "off",
+    "--json"
+  ],
+  "pid": 852554,
+  "returncode": 0,
+  "timed_out": false,
+  "network_denied": true
+}

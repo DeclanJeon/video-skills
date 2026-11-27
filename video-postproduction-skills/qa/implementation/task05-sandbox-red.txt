@@ -1,0 +1,262 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+_______ test_sandbox_when_home_is_private_and_stdin_stdout_are_preserved _______
+
+module = 'backends.process', name = 'SandboxScope'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.process', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-185/test_sandbox_when_home_is_priv0')
+
+    def test_sandbox_when_home_is_private_and_stdin_stdout_are_preserved(tmp_path):
+>       value=runner(tmp_path).run(("/usr/bin/python3","-c","import os,sys,json; print(json.dumps({'home':os.environ['HOME'],'input':sys.stdin.read()}))"),stdin=b"owned synthetic bytes")
+              ^^^^^^^^^^^^^^^^
+
+tests/test_sandbox.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_sandbox.py:9: in runner
+    scope=require("backends.process","SandboxScope")(workspace=tmp_path/"work",owner="synthetic-owned-job",read_roots=read_roots)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.process', name = 'SandboxScope'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends'
+
+tests/conftest.py:10: Failed
+____ test_sandbox_when_external_network_is_unreachable_before_app_first_run ____
+
+module = 'backends.process', name = 'SandboxScope'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.process', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-185/test_sandbox_when_external_net0')
+
+    def test_sandbox_when_external_network_is_unreachable_before_app_first_run(tmp_path):
+        code="import socket,sys\ns=socket.socket();s.settimeout(1)\ntry:s.connect(('1.1.1.1',443))\nexcept OSError:sys.exit(0)\nsys.exit(7)"
+>       result=runner(tmp_path).run(("/usr/bin/python3","-c",code))
+               ^^^^^^^^^^^^^^^^
+
+tests/test_sandbox.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_sandbox.py:9: in runner
+    scope=require("backends.process","SandboxScope")(workspace=tmp_path/"work",owner="synthetic-owned-job",read_roots=read_roots)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.process', name = 'SandboxScope'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends'
+
+tests/conftest.py:10: Failed
+___ test_sandbox_when_source_media_is_readonly_and_unapproved_file_is_hidden ___
+
+module = 'backends.process', name = 'SandboxScope'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.process', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-185/test_sandbox_when_source_media0')
+
+    def test_sandbox_when_source_media_is_readonly_and_unapproved_file_is_hidden(tmp_path):
+        sources=tmp_path/"sources";sources.mkdir();source=sources/"approved.txt";source.write_text("approved source")
+        hidden=tmp_path/"other-terminal.txt";hidden.write_text("do not expose")
+        code=f"from pathlib import Path\np=Path({str(source)!r})\nassert p.read_text()=='approved source'\ntry:p.write_text('changed')\nexcept OSError:pass\nelse:raise RuntimeError('source was writable')\nassert not Path({str(hidden)!r}).exists()"
+>       result=runner(tmp_path,(sources,)).run(("/usr/bin/python3","-c",code))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_sandbox.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_sandbox.py:9: in runner
+    scope=require("backends.process","SandboxScope")(workspace=tmp_path/"work",owner="synthetic-owned-job",read_roots=read_roots)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.process', name = 'SandboxScope'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends'
+
+tests/conftest.py:10: Failed
+___ test_sandbox_when_workspace_is_unowned_nonempty_refuses_before_dispatch ____
+
+module = 'backends.process', name = 'SandboxScope'
+
+    def require(module, name):
+        try:
+>           loaded = import_module(f"postproduction.{module}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'postproduction.backends.process', package = None
+
+    def import_module(name, package=None):
+        """Import a module.
+    
+        The 'package' argument is required when performing a relative import. It
+        specifies the package to use as the anchor point from which to resolve the
+        relative import to an absolute import.
+    
+        """
+        level = 0
+        if name.startswith('.'):
+            if not package:
+                raise TypeError("the 'package' argument is required to perform a "
+                                f"relative import for {name!r}")
+            for character in name:
+                if character != '.':
+                    break
+                level += 1
+>       return _bootstrap._gcd_import(name[level:], package, level)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'postproduction.backends'
+
+/usr/lib/python3.14/importlib/__init__.py:88: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-185/test_sandbox_when_workspace_is0')
+
+    def test_sandbox_when_workspace_is_unowned_nonempty_refuses_before_dispatch(tmp_path):
+        work=tmp_path/"work";work.mkdir();(work/"user-project").write_text("preserve")
+        with pytest.raises(require("errors","ContractError"),match="owner"):
+>           runner(tmp_path).run(("/usr/bin/true",))
+            ^^^^^^^^^^^^^^^^
+
+tests/test_sandbox.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_sandbox.py:9: in runner
+    scope=require("backends.process","SandboxScope")(workspace=tmp_path/"work",owner="synthetic-owned-job",read_roots=read_roots)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'backends.process', name = 'SandboxScope'
+
+    def require(module, name):
+        try:
+            loaded = import_module(f"postproduction.{module}")
+        except ModuleNotFoundError as exc:
+>           pytest.fail(f"implementation module missing: {exc}")
+E           Failed: implementation module missing: No module named 'postproduction.backends'
+
+tests/conftest.py:10: Failed
+=========================== short test summary info ============================
+FAILED tests/test_sandbox.py::test_sandbox_when_home_is_private_and_stdin_stdout_are_preserved
+FAILED tests/test_sandbox.py::test_sandbox_when_external_network_is_unreachable_before_app_first_run
+FAILED tests/test_sandbox.py::test_sandbox_when_source_media_is_readonly_and_unapproved_file_is_hidden
+FAILED tests/test_sandbox.py::test_sandbox_when_workspace_is_unowned_nonempty_refuses_before_dispatch
+4 failed in 0.14s

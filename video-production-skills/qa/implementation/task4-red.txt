@@ -1,0 +1,519 @@
+FFFFFFFFF.FFFFFFF.                                                       [100%]
+=================================== FAILURES ===================================
+________________ test_accept_when_current_review_matches_source ________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-7/test_accept_when_current_revie0')
+
+    def test_accept_when_current_review_matches_source(seed, capability, authority, tmp_path):
+        # Given: operator-reported successful source and explicit review.
+        state, take, review = candidate(seed, capability, authority, tmp_path)
+        # When: committing against current inputs.
+>       updated = require("quality", "accept_take")(state, take, review, take.fingerprint, tmp_path)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'quality', name = 'accept_take'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing quality runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7f0a9dca7270>('production.quality')
+E        +    where <function find_spec at 0x7f0a9dca7270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+___________ test_review_when_playback_missing_or_mismatched[change0] ___________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-7/test_review_when_playback_miss0')
+change = {'video_watched': False}
+
+    @pytest.mark.parametrize("change", [
+        {"video_watched": False},
+        {"asset_hash": "f"*64},
+        {"source_range": SourceRange(start=1, end=48)},
+    ])
+    def test_review_when_playback_missing_or_mismatched(seed, capability, authority, tmp_path, change):
+        # Given: claim does not describe the actual selected source.
+        state, take, review = candidate(seed, capability, authority, tmp_path)
+        review = review.model_copy(update={"playback": review.playback.model_copy(update=change)})
+        # When / Then: selected stills alone are not motion evidence.
+        with pytest.raises(ContractError, match="playback"):
+>           require("quality", "accept_take")(state, take, review, take.fingerprint, tmp_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'quality', name = 'accept_take'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing quality runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7f0a9dca7270>('production.quality')
+E        +    where <function find_spec at 0x7f0a9dca7270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+___________ test_review_when_playback_missing_or_mismatched[change1] ___________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-7/test_review_when_playback_miss1')
+change = {'asset_hash': 'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'}
+
+    @pytest.mark.parametrize("change", [
+        {"video_watched": False},
+        {"asset_hash": "f"*64},
+        {"source_range": SourceRange(start=1, end=48)},
+    ])
+    def test_review_when_playback_missing_or_mismatched(seed, capability, authority, tmp_path, change):
+        # Given: claim does not describe the actual selected source.
+        state, take, review = candidate(seed, capability, authority, tmp_path)
+        review = review.model_copy(update={"playback": review.playback.model_copy(update=change)})
+        # When / Then: selected stills alone are not motion evidence.
+        with pytest.raises(ContractError, match="playback"):
+>           require("quality", "accept_take")(state, take, review, take.fingerprint, tmp_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'quality', name = 'accept_take'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing quality runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7f0a9dca7270>('production.quality')
+E        +    where <function find_spec at 0x7f0a9dca7270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+___________ test_review_when_playback_missing_or_mismatched[change2] ___________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-7/test_review_when_playback_miss2')
+change = {'source_range': SourceRange(start=1, end=48)}
+
+    @pytest.mark.parametrize("change", [
+        {"video_watched": False},
+        {"asset_hash": "f"*64},
+        {"source_range": SourceRange(start=1, end=48)},
+    ])
+    def test_review_when_playback_missing_or_mismatched(seed, capability, authority, tmp_path, change):
+        # Given: claim does not describe the actual selected source.
+        state, take, review = candidate(seed, capability, authority, tmp_path)
+        review = review.model_copy(update={"playback": review.playback.model_copy(update=change)})
+        # When / Then: selected stills alone are not motion evidence.
+        with pytest.raises(ContractError, match="playback"):
+>           require("quality", "accept_take")(state, take, review, take.fingerprint, tmp_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'quality', name = 'accept_take'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing quality runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7f0a9dca7270>('production.quality')
+E        +    where <function find_spec at 0x7f0a9dca7270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+______________________ test_listening_when_audio_required ______________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-7/test_listening_when_audio_requ0')
+
+    def test_listening_when_audio_required(seed, capability, authority, tmp_path):
+        # Given: shot requires sound but review did not listen.
+        clip = seed.batch.clips[0].model_copy(update={"audio_required": True})
+        seed = seed.model_copy(update={"batch": seed.batch.model_copy(update={"clips": (clip, *seed.batch.clips[1:])})})
+        state, take, review = candidate(seed, capability, authority, tmp_path)
+        take = take.model_copy(update={"has_audio": True})
+        # When / Then: audio stream existence is not a listening PASS.
+        with pytest.raises(ContractError, match="audio"):
+>           require("quality", "accept_take")(state, take, review, take.fingerprint, tmp_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'quality', name = 'accept_take'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing quality runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7f0a9dca7270>('production.quality')
+E        +    where <function find_spec at 0x7f0a9dca7270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_______________ test_missing_requirement_when_all_frames_decode ________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-7/test_missing_requirement_when_0')
+
+    def test_missing_requirement_when_all_frames_decode(seed, capability, authority, tmp_path):
+        # Given: playable media but required event not fulfilled.
+        state, take, review = candidate(seed, capability, authority, tmp_path)
+        review = review.model_copy(update={"fulfilled": ()})
+        # When / Then: decode success cannot replace story coverage.
+        with pytest.raises(ContractError, match="coverage"):
+>           require("quality", "accept_take")(state, take, review, take.fingerprint, tmp_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'quality', name = 'accept_take'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing quality runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7f0a9dca7270>('production.quality')
+E        +    where <function find_spec at 0x7f0a9dca7270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_____________________ test_late_commit_when_design_changed _____________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-7/test_late_commit_when_design_c0')
+
+    def test_late_commit_when_design_changed(seed, capability, authority, tmp_path):
+        # Given: QA is finished for old approved design.
+        state, take, review = candidate(seed, capability, authority, tmp_path)
+        state = state.model_copy(update={"batch": state.batch.model_copy(update={"scope_revision": "scope-2"})})
+        # When / Then: old remote success remains, current acceptance does not open.
+        with pytest.raises(ContractError, match="revision"):
+>           require("quality", "accept_take")(state, take, review, take.fingerprint, tmp_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality.py:68: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'quality', name = 'accept_take'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing quality runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7f0a9dca7270>('production.quality')
+E        +    where <function find_spec at 0x7f0a9dca7270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_____________ test_input_as_output_when_download_matches_reference _____________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-7/test_input_as_output_when_down0')
+
+    def test_input_as_output_when_download_matches_reference(seed, capability, authority, tmp_path):
+        # Given: downloaded item is the uploaded identity fixture, not a job result.
+        state, take, review = candidate(seed, capability, authority, tmp_path)
+        take = take.model_copy(update={"asset": seed.batch.clips[0].assets[0]})
+        # When / Then: input thumbnail cannot be accepted as output.
+        with pytest.raises(ContractError, match="input"):
+>           require("quality", "accept_take")(state, take, review, take.fingerprint, tmp_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'quality', name = 'accept_take'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing quality runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7f0a9dca7270>('production.quality')
+E        +    where <function find_spec at 0x7f0a9dca7270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+___________________ test_conditional_when_no_receiver_or_fix ___________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-7/test_conditional_when_no_recei0')
+
+    def test_conditional_when_no_receiver_or_fix(seed, capability, authority, tmp_path):
+        # Given: unresolved issue is labelled conditional without a viable owner.
+        state, take, review = candidate(seed, capability, authority, tmp_path)
+        review = review.model_copy(update={"verdict": Verdict.CONDITIONAL, "defects": ("identity",)})
+        # When / Then: conditional cannot hide unfinished mandatory work.
+        with pytest.raises(ContractError, match="conditional"):
+>           require("quality", "accept_take")(state, take, review, take.fingerprint, tmp_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality.py:87: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'quality', name = 'accept_take'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing quality runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7f0a9dca7270>('production.quality')
+E        +    where <function find_spec at 0x7f0a9dca7270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_______________ test_delivery_when_all_sources_and_flow_checked ________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-7/test_delivery_when_all_sources0')
+
+    def test_delivery_when_all_sources_and_flow_checked(seed, tmp_path):
+        # Given: all sources and exact joins reviewed.
+        state = all_selected(seed, tmp_path)
+        state = state.model_copy(update={"join_reviews": joins_for(state)})
+        # When: preparing local post handoff.
+>       package = require("handoff", "build_handoff")(state, flow_for(state), "post-receiver", "rights-record")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_handoff.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'handoff', name = 'build_handoff'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing handoff runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7f0a9dca7270>('production.handoff')
+E        +    where <function find_spec at 0x7f0a9dca7270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+______________________ test_delivery_when_clip_is_missing ______________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-7/test_delivery_when_clip_is_mis0')
+
+    def test_delivery_when_clip_is_missing(seed, tmp_path):
+        # Given: two of three clips exist.
+        state = all_selected(seed, tmp_path)
+        state = state.model_copy(update={"selections": state.selections[:-1]})
+        # When / Then: missing clip is not a black placeholder.
+        with pytest.raises(ContractError, match="coverage"):
+>           require("handoff", "build_handoff")(state, flow_for(state), "receiver", "rights")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_handoff.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'handoff', name = 'build_handoff'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing handoff runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7f0a9dca7270>('production.handoff')
+E        +    where <function find_spec at 0x7f0a9dca7270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_________________ test_join_when_other_take_revision_reviewed __________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-7/test_join_when_other_take_revi0')
+
+    def test_join_when_other_take_revision_reviewed(seed, tmp_path):
+        # Given: stale boundary report.
+        state = all_selected(seed, tmp_path)
+        join = joins_for(state)[0].model_copy(update={"before_revision": 99})
+        # When / Then: same clip IDs cannot hide different selected takes.
+        with pytest.raises(ContractError, match="revision"):
+>           require("handoff", "check_join")(state, join)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_handoff.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'handoff', name = 'check_join'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing handoff runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7f0a9dca7270>('production.handoff')
+E        +    where <function find_spec at 0x7f0a9dca7270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+________________ test_reaction_first_when_approved_reveal_order ________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-7/test_reaction_first_when_appro0')
+
+    def test_reaction_first_when_approved_reveal_order(seed, tmp_path):
+        # Given: board intentionally reveals the reaction before its cause.
+        j = seed.batch.joins[0].model_copy(update={"relation": "reaction", "reveal_order": ("reaction", "cause")})
+        state = all_selected(seed.model_copy(update={"batch": seed.batch.model_copy(update={"joins": (j, *seed.batch.joins[1:])})}), tmp_path)
+        # When: checking matching observed order.
+>       result = require("handoff", "check_join")(state, joins_for(state)[0])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_handoff.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'handoff', name = 'check_join'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing handoff runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7f0a9dca7270>('production.handoff')
+E        +    where <function find_spec at 0x7f0a9dca7270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+________________ test_reveal_when_observed_order_violates_board ________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-7/test_reveal_when_observed_orde0')
+
+    def test_reveal_when_observed_order_violates_board(seed, tmp_path):
+        # Given: actual reveal reverses the approved order.
+        state = all_selected(seed, tmp_path)
+        join = joins_for(state)[0].model_copy(update={"reveal_order": ("unauthorized",)})
+        # When / Then: unapproved narrative inversion is rejected.
+        with pytest.raises(ContractError, match="reveal"):
+>           require("handoff", "check_join")(state, join)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_handoff.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'handoff', name = 'check_join'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing handoff runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7f0a9dca7270>('production.handoff')
+E        +    where <function find_spec at 0x7f0a9dca7270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_____________________ test_flow_when_only_frames_were_seen _____________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-7/test_flow_when_only_frames_wer0')
+
+    def test_flow_when_only_frames_were_seen(seed, tmp_path):
+        # Given: complete sources, but only stills were inspected.
+        state = all_selected(seed, tmp_path)
+        state = state.model_copy(update={"join_reviews": joins_for(state)})
+>       flow = flow_for(state).model_copy(update={"continuous_playback": False})
+               ^^^^^^^^^^^^^^^
+
+tests/test_handoff.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_handoff.py:18: in flow_for
+    return FlowReview(selection_hash=require("handoff", "selection_hash")(state), clip_order=state.batch.edit_order, passed=True, evidence="fixture-full-playback", continuous_playback=True, audio_listened=True)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'handoff', name = 'selection_hash'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing handoff runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7f0a9dca7270>('production.handoff')
+E        +    where <function find_spec at 0x7f0a9dca7270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+______________________ test_progress_when_selection_stale ______________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-7/test_progress_when_selection_s0')
+
+    def test_progress_when_selection_stale(seed, tmp_path):
+        # Given: stale result is still on disk.
+        state = all_selected(seed, tmp_path)
+        state = state.model_copy(update={"selections": (state.selections[0].model_copy(update={"valid": False}), *state.selections[1:])})
+        # When: computing progress from current validity.
+>       progress = require("handoff", "progress")(state)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_handoff.py:84: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'handoff', name = 'progress'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing handoff runtime
+E       assert None
+E        +  where None = <function find_spec at 0x7f0a9dca7270>('production.handoff')
+E        +    where <function find_spec at 0x7f0a9dca7270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_quality.py::test_accept_when_current_review_matches_source
+FAILED tests/test_quality.py::test_review_when_playback_missing_or_mismatched[change0]
+FAILED tests/test_quality.py::test_review_when_playback_missing_or_mismatched[change1]
+FAILED tests/test_quality.py::test_review_when_playback_missing_or_mismatched[change2]
+FAILED tests/test_quality.py::test_listening_when_audio_required - AssertionE...
+FAILED tests/test_quality.py::test_missing_requirement_when_all_frames_decode
+FAILED tests/test_quality.py::test_late_commit_when_design_changed - Assertio...
+FAILED tests/test_quality.py::test_input_as_output_when_download_matches_reference
+FAILED tests/test_quality.py::test_conditional_when_no_receiver_or_fix - Asse...
+FAILED tests/test_handoff.py::test_delivery_when_all_sources_and_flow_checked
+FAILED tests/test_handoff.py::test_delivery_when_clip_is_missing - AssertionE...
+FAILED tests/test_handoff.py::test_join_when_other_take_revision_reviewed - A...
+FAILED tests/test_handoff.py::test_reaction_first_when_approved_reveal_order
+FAILED tests/test_handoff.py::test_reveal_when_observed_order_violates_board
+FAILED tests/test_handoff.py::test_flow_when_only_frames_were_seen - Assertio...
+FAILED tests/test_handoff.py::test_progress_when_selection_stale - AssertionE...
+16 failed, 2 passed in 0.33s

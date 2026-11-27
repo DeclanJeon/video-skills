@@ -1,0 +1,42 @@
+......F.F                                                                [100%]
+=================================== FAILURES ===================================
+_______________ test_cli_init_and_restart_when_project_is_valid ________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...673597f56a9f25b60849469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-11/test_cli_init_and_restart_when0')
+
+    def test_cli_init_and_restart_when_project_is_valid(seed, tmp_path):
+        # Given: serialized input and existing project directory.
+        path = tmp_path/"input.json"; path.write_text(seed.model_dump_json())
+        # When: initialize and query in a new process.
+        init = cli("init", tmp_path/"ledger.json", path)
+        result = cli("ready", tmp_path/"ledger.json")
+        # Then: durable state is read on restart.
+>       assert init.returncode == 0, init.stdout + init.stderr
+E       AssertionError: Traceback (most recent call last):
+E           File "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-production-skills/scripts/production.py", line 7, in <module>
+E             from production.cli import main
+E           File "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-production-skills/scripts/production.py", line 7, in <module>
+E             from production.cli import main
+E         ModuleNotFoundError: No module named 'production.cli'; 'production' is not a package
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...roduction.cli import main\nModuleNotFoundError: No module named \'production.cli\'; \'production\' is not a package\n').returncode
+
+tests/test_cli.py:23: AssertionError
+________________ test_cli_help_when_no_remote_execution_allowed ________________
+
+    def test_cli_help_when_no_remote_execution_allowed():
+        # Given: installed local command surface.
+        # When: querying help.
+        result = cli("--help")
+        # Then: inspectable commands, no implicit generation.
+>       assert result.returncode == 0
+E       AssertionError: assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...roduction.cli import main\nModuleNotFoundError: No module named \'production.cli\'; \'production\' is not a package\n').returncode
+
+tests/test_cli.py:43: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_cli.py::test_cli_init_and_restart_when_project_is_valid - A...
+FAILED tests/test_cli.py::test_cli_help_when_no_remote_execution_allowed - As...
+2 failed, 7 passed in 0.91s

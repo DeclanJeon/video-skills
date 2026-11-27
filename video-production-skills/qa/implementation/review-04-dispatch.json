@@ -1,0 +1,17 @@
+{
+  "status": "completed-PASS-recorded",
+  "run_id": "3449daea-aea6-4e23-98aa-69004d4b9205",
+  "resumed_from": "222157d0-3bfe-4594-a855-da9a27552d3d",
+  "same_authorized_reviewer": true,
+  "scope_manifest": "qa/implementation/review-scope.sha256",
+  "scope_sha256": "9d795422bcfb54f30258c184284a6f35725a04bc4d28d6b843c9ab4965e8783b",
+  "scope_files": 76,
+  "goal_input_sha256": "9c8a6a1fad80d98cc52803bf01409584b92b8f0e96926be3ee30964da656ef55",
+  "goal_snapshot": "qa/implementation/review-goal-04.md",
+  "requested_routed_output": "reviews/production-implementation-final-review-04.md",
+  "async_directory": "/tmp/pi-subagents-uid-1000/async-subagent-runs/3449daea-aea6-4e23-98aa-69004d4b9205",
+  "checked_rubric": 11,
+  "total_rubric": 12,
+  "independent_current_pass": true,
+  "recovery": "Read saved completion/report first. Do not automatically restart or poll this run. Parent must verify checked scope and actual verdict before recording R12."
+}

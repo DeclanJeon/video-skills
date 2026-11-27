@@ -1,0 +1,40 @@
+{
+  "argv": [
+    "/usr/bin/filmcraft-cli",
+    "--compact",
+    "--save-as",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/finishing/workspace/native.fcproj",
+    "run",
+    "-"
+  ],
+  "commands": [
+    {
+      "id": "file.newProject",
+      "params": {
+        "name": "Owned finishing"
+      }
+    },
+    {
+      "id": "file.newSequence",
+      "params": {
+        "name": "Finishing",
+        "width": 160,
+        "height": 90,
+        "fps": 24,
+        "sampleRate": 48000,
+        "video": 2,
+        "audio": 1
+      }
+    },
+    {
+      "id": "file.import",
+      "params": {
+        "paths": [
+          "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/filmcraft/master-probe-v2.mp4",
+          "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/effectcraft/plate_00000.png",
+          "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/soundcraft/mix-probe.wav"
+        ]
+      }
+    }
+  ]
+}

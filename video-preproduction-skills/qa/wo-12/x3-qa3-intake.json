@@ -1,0 +1,65 @@
+{
+  "index": "04_board/index.csv",
+  "sheets": [
+    {
+      "image": "05_sheet/SHT-01.png",
+      "cells": [
+        {
+          "cell": "cell-01",
+          "panel": "S01-C01-P1",
+          "image": "05_sheet/panels/S01-C01-P1.png"
+        },
+        {
+          "cell": "cell-02",
+          "panel": "S01-C01-P2",
+          "image": "05_sheet/panels/S01-C01-P2.png"
+        },
+        {
+          "cell": "cell-03",
+          "panel": "S01-C02-P1",
+          "image": "05_sheet/panels/S01-C02-P1.png"
+        },
+        {
+          "cell": "cell-04",
+          "panel": "S01-C02-P2",
+          "image": "05_sheet/panels/S01-C02-P2.png"
+        },
+        {
+          "cell": "cell-05",
+          "panel": "S02-C01-P1",
+          "image": "05_sheet/panels/S02-C01-P1.png"
+        },
+        {
+          "cell": "cell-06",
+          "panel": "S02-C01-P2",
+          "image": "05_sheet/panels/S02-C01-P2.png"
+        },
+        {
+          "cell": "cell-07",
+          "panel": "S02-C02-P1",
+          "image": "05_sheet/panels/S02-C02-P1.png"
+        },
+        {
+          "cell": "cell-08",
+          "panel": "S02-C02-P2",
+          "image": "05_sheet/panels/S02-C02-P2.png"
+        }
+      ]
+    },
+    {
+      "image": "05_sheet/SHT-02.png",
+      "cells": [
+        {
+          "cell": "cell-01",
+          "panel": "S02-C03-P1",
+          "image": "05_sheet/panels/S02-C03-P1.png"
+        },
+        {
+          "cell": "cell-02",
+          "panel": "S02-C03-P2",
+          "image": "05_sheet/panels/S02-C03-P2.png"
+        }
+      ]
+    }
+  ]
+}

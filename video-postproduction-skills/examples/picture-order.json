@@ -1,0 +1,13 @@
+{
+  "id": "EXAMPLE-NOT-AUTHORITY",
+  "domain": "picture",
+  "branch": "main",
+  "backend": "filmcraft",
+  "source_refs": [
+    {
+      "clip_id": "EXAMPLE-C1",
+      "take_id": "EXAMPLE-T1"
+    }
+  ],
+  "output": "renders/example.mp4"
+}

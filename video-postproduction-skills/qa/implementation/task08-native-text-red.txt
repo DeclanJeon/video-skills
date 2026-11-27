@@ -1,0 +1,154 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_ test_native_text_when_actual_font_and_quote_are_read_back_and_every_rgba_frame_is_safe _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-233/test_native_text_when_actual_f0')
+
+    def test_native_text_when_actual_font_and_quote_are_read_back_and_every_rgba_frame_is_safe(tmp_path):
+>       store,backend,order,cap=setup(tmp_path)
+                                ^^^^^^^^^^^^^^^
+
+tests/test_native_text.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_native_text.py:14: in setup
+    source={"format":"post-caption-source/1","id":"TEXT-C1","source":{"clip_id":production.selections[0].clip_id,"take_id":production.selections[0].take.id},
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Selection(take=Take(id='T1', clip_id='C1', attempt_id=None, origin='approved_reuse', asset=Pin(id='source1.mp4', versi...34e6821869c97cfd41930f803f62e9d051b07be9f0da1b1a614e3', path='reuse-approval.txt')), acceptance_revision=1, valid=True)
+item = 'clip_id'
+
+    def __getattr__(self, item: str) -> Any:
+        private_attributes = object.__getattribute__(self, '__private_attributes__')
+        if item in private_attributes:
+            attribute = private_attributes[item]
+            if hasattr(attribute, '__get__'):
+                return attribute.__get__(self, type(self))  # type: ignore
+    
+            try:
+                # Note: self.__pydantic_private__ cannot be None if self.__private_attributes__ has items
+                return self.__pydantic_private__[item]  # type: ignore
+            except KeyError as exc:
+                raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}') from exc
+        else:
+            # `__pydantic_extra__` can fail to be set if the model is not yet fully initialized.
+            # See `BaseModel.__repr_args__` for more details
+            try:
+                pydantic_extra = object.__getattribute__(self, '__pydantic_extra__')
+            except AttributeError:
+                pydantic_extra = None
+    
+            if pydantic_extra and item in pydantic_extra:
+                return pydantic_extra[item]
+            else:
+                if hasattr(self.__class__, item):
+                    return super().__getattribute__(item)  # Raises AttributeError if appropriate
+                else:
+                    # this is the current error
+>                   raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+E                   AttributeError: 'Selection' object has no attribute 'clip_id'
+
+/home/declan/.local/lib/python3.14/site-packages/pydantic/main.py:1105: AttributeError
+_ test_native_text_when_master_caption_text_was_changed_without_new_approved_source_rejects _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-233/test_native_text_when_master_c0')
+
+    def test_native_text_when_master_caption_text_was_changed_without_new_approved_source_rejects(tmp_path):
+>       store,backend,order,cap=setup(tmp_path,tamper_text=True)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_native_text.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_native_text.py:14: in setup
+    source={"format":"post-caption-source/1","id":"TEXT-C1","source":{"clip_id":production.selections[0].clip_id,"take_id":production.selections[0].take.id},
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Selection(take=Take(id='T1', clip_id='C1', attempt_id=None, origin='approved_reuse', asset=Pin(id='source1.mp4', versi...34e6821869c97cfd41930f803f62e9d051b07be9f0da1b1a614e3', path='reuse-approval.txt')), acceptance_revision=1, valid=True)
+item = 'clip_id'
+
+    def __getattr__(self, item: str) -> Any:
+        private_attributes = object.__getattribute__(self, '__private_attributes__')
+        if item in private_attributes:
+            attribute = private_attributes[item]
+            if hasattr(attribute, '__get__'):
+                return attribute.__get__(self, type(self))  # type: ignore
+    
+            try:
+                # Note: self.__pydantic_private__ cannot be None if self.__private_attributes__ has items
+                return self.__pydantic_private__[item]  # type: ignore
+            except KeyError as exc:
+                raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}') from exc
+        else:
+            # `__pydantic_extra__` can fail to be set if the model is not yet fully initialized.
+            # See `BaseModel.__repr_args__` for more details
+            try:
+                pydantic_extra = object.__getattribute__(self, '__pydantic_extra__')
+            except AttributeError:
+                pydantic_extra = None
+    
+            if pydantic_extra and item in pydantic_extra:
+                return pydantic_extra[item]
+            else:
+                if hasattr(self.__class__, item):
+                    return super().__getattribute__(item)  # Raises AttributeError if appropriate
+                else:
+                    # this is the current error
+>                   raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+E                   AttributeError: 'Selection' object has no attribute 'clip_id'
+
+/home/declan/.local/lib/python3.14/site-packages/pydantic/main.py:1105: AttributeError
+_ test_native_text_when_actual_advance_is_wider_than_safe_mask_rejects_before_render _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-233/test_native_text_when_actual_a0')
+
+    def test_native_text_when_actual_advance_is_wider_than_safe_mask_rejects_before_render(tmp_path):
+>       store,backend,order,cap=setup(tmp_path,safe_bounds={"left":75,"top":5,"right":85,"bottom":85})
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_native_text.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_native_text.py:14: in setup
+    source={"format":"post-caption-source/1","id":"TEXT-C1","source":{"clip_id":production.selections[0].clip_id,"take_id":production.selections[0].take.id},
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Selection(take=Take(id='T1', clip_id='C1', attempt_id=None, origin='approved_reuse', asset=Pin(id='source1.mp4', versi...34e6821869c97cfd41930f803f62e9d051b07be9f0da1b1a614e3', path='reuse-approval.txt')), acceptance_revision=1, valid=True)
+item = 'clip_id'
+
+    def __getattr__(self, item: str) -> Any:
+        private_attributes = object.__getattribute__(self, '__private_attributes__')
+        if item in private_attributes:
+            attribute = private_attributes[item]
+            if hasattr(attribute, '__get__'):
+                return attribute.__get__(self, type(self))  # type: ignore
+    
+            try:
+                # Note: self.__pydantic_private__ cannot be None if self.__private_attributes__ has items
+                return self.__pydantic_private__[item]  # type: ignore
+            except KeyError as exc:
+                raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}') from exc
+        else:
+            # `__pydantic_extra__` can fail to be set if the model is not yet fully initialized.
+            # See `BaseModel.__repr_args__` for more details
+            try:
+                pydantic_extra = object.__getattribute__(self, '__pydantic_extra__')
+            except AttributeError:
+                pydantic_extra = None
+    
+            if pydantic_extra and item in pydantic_extra:
+                return pydantic_extra[item]
+            else:
+                if hasattr(self.__class__, item):
+                    return super().__getattribute__(item)  # Raises AttributeError if appropriate
+                else:
+                    # this is the current error
+>                   raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+E                   AttributeError: 'Selection' object has no attribute 'clip_id'
+
+/home/declan/.local/lib/python3.14/site-packages/pydantic/main.py:1105: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_native_text.py::test_native_text_when_actual_font_and_quote_are_read_back_and_every_rgba_frame_is_safe
+FAILED tests/test_native_text.py::test_native_text_when_master_caption_text_was_changed_without_new_approved_source_rejects
+FAILED tests/test_native_text.py::test_native_text_when_actual_advance_is_wider_than_safe_mask_rejects_before_render
+3 failed in 6.62s

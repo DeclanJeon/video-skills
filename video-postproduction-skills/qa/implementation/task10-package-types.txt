@@ -1,0 +1,6 @@
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/package_checks.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/package_checks.py:37:13 - error: Type of "link" is Any (reportAny)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/package_checks.py:38:42 - error: Type of "exists" is Any (reportAny)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/package_checks.py:46:13 - error: Type of "link" is Any (reportAny)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/package_checks.py:47:42 - error: Type of "exists" is Any (reportAny)
+4 errors, 0 warnings, 0 notes

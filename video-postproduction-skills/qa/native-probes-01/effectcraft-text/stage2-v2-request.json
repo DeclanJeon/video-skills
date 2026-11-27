@@ -1,0 +1,23 @@
+[
+  "/usr/bin/effectcraft-cli",
+  "--project",
+  "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/effectcraft-text/workspace/text.ecproj",
+  "render",
+  "--comp",
+  "1",
+  "--out",
+  "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/effectcraft-text/workspace/text.png",
+  "--format",
+  "png",
+  "--start",
+  "0",
+  "--end",
+  "0.5",
+  "--fps",
+  "24",
+  "--channels",
+  "rgba",
+  "--audio",
+  "off",
+  "--json"
+]

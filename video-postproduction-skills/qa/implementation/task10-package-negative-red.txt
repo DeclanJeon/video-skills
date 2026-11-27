@@ -1,0 +1,26 @@
+................F                                                        [100%]
+=================================== FAILURES ===================================
+_ test_package_when_shipped_contract_drifts_checker_fails_closed[unsafe-role-path] _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-281/test_package_when_shipped_cont3')
+damage = 'unsafe-role-path'
+
+    @pytest.mark.parametrize('damage',['schema','question','link','unsafe-role-path'])
+    def test_package_when_shipped_contract_drifts_checker_fails_closed(tmp_path,damage):
+        root=clone_package(tmp_path)
+        if damage=='schema':(root/'schemas/post-state.schema.json').write_text('{}')
+        elif damage=='question':
+            p=root/ROLES[0]/'SKILL.md';p.write_text(p.read_text().replace('질문','초안'))
+        elif damage=='link':
+            p=root/ROLES[0]/'SKILL.md';p.write_text(p.read_text()+'\n[missing](references/absent.md)\n')
+        else:
+            p=root/'manifest.json';m=json.loads(p.read_text());m['roles'][0]['path']=f'../{root.name}/{ROLES[0]}/SKILL.md';p.write_text(json.dumps(m))
+        result=require('package_checks','check_package')(root)
+>       assert result.ok is False and result.issues
+E       assert (True is False)
+E        +  where True = PackageCheck(ok=True, roles=8, issues=()).ok
+
+tests/test_package.py:59: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_package.py::test_package_when_shipped_contract_drifts_checker_fails_closed[unsafe-role-path]
+1 failed, 16 passed in 0.90s

@@ -1,0 +1,79 @@
+FFFFF                                                                    [100%]
+=================================== FAILURES ===================================
+_ test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect[branch] _
+
+raw_context = (<postproduction.ledger.PostStore object at 0x791905f21a90>, FinishingBackend(store=<postproduction.ledger.PostStore o...:48000,"channels":2,"container":"mp4","video_codec":"h264","audio_codec":"aac","loudness":null},"total_frames":144}}'))
+mismatch = 'branch'
+
+    @pytest.mark.parametrize('mismatch',['branch','recipe-pin','dependencies','domain','capability'])
+    def test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect(raw_context,mismatch):
+        store,backend,original=raw_context;packet,plan=raw_packet(raw_context,mismatch)
+        store.record_reservation(packet,store.read_recorded().revision)
+>       with pytest.raises(require('errors','ContractError')):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_review_finishing_packet.py:42: Failed
+_ test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect[recipe-pin] _
+
+raw_context = (<postproduction.ledger.PostStore object at 0x791905f21a90>, FinishingBackend(store=<postproduction.ledger.PostStore o...:48000,"channels":2,"container":"mp4","video_codec":"h264","audio_codec":"aac","loudness":null},"total_frames":144}}'))
+mismatch = 'recipe-pin'
+
+    @pytest.mark.parametrize('mismatch',['branch','recipe-pin','dependencies','domain','capability'])
+    def test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect(raw_context,mismatch):
+        store,backend,original=raw_context;packet,plan=raw_packet(raw_context,mismatch)
+        store.record_reservation(packet,store.read_recorded().revision)
+>       with pytest.raises(require('errors','ContractError')):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_review_finishing_packet.py:42: Failed
+_ test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect[dependencies] _
+
+raw_context = (<postproduction.ledger.PostStore object at 0x791905f21a90>, FinishingBackend(store=<postproduction.ledger.PostStore o...:48000,"channels":2,"container":"mp4","video_codec":"h264","audio_codec":"aac","loudness":null},"total_frames":144}}'))
+mismatch = 'dependencies'
+
+    @pytest.mark.parametrize('mismatch',['branch','recipe-pin','dependencies','domain','capability'])
+    def test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect(raw_context,mismatch):
+        store,backend,original=raw_context;packet,plan=raw_packet(raw_context,mismatch)
+        store.record_reservation(packet,store.read_recorded().revision)
+>       with pytest.raises(require('errors','ContractError')):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_review_finishing_packet.py:42: Failed
+_ test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect[domain] _
+
+raw_context = (<postproduction.ledger.PostStore object at 0x791905f21a90>, FinishingBackend(store=<postproduction.ledger.PostStore o...:48000,"channels":2,"container":"mp4","video_codec":"h264","audio_codec":"aac","loudness":null},"total_frames":144}}'))
+mismatch = 'domain'
+
+    @pytest.mark.parametrize('mismatch',['branch','recipe-pin','dependencies','domain','capability'])
+    def test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect(raw_context,mismatch):
+        store,backend,original=raw_context;packet,plan=raw_packet(raw_context,mismatch)
+        store.record_reservation(packet,store.read_recorded().revision)
+>       with pytest.raises(require('errors','ContractError')):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_review_finishing_packet.py:42: Failed
+_ test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect[capability] _
+
+raw_context = (<postproduction.ledger.PostStore object at 0x791905f21a90>, FinishingBackend(store=<postproduction.ledger.PostStore o...:48000,"channels":2,"container":"mp4","video_codec":"h264","audio_codec":"aac","loudness":null},"total_frames":144}}'))
+mismatch = 'capability'
+
+    @pytest.mark.parametrize('mismatch',['branch','recipe-pin','dependencies','domain','capability'])
+    def test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect(raw_context,mismatch):
+        store,backend,original=raw_context;packet,plan=raw_packet(raw_context,mismatch)
+        store.record_reservation(packet,store.read_recorded().revision)
+>       with pytest.raises(require('errors','ContractError')):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_review_finishing_packet.py:42: Failed
+=========================== short test summary info ============================
+FAILED tests/test_review_finishing_packet.py::test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect[branch]
+FAILED tests/test_review_finishing_packet.py::test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect[recipe-pin]
+FAILED tests/test_review_finishing_packet.py::test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect[dependencies]
+FAILED tests/test_review_finishing_packet.py::test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect[domain]
+FAILED tests/test_review_finishing_packet.py::test_finishing_when_raw_reserved_packet_mismatches_order_rejects_before_any_native_effect[capability]
+5 failed in 46.30s

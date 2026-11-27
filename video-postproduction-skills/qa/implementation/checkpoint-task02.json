@@ -1,0 +1,25 @@
+{
+  "protected_total": 216,
+  "protected_matching": 216,
+  "failures": [],
+  "source_hashes": {
+    "postproduction/__init__.py": "bc7f7ecc30cada2f76d81425bc438db7784556726392151b5d3363ed3534c323",
+    "postproduction/admission.py": "9c8e41e02955101d2647ccf4542566d64c57ad0793ad4fdadd7d7aaef966712e",
+    "postproduction/authority.py": "d07dbf4cdc74d06aac1f859278e74c4162e3ad51b18a0a5d687418a76eab0480",
+    "postproduction/clock.py": "7ec4bb04aaff60989a3ac00d7d95177f450a07e1bd3483d64cbb34329046be9d",
+    "postproduction/common.py": "2117f02fec08ac6ab529a5d815920a0f4f9404a663b3324ec50788652e8a22c8",
+    "postproduction/edit_models.py": "bf27671210818cd9709e5185dca6d49bc759623f3e04bef106a05f7ac06c1d53",
+    "postproduction/errors.py": "1bf1ed6b0616fe4db2f3f807eecf5c1fa96a2e9a2aa54b77dceb3cb0e1c79361",
+    "postproduction/files.py": "a2f342ed6503e66883839dc8edb370fa838eae39fa6a9ffb8b03b8ac6e6afc7d",
+    "postproduction/intake.py": "52e6fbbff91fc6866e6133a22bb0b9c89644c1a103b6052c006127066686902e",
+    "postproduction/intake_checks.py": "5cab249ba1180f3c7afb48efb4403e36eb65f49a783da0f3bfd566ed6ac60543",
+    "postproduction/intake_models.py": "39c20c398a997f21d5737862214152e794ccffc75508642bc6d4610b91a36acc",
+    "postproduction/media.py": "ff14955d7d3b50d33516ddb68d5b2e41175fc69eb40343c4ca0017458d8356ce",
+    "postproduction/models.py": "8cb56c92ede15fc55c93c4a7c29b69b760a5f833a7c3db08cf74ca6472e6b58a",
+    "postproduction/probe_models.py": "c11f8b7e00d125974826123329ebbddf7a27fbe5babfca952256fe5c1f438cf3",
+    "postproduction/timeline.py": "642803d6262213a5c6658dc3aec63c6c53f816a1edad3cf71805fc4fa1650b33",
+    "postproduction/timeline_map.py": "fc55bc3efdb5e57b828790eb9e521718876827105e27455248509498702222a3",
+    "postproduction/timeline_models.py": "61cb3d2f6af49941b6a00393c0dfa41a0bcbdbe971f82b0ce0868eca91a01104"
+  },
+  "scope": "current partial implementation; no native Craft or vendor installation certification"
+}

@@ -1,0 +1,46 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_ test_materialization_when_actual_native_output_is_reverified_and_registered_once _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-208/test_materialization_when_actu0')
+
+    def test_materialization_when_actual_native_output_is_reverified_and_registered_once(tmp_path):
+        store,backend,packet,value=rendered(tmp_path)
+        state=store.read_recorded();job=state.jobs[0]
+>       artifact=store.record_materialization(job.id,state.revision)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'PostStore' object has no attribute 'record_materialization'
+
+tests/test_materialization.py:10: AttributeError
+_ test_materialization_when_current_source_lost_does_not_adopt_output_or_lose_job _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-208/test_materialization_when_curr0')
+
+    def test_materialization_when_current_source_lost_does_not_adopt_output_or_lose_job(tmp_path):
+        store,backend,packet,value=rendered(tmp_path)
+        state=store.read_recorded();job=state.jobs[0]
+        (tmp_path/"source1.mp4").unlink()
+        with pytest.raises(require("errors","ContractError")):
+>           store.record_materialization(job.id,state.revision)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AttributeError: 'PostStore' object has no attribute 'record_materialization'
+
+tests/test_materialization.py:29: AttributeError
+_____ test_materialization_when_unknown_attempt_cannot_claim_current_file ______
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-208/test_materialization_when_unkn0')
+
+    def test_materialization_when_unknown_attempt_cannot_claim_current_file(tmp_path):
+        store,backend,packet,value=rendered(tmp_path)
+        state=store.read_recorded()
+        with pytest.raises(require("errors","ContractError"),match="job"):
+>           store.record_materialization("not-a-reserved-job",state.revision)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AttributeError: 'PostStore' object has no attribute 'record_materialization'
+
+tests/test_materialization.py:38: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_materialization.py::test_materialization_when_actual_native_output_is_reverified_and_registered_once
+FAILED tests/test_materialization.py::test_materialization_when_current_source_lost_does_not_adopt_output_or_lose_job
+FAILED tests/test_materialization.py::test_materialization_when_unknown_attempt_cannot_claim_current_file
+3 failed in 42.26s

@@ -1,0 +1,36 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+____________ test_commit_when_noncooperating_writer_changes_ledger _____________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-32/test_commit_when_noncooperatin0')
+
+    def test_commit_when_noncooperating_writer_changes_ledger(seed,tmp_path):
+        # Given: an outside writer ignores the advisory production lock.
+        store=require("store","ProjectStore")(tmp_path/"ledger.json")
+        store.initialize(seed)
+        # When / Then: we preserve the observed other writer rather than clobbering its fields.
+>       with pytest.raises(ContractError,match="conflict"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_recovery.py:121: Failed
+______________ test_init_when_state_injects_unreviewed_acceptance ______________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-32/test_init_when_state_injects_u0')
+
+    def test_init_when_state_injects_unreviewed_acceptance(seed,tmp_path):
+        # Given: input attempts to bypass operator/reviewer transitions at initialization.
+        from test_revisions import selection
+        forged=seed.model_copy(update={"selections":(selection(seed,tmp_path),)})
+        # When / Then: init is for an initial plan, not trusted historical result import.
+>       with pytest.raises(ContractError,match="initial"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_recovery.py:134: Failed
+=========================== short test summary info ============================
+FAILED tests/test_recovery.py::test_commit_when_noncooperating_writer_changes_ledger
+FAILED tests/test_recovery.py::test_init_when_state_injects_unreviewed_acceptance
+2 failed in 0.08s

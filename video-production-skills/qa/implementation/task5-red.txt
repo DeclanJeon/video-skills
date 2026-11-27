@@ -1,0 +1,261 @@
+FFFFFFFFF                                                                [100%]
+=================================== FAILURES ===================================
+_____________ test_legacy_ledger_when_registered_by_existing_tool ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-10/test_legacy_ledger_when_regist0')
+
+    def test_legacy_ledger_when_registered_by_existing_tool(tmp_path):
+        # Given: the actual preproduction Ledger writes a temporary project, not its source.
+        source = Path(__file__).resolve().parents[2]/"video-preproduction-skills"/"scripts"
+        (tmp_path/"asset.txt").write_text("temporary asset")
+        code = "from pathlib import Path; from cp2.ledger import Ledger; import sys; Ledger.load(Path(sys.argv[1])).register('CHR-01','asset.txt',1,[])"
+        import os
+        result = subprocess.run([sys.executable, "-c", code, str(tmp_path)], capture_output=True, text=True, env={**os.environ, "PYTHONPATH": str(source), "PYTHONDONTWRITEBYTECODE": "1"})
+        assert result.returncode == 0, result.stderr
+        # When: resolving its actual file/version/hash schema.
+>       resolved = require("adapters", "resolve_legacy")(tmp_path/"ledger.json", "CHR-01@v1")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_adapters.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'adapters', name = 'resolve_legacy'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing adapters runtime
+E       assert None
+E        +  where None = <function find_spec at 0x740baf147270>('production.adapters')
+E        +    where <function find_spec at 0x740baf147270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_____________________ test_legacy_when_artifact_superseded _____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-10/test_legacy_when_artifact_supe0')
+
+    def test_legacy_when_artifact_superseded(tmp_path):
+        # Given: only stale history exists.
+        source = {"schema_version":1,"artifacts":{"CHR-01":[{"version":1,"path":"x","sha256":"0"*64,"consumes":[],"status":"stale"}]}}
+        (tmp_path/"ledger.json").write_text(json.dumps(source))
+        # When / Then: stale registrations cannot bind current references.
+        with pytest.raises(ContractError, match="current"):
+>           require("adapters", "resolve_legacy")(tmp_path/"ledger.json", "CHR-01@v1")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_adapters.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'adapters', name = 'resolve_legacy'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing adapters runtime
+E       assert None
+E        +  where None = <function find_spec at 0x740baf147270>('production.adapters')
+E        +    where <function find_spec at 0x740baf147270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_________________ test_native_call_when_checked_existing_shape _________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-10/test_native_call_when_checked_0')
+
+    def test_native_call_when_checked_existing_shape(seed, capability, authority, tmp_path):
+        # Given: existing prepare_generation_request format; synthetic provider name.
+        packet, native = native_fixture(seed, capability, authority, tmp_path)
+        # When: auditing local call selection against current planned bindings.
+>       result = require("adapters", "audit_native")(packet, native, "fixture__send", "/model", "/prompt", "/reference_ids", "/duration")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_adapters.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'adapters', name = 'audit_native'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing adapters runtime
+E       assert None
+E        +  where None = <function find_spec at 0x740baf147270>('production.adapters')
+E        +    where <function find_spec at 0x740baf147270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+________________ test_native_call_when_selected_reference_wrong ________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-10/test_native_call_when_selected0')
+
+    def test_native_call_when_selected_reference_wrong(seed, capability, authority, tmp_path):
+        # Given: otherwise well-hashed native request selects another ref.
+        packet, native = native_fixture(seed, capability, authority, tmp_path)
+        native["arguments"]["reference_ids"] = ["wrong-ref"]
+        native["call_sha256"] = hashlib.sha256(json.dumps({"tool":native["tool"],"arguments":native["arguments"]},ensure_ascii=False,sort_keys=True,separators=(",",":")).encode()).hexdigest()
+        # When / Then: upload existence does not mask wrong selected IDs.
+        with pytest.raises(ContractError, match="selection"):
+>           require("adapters", "audit_native")(packet, native, "fixture__send", "/model", "/prompt", "/reference_ids", "/duration")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_adapters.py:62: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'adapters', name = 'audit_native'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing adapters runtime
+E       assert None
+E        +  where None = <function find_spec at 0x740baf147270>('production.adapters')
+E        +    where <function find_spec at 0x740baf147270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+____________ test_real_preproduction_when_panel_and_speech_coverage ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-10/test_real_preproduction_when_p0')
+
+    def test_real_preproduction_when_panel_and_speech_coverage(tmp_path):
+        # Given: shape owned by the installed storyboard/project schema.
+        project = {"project_id":"fixture", "shots":[{"id":"SH1","speech":[{"id":"D1"}]}], "storyboard":{"panels":[{"id":"P1","shot_id":"SH1","beat_ids":["B1"]}]}}
+        path = tmp_path/"project.json"
+        path.write_text(json.dumps(project))
+        # When: deriving the upstream coverage set before creating clips.
+>       result = require("adapters", "derive_coverage")(path)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_adapters.py:71: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'adapters', name = 'derive_coverage'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing adapters runtime
+E       assert None
+E        +  where None = <function find_spec at 0x740baf147270>('production.adapters')
+E        +    where <function find_spec at 0x740baf147270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:16: AssertionError
+_____________ test_coverage_source_when_batch_erases_approved_item _____________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+
+    def test_coverage_source_when_batch_erases_approved_item(seed):
+        # Given: both queue and its local coverage omit a required upstream item.
+        bad = seed.model_copy(update={"batch": seed.batch.model_copy(update={"coverage": seed.batch.coverage[:-1], "clips": seed.batch.clips[:-1], "edit_order": seed.batch.edit_order[:-1], "joins": seed.batch.joins[:-1]})})
+        # When / Then: separate approved coverage anchor prevents self-counted completion.
+        with pytest.raises(ContractError, match="coverage"):
+>           require("contracts", "validate_state")(bad)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_adapters.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'contracts', name = 'validate_state'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+        assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+        value = getattr(importlib.import_module(f"production.{module}"), name, None)
+>       assert callable(value), f"missing {module}.{name} behavior"
+E       AssertionError: missing contracts.validate_state behavior
+E       assert False
+E        +  where False = callable(None)
+
+tests/conftest.py:18: AssertionError
+_______________ test_cli_init_and_restart_when_project_is_valid ________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...der=('R2', 'R3'), allowed_changes=(), locator='board#cuts'))), attempts=(), selections=(), history=(), join_reviews=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-10/test_cli_init_and_restart_when0')
+
+    def test_cli_init_and_restart_when_project_is_valid(seed, tmp_path):
+        # Given: serialized input and existing project directory.
+        path = tmp_path/"input.json"; path.write_text(seed.model_dump_json())
+        # When: initialize and query in a new process.
+>       init = cli("init", tmp_path/"ledger.json", path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_cli.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ('init', PosixPath('/tmp/pytest-of-declan/pytest-10/test_cli_init_and_restart_when0/ledger.json'), PosixPath('/tmp/pytest-of-declan/pytest-10/test_cli_init_and_restart_when0/input.json'))
+
+    def cli(*args):
+        script = Path(__file__).resolve().parents[1]/"scripts/production.py"
+>       assert script.is_file(), "production CLI not implemented"
+E       AssertionError: production CLI not implemented
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-production-skills/scripts/production.py').is_file
+
+tests/test_cli.py:12: AssertionError
+__________________ test_cli_invalid_json_when_input_malformed __________________
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-10/test_cli_invalid_json_when_inp0')
+
+    def test_cli_invalid_json_when_input_malformed(tmp_path):
+        # Given: malformed input document.
+        path = tmp_path/"bad.json";path.write_text("{")
+        # When: invoking the real boundary.
+>       result = cli("init",tmp_path/"ledger.json",path)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_cli.py:32: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ('init', PosixPath('/tmp/pytest-of-declan/pytest-10/test_cli_invalid_json_when_inp0/ledger.json'), PosixPath('/tmp/pytest-of-declan/pytest-10/test_cli_invalid_json_when_inp0/bad.json'))
+
+    def cli(*args):
+        script = Path(__file__).resolve().parents[1]/"scripts/production.py"
+>       assert script.is_file(), "production CLI not implemented"
+E       AssertionError: production CLI not implemented
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-production-skills/scripts/production.py').is_file
+
+tests/test_cli.py:12: AssertionError
+________________ test_cli_help_when_no_remote_execution_allowed ________________
+
+    def test_cli_help_when_no_remote_execution_allowed():
+        # Given: installed local command surface.
+        # When: querying help.
+>       result = cli("--help")
+                 ^^^^^^^^^^^^^
+
+tests/test_cli.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ('--help',)
+
+    def cli(*args):
+        script = Path(__file__).resolve().parents[1]/"scripts/production.py"
+>       assert script.is_file(), "production CLI not implemented"
+E       AssertionError: production CLI not implemented
+E       assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-production-skills/scripts/production.py').is_file
+
+tests/test_cli.py:12: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_adapters.py::test_legacy_ledger_when_registered_by_existing_tool
+FAILED tests/test_adapters.py::test_legacy_when_artifact_superseded - Asserti...
+FAILED tests/test_adapters.py::test_native_call_when_checked_existing_shape
+FAILED tests/test_adapters.py::test_native_call_when_selected_reference_wrong
+FAILED tests/test_adapters.py::test_real_preproduction_when_panel_and_speech_coverage
+FAILED tests/test_adapters.py::test_coverage_source_when_batch_erases_approved_item
+FAILED tests/test_cli.py::test_cli_init_and_restart_when_project_is_valid - A...
+FAILED tests/test_cli.py::test_cli_invalid_json_when_input_malformed - Assert...
+FAILED tests/test_cli.py::test_cli_help_when_no_remote_execution_allowed - As...
+9 failed in 0.15s

@@ -1,0 +1,18 @@
+........................................................................ [ 26%]
+........................................................................ [ 53%]
+........................................................................ [ 80%]
+......................................................                   [100%]
+============================= slowest 12 durations =============================
+22.96s call     tests/test_effectcraft.py::test_effectcraft_when_any_plate_frame_is_missing_cannot_materialize
+18.78s call     tests/test_effectcraft.py::test_effectcraft_when_native_comp_or_keys_were_edited_requires_reimport
+17.54s call     tests/test_effectcraft.py::test_effectcraft_when_actual_rgba_sequence_and_keys_are_independently_verified
+16.02s call     tests/test_filmcraft.py::test_filmcraft_when_completed_native_job_is_not_replayed
+14.82s call     tests/test_filmcraft.py::test_filmcraft_when_export_file_is_partial_cannot_materialize
+14.18s call     tests/test_filmcraft.py::test_filmcraft_when_real_native_three_cut_project_and_export_are_verified
+13.96s call     tests/test_filmcraft.py::test_filmcraft_when_source_is_replaced_after_export_cannot_adopt_old_picture
+13.59s call     tests/test_filmcraft.py::test_filmcraft_when_native_project_range_was_manually_changed_requires_reimport
+9.91s call     tests/test_materialization.py::test_materialization_when_actual_native_output_is_reverified_and_registered_once
+8.63s call     tests/test_environment_bridge.py::test_environment_bridge_when_fixture_installer_facts_preserve_other_namespaces
+8.49s call     tests/test_effectcraft.py::test_effectcraft_when_unapproved_format_or_guessed_template_compatibility_is_rejected[changes2]
+8.46s call     tests/test_soundcraft.py::test_soundcraft_when_actual_layout_sample_offsets_and_gain_match_independent_audio[True]
+270 passed in 347.86s (0:05:47)

@@ -1,0 +1,20 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_installer_smoke_when_actual_existing_cli_has_native_output_and_network_denial[filmcraft] _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-273/test_installer_smoke_when_actu0')
+tool = 'filmcraft'
+
+    @pytest.mark.parametrize('tool',['filmcraft','effectcraft','soundcraft'])
+    def test_installer_smoke_when_actual_existing_cli_has_native_output_and_network_denial(tmp_path,tool):
+        p=plan(tool=tool)
+        runner=require('environment.native_smoke','NativeSmoke')(tmp_path/'owned-smoke')
+        result=runner.run(p,(Path('/usr/bin')/(tool+'-cli'),))
+>       assert result.passed is True
+E       AssertionError: assert False is True
+E        +  where False = SmokeResult(passed=False, evidence='actual synthetic smoke failed: smoke: actual native synthetic command failed rc=1,...\n    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory', network_denied=True).passed
+
+tests/test_native_smoke.py:13: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_native_smoke.py::test_installer_smoke_when_actual_existing_cli_has_native_output_and_network_denial[filmcraft]
+1 failed, 2 deselected in 0.39s

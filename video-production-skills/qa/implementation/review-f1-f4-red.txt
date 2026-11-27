@@ -1,0 +1,193 @@
+FFFFFFFF                                                                 [100%]
+=================================== FAILURES ===================================
+__________ test_library_handoff_when_delivered_source_changes[delete] __________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-49/test_library_handoff_when_deli0')
+mutation = 'delete'
+
+    @pytest.mark.parametrize("mutation", ["delete", "replace"])
+    def test_library_handoff_when_delivered_source_changes(seed,tmp_path,mutation):
+        # Given: matching current reports, then a source disappears or changes on disk.
+        state=all_selected(seed,tmp_path)
+        state=state.model_copy(update={"join_reviews":joins_for(state)})
+        flow=flow_for(state)
+        path=tmp_path/state.selections[0].take.asset.path
+        if mutation == "delete":
+            path.unlink()
+        else:
+            path.write_text("unexpected replacement bytes")
+        # When / Then: successful reports cannot deliver nonexistent/unpinned originals.
+>       with pytest.raises(ContractError,match="path|hash"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_review_regressions.py:25: Failed
+_________ test_library_handoff_when_delivered_source_changes[replace] __________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-49/test_library_handoff_when_deli1')
+mutation = 'replace'
+
+    @pytest.mark.parametrize("mutation", ["delete", "replace"])
+    def test_library_handoff_when_delivered_source_changes(seed,tmp_path,mutation):
+        # Given: matching current reports, then a source disappears or changes on disk.
+        state=all_selected(seed,tmp_path)
+        state=state.model_copy(update={"join_reviews":joins_for(state)})
+        flow=flow_for(state)
+        path=tmp_path/state.selections[0].take.asset.path
+        if mutation == "delete":
+            path.unlink()
+        else:
+            path.write_text("unexpected replacement bytes")
+        # When / Then: successful reports cannot deliver nonexistent/unpinned originals.
+>       with pytest.raises(ContractError,match="path|hash"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_review_regressions.py:25: Failed
+_____ test_character_identity_when_upstream_relation_not_in_direct_assets ______
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-49/test_character_identity_when_u0')
+
+    def test_character_identity_when_upstream_relation_not_in_direct_assets(seed,tmp_path):
+        # Given: identity is mandatory through shot.character_ids, not shot.asset_ids.
+        source,identity=upstream_identity(tmp_path)
+        source_pin=pin(tmp_path,"character-project.json",json.dumps(source))
+        coverage=require("adapters","derive_coverage")(tmp_path/source_pin.path)
+        clip=seed.batch.clips[0].model_copy(update={"assets":(),"shots":("SH1",),"requirements":tuple(r.id for r in coverage)})
+        batch=seed.batch.model_copy(update={"coverage":coverage,"clips":(clip,),"edit_order":(clip.id,),"joins":()})
+        state=seed.model_copy(update={"batch":batch,"coverage_source":source_pin,"approved_coverage":coverage})
+        # When / Then: source projection cannot silently discard the character dependency.
+>       with pytest.raises(ContractError,match="asset"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_review_regressions.py:44: Failed
+___________ test_approval_when_settings_exceed_same_grant[duration] ____________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-49/test_approval_when_settings_ex0')
+change = 'duration'
+
+    @pytest.mark.parametrize("change", ["duration", "aspect", "scope"])
+    def test_approval_when_settings_exceed_same_grant(seed,capability,authority,tmp_path,change):
+        # Given: capability can support more than the original approval.
+        cap=capability
+        state=seed
+        if change == "duration":
+            clip=seed.batch.clips[0].model_copy(update={"duration_s":20})
+            state=seed.model_copy(update={"batch":seed.batch.model_copy(update={"clips":(clip,*seed.batch.clips[1:])})})
+            cap=capability.model_copy(update={"durations":(2,20)})
+        elif change == "aspect":
+            cap=capability.model_copy(update={"width":720,"height":1280})
+        else:
+            state=seed.model_copy(update={"batch":seed.batch.model_copy(update={"scope_revision":"not-approved"})})
+        # When / Then: same authority does not silently authorize a longer/different configuration.
+>       with pytest.raises(ContractError,match="authority"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_review_regressions.py:62: Failed
+____________ test_approval_when_settings_exceed_same_grant[aspect] _____________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-49/test_approval_when_settings_ex1')
+change = 'aspect'
+
+    @pytest.mark.parametrize("change", ["duration", "aspect", "scope"])
+    def test_approval_when_settings_exceed_same_grant(seed,capability,authority,tmp_path,change):
+        # Given: capability can support more than the original approval.
+        cap=capability
+        state=seed
+        if change == "duration":
+            clip=seed.batch.clips[0].model_copy(update={"duration_s":20})
+            state=seed.model_copy(update={"batch":seed.batch.model_copy(update={"clips":(clip,*seed.batch.clips[1:])})})
+            cap=capability.model_copy(update={"durations":(2,20)})
+        elif change == "aspect":
+            cap=capability.model_copy(update={"width":720,"height":1280})
+        else:
+            state=seed.model_copy(update={"batch":seed.batch.model_copy(update={"scope_revision":"not-approved"})})
+        # When / Then: same authority does not silently authorize a longer/different configuration.
+>       with pytest.raises(ContractError,match="authority"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_review_regressions.py:62: Failed
+_____________ test_approval_when_settings_exceed_same_grant[scope] _____________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-49/test_approval_when_settings_ex2')
+change = 'scope'
+
+    @pytest.mark.parametrize("change", ["duration", "aspect", "scope"])
+    def test_approval_when_settings_exceed_same_grant(seed,capability,authority,tmp_path,change):
+        # Given: capability can support more than the original approval.
+        cap=capability
+        state=seed
+        if change == "duration":
+            clip=seed.batch.clips[0].model_copy(update={"duration_s":20})
+            state=seed.model_copy(update={"batch":seed.batch.model_copy(update={"clips":(clip,*seed.batch.clips[1:])})})
+            cap=capability.model_copy(update={"durations":(2,20)})
+        elif change == "aspect":
+            cap=capability.model_copy(update={"width":720,"height":1280})
+        else:
+            state=seed.model_copy(update={"batch":seed.batch.model_copy(update={"scope_revision":"not-approved"})})
+        # When / Then: same authority does not silently authorize a longer/different configuration.
+>       with pytest.raises(ContractError,match="authority"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_review_regressions.py:62: Failed
+__________________ test_commit_when_approval_evidence_changed __________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-49/test_commit_when_approval_evid0')
+
+    def test_commit_when_approval_evidence_changed(seed,capability,authority,tmp_path):
+        # Given: successful fixture receipt and real decodable candidate; approval pin then drifts.
+        state,take,review=candidate(seed,capability,authority,tmp_path)
+        (tmp_path/authority.evidence.path).write_text("APPROVAL REVOKED / REPLACED")
+        # When / Then: historical remote success is retained, but current QA cannot publish.
+>       with pytest.raises(ContractError,match="hash|approval"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_review_regressions.py:71: Failed
+________________ test_revalidate_when_approval_evidence_changed ________________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-49/test_revalidate_when_approval_0')
+
+    def test_revalidate_when_approval_evidence_changed(seed,capability,authority,tmp_path):
+        # Given: accepted selection whose approval evidence is replaced.
+        state,take,review=candidate(seed,capability,authority,tmp_path)
+        state=require("quality","accept_take")(state,take,review,take.fingerprint,tmp_path)
+        (tmp_path/authority.evidence.path).write_text("APPROVAL REVOKED / REPLACED")
+        # When / Then: revalidation cannot bypass the applicable current approval pin.
+>       with pytest.raises(ContractError,match="hash|approval"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_review_regressions.py:81: Failed
+=========================== short test summary info ============================
+FAILED tests/test_review_regressions.py::test_library_handoff_when_delivered_source_changes[delete]
+FAILED tests/test_review_regressions.py::test_library_handoff_when_delivered_source_changes[replace]
+FAILED tests/test_review_regressions.py::test_character_identity_when_upstream_relation_not_in_direct_assets
+FAILED tests/test_review_regressions.py::test_approval_when_settings_exceed_same_grant[duration]
+FAILED tests/test_review_regressions.py::test_approval_when_settings_exceed_same_grant[aspect]
+FAILED tests/test_review_regressions.py::test_approval_when_settings_exceed_same_grant[scope]
+FAILED tests/test_review_regressions.py::test_commit_when_approval_evidence_changed
+FAILED tests/test_review_regressions.py::test_revalidate_when_approval_evidence_changed
+8 failed in 0.80s

@@ -1,0 +1,42 @@
+{
+  "observed_at": "2026-11-26T15:01:58.369482+00:00",
+  "read_only": true,
+  "os_arch": "Linux x86_64",
+  "gpu_identified": "AMD Renoir Radeon Vega (lspci identification only)",
+  "space_memory_observed": {
+    "disk_available": "approximately82G",
+    "ram_available": "approximately17GiB"
+  },
+  "found_packages": {
+    "artcraft-launcher": "0.20.0-1",
+    "filmcraft": "0.20.1-1",
+    "effectcraft": "0.25.1-1",
+    "soundcraft": "0.20.1-1"
+  },
+  "found_cli": [
+    "/usr/bin/filmcraft-cli",
+    "/usr/bin/effectcraft-cli",
+    "/usr/bin/soundcraft-cli"
+  ],
+  "not_discovered_in_checked_locations": [
+    "AutoClip",
+    "DaVinci Resolve"
+  ],
+  "checked_sources": [
+    "PATH",
+    "dpkg package inventory",
+    "system/user desktop entry names",
+    "known Resolve/AutoClip executable paths"
+  ],
+  "absence_exhaustive": false,
+  "implementation_dependencies": {
+    "python": "3.14.4",
+    "pydantic": "2.14.1",
+    "typer": "0.29.0",
+    "pytest": "9.1.1",
+    "basedpyright": "available"
+  },
+  "install_proposed": false,
+  "install_consent": null,
+  "installed": false
+}

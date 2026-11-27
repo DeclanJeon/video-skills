@@ -1,0 +1,17 @@
+{
+  "scope": "local prompt editorial baseline only; current v5 render is not evidence of intended style",
+  "visible_by_panel": {
+    "S01-C02-P2": [
+      "CHR-01@v1"
+    ]
+  },
+  "style_hash": "fc68b9de1c9c30443e50d5e07cbee66a2989315f9259363b810c8bb4c133d187",
+  "axis_by_panel": {
+    "S01-C02-P2": "Axis: Shelter on screen left; umbrella stand centered; rain and departure on screen right."
+  },
+  "sources": {
+    "roster": "04_board/index.csv S01-C02",
+    "style": "03_conti/LOOK-01.md",
+    "axis": "03_conti/CTY.md axis-01 + STB S01-C02-P2"
+  }
+}

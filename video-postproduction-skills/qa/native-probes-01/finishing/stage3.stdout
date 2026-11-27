@@ -1,0 +1,13 @@
+{
+  "job": 1,
+  "offlineMedia": [],
+  "path": "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/finishing/workspace/native-finished.mp4",
+  "result": {
+    "bytes": 250565,
+    "frames": 144,
+    "path": "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/finishing/workspace/native-finished.mp4",
+    "render_fps": 516.9894843549037,
+    "seconds": 0.278535646
+  },
+  "warnings": []
+}

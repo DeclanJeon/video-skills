@@ -1,0 +1,164 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_speech_map_when_reviewed_mux_audio_is_preserved_in_target_sample_clock __
+
+state = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...y QA', continuous_playback=True, observed_changes=())), change_evidence=(), scope_history=(), observed_input_issues=())
+root = PosixPath('/tmp/pytest-of-declan/pytest-134/test_speech_map_when_reviewed_0')
+output = 'review-only.mp4'
+
+    def render_review(state: State, root: Path, output: str) -> ReviewRender:
+        source_slices = slices(state)
+        target = _output(root, output)
+        manifest_path = _output(root, output + ".sources.json")
+        sources = [verified_file(root,s.source) for s in source_slices]
+        probes = [probe_media(root,s.source) for s in source_slices]
+        if len({(p.width,p.height,p.fps,p.has_audio) for p in probes}) != 1 or not all(p.cfr for p in probes):
+            raise ContractError("conform", "mixed formats/audio/VFR need an explicitly approved conform route")
+        target.parent.mkdir(parents=True,exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=root,prefix=".review-render-") as temp:
+            work = Path(temp)
+            try:
+                for i,(source,sl,probe) in enumerate(zip(sources,source_slices,probes)):
+                    args = ["ffmpeg","-v","error","-xerror","-i",str(source),"-vf",f"trim=start_frame={sl.source_range.start}:end_frame={sl.source_range.end},setpts=PTS-STARTPTS"]
+                    if probe.has_audio:
+                        args += ["-af",f"atrim=start={sl.source_range.start/probe.fps}:end={sl.source_range.end/probe.fps},asetpts=PTS-STARTPTS","-c:a","aac"]
+                    else:
+                        args += ["-an"]
+                    args += ["-c:v","libx264","-preset","ultrafast","-pix_fmt","yuv420p",str(work/f"part{i}.mp4")]
+                    _ = subprocess.run(args,capture_output=True,check=True,timeout=90)
+                listing=work/"concat.txt"
+                _ = listing.write_text("".join(f"file 'part{i}.mp4'\n" for i in range(len(sources))))
+                rendered=work/"review.mp4"
+>               _ = subprocess.run(["ffmpeg","-v","error","-xerror","-f","concat","-safe","1","-i",str(listing),"-c","copy",str(rendered)],capture_output=True,check=True,timeout=90)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+../video-production-skills/production/render.py:84: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = True, timeout = 90, check = True
+popenargs = (['ffmpeg', '-v', 'error', '-xerror', '-f', 'concat', ...],)
+kwargs = {'stdout': -1, 'stderr': -1}
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout (seconds) is given and the process takes too long,
+         a TimeoutExpired exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['ffmpeg', '-v', 'error', '-xerror', '-f', 'concat', '-safe', '1', '-i', '/tmp/pytest-of-declan/pytest-134/test_speech_map_when_reviewed_0/.review-render-zltn0zag/concat.txt', '-c', 'copy', '/tmp/pytest-of-declan/pytest-134/test_speech_map_when_reviewed_0/.review-render-zltn0zag/review.mp4']' returned non-zero exit status 234.
+
+/usr/lib/python3.14/subprocess.py:578: CalledProcessError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-134/test_speech_map_when_reviewed_0')
+
+    def test_speech_map_when_reviewed_mux_audio_is_preserved_in_target_sample_clock(tmp_path):
+>       fixture(tmp_path,with_audio=True)
+
+tests/test_timeline.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/support.py:55: in fixture
+    rendered=render_review(state,root,"review-only.mp4")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+state = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...y QA', continuous_playback=True, observed_changes=())), change_evidence=(), scope_history=(), observed_input_issues=())
+root = PosixPath('/tmp/pytest-of-declan/pytest-134/test_speech_map_when_reviewed_0')
+output = 'review-only.mp4'
+
+    def render_review(state: State, root: Path, output: str) -> ReviewRender:
+        source_slices = slices(state)
+        target = _output(root, output)
+        manifest_path = _output(root, output + ".sources.json")
+        sources = [verified_file(root,s.source) for s in source_slices]
+        probes = [probe_media(root,s.source) for s in source_slices]
+        if len({(p.width,p.height,p.fps,p.has_audio) for p in probes}) != 1 or not all(p.cfr for p in probes):
+            raise ContractError("conform", "mixed formats/audio/VFR need an explicitly approved conform route")
+        target.parent.mkdir(parents=True,exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=root,prefix=".review-render-") as temp:
+            work = Path(temp)
+            try:
+                for i,(source,sl,probe) in enumerate(zip(sources,source_slices,probes)):
+                    args = ["ffmpeg","-v","error","-xerror","-i",str(source),"-vf",f"trim=start_frame={sl.source_range.start}:end_frame={sl.source_range.end},setpts=PTS-STARTPTS"]
+                    if probe.has_audio:
+                        args += ["-af",f"atrim=start={sl.source_range.start/probe.fps}:end={sl.source_range.end/probe.fps},asetpts=PTS-STARTPTS","-c:a","aac"]
+                    else:
+                        args += ["-an"]
+                    args += ["-c:v","libx264","-preset","ultrafast","-pix_fmt","yuv420p",str(work/f"part{i}.mp4")]
+                    _ = subprocess.run(args,capture_output=True,check=True,timeout=90)
+                listing=work/"concat.txt"
+                _ = listing.write_text("".join(f"file 'part{i}.mp4'\n" for i in range(len(sources))))
+                rendered=work/"review.mp4"
+                _ = subprocess.run(["ffmpeg","-v","error","-xerror","-f","concat","-safe","1","-i",str(listing),"-c","copy",str(rendered)],capture_output=True,check=True,timeout=90)
+                with target.open("xb") as out, rendered.open("rb") as inp:
+                    shutil.copyfileobj(inp,out)
+            except (subprocess.CalledProcessError,subprocess.TimeoutExpired,FileNotFoundError) as exc:
+>               raise ContractError("render", "local review render failed; no remote jobs started") from exc
+E               production.models.ContractError: render: local review render failed; no remote jobs started
+
+../video-production-skills/production/render.py:88: ContractError
+=========================== short test summary info ============================
+FAILED tests/test_timeline.py::test_speech_map_when_reviewed_mux_audio_is_preserved_in_target_sample_clock
+1 failed in 0.92s

@@ -1,0 +1,15 @@
+........................................................................ [ 24%]
+........................................................................ [ 48%]
+........................................................................ [ 72%]
+........................................................................ [ 96%]
+............                                                             [100%]
+============================= slowest 8 durations ==============================
+25.96s setup    tests/test_finishing.py::test_finishing_when_actual_native_inputs_rejoin_and_independent_video_audio_are_present
+5.95s call     tests/test_native_text.py::test_native_text_when_actual_existing_korean_font_and_multiline_speaker_source_are_preserved[\ud55c\uad6d\uc5b4 \uc790\ub9c9\uc740\n\uadf8\ub300\ub85c \ubcf4\uc5ec\uc694]
+5.73s call     tests/test_materialization.py::test_materialization_when_actual_native_output_is_reverified_and_registered_once
+5.64s call     tests/test_native_text.py::test_native_text_when_actual_existing_korean_font_and_multiline_speaker_source_are_preserved[\uc548\ub155]
+5.60s call     tests/test_effectcraft.py::test_effectcraft_when_any_plate_frame_is_missing_cannot_materialize
+5.56s call     tests/test_effectcraft.py::test_effectcraft_when_native_comp_or_keys_were_edited_requires_reimport
+5.47s call     tests/test_native_text.py::test_native_text_when_actual_font_and_quote_are_read_back_and_every_rgba_frame_is_safe
+5.46s call     tests/test_dependency_lineage.py::test_lineage_when_actual_picture_producer_loses_source_affects_only_consumers[True-True]
+300 passed in 199.32s (0:03:19)

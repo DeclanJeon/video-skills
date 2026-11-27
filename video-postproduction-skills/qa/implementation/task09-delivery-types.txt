@@ -1,0 +1,11 @@
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/delivery.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/delivery.py:10:78 - error: 가져오기 "DeliveryFile"에 액세스하지 않았습니다. (reportUnusedImport)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/delivery.py:33:9 - error: "append"의 형식을 부분적으로 알 수 없습니다.
+    ‘append’의 유형이 ‘(object: Unknown, /) -> None’입니다. (reportUnknownMemberType)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/delivery.py:40:13 - error: "variant" 유형을 알 수 없습니다. (reportUnknownVariableType)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/delivery.py:41:38 - error: "pin" 유형을 알 수 없습니다. (reportUnknownMemberType)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/delivery.py:41:38 - error: 인수 형식을 알 수 없습니다.
+    인수가 "copy" 함수의 "pin" 매개 변수에 해당합니다. (reportUnknownArgumentType)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/delivery.py:41:62 - error: "pin" 유형을 알 수 없습니다. (reportUnknownMemberType)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/delivery.py:41:62 - error: "sha256" 유형을 알 수 없습니다. (reportUnknownMemberType)
+7 errors, 0 warnings, 0 notes

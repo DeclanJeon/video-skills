@@ -1,0 +1,35 @@
+{
+  "size": [
+    1080,
+    1920
+  ],
+  "zero_alpha_row_spans": [
+    {
+      "start_y": 0,
+      "end_y": 117,
+      "span": null
+    },
+    {
+      "start_y": 117,
+      "end_y": 850,
+      "span": [
+        0,
+        1080
+      ]
+    },
+    {
+      "start_y": 850,
+      "end_y": 1622,
+      "span": [
+        0,
+        924
+      ]
+    },
+    {
+      "start_y": 1622,
+      "end_y": 1920,
+      "span": null
+    }
+  ],
+  "meaning": "Observed transparent spans of this local guide only; not a universal current platform safe area."
+}

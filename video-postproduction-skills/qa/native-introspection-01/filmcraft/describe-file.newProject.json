@@ -1,0 +1,15 @@
+{
+  "defaultShortcut": "Cmd+Alt+N",
+  "enabled": true,
+  "id": "file.newProject",
+  "label": "Project…",
+  "menu": [
+    "File",
+    "New"
+  ],
+  "params": "{\"name\":str}",
+  "shortcut": "Cmd+Alt+N",
+  "shortcuts": [
+    "Cmd+Alt+N"
+  ]
+}

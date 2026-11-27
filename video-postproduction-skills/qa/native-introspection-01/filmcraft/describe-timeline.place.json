@@ -1,0 +1,10 @@
+{
+  "defaultShortcut": null,
+  "enabled": false,
+  "id": "timeline.place",
+  "label": "Place Clip",
+  "menu": [],
+  "params": "{\"item\":id|\"items\":[id] (back to back, one undo step),\"track\":\"V1\"|id|\"A1\" (sound only)|\"new\" (a video track after the last)?,\"audioTrack\":\"A1\"|id|\"new\"?,\"time\":ticks|\"frame\":i64|\"seconds\":f64,\"insert\":bool,\"sourceIn\":ticks|{\"frame\"|\"seconds\"|\"timecode\"}?,\"duration\":ticks|{\"frame\"|\"seconds\"|\"timecode\"}?,\"video\":bool=true,\"audio\":bool=true,\"matchSequence\":bool=false (an empty sequence first takes the clip's frame size and rate)}",
+  "shortcut": null,
+  "shortcuts": []
+}

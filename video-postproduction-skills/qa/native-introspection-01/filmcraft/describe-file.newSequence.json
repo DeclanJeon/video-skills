@@ -1,0 +1,15 @@
+{
+  "defaultShortcut": "Cmd+N",
+  "enabled": true,
+  "id": "file.newSequence",
+  "label": "Sequence…",
+  "menu": [
+    "File",
+    "New"
+  ],
+  "params": "{\"name\":str,\"width\":u32=1920,\"height\":u32=1080,\"fps\":f64=23.976,\"sampleRate\":u32=48000,\"video\":n=3,\"audio\":n=3,\"mix\":\"Stereo|Mono|5.1|Adaptive\"?,\"trackType\":\"Standard|Mono|5.1|Adaptive\"?,\"fromItem\":itemId?,\"fromItems\":[itemId]?,\"bin\":binId?}",
+  "shortcut": "Cmd+N",
+  "shortcuts": [
+    "Cmd+N"
+  ]
+}

@@ -1,0 +1,57 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_finishing_when_actual_final_native_projection_can_be_registered_without_human_adoption _
+
+finished = (<postproduction.ledger.PostStore object at 0x75602b5802f0>, FinishingBackend(store=<postproduction.ledger.PostStore o...rt=0, end=288000), timeline_range=SourceRange(start=0, end=1524096000000))), evidence_kind='native_technical_fixture'))
+
+    def test_finishing_when_actual_final_native_projection_can_be_registered_without_human_adoption(finished):
+        store,backend,packet,value=finished
+        state=store.read_recorded()
+>       artifact=store.record_materialization(state.jobs[-1].id,state.revision)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_finishing.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+postproduction/ledger.py:158: in record_materialization
+    artifact = checked_materialization(self,state,job_id)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/materialization.py:49: in checked_materialization
+    observation = observe_actual(store,job)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+store = <postproduction.ledger.PostStore object at 0x75602b5802f0>
+job = PostJob(id='FINISH-A1', packet=RequestPacket(order=WorkOrder(id='FINISH', domain=<Domain.FINISHING: 'finishing'>, bran...e4d84d161b0de7cd0547e6b6e084ee","output_sha256":"f91940960a467f15cbfb1ceaec7a4e5ba653ff6222717a7f8401d8b74f8ecbb7"}')))
+
+    def observe_actual(store: ProjectPort, job: PostJob) -> JobObservation:
+        """Each actual adapter parses its own schema; no generic success boolean or arbitrary result JSON."""
+        match job.packet.order.backend:
+            case Tool.FILMCRAFT:
+                from postproduction.backends.film_models import FilmPlan
+                from postproduction.backends.filmcraft import FilmCraftBackend
+>               plan = FilmPlan.model_validate_json(job.packet.payload)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               pydantic_core._pydantic_core.ValidationError: 6 validation errors for FilmPlan
+E               recipe
+E                 Extra inputs are not permitted [type=extra_forbidden, input_value={'format': 'post-finishin...x': 'SOUND-A1-artifact'}, input_type=dict]
+E                   For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
+E               recipe_pin
+E                 Extra inputs are not permitted [type=extra_forbidden, input_value={'id': 'finishing.json', ...ac7ee097b868ae59b82f4f'}, input_type=dict]
+E                   For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
+E               inputs
+E                 Extra inputs are not permitted [type=extra_forbidden, input_value={'picture': {'id': 'PICTU...'}, 'total_frames': 144}, input_type=dict]
+E                   For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
+E               timeline
+E                 Field required [type=missing, input_value={'workspace': '/tmp/pytes...}, 'total_frames': 144}}, input_type=dict]
+E                   For further information visit https://errors.pydantic.dev/2.14/v/missing
+E               sources
+E                 Field required [type=missing, input_value={'workspace': '/tmp/pytes...}, 'total_frames': 144}}, input_type=dict]
+E                   For further information visit https://errors.pydantic.dev/2.14/v/missing
+E               profile
+E                 Field required [type=missing, input_value={'workspace': '/tmp/pytes...}, 'total_frames': 144}}, input_type=dict]
+E                   For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+postproduction/materialization.py:24: ValidationError
+=========================== short test summary info ============================
+FAILED tests/test_finishing.py::test_finishing_when_actual_final_native_projection_can_be_registered_without_human_adoption
+1 failed, 3 deselected in 26.29s

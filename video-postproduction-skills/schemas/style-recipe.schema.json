@@ -1,0 +1,284 @@
+{
+  "$defs": {
+    "ClockRate": {
+      "additionalProperties": false,
+      "description": "Exact positive rational units per second (frames, ticks or samples).",
+      "properties": {
+        "num": {
+          "$ref": "#/$defs/Positive"
+        },
+        "den": {
+          "$ref": "#/$defs/Positive"
+        }
+      },
+      "required": [
+        "num",
+        "den"
+      ],
+      "title": "ClockRate",
+      "type": "object"
+    },
+    "Digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "DisplayMetric": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "value": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "scope": {
+          "enum": [
+            "actual",
+            "synthetic_demo"
+          ],
+          "title": "Scope",
+          "type": "string"
+        },
+        "evidence": {
+          "$ref": "#/$defs/Pin"
+        },
+        "display_label": {
+          "$ref": "#/$defs/Nonempty"
+        }
+      },
+      "required": [
+        "name",
+        "value",
+        "scope",
+        "evidence",
+        "display_label"
+      ],
+      "title": "DisplayMetric",
+      "type": "object"
+    },
+    "ExistingFont": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "format": "path",
+          "title": "Path",
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/Digest"
+        },
+        "family": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "style": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "version": {
+          "$ref": "#/$defs/Positive"
+        },
+        "face_index": {
+          "$ref": "#/$defs/Frame"
+        },
+        "license_evidence": {
+          "$ref": "#/$defs/Pin"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "family",
+        "style",
+        "version",
+        "face_index",
+        "license_evidence"
+      ],
+      "title": "ExistingFont",
+      "type": "object"
+    },
+    "Frame": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "Nonempty": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "Pin": {
+      "additionalProperties": false,
+      "description": "Versioned exact bytes at a safe project-relative POSIX path.",
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "path": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "sha256": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "path",
+        "sha256"
+      ],
+      "title": "Pin",
+      "type": "object"
+    },
+    "PixelBounds": {
+      "additionalProperties": false,
+      "properties": {
+        "left": {
+          "$ref": "#/$defs/Frame"
+        },
+        "top": {
+          "$ref": "#/$defs/Frame"
+        },
+        "right": {
+          "$ref": "#/$defs/Positive"
+        },
+        "bottom": {
+          "$ref": "#/$defs/Positive"
+        }
+      },
+      "required": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "title": "PixelBounds",
+      "type": "object"
+    },
+    "Positive": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "post-style/1",
+      "title": "Format",
+      "type": "string"
+    },
+    "id": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "family": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "reference_use": {
+      "enum": [
+        "concept_only",
+        "licensed_pixels"
+      ],
+      "title": "Reference Use",
+      "type": "string"
+    },
+    "references": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Pin"
+      },
+      "title": "References",
+      "type": "array"
+    },
+    "asset_license_evidence": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Pin"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "attribution": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Nonempty"
+      },
+      "title": "Attribution",
+      "type": "array"
+    },
+    "attribution_presentation": {
+      "default": "receiver_record",
+      "enum": [
+        "receiver_record",
+        "on_screen"
+      ],
+      "title": "Attribution Presentation",
+      "type": "string"
+    },
+    "width": {
+      "$ref": "#/$defs/Positive"
+    },
+    "height": {
+      "$ref": "#/$defs/Positive"
+    },
+    "fps": {
+      "$ref": "#/$defs/ClockRate"
+    },
+    "font": {
+      "$ref": "#/$defs/ExistingFont"
+    },
+    "font_size": {
+      "exclusiveMinimum": 0,
+      "maximum": 1000,
+      "title": "Font Size",
+      "type": "integer"
+    },
+    "safe_bounds": {
+      "$ref": "#/$defs/PixelBounds"
+    },
+    "protected_bounds": {
+      "items": {
+        "$ref": "#/$defs/PixelBounds"
+      },
+      "title": "Protected Bounds",
+      "type": "array"
+    },
+    "max_lines": {
+      "$ref": "#/$defs/Positive"
+    },
+    "max_characters_per_second": {
+      "exclusiveMinimum": 0,
+      "maximum": 1000,
+      "title": "Max Characters Per Second",
+      "type": "number"
+    },
+    "metrics": {
+      "items": {
+        "$ref": "#/$defs/DisplayMetric"
+      },
+      "title": "Metrics",
+      "type": "array"
+    }
+  },
+  "required": [
+    "format",
+    "id",
+    "family",
+    "reference_use",
+    "width",
+    "height",
+    "fps",
+    "font",
+    "font_size",
+    "safe_bounds",
+    "protected_bounds",
+    "max_lines",
+    "max_characters_per_second",
+    "metrics"
+  ],
+  "title": "StyleRecipe",
+  "type": "object"
+}

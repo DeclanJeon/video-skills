@@ -1,0 +1,8 @@
+{
+  "valid": true,
+  "markdown_files": 11,
+  "local_links_checked": 18,
+  "planned_acceptance_cases": 34,
+  "errors": [],
+  "scope": "document links, case IDs and recovered report presence; no runtime/provider validation"
+}

@@ -1,0 +1,49 @@
+.F                                                                       [100%]
+=================================== FAILURES ===================================
+_ test_soundcraft_when_actual_layout_sample_offsets_and_gain_match_independent_audio[True] _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-205/test_soundcraft_when_actual_la1')
+mono = True
+
+    @pytest.mark.parametrize("mono",[False,True])
+    def test_soundcraft_when_actual_layout_sample_offsets_and_gain_match_independent_audio(tmp_path,mono):
+>       store,backend,packet,value=rendered(tmp_path,mono)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_soundcraft.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_soundcraft.py:40: in rendered
+    return store,backend,packet,backend.observe(store.read_recorded().jobs[0])
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+postproduction/backends/soundcraft.py:161: in observe
+    compare_waveform(plan,actual,self.store.path.parent)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+plan = SoundPlan(workspace=PosixPath('/tmp/pytest-of-declan/pytest-205/test_soundcraft_when_actual_la1/sound-native/run-5b087...t', sha256='acd6c712f7a34e6821869c97cfd41930f803f62e9d051b07be9f0da1b1a614e3'), exterior_before=0, exterior_after=0),))
+actual = AudioFacts(sample_rate=48000, channels=2, sample_count=96000, sample_peak=0.07095617800951004, rms=0.03073888699918338....0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0))
+root = PosixPath('/tmp/pytest-of-declan/pytest-205/test_soundcraft_when_actual_la1')
+
+    def compare_waveform(plan: SoundPlan, actual: AudioFacts, root: Path) -> None:
+        """Every decoded sample must match explicitly planned gain/offset/layout; no normalize/dither/stem invention."""
+        recipe = plan.recipe
+        if (actual.sample_rate,actual.channels,actual.sample_count) != (
+            recipe.sample_rate,recipe.channels,recipe.sample_count):
+            raise ContractError("audio", "actual bounce rate/channel/sample duration differs")
+        expected = [0.0]*(recipe.sample_count*2)
+        for cue in recipe.cues:
+            stem = next(s for s in plan.stems if s.id == cue.stem_id)
+            source = probe_audio(root,stem.asset)
+            gain = 10**(cue.gain_db/20)
+            for frame in range(source.sample_count):
+                for channel in range(2):
+                    value = source.samples[frame*source.channels+(channel if source.channels == 2 else 0)]
+                    coefficient = 1.0 if source.channels == 2 else 1/math.sqrt(2)
+                    expected[(cue.at_sample+frame)*2+channel] += value*gain*coefficient
+        if max(abs(a-b) for a,b in zip(actual.samples,expected)) > 0.000002:
+>           raise ContractError("audio", "independent full waveform differs from actual supplied cue/gain/sample plan")
+E           postproduction.errors.ContractError: audio: independent full waveform differs from actual supplied cue/gain/sample plan
+
+postproduction/backends/sound_readback.py:58: ContractError
+=========================== short test summary info ============================
+FAILED tests/test_soundcraft.py::test_soundcraft_when_actual_layout_sample_offsets_and_gain_match_independent_audio[True]
+1 failed, 1 passed, 6 deselected in 15.58s

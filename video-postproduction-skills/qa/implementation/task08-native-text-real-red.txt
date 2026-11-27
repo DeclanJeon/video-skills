@@ -1,0 +1,97 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_ test_native_text_when_actual_font_and_quote_are_read_back_and_every_rgba_frame_is_safe _
+
+root = PosixPath('/tmp/pytest-of-declan/pytest-234/test_native_text_when_actual_f0')
+pin = Pin(id='native-text-recipe.json', version='1', path='native-text-recipe.json', sha256='f6fa55809afce1049baf83e551746099a6af2dd6651ad346e382702f17600dfe')
+model = <class 'postproduction.backends.effect_models.MotionRecipe'>
+
+    def read_model[T: BaseModel](root: Path, pin: Pin, model: type[T]) -> T:
+        """Parse a physically verified record, translating boundary parse failures."""
+        path = verified_file(root, pin)
+        try:
+>           return model.model_validate_json(path.read_bytes())
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           pydantic_core._pydantic_core.ValidationError: 6 validation errors for MotionRecipe
+E           caption
+E             Extra inputs are not permitted [type=extra_forbidden, input_value={'id': 'TEXT-C1', 'kind':...ht': False, 'words': []}, input_type=dict]
+E               For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
+E           style
+E             Extra inputs are not permitted [type=extra_forbidden, input_value={'id': 'style.json', 'pat...2766c9', 'version': '1'}, input_type=dict]
+E               For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
+E           format
+E             Input should be 'post-motion/1' [type=literal_error, input_value='post-text/1', input_type=str]
+E               For further information visit https://errors.pydantic.dev/2.14/v/literal_error
+E           box_width
+E             Field required [type=missing, input_value={'caption': {'id': 'TEXT-...on': '1'}, 'width': 160}, input_type=dict]
+E               For further information visit https://errors.pydantic.dev/2.14/v/missing
+E           box_height
+E             Field required [type=missing, input_value={'caption': {'id': 'TEXT-...on': '1'}, 'width': 160}, input_type=dict]
+E               For further information visit https://errors.pydantic.dev/2.14/v/missing
+E           color
+E             Field required [type=missing, input_value={'caption': {'id': 'TEXT-...on': '1'}, 'width': 160}, input_type=dict]
+E               For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+postproduction/files.py:47: ValidationError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-234/test_native_text_when_actual_f0')
+
+    def test_native_text_when_actual_font_and_quote_are_read_back_and_every_rgba_frame_is_safe(tmp_path):
+        store,backend,order,cap=setup(tmp_path)
+>       packet=backend.prepare(order,cap,store.read_recorded().intake.authority)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_native_text.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+postproduction/backends/effectcraft.py:66: in prepare
+    recipe = read_model(self.store.path.parent,order.recipe,MotionRecipe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/tmp/pytest-of-declan/pytest-234/test_native_text_when_actual_f0')
+pin = Pin(id='native-text-recipe.json', version='1', path='native-text-recipe.json', sha256='f6fa55809afce1049baf83e551746099a6af2dd6651ad346e382702f17600dfe')
+model = <class 'postproduction.backends.effect_models.MotionRecipe'>
+
+    def read_model[T: BaseModel](root: Path, pin: Pin, model: type[T]) -> T:
+        """Parse a physically verified record, translating boundary parse failures."""
+        path = verified_file(root, pin)
+        try:
+            return model.model_validate_json(path.read_bytes())
+        except (OSError, ValidationError) as exc:
+>           raise ContractError("parse", f"invalid {model.__name__} input") from exc
+E           postproduction.errors.ContractError: parse: invalid MotionRecipe input
+
+postproduction/files.py:49: ContractError
+_ test_native_text_when_master_caption_text_was_changed_without_new_approved_source_rejects _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-234/test_native_text_when_master_c0')
+
+    def test_native_text_when_master_caption_text_was_changed_without_new_approved_source_rejects(tmp_path):
+        store,backend,order,cap=setup(tmp_path,tamper_text=True)
+>       with pytest.raises(require("errors","ContractError"),match="caption"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'caption'
+E         Actual message: 'parse: invalid MotionRecipe input'
+
+tests/test_native_text.py:53: AssertionError
+_ test_native_text_when_actual_advance_is_wider_than_safe_mask_rejects_before_render _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-234/test_native_text_when_actual_a0')
+
+    def test_native_text_when_actual_advance_is_wider_than_safe_mask_rejects_before_render(tmp_path):
+        store,backend,order,cap=setup(tmp_path,safe_bounds={"left":75,"top":5,"right":85,"bottom":85})
+>       with pytest.raises(require("errors","ContractError"),match="bounds"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'bounds'
+E         Actual message: 'parse: invalid MotionRecipe input'
+
+tests/test_native_text.py:59: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_native_text.py::test_native_text_when_actual_font_and_quote_are_read_back_and_every_rgba_frame_is_safe
+FAILED tests/test_native_text.py::test_native_text_when_master_caption_text_was_changed_without_new_approved_source_rejects
+FAILED tests/test_native_text.py::test_native_text_when_actual_advance_is_wider_than_safe_mask_rejects_before_render
+3 failed in 5.46s

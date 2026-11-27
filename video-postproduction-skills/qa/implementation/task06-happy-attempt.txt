@@ -1,0 +1,246 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_effectcraft_when_actual_rgba_sequence_and_keys_are_independently_verified _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-196/test_effectcraft_when_actual_r0')
+
+    def test_effectcraft_when_actual_rgba_sequence_and_keys_are_independently_verified(tmp_path):
+>       store,backend,packet,value=rendered(tmp_path)
+                                   ^^^^^^^^^^^^^^^^^^
+
+tests/test_effectcraft.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_effectcraft.py:26: in rendered
+    store,backend,order,cap=setup(root)
+                            ^^^^^^^^^^^
+tests/test_effectcraft.py:20: in setup
+    backend=require("backends.effectcraft","EffectCraftBackend")(store,root/"effect-native")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/conftest.py:8: in require
+    loaded = import_module(f"postproduction.{module}")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1406: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1371: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1342: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:938: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:759: in exec_module
+    ???
+<frozen importlib._bootstrap>:491: in _call_with_frames_removed
+    ???
+postproduction/backends/effectcraft.py:12: in <module>
+    from postproduction.backends.effect_models import EffectEvidence, EffectHeader, EffectPlan, MotionRecipe, PlateManifest
+postproduction/backends/effect_models.py:112: in <module>
+    class EffectHeader(Projection):
+/home/declan/.local/lib/python3.14/site-packages/pydantic/_internal/_model_construction.py:217: in __new__
+    set_model_fields(cls, config_wrapper=config_wrapper, ns_resolver=ns_resolver, namespace_info=namespace_info)
+/home/declan/.local/lib/python3.14/site-packages/pydantic/_internal/_model_construction.py:543: in set_model_fields
+    fields, pydantic_extra_info, class_vars, private_attributes = collect_model_fields(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'postproduction.backends.effect_models.EffectHeader'>
+config_wrapper = ConfigWrapper(frozen=True, extra='ignore', allow_inf_nan=False)
+ns_resolver = <pydantic._internal._namespace_utils.NsResolver object at 0x7379a6770ec0>
+typevars_map = {}
+namespace_info = ModelNamespaceInfo(private_attributes={}, ignored_names={'__annotate_func__'}, ignored_types=(<class 'function'>, <cla...ping.TypeAliasType'>), private_candidates=[], field_candidates=[], base_field_names=set(), model_config_assigned=False)
+
+    def collect_model_fields(  # noqa: C901
+        cls: type[BaseModel],
+        config_wrapper: ConfigWrapper,
+        ns_resolver: NsResolver,
+        *,
+        typevars_map: Mapping[TypeVar, Any] | None = None,
+        namespace_info: ModelNamespaceInfo | None = None,
+    ) -> tuple[dict[str, FieldInfo], PydanticExtraInfo | None, set[str], dict[str, ModelPrivateAttr]]:
+        """Collect the fields, class variables names and private attributes of a nascent Pydantic model.
+    
+        The fields collection process is *lenient*, meaning it won't error if string annotations
+        fail to evaluate. If this happens, the original annotation (and assigned value, if any)
+        is stored on the created `FieldInfo` instance.
+    
+        The `rebuild_model_fields()` should be called at a later point (e.g. when rebuilding the model),
+        and will make use of these stored attributes.
+    
+        Args:
+            cls: BaseModel or dataclass.
+            config_wrapper: The config wrapper instance.
+            ns_resolver: Namespace resolver to use when getting model annotations.
+            typevars_map: A dictionary mapping type variables to their concrete types.
+            namespace_info: The result of inspecting the class namespace before the class was created.
+    
+        Returns:
+            A four-tuple containing the model fields, the `PydanticExtraInfo` instance if the `__pydantic_extra__` annotation is set,
+            the class variables names, and the private attributes discovered from the namespace and annotations.
+    
+        Raises:
+            NameError: If there is a conflict between a field name and protected namespaces.
+            PydanticUserError: If there is a field other than `root` in `RootModel`, or if one of
+                the namespace checks performed with `namespace_info` fails.
+        """
+        FieldInfo_ = import_cached_field_info()
+    
+        from ..fields import ModelPrivateAttr, PrivateAttr
+    
+        bases = cls.__bases__
+        parent_fields_lookup: dict[str, FieldInfo] = {}
+        for base in reversed(bases):
+            if model_fields := getattr(base, '__pydantic_fields__', None):
+                parent_fields_lookup.update(model_fields)
+    
+        type_hints = _typing_extra.get_model_type_hints(cls, ns_resolver=ns_resolver)
+    
+        # `cls_annotations` is only used to determine if an annotation comes from a parent class
+        cls_annotations = _typing_extra.safe_get_annotations(cls)
+    
+        private_attributes: dict[str, ModelPrivateAttr] = {}
+    
+        if namespace_info is not None:
+            if '__root__' in cls_annotations:
+                # This check also exists in `inspect_namespace()`, but for assignments only:
+                raise PydanticUserError(
+                    "To define root models, use `pydantic.RootModel` rather than a field called '__root__'", code=None
+                )
+    
+            if 'model_config' in cls_annotations and not namespace_info.model_config_assigned:
+                raise PydanticUserError(
+                    '`model_config` cannot be used as a model field name. Use `model_config` for model configuration.',
+                    code='model-config-invalid-field-name',
+                )
+    
+            for var_name in namespace_info.private_candidates:
+                # A sunder-named attribute with an assigned value is a private attribute,
+                # unless annotated as a class variable:
+                hint = type_hints.get(var_name)
+                if hint is None or not _typing_extra.is_classvar_annotation(hint[0]):
+                    # Unlike for the annotation-only private attributes below, `__set_name__()` must not be
+                    # called on the wrapping `PrivateAttr()` here: the assigned value stayed in the namespace
+                    # during class creation, so `type.__new__()` already invoked the protocol on it natively:
+                    private_attributes[var_name] = cast('ModelPrivateAttr', PrivateAttr(default=cls.__dict__[var_name]))
+                    delattr(cls, var_name)
+    
+            for var_name in namespace_info.field_candidates:
+                if var_name in cls_annotations:
+                    continue
+                if var_name in namespace_info.base_field_names:
+                    raise PydanticUserError(
+                        f'Field {var_name!r} defined on a base class was overridden by a non-annotated attribute. '
+                        f'All field definitions, including overrides, require a type annotation.',
+                        code='model-field-overridden',
+                    )
+                value = cls.__dict__[var_name]
+                if isinstance(value, FieldInfo_):
+                    raise PydanticUserError(
+                        f'Field {var_name!r} requires a type annotation', code='model-field-missing-annotation'
+                    )
+                else:
+                    raise PydanticUserError(
+                        f'A non-annotated attribute was detected: `{var_name} = {value!r}`. All model fields require a '
+                        f'type annotation; if `{var_name}` is not meant to be a field, you may be able to resolve this '
+                        f"error by annotating it as a `ClassVar` or updating `model_config['ignored_types']`.",
+                        code='model-field-missing-annotation',
+                    )
+    
+        fields: dict[str, FieldInfo] = {}
+    
+        deprecated_method_ids, deprecated_classmethod_func_ids = _deprecated_base_model_method_ids()
+    
+        class_vars: set[str] = set()
+        for ann_name, (ann_type, evaluated) in type_hints.items():
+            if ann_name == 'model_config':
+                # We never want to treat `model_config` as a field
+                # Note: we may need to change this logic if/when we introduce a `BareModel` class with no
+                # protected namespaces (where `model_config` might be allowed as a field name)
+                continue
+    
+            _check_protected_namespaces(
+                protected_namespaces=config_wrapper.protected_namespaces,
+                ann_name=ann_name,
+                bases=bases,
+                cls_name=cls.__name__,
+            )
+    
+            if _typing_extra.is_classvar_annotation(ann_type):
+                class_vars.add(ann_name)
+                continue
+    
+            if not is_valid_field_name(ann_name):
+                if (
+                    namespace_info is not None
+                    and is_valid_privateattr_name(ann_name)
+                    and ann_name in cls_annotations
+                    and ann_name not in private_attributes
+                    and ann_name not in namespace_info.private_attributes
+                    and ann_name not in namespace_info.ignored_names
+                    and ann_type not in namespace_info.ignored_types
+                    and getattr(ann_type, '__module__', None) != 'functools'
+                ):
+                    # A sunder-named annotation (with no assigned value, as this case is handled above)
+                    # defines a private attribute:
+                    private_attr: ModelPrivateAttr | None = None
+                    if typing_objects.is_annotated(get_origin(ann_type)):
+                        _, *metadata = get_args(ann_type)
+                        private_attr = next((v for v in metadata if isinstance(v, ModelPrivateAttr)), None)
+                    if private_attr is None:
+                        private_attr = cast('ModelPrivateAttr', PrivateAttr())
+                    private_attr.__set_name__(cls, ann_name)
+                    private_attributes[ann_name] = private_attr
+                continue
+    
+            assigned_value = getattr(cls, ann_name, PydanticUndefined)
+            if assigned_value is not PydanticUndefined and (
+                # One of the deprecated instance methods was used as a field name (e.g. `dict()`):
+                id(assigned_value) in deprecated_method_ids
+                # One of the deprecated class methods was used as a field name (e.g. `schema()`):
+                or (
+                    (assigned_func := getattr(assigned_value, '__func__', None)) is not None
+                    and id(assigned_func) in deprecated_classmethod_func_ids
+                )
+            ):
+                # Then `assigned_value` would be the method, even though no default was specified:
+                assigned_value = PydanticUndefined
+    
+            if cls.__pydantic_root_model__ and ann_name != 'root':
+                raise PydanticUserError(
+                    f"Unexpected field with name {ann_name!r}; only 'root' is allowed as a field of a `RootModel`",
+                    code=None,
+                )
+    
+            for base in bases:
+                if hasattr(base, ann_name):
+                    if ann_name not in cls_annotations:
+                        # Don't warn when a field exists in a parent class but has not been defined in the current class
+                        continue
+    
+                    # when building a generic model with `MyModel[int]`, the generic_origin check makes sure we don't get
+                    # "... shadows an attribute" warnings
+                    generic_origin = getattr(cls, '__pydantic_generic_metadata__', {}).get('origin')
+                    if base is generic_origin:
+                        # Don't warn when "shadowing" of attributes in parametrized generics
+                        continue
+    
+                    dataclass_fields = {
+                        field.name for field in (dataclasses.fields(base) if dataclasses.is_dataclass(base) else ())
+                    }
+                    if ann_name in dataclass_fields:
+                        # Don't warn when inheriting stdlib dataclasses whose fields are "shadowed" by defaults being set
+                        # on the class instance.
+                        continue
+    
+>                   warnings.warn(
+                        f'Field name "{ann_name}" in "{cls.__qualname__}" shadows an attribute in parent '
+                        f'"{base.__qualname__}"',
+                        UserWarning,
+                        stacklevel=4,
+                    )
+E                   UserWarning: Field name "schema" in "EffectHeader" shadows an attribute in parent "Projection"
+
+/home/declan/.local/lib/python3.14/site-packages/pydantic/_internal/_fields.py:458: UserWarning
+=========================== short test summary info ============================
+FAILED tests/test_effectcraft.py::test_effectcraft_when_actual_rgba_sequence_and_keys_are_independently_verified
+1 failed in 1.31s

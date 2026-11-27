@@ -1,0 +1,40 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_____ test_installer_when_real_driver_must_reinspect_host_before_any_fetch _____
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-169/test_installer_when_real_drive0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f5544fe49d0>
+
+    def test_installer_when_real_driver_must_reinspect_host_before_any_fetch(tmp_path,monkeypatch):
+        import postproduction.environment.provision as module
+        h,p,driver,events,runner,a=operator_shape(tmp_path)
+        changed=h.model_copy(update={"architecture":"aarch64"})
+        monkeypatch.setattr(module,"inspect_host",lambda reqs:changed,raising=False)
+>       with pytest.raises(require("errors","ContractError"),match="host"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_installers.py:173: Failed
+_ test_installer_when_another_terminal_completed_compatible_install_reuses_it __
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-169/test_installer_when_another_te0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f55446155b0>
+
+    def test_installer_when_another_terminal_completed_compatible_install_reuses_it(tmp_path,monkeypatch):
+        import postproduction.environment.provision as module
+        h,p,driver,events,runner,a=operator_shape(tmp_path)
+        observed=h.programs[0].model_copy(update={"cli_path":"/already/installed/filmcraft-cli","cli_sha256":"e"*64,"version":"0.20.1-1","package_name":"filmcraft"})
+        changed=h.model_copy(update={"programs":(observed,)})
+        monkeypatch.setattr(module,"inspect_host",lambda reqs:changed,raising=False)
+        result=runner.execute(p,h,a)
+>       assert result.status=="reusable"
+E       AssertionError: assert <EnvStatus.READY: 'ready'> == 'reusable'
+E         
+E         - reusable
+E         + ready
+
+tests/test_installers.py:185: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_installers.py::test_installer_when_real_driver_must_reinspect_host_before_any_fetch
+FAILED tests/test_installers.py::test_installer_when_another_terminal_completed_compatible_install_reuses_it
+2 failed in 0.15s

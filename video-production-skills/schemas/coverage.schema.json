@@ -1,0 +1,135 @@
+{
+  "$defs": {
+    "AssetUse": {
+      "additionalProperties": false,
+      "properties": {
+        "shot": {
+          "title": "Shot",
+          "type": "string"
+        },
+        "pin": {
+          "$ref": "#/$defs/Pin"
+        }
+      },
+      "required": [
+        "shot",
+        "pin"
+      ],
+      "title": "AssetUse",
+      "type": "object"
+    },
+    "Pin": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "minLength": 1,
+          "title": "Version",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "path": {
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "sha256",
+        "path"
+      ],
+      "title": "Pin",
+      "type": "object"
+    },
+    "Requirement": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "shot": {
+          "minLength": 1,
+          "title": "Shot",
+          "type": "string"
+        },
+        "panels": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Panels",
+          "type": "array"
+        },
+        "modality": {
+          "default": "video",
+          "title": "Modality",
+          "type": "string"
+        },
+        "locator": {
+          "minLength": 1,
+          "title": "Locator",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "shot",
+        "panels",
+        "locator"
+      ],
+      "title": "Requirement",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "production-coverage/1",
+      "default": "production-coverage/1",
+      "title": "Format",
+      "type": "string"
+    },
+    "requirements": {
+      "items": {
+        "$ref": "#/$defs/Requirement"
+      },
+      "title": "Requirements",
+      "type": "array"
+    },
+    "asset_uses": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/AssetUse"
+      },
+      "title": "Asset Uses",
+      "type": "array"
+    },
+    "origin": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Pin"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "requirements"
+  ],
+  "title": "CoverageEnvelope",
+  "type": "object"
+}

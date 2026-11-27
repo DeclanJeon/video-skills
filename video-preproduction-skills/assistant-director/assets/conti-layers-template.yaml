@@ -1,0 +1,33 @@
+# Draft handoff. Fill with real values; this is not a ledger record.
+conti: null
+cut: null
+start_s: null
+end_s: null
+dialogue: []
+transitions: []
+continuity: []  # CTY@vN#Snn-Cnn: actual registered cut contract pin; draft rules apply in-stage
+layers:
+  performance: {layer_by: performance-director, pins: [], beats: []}
+  camera: {layer_by: cinematographer, pins: [], framing: null, axis: null, movement_reason: null}
+  lighting: {layer_by: lighting-director, pins: [], motivate: null, screen_key_direction: null}
+  sound:
+    layer_by: sound-designer
+    pins: []  # current SND/source manifest/review refs; DES-11 owns readiness rules
+    cues:
+      - cue_ref: null  # existing AMB/SFX/MUS@vN; real source vs plan is recorded in SND
+        use_stage: null  # generation_input | post_only | design_only
+        required: null
+        timeline_in_s: null
+        timeline_out_s: null
+        source_in_s: null
+        source_out_s: null
+        measured_duration_s: null
+        timing_basis: null  # measured | estimated | unverified; null is not proof
+        loop_region_s: null
+        dialogue_transition_intent: null  # ducking/J-cut/L-cut intent, not an applied mix
+        rights_ref: null
+        review_ref: null
+        unresolved: []
+  vfx: {layer_by: vfx-supervisor, pins: [], status: null, reason: null, events: []}
+  edit: {layer_by: film-editor, pins: [], cut_in: null, cut_out: null, holds: [], gen_boundary_hint: null}
+conflicts: []

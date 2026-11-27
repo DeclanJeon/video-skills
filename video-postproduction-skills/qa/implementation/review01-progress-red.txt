@@ -1,0 +1,23 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_progress_when_required_variant_invalidates_current_delivery_drops_but_history_remains _
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x792e0bfe3e10>, _basetemp=PosixPath('/tmp/pytest-of-declan/pytest-322'), _retention_count=3, _retention_policy='all')
+
+    def test_progress_when_required_variant_invalidates_current_delivery_drops_but_history_remains(tmp_path_factory):
+        store,main,variant=branched.__wrapped__(tmp_path_factory)
+        c=contract(store,main,id='PROGRESS-REVIEW',variants=[variant.id],output='deliveries/progress-review')
+        record=store.record_delivery(c,store.read_recorded().revision)
+        before=require('progress','project_progress')(store.read_recorded(),store.path)
+        assert next(b for b in before.branches if b.branch=='main').technical_fixture_deliveries==1
+        store.record_invalidation((variant.pin,),store.read_recorded().revision)
+        after=require('progress','project_progress')(store.read_recorded(),store.path)
+>       assert next(b for b in after.branches if b.branch=='main').technical_fixture_deliveries==0
+E       AssertionError: assert 1 == 0
+E        +  where 1 = BranchProgress(branch='main', work=Completion(complete=5, total=5), coverage=Completion(complete=3, total=3), fixes=Co...ixture_qa=Completion(complete=1, total=1), historical_succeeded=5, formal_deliveries=0, technical_fixture_deliveries=1).technical_fixture_deliveries
+E        +    where BranchProgress(branch='main', work=Completion(complete=5, total=5), coverage=Completion(complete=3, total=3), fixes=Co...ixture_qa=Completion(complete=1, total=1), historical_succeeded=5, formal_deliveries=0, technical_fixture_deliveries=1) = next(<generator object test_progress_when_required_variant_invalidates_current_delivery_drops_but_history_remains.<locals>.<genexpr> at 0x792e0bdd5e50>)
+
+tests/test_review_progress.py:15: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_review_progress.py::test_progress_when_required_variant_invalidates_current_delivery_drops_but_history_remains
+1 failed in 51.98s

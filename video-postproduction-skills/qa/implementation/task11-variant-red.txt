@@ -1,0 +1,21 @@
+.F                                                                       [100%]
+=================================== FAILURES ===================================
+_ test_variant_when_bundle_includes_each_distinct_final_has_its_own_qa_and_lineage _
+
+branched = (<postproduction.ledger.PostStore object at 0x76fad88dd2b0>, ArtifactRef(id='FINISH-A1-artifact', job_id='FINISH-A1', ...29893277abfd61d23/mix.wav', sha256='7e17d5d9004acb3e70494b9f200fbf423b4b905ec1948fc2e3b332d352b88f2b')), kind='video'))
+
+    def test_variant_when_bundle_includes_each_distinct_final_has_its_own_qa_and_lineage(branched):
+        store,main,variant=branched
+        c=contract(store,main,id="BRANCH-BUNDLE",output="deliveries/branched",variants=[variant.id])
+        bundle=require("delivery","build_delivery")(store.read_recorded(),c,store.path)
+        root=store.path.parent/bundle.path
+        assert len(list((root/"variants").glob("*.mp4")))==1
+        records=[json.loads(p.read_text()) for p in (root/"records").rglob("*.json")]
+>       assert any(isinstance(v,dict) and v.get("submission",{}).get("artifact_id")==variant.id for v in records)
+E       assert False
+E        +  where False = any(<generator object test_variant_when_bundle_includes_each_distinct_final_has_its_own_qa_and_lineage.<locals>.<genexpr> at 0x76fad95f0e50>)
+
+tests/test_variant_delivery.py:53: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_variant_delivery.py::test_variant_when_bundle_includes_each_distinct_final_has_its_own_qa_and_lineage
+1 failed, 1 passed in 56.60s

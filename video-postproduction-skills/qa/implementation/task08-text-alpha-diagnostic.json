@@ -1,0 +1,24 @@
+{
+  "scope": "actual14px synthetic native text alpha diagnostic, not master approval",
+  "path": "/tmp/pytest-of-declan/pytest-235/test_native_text_when_actual_f0/native-text/run-d69f9d653d4541e890ce9644f474a17a/plate_00000.png",
+  "sha256": "8e548a63c02b952029c574daae9825e96a3fcc9a34911d7d19e3fc8e54f8e40a",
+  "size": [
+    160,
+    90
+  ],
+  "bounds": [
+    63,
+    59,
+    98,
+    71
+  ],
+  "min_alpha": 0,
+  "max_alpha": 239,
+  "visible_rgb": [
+    [
+      255,
+      255,
+      255
+    ]
+  ]
+}

@@ -1,0 +1,8 @@
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/environment/portable_audit.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/environment/portable_audit.py:49:44 - error: "IO[bytes]" 형식의 인수를 "file_digest" 함수에서 "_BytesIOLike | _FileDigestFileObj" 형식의 "fileobj" 매개 변수에 할당할 수 없습니다.
+    형식 "IO[bytes]"은 형식 "_BytesIOLike | _FileDigestFileObj"에 할당할 수 없습니다.
+      ‘IO[bytes]’은(는) ‘_BytesIOLike’ 프로토콜과 호환되지 않습니다.
+        "getbuffer"이(가) 없습니다.
+      ‘IO[bytes]’은(는) ‘_FileDigestFileObj’ 프로토콜과 호환되지 않습니다.
+        "readinto"이(가) 없습니다. (reportArgumentType)
+1 error, 0 warnings, 0 notes

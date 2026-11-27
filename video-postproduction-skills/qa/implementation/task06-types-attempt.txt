@@ -1,0 +1,17 @@
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effect_models.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effect_models.py:5:22 - error: 가져오기 "Field"에 액세스하지 않았습니다. (reportUnusedImport)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effect_models.py:113:5 - error: ‘schema’은(는) ‘BaseModel’ 클래스에서 같은 이름의 메서드를 호환되지 않는 ‘Literal[2]’ 형식으로 재정의합니다. (reportIncompatibleMethodOverride)
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effect_native.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effect_native.py:2:21 - error: 가져오기 "Path"에 액세스하지 않았습니다. (reportUnusedImport)
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py:9:46 - error: 가져오기 "ValidationError"에 액세스하지 않았습니다. (reportUnusedImport)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py:25:33 - error: 가져오기 "request_digest"에 액세스하지 않았습니다. (reportUnusedImport)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py:173:13 - error: "append"의 형식을 부분적으로 알 수 없습니다.
+    ‘append’의 유형이 ‘(object: Unknown, /) -> None’입니다. (reportUnknownMemberType)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py:175:64 - error: 인수 형식을 부분적으로 알 수 없습니다.
+    인수가 "__init__" 함수의 "bounds" 매개 변수에 해당합니다.
+    인수 형식이 "tuple[Unknown, ...]"입니다. (reportUnknownArgumentType)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/effectcraft.py:175:70 - error: 인수 형식을 부분적으로 알 수 없습니다.
+    인수가 "__new__" 함수의 "iterable" 매개 변수에 해당합니다.
+    인수 형식이 "list[Unknown]"입니다. (reportUnknownArgumentType)
+8 errors, 0 warnings, 0 notes

@@ -1,0 +1,147 @@
+{
+  "gen": "GEN-01",
+  "global_offset_s": 0,
+  "duration_s": 22,
+  "shots": [
+    {
+      "cut": "S01-C01",
+      "t": [
+        0.0,
+        3.0
+      ],
+      "segments": [
+        {
+          "t": [
+            0.0,
+            0.2
+          ],
+          "intensity": 1
+        },
+        {
+          "t": [
+            0.2,
+            3
+          ],
+          "intensity": 2,
+          "dialogue": [
+            "D001"
+          ],
+          "pauses": 0,
+          "speaker": "CHR-01",
+          "onscreen": true
+        }
+      ],
+      "lighting": "LGT-01@v1"
+    },
+    {
+      "cut": "S01-C02",
+      "t": [
+        3.0,
+        22.0
+      ],
+      "segments": [
+        {
+          "t": [
+            3,
+            6.5
+          ],
+          "intensity": 1,
+          "dialogue": [
+            "D002"
+          ],
+          "pauses": 0,
+          "speaker": "CHR-02",
+          "onscreen": true
+        },
+        {
+          "t": [
+            6.5,
+            10
+          ],
+          "intensity": 2,
+          "dialogue": [
+            "D003"
+          ],
+          "pauses": 0,
+          "speaker": "CHR-02",
+          "onscreen": true
+        },
+        {
+          "t": [
+            10,
+            14.5
+          ],
+          "intensity": 3,
+          "dialogue": [
+            "D004",
+            "D005"
+          ],
+          "pauses": 1,
+          "speaker": "CHR-02",
+          "onscreen": true
+        },
+        {
+          "t": [
+            14.5,
+            18
+          ],
+          "intensity": 1,
+          "dialogue": [
+            "D006",
+            "D007"
+          ],
+          "pauses": 1,
+          "speaker": "CHR-02",
+          "onscreen": true
+        },
+        {
+          "t": [
+            18,
+            21
+          ],
+          "intensity": 2,
+          "dialogue": [
+            "D008"
+          ],
+          "pauses": 0,
+          "speaker": "CHR-02",
+          "onscreen": true
+        },
+        {
+          "t": [
+            21,
+            22.0
+          ],
+          "intensity": 3
+        }
+      ],
+      "lighting": "LGT-01@v1"
+    }
+  ],
+  "screenplay": "SCR@v1",
+  "fixed_block_baseline": "GEN-01@v1",
+  "fixed_block_hash": {
+    "B1": "bad98f9b6808d169de07a0f035b1d0de687a65ad1a33e5b9992d484f43108df5",
+    "B3": "3be70a36150fffeff9029963252b709e4064273d293158ec31e2ce7256314ea4",
+    "B4": "59f4cc9481e4e91df49ff128c37cc8666937fe91af3cab1b768354eff8d2a847",
+    "B6": "c7d53e76e14ba0e2b8bbcdde538d5f0823cb060fe40ec5513f00e87c701e7b18",
+    "B7": "ca08d5d65a5335119d9a3685b5be6daeca79fcc8fd3b4dddb657a29dd8111f4a"
+  },
+  "block_markers": {
+    "B1": "[B1]",
+    "B2": "[B2]",
+    "B3": "[B3]",
+    "B4": "[B4]",
+    "B5": "[B5]",
+    "B6": "[B6]",
+    "B7": "[B7]",
+    "B8": "[B8]"
+  },
+  "labels": {
+    "CHR-01": "Brother",
+    "CHR-02": "Shopkeeper"
+  },
+  "dialogue_language": "ko",
+  "audio_path": "separate",
+  "axis_source": "CTY@v1"
+}

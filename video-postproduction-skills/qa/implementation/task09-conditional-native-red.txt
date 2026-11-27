@@ -1,0 +1,25 @@
+.F                                                                       [100%]
+=================================== FAILURES ===================================
+_ test_condition_when_only_actual_final_consumed_native_correction_can_resolve[UNUSED-False] _
+
+corrected = (<postproduction.ledger.PostStore object at 0x78e71a3cd2b0>, ArtifactRef(id='FINISH-A1-artifact', job_id='FINISH-A1', ...499e63edc4803875b/mix.wav', sha256='7e17d5d9004acb3e70494b9f200fbf423b4b905ec1948fc2e3b332d352b88f2b')), kind='video'))
+application = 'UNUSED', want = False
+
+    @pytest.mark.parametrize("application,want",[("TEXT",True),("UNUSED",False)])
+    def test_condition_when_only_actual_final_consumed_native_correction_can_resolve(corrected,application,want):
+        # Given: two current real rendered captions, only TEXT incorporated in this final master.
+        store,master=corrected
+        state=store.read_recorded()
+        artifact=next(a for a in state.artifacts if a.id.startswith(application+"-"))
+        require("materialization","verify_artifact_current")(state,artifact,store.path)
+        report=resolution(store,master,artifact.id)
+        # When: a reported corrective application claims resolution on the exact master.
+        actual=require("conditions","resolutions_ready")(state,report,store.path)
+        # Then: unused application cannot resolve a defect even with unchanged current bytes.
+>       assert actual is want
+E       assert True is False
+
+tests/test_conditional_native.py:40: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_conditional_native.py::test_condition_when_only_actual_final_consumed_native_correction_can_resolve[UNUSED-False]
+1 failed, 1 passed in 47.65s

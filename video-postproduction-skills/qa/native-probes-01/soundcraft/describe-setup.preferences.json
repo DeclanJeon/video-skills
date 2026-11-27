@@ -1,0 +1,11 @@
+{
+  "id": "setup.preferences",
+  "label": "Preferences...",
+  "menu": [
+    "Setup"
+  ],
+  "shortcut": null,
+  "params": "{}",
+  "enabled": true,
+  "disabled_reason": null
+}

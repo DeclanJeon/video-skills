@@ -1,0 +1,20 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+__________ test_intake_when_strict_record_is_serialized_and_reloaded ___________
+
+bundle = (PosixPath('/tmp/pytest-of-declan/pytest-137/test_intake_when_strict_record0'), {'project_id': 'synthetic-post', 'snap... 'sha256': '677ca5769bc7f88633e3bcc6f193ce187d165ecc278ace37369d30c8549d2b40', 'path': 'upstream-schema.py.txt'}, ...})
+
+    def test_intake_when_strict_record_is_serialized_and_reloaded(bundle):
+        root,request=bundle
+        value=load(root)
+>       restored=require("intake_models","PostIntake").model_validate_json(value.model_dump_json())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for PostIntake
+E       request.schema
+E         Field required [type=missing, input_value={'project_id': 'synthetic...eam': [], 'anchors': []}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+tests/test_intake.py:78: ValidationError
+=========================== short test summary info ============================
+FAILED tests/test_intake.py::test_intake_when_strict_record_is_serialized_and_reloaded
+1 failed in 0.98s

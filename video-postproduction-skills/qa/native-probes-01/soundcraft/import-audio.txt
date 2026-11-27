@@ -1,0 +1,12 @@
+{
+  "id": "file.import_audio",
+  "label": "Audio...",
+  "menu": [
+    "File",
+    "Import"
+  ],
+  "shortcut": "Cmd+Shift+I",
+  "params": "{path | paths: [..], track?: target track, at?: position, new_tracks?: true (default; false uses `track` or the selected audio track)}",
+  "enabled": true,
+  "disabled_reason": null
+}

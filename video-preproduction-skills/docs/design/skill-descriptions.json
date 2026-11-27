@@ -1,0 +1,22 @@
+{
+ "production-director": "Use for finished-video production or any multi-department video request: run phases from benchmark to final cut, assign crew skills with call sheets, convene QA gates, rule on conflicts, and wait only for spend, rights or publication approvals.",
+ "concept-benchmark": "Crew skill; production-director assigns at P0, or user asks to research comparable successful videos. Writes brief, benchmark anatomy and borrow ledger (structure only).",
+ "story-writer": "Crew skill; production-director assigns at P1, or user asks for a synopsis, plot beats or screenplay draft with dialogue. Writes SYN, PLT, SCR.",
+ "audience-reaction-qa": "Crew skill; production-director assigns after the screenplay draft (QA1), or user asks how audiences will react to a script. Benchmark comparison plus hypothesis-labelled viewer panel; returns verdict and ID-indexed fixes.",
+ "world-designer": "Crew skill; production-director assigns at P2, or user asks for a worldbuilding or period bible: rules, forbidden on-screen elements, palette.",
+ "character-designer": "Crew skill; production-director assigns at P2, or user asks for a character sheet or persona: identity anchors, motives, voice identity, expression habits.",
+ "costume-designer": "Crew skill; production-director assigns at P2, or user asks for costume, hair or makeup design: wardrobe states per character and scene.",
+ "production-designer": "Crew skill; production-director assigns at P2, or user asks for locations, buildings, environments, backgrounds or props with layouts and states.",
+ "sound-designer": "Use when production-director assigns preproduction sound design or stock-audio sourcing, or when voices, ambience, SFX, music cues, audio paths or source handoff are requested.",
+ "assistant-director": "Crew skill; production-director assigns at P3, or user asks to break a script into scenes, cuts and a timed shot list with continuity ledger. Runs the conti meeting.",
+ "performance-director": "Crew skill; production-director assigns at P3, or user asks for acting direction: blocking, facial action breakdown, line delivery, listener reactions.",
+ "cinematographer": "Crew skill; production-director assigns at P3, or user asks for camera design: shot size, lens, axis, movement and transitions per cut.",
+ "lighting-director": "Crew skill; production-director assigns at P3, or user asks for a lighting plan or look: setups, key direction per shot, color and contrast.",
+ "vfx-supervisor": "Crew skill; production-director assigns at P3, or user asks whether and how a shot needs VFX or motion graphics.",
+ "film-editor": "Crew skill; production-director assigns at P3 and P7, or user asks for cut rhythm, transitions, generation grouping, edit decision list, captions.",
+ "storyboard-artist": "Crew skill; production-director assigns at P4 and P5, or user asks for a storyboard: panels plus the index row linking every upstream document; assembles the sheet.",
+ "image-prompt-engineer": "Crew skill; production-director assigns at P5, or user asks for storyboard or asset image prompts: reference images first, then panel prompts with source sidecars.",
+ "video-prompt-engineer": "Crew skill; production-director assigns at P6, or user asks to turn a storyboard into timeline AI video prompts: 8-block prompts, generation grouping, sidecars. Also learns patterns from reference prompts.",
+ "production-qa": "Crew skill; production-director assigns at QA2 to QA-F gates, or user asks to review storyboard, sheet, prompts, takes or final cut against checklists.",
+ "production-ledger": "Crew skill used by production-director only: initializes project roots, registers artifacts and versions, propagates stale status, records history."
+}

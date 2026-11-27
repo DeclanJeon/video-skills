@@ -1,0 +1,126 @@
+FF.                                                                      [100%]
+=================================== FAILURES ===================================
+_ test_backend_when_unconsumed_live_selection_is_invalid_can_prepare_and_reserve_scoped_work _
+
+state = PostState(format='post-state/1', revision=0, intake=PostIntake(request=IntakeRequest(project_id='synthetic-post', snap...needs_master_review=True),), timeline_history=(), orders=(), jobs=(), artifacts=(), notes=(), observed_input_issues=())
+path = PosixPath('/tmp/pytest-of-declan/pytest-218/test_backend_when_unconsumed_l0/project.json')
+
+    def validate_current(state: PostState, path: Path) -> None:
+        """Re-observe pinned inputs and current live producer selections without mutating either owner."""
+        validate_structure(state)
+        fresh = adopt_request(path.parent,state.intake.request,path)
+        if fresh != state.intake:
+            raise ContractError("revision", "adopted request/source facts are no longer exact current inputs")
+        raw = document(path)
+        if "production" not in raw:
+            return  # Explicit separately supplied, pinned external handoff; no live producer namespace to claim.
+        try:
+            live = State.model_validate(raw["production"])
+            old = state.intake.handoff
+>           current = build_handoff(live,old.flow,old.receiver,old.rights_evidence,path.parent)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+postproduction/currentness.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+state = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...y QA', continuous_playback=True, observed_changes=())), change_evidence=(), scope_history=(), observed_input_issues=())
+flow = FlowReview(review_render=ReviewRender(artifact=Pin(id='REVIEW-VIDEO', version='1', sha256='3a687dd30ceed1d12b6cbcbc518...True, evidence='synthetic reported flow, not perceptual certification', continuous_playback=True, audio_listened=False)
+receiver = 'fixture-post', rights_evidence = 'fixture rights'
+root = PosixPath('/tmp/pytest-of-declan/pytest-218/test_backend_when_unconsumed_l0')
+
+    def build_handoff(state: State, flow: FlowReview, receiver: str, rights_evidence: str, root: Path) -> Handoff:
+        validate_state(state)
+        from production.upstream import verify_scope
+        verify_scope(state,root)
+        selections: list[Selection] = []
+        for clip in state.batch.clips:
+            selection = selection_for(state, clip.id)
+            if not current(state, selection) or selection is None or set(selection.review.fulfilled) != set(clip.requirements):
+>               raise ContractError("coverage", f"unfulfilled required source {clip.id}")
+E               production.models.ContractError: coverage: unfulfilled required source C3
+
+../video-production-skills/production/handoff.py:83: ContractError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-218/test_backend_when_unconsumed_l0')
+
+    def test_backend_when_unconsumed_live_selection_is_invalid_can_prepare_and_reserve_scoped_work(tmp_path):
+        store,backend,order,cap=scoped(tmp_path)
+        raw=json.loads(store.path.read_text());raw["production"]["selections"][2]["valid"]=False
+        store.path.write_text(json.dumps(raw))
+        with pytest.raises(require("errors","ContractError")):store.read()  # Final whole-flow gate remains closed.
+>       packet=backend.prepare(order,cap,store.read_recorded().intake.authority)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_scoped_backend.py:19: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+postproduction/backends/filmcraft.py:59: in prepare
+    state = self.store.read()
+            ^^^^^^^^^^^^^^^^^
+postproduction/ledger.py:77: in read
+    validate_current(state,self.path)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+state = PostState(format='post-state/1', revision=0, intake=PostIntake(request=IntakeRequest(project_id='synthetic-post', snap...needs_master_review=True),), timeline_history=(), orders=(), jobs=(), artifacts=(), notes=(), observed_input_issues=())
+path = PosixPath('/tmp/pytest-of-declan/pytest-218/test_backend_when_unconsumed_l0/project.json')
+
+    def validate_current(state: PostState, path: Path) -> None:
+        """Re-observe pinned inputs and current live producer selections without mutating either owner."""
+        validate_structure(state)
+        fresh = adopt_request(path.parent,state.intake.request,path)
+        if fresh != state.intake:
+            raise ContractError("revision", "adopted request/source facts are no longer exact current inputs")
+        raw = document(path)
+        if "production" not in raw:
+            return  # Explicit separately supplied, pinned external handoff; no live producer namespace to claim.
+        try:
+            live = State.model_validate(raw["production"])
+            old = state.intake.handoff
+            current = build_handoff(live,old.flow,old.receiver,old.rights_evidence,path.parent)
+            if current != old:
+                raise ContractError("revision", "live production selections/scope are not the adopted handoff")
+            for selected in current.selections:
+                _ = admit_source(live,selected,path.parent)
+        except (ProductionError,ValidationError,OSError) as exc:
+>           raise ContractError("currentness", f"live source cannot be currently adopted: {exc}") from exc
+E           postproduction.errors.ContractError: currentness: live source cannot be currently adopted: coverage: unfulfilled required source C3
+
+postproduction/currentness.py:48: ContractError
+_ test_backend_when_unconsumed_source_disappears_can_render_only_current_consumed_source _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-218/test_backend_when_unconsumed_s0')
+
+    def test_backend_when_unconsumed_source_disappears_can_render_only_current_consumed_source(tmp_path):
+        store,backend,order,cap=scoped(tmp_path)
+>       packet=backend.prepare(order,cap,store.read_recorded().intake.authority)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_scoped_backend.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = FilmCraftBackend(store=<postproduction.ledger.PostStore object at 0x714de7035810>, workspace=PosixPath('/tmp/pytest-of-declan/pytest-218/test_backend_when_unconsumed_s0/native-work'), binary=PosixPath('/usr/bin/filmcraft-cli'))
+order = WorkOrder(id='NATIVE-PICTURE', domain=<Domain.PICTURE: 'picture'>, branch='main', backend=<Tool.FILMCRAFT: 'filmcraft'...ceRef(clip_id='C1', take_id='T1'),), dependencies=(), recipe=None, output='renders/native-picture.mp4', max_attempts=1)
+capability = CapabilitySnapshot(tool=<Tool.FILMCRAFT: 'filmcraft'>, binary_path='/usr/bin/filmcraft-cli', binary_sha256='2fbc2865ee...d_ids=('file.newProject', 'file.newSequence', 'file.import', 'timeline.place', 'file.exportMedia'), evidence_tier='E2')
+authority = EditAuthority(id='AP-POST', project_id='synthetic-post', receiver='fixture-post', handoff_digest='1f26b2421ac7e4c32d4b...t.txt', version='1', path='edit-grant.txt', sha256='d34baeea1c4dfd069cd331526cef9a9e89d1bf5e5bb4bb51455ec535a71b49dd'))
+
+    def prepare(self, order: WorkOrder, capability: CapabilitySnapshot, authority: EditAuthority) -> RequestPacket:
+        """Build an immutable native packet without creating/editing a native project."""
+        state = self.store.read()
+        verify_work_inputs(state,order,self.store.path)
+        if (capability.tool != Tool.FILMCRAFT or capability.binary_path != str(self.binary)
+            or capability.binary_sha256 != digest_file(self.binary)):
+            raise ContractError("binary", "capability does not match the exact current native binary")
+        if authority != state.intake.authority or order.backend != Tool.FILMCRAFT:
+            raise ContractError("authority", "actual current edit authority/backend differs")
+        timeline = next((t for t in state.timelines if t.branch == order.branch),None)
+        if timeline is None or {(s.clip_id,s.take_id) for s in order.source_refs} != {
+            (s.source.clip_id,s.source.take_id) for s in state.intake.sources}:
+>           raise ContractError("coverage", "initial native picture route needs the full approved source set")
+E           postproduction.errors.ContractError: coverage: initial native picture route needs the full approved source set
+
+postproduction/backends/filmcraft.py:69: ContractError
+=========================== short test summary info ============================
+FAILED tests/test_scoped_backend.py::test_backend_when_unconsumed_live_selection_is_invalid_can_prepare_and_reserve_scoped_work
+FAILED tests/test_scoped_backend.py::test_backend_when_unconsumed_source_disappears_can_render_only_current_consumed_source
+2 failed, 1 passed in 9.93s

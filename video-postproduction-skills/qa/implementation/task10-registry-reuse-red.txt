@@ -1,0 +1,22 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_registry_when_same_program_is_discovered_at_existing_other_location_reuses_it _
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-277/test_registry_when_same_progra0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7ea15930a2c0>
+
+    def test_registry_when_same_program_is_discovered_at_existing_other_location_reuses_it(project,monkeypatch):
+        path,store,state,production=prepare(project)
+        import postproduction.backend_registry as registry
+        snapshot=host(observation={"cli_path":"/opt/already-present/filmcraft-cli","known_app_locations":["/opt/already-present"]})
+        monkeypatch.setattr(registry,"inspect_host",lambda reqs:snapshot,raising=False)
+        backend=require('backend_registry','for_order')(store,order_for(state),path.parent/'owned-native')
+>       assert backend.binary==Path('/opt/already-present/filmcraft-cli')
+E       AssertionError: assert PosixPath('/usr/bin/filmcraft-cli') == PosixPath('/opt/already-present/filmcraft-cli')
+E        +  where PosixPath('/usr/bin/filmcraft-cli') = FilmCraftBackend(store=<postproduction.ledger.PostStore object at 0x7ea1592cf8c0>, workspace=PosixPath('/tmp/pytest-of-declan/pytest-277/test_registry_when_same_progra0/owned-native'), binary=PosixPath('/usr/bin/filmcraft-cli')).binary
+E        +  and   PosixPath('/opt/already-present/filmcraft-cli') = Path('/opt/already-present/filmcraft-cli')
+
+tests/test_backend_registry.py:15: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_backend_registry.py::test_registry_when_same_program_is_discovered_at_existing_other_location_reuses_it
+1 failed in 0.88s

@@ -1,0 +1,121 @@
+FFF..FFF                                                                 [100%]
+=================================== FAILURES ===================================
+________________ test_cli_when_help_has_no_install_side_effects ________________
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-268/test_cli_when_help_has_no_inst0')
+
+    def test_cli_when_help_has_no_install_side_effects(tmp_path):
+        result=call('--help')
+>       assert result.returncode==0
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...Automation/video-skills/video-postproduction-skills/scripts/postproduction.py': [Errno 2] No such file or directory\n").returncode
+
+tests/test_cli.py:17: AssertionError
+______ test_cli_when_actual_host_inspection_reuses_three_existing_editors ______
+
+    def test_cli_when_actual_host_inspection_reuses_three_existing_editors():
+        result=call('inspect-env')
+>       assert result.returncode==0,result.stderr
+E       AssertionError: /usr/bin/python3: can't open file '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/scripts/postproduction.py': [Errno 2] No such file or directory
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...Automation/video-skills/video-postproduction-skills/scripts/postproduction.py': [Errno 2] No such file or directory\n").returncode
+
+tests/test_cli.py:24: AssertionError
+_________ test_cli_when_actual_intake_validate_plan_progress_roundtrip _________
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-268/test_cli_when_actual_intake_va0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_cli_when_actual_intake_validate_plan_progress_roundtrip(project):
+        path,production=project
+        result=call('intake',path,'--request',path.parent/'request.json')
+>       assert result.returncode==0,result.stderr
+E       AssertionError: /usr/bin/python3: can't open file '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/scripts/postproduction.py': [Errno 2] No such file or directory
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...Automation/video-skills/video-postproduction-skills/scripts/postproduction.py': [Errno 2] No such file or directory\n").returncode
+
+tests/test_cli.py:34: AssertionError
+_ test_cli_when_actual_native_prepare_run_observe_and_restart_refusal[filmcraft] _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-268/test_cli_when_actual_native_pr0')
+engine = 'filmcraft'
+
+    @pytest.mark.parametrize('engine',['filmcraft','effectcraft','soundcraft'])
+    def test_cli_when_actual_native_prepare_run_observe_and_restart_refusal(tmp_path,engine):
+        if engine=='filmcraft':
+            from test_filmcraft import setup
+            store,backend,packet,cap=setup(tmp_path);order=packet.order
+        elif engine=='effectcraft':
+            from test_effectcraft import setup
+            store,backend,order,cap=setup(tmp_path)
+        else:
+            from test_soundcraft import setup
+            store,backend,order,cap=setup(tmp_path)
+        file=tmp_path/'order.json';file.write_text(order.model_dump_json())
+        result=call('prepare',store.path,file)
+>       assert result.returncode==0,result.stderr
+E       AssertionError: /usr/bin/python3: can't open file '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/scripts/postproduction.py': [Errno 2] No such file or directory
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...Automation/video-skills/video-postproduction-skills/scripts/postproduction.py': [Errno 2] No such file or directory\n").returncode
+
+tests/test_cli.py:73: AssertionError
+_ test_cli_when_actual_native_prepare_run_observe_and_restart_refusal[effectcraft] _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-268/test_cli_when_actual_native_pr1')
+engine = 'effectcraft'
+
+    @pytest.mark.parametrize('engine',['filmcraft','effectcraft','soundcraft'])
+    def test_cli_when_actual_native_prepare_run_observe_and_restart_refusal(tmp_path,engine):
+        if engine=='filmcraft':
+            from test_filmcraft import setup
+            store,backend,packet,cap=setup(tmp_path);order=packet.order
+        elif engine=='effectcraft':
+            from test_effectcraft import setup
+            store,backend,order,cap=setup(tmp_path)
+        else:
+            from test_soundcraft import setup
+            store,backend,order,cap=setup(tmp_path)
+        file=tmp_path/'order.json';file.write_text(order.model_dump_json())
+        result=call('prepare',store.path,file)
+>       assert result.returncode==0,result.stderr
+E       AssertionError: /usr/bin/python3: can't open file '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/scripts/postproduction.py': [Errno 2] No such file or directory
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...Automation/video-skills/video-postproduction-skills/scripts/postproduction.py': [Errno 2] No such file or directory\n").returncode
+
+tests/test_cli.py:73: AssertionError
+_ test_cli_when_actual_native_prepare_run_observe_and_restart_refusal[soundcraft] _
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-268/test_cli_when_actual_native_pr2')
+engine = 'soundcraft'
+
+    @pytest.mark.parametrize('engine',['filmcraft','effectcraft','soundcraft'])
+    def test_cli_when_actual_native_prepare_run_observe_and_restart_refusal(tmp_path,engine):
+        if engine=='filmcraft':
+            from test_filmcraft import setup
+            store,backend,packet,cap=setup(tmp_path);order=packet.order
+        elif engine=='effectcraft':
+            from test_effectcraft import setup
+            store,backend,order,cap=setup(tmp_path)
+        else:
+            from test_soundcraft import setup
+            store,backend,order,cap=setup(tmp_path)
+        file=tmp_path/'order.json';file.write_text(order.model_dump_json())
+        result=call('prepare',store.path,file)
+>       assert result.returncode==0,result.stderr
+E       AssertionError: /usr/bin/python3: can't open file '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/scripts/postproduction.py': [Errno 2] No such file or directory
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...Automation/video-skills/video-postproduction-skills/scripts/postproduction.py': [Errno 2] No such file or directory\n").returncode
+
+tests/test_cli.py:73: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_cli.py::test_cli_when_help_has_no_install_side_effects - as...
+FAILED tests/test_cli.py::test_cli_when_actual_host_inspection_reuses_three_existing_editors
+FAILED tests/test_cli.py::test_cli_when_actual_intake_validate_plan_progress_roundtrip
+FAILED tests/test_cli.py::test_cli_when_actual_native_prepare_run_observe_and_restart_refusal[filmcraft]
+FAILED tests/test_cli.py::test_cli_when_actual_native_prepare_run_observe_and_restart_refusal[effectcraft]
+FAILED tests/test_cli.py::test_cli_when_actual_native_prepare_run_observe_and_restart_refusal[soundcraft]
+6 failed, 2 passed in 5.19s

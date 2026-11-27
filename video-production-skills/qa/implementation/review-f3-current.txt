@@ -1,0 +1,52 @@
+............FF..                                                         [100%]
+=================================== FAILURES ===================================
+_____________ test_unsafe_path_when_pin_escapes_project[../escape] _____________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-52/test_unsafe_path_when_pin_esca0')
+path = '../escape'
+
+    @pytest.mark.parametrize("path", ["../escape", "/etc/passwd"])
+    def test_unsafe_path_when_pin_escapes_project(seed, capability, authority, tmp_path, path):
+        # Given: malicious relative or absolute source path.
+        asset = seed.batch.clips[0].assets[0].model_copy(update={"path": path})
+        binding = native(seed).model_copy(update={"pin": asset})
+        clip = seed.batch.clips[0].model_copy(update={"assets": (asset,)})
+        state = seed.model_copy(update={"batch": seed.batch.model_copy(update={"clips": (clip, *seed.batch.clips[1:])})})
+        # When / Then: data outside the owned root is never read.
+>       with pytest.raises(ContractError, match="path"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'path'
+E         Actual message: 'authority: duration/output/audio/design/scope differs from approved configuration'
+
+tests/test_bindings.py:81: AssertionError
+____________ test_unsafe_path_when_pin_escapes_project[/etc/passwd] ____________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-52/test_unsafe_path_when_pin_esca1')
+path = '/etc/passwd'
+
+    @pytest.mark.parametrize("path", ["../escape", "/etc/passwd"])
+    def test_unsafe_path_when_pin_escapes_project(seed, capability, authority, tmp_path, path):
+        # Given: malicious relative or absolute source path.
+        asset = seed.batch.clips[0].assets[0].model_copy(update={"path": path})
+        binding = native(seed).model_copy(update={"pin": asset})
+        clip = seed.batch.clips[0].model_copy(update={"assets": (asset,)})
+        state = seed.model_copy(update={"batch": seed.batch.model_copy(update={"clips": (clip, *seed.batch.clips[1:])})})
+        # When / Then: data outside the owned root is never read.
+>       with pytest.raises(ContractError, match="path"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'path'
+E         Actual message: 'authority: duration/output/audio/design/scope differs from approved configuration'
+
+tests/test_bindings.py:81: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_bindings.py::test_unsafe_path_when_pin_escapes_project[../escape]
+FAILED tests/test_bindings.py::test_unsafe_path_when_pin_escapes_project[/etc/passwd]
+2 failed, 14 passed in 0.19s

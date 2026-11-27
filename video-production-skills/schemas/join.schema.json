@@ -1,0 +1,83 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "join_id": {
+      "minLength": 1,
+      "title": "Join Id",
+      "type": "string"
+    },
+    "before_take": {
+      "minLength": 1,
+      "title": "Before Take",
+      "type": "string"
+    },
+    "after_take": {
+      "minLength": 1,
+      "title": "After Take",
+      "type": "string"
+    },
+    "before_revision": {
+      "exclusiveMinimum": 0,
+      "title": "Before Revision",
+      "type": "integer"
+    },
+    "after_revision": {
+      "exclusiveMinimum": 0,
+      "title": "After Revision",
+      "type": "integer"
+    },
+    "before_range_revision": {
+      "exclusiveMinimum": 0,
+      "title": "Before Range Revision",
+      "type": "integer"
+    },
+    "after_range_revision": {
+      "exclusiveMinimum": 0,
+      "title": "After Range Revision",
+      "type": "integer"
+    },
+    "reveal_order": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Reveal Order",
+      "type": "array"
+    },
+    "passed": {
+      "title": "Passed",
+      "type": "boolean"
+    },
+    "evidence": {
+      "minLength": 1,
+      "title": "Evidence",
+      "type": "string"
+    },
+    "continuous_playback": {
+      "title": "Continuous Playback",
+      "type": "boolean"
+    },
+    "observed_changes": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Observed Changes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "join_id",
+    "before_take",
+    "after_take",
+    "before_revision",
+    "after_revision",
+    "before_range_revision",
+    "after_range_revision",
+    "reveal_order",
+    "passed",
+    "evidence",
+    "continuous_playback"
+  ],
+  "title": "JoinReview",
+  "type": "object"
+}

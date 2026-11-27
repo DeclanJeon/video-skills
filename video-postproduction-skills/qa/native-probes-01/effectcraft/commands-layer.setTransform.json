@@ -1,0 +1,1 @@
+[{"enabled":false,"id":"layer.setTransform","label":"Transform Value","params":"{layers?, prop: anchor|position|scale|orientation|rotation|opacity, value}","why":"no composition is open"}]

@@ -1,0 +1,106 @@
+{
+  "$defs": {
+    "Pin": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "minLength": 1,
+          "title": "Version",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "path": {
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "sha256",
+        "path"
+      ],
+      "title": "Pin",
+      "type": "object"
+    },
+    "ReviewRender": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact": {
+          "$ref": "#/$defs/Pin"
+        },
+        "manifest": {
+          "$ref": "#/$defs/Pin"
+        },
+        "selection_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Selection Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact",
+        "manifest",
+        "selection_hash"
+      ],
+      "title": "ReviewRender",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "review_render": {
+      "$ref": "#/$defs/ReviewRender"
+    },
+    "selection_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Selection Hash",
+      "type": "string"
+    },
+    "clip_order": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Clip Order",
+      "type": "array"
+    },
+    "passed": {
+      "title": "Passed",
+      "type": "boolean"
+    },
+    "evidence": {
+      "minLength": 1,
+      "title": "Evidence",
+      "type": "string"
+    },
+    "continuous_playback": {
+      "title": "Continuous Playback",
+      "type": "boolean"
+    },
+    "audio_listened": {
+      "title": "Audio Listened",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "review_render",
+    "selection_hash",
+    "clip_order",
+    "passed",
+    "evidence",
+    "continuous_playback",
+    "audio_listened"
+  ],
+  "title": "FlowReview",
+  "type": "object"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "file.import_video",
+  "label": "Video...",
+  "menu": [
+    "File",
+    "Import"
+  ],
+  "shortcut": "Cmd+Ctrl+I",
+  "params": "{path, at?} — adds a Video track clip for the movie's picture (H.264, ProRes, Motion JPEG) and imports its audio onto a new track",
+  "enabled": true,
+  "disabled_reason": null
+}

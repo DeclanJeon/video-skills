@@ -1,0 +1,33 @@
+{
+  "schema_version": "execution-safety-1",
+  "status": "draft",
+  "visual_style": {"value": null, "approval_ref": null},
+  "voice_direction": {"value": null, "approval_ref": null},
+  "audio": {
+    "audio_policy": null,
+    "dialogue_source": null,
+    "post_plan_ref": null,
+    "stream_check": "unverified",
+    "signal_check": "unverified",
+    "dialogue_review_ref": null
+  },
+  "element_states": [],
+  "element_state_row": {"element": null, "first_allowed_cut": null, "last_allowed_cut": null},
+  "generation_inputs": [],
+  "generation_input_row": {"gen": null, "allowed_reference_ids": [], "request_path": null},
+  "reference_mapping": [],
+  "reference_mapping_row": {
+    "reference_cut": null, "reference_interval": null, "timing_evidence": null,
+    "target_cut": null, "approved_changes": [], "observed_interval": null,
+    "plan_verdict": "unverified", "media_verdict": "unverified"
+  },
+  "pilot_result": {"status": "not_assessed", "decision_ref": null, "artifact_sha256": null, "review_ref": null},
+  "delivery_review": {
+    "artifact_sha256": null,
+    "full_playback": {"status": "unverified", "evidence_ref": null, "reviewer": null},
+    "boundary_playback": {"status": "unverified", "evidence_ref": null, "reviewer": null},
+    "human_listening": {"status": "unverified", "evidence_ref": null, "reviewer": null},
+    "dialogue_lipsync": {"status": "unverified", "evidence_ref": null, "reviewer": null},
+    "destination": "review/"
+  }
+}

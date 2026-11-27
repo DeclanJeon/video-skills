@@ -1,0 +1,54 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_speech_map_when_reviewed_mux_audio_is_preserved_in_target_sample_clock __
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-135/test_speech_map_when_reviewed_0')
+
+    def test_speech_map_when_reviewed_mux_audio_is_preserved_in_target_sample_clock(tmp_path):
+        fixture(tmp_path,with_audio=True)
+        intake=require("intake","load_intake")(tmp_path,tmp_path/"request.json")
+        result=require("timeline","build_timeline")(intake)
+        event=next(e for e in result.event_map if e.requirement_id=="R2")
+>       assert (event.audio_sample_range.start,event.audio_sample_range.end)==(96000,192000)
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_timeline.py:144: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = EventMap(requirement_id='R2', source=SourceRef(clip_id='C2', take_id='T2'), source_anchor=SourceRange(start=0, end=48)...ceRange(start=508032000000, end=1016064000000), anchor_mode='reviewed_full_source', evidence=None, post_verified=False)
+item = 'audio_sample_range'
+
+    def __getattr__(self, item: str) -> Any:
+        private_attributes = object.__getattribute__(self, '__private_attributes__')
+        if item in private_attributes:
+            attribute = private_attributes[item]
+            if hasattr(attribute, '__get__'):
+                return attribute.__get__(self, type(self))  # type: ignore
+    
+            try:
+                # Note: self.__pydantic_private__ cannot be None if self.__private_attributes__ has items
+                return self.__pydantic_private__[item]  # type: ignore
+            except KeyError as exc:
+                raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}') from exc
+        else:
+            # `__pydantic_extra__` can fail to be set if the model is not yet fully initialized.
+            # See `BaseModel.__repr_args__` for more details
+            try:
+                pydantic_extra = object.__getattribute__(self, '__pydantic_extra__')
+            except AttributeError:
+                pydantic_extra = None
+    
+            if pydantic_extra and item in pydantic_extra:
+                return pydantic_extra[item]
+            else:
+                if hasattr(self.__class__, item):
+                    return super().__getattribute__(item)  # Raises AttributeError if appropriate
+                else:
+                    # this is the current error
+>                   raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+E                   AttributeError: 'EventMap' object has no attribute 'audio_sample_range'
+
+/home/declan/.local/lib/python3.14/site-packages/pydantic/main.py:1105: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_timeline.py::test_speech_map_when_reviewed_mux_audio_is_preserved_in_target_sample_clock
+1 failed in 0.96s

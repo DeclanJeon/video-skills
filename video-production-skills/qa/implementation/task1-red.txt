@@ -1,0 +1,17 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___________ test_coverage_contract_exists_when_implementation_starts ___________
+
+    def test_coverage_contract_exists_when_implementation_starts():
+        # Given: an approved contract design, with no runtime yet.
+        # When: resolving the coverage engine.
+        spec = importlib.util.find_spec("production")
+        # Then: an actual implementation must exist, not only design prose.
+>       assert spec is not None, "coverage runtime has not been implemented"
+E       AssertionError: coverage runtime has not been implemented
+E       assert None is not None
+
+tests/test_coverage.py:10: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_coverage.py::test_coverage_contract_exists_when_implementation_starts
+1 failed in 0.02s

@@ -1,0 +1,12 @@
+{
+  "status": "uncalibrated-default",
+  "note": "패키지 기본 운영값. 연구 근거 없음. calibrate_speech_rate.py 로 실측 보정 후 status 를 calibrated 로 바꾼다.",
+  "pause_seconds": 0.3,
+  "unit": {"en": "word", "ko": "syllable", "zh": "char", "ja": "mora"},
+  "limits": {
+    "en": {"normal": 3.0, "heated": 3.8, "block": 4.0},
+    "ko": {"normal": 7.0, "heated": 8.0, "block": 8.5},
+    "zh": {"normal": 4.5, "heated": 5.5, "block": 6.0},
+    "ja": {"normal": 7.5, "heated": 8.5, "block": 9.0}
+  }
+}

@@ -1,0 +1,263 @@
+{
+  "valid": true,
+  "planned_cases": 34,
+  "executed_pytest_cases": 42,
+  "cases": {
+    "T01": {
+      "nodes": [
+        "tests/test_dependencies.py::test_independent_ready_when_predecessor_not_accepted"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T02": {
+      "nodes": [
+        "tests/test_bindings.py::test_multiple_history_sources_when_same_clip_consumes_both"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T03": {
+      "nodes": [
+        "tests/test_dependencies.py::test_cycle_when_clips_require_each_other"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T04": {
+      "nodes": [
+        "tests/test_quality.py::test_reported_identity_drift_when_remote_take_succeeded",
+        "tests/test_revisions.py::test_descendants_when_source_replaced"
+      ],
+      "status": "passed",
+      "evidence_kind": "reported-semantic-contract"
+    },
+    "T05": {
+      "nodes": [
+        "tests/test_bindings.py::test_supported_predecessor_when_video_input_unavailable"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T06": {
+      "nodes": [
+        "tests/test_bindings.py::test_reference_limit_when_required_count_exceeds_limit"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T07": {
+      "nodes": [
+        "tests/test_execution.py::test_unknown_slot_when_submit_response_lost",
+        "tests/test_recovery.py::test_unknown_reservation_when_process_restarts"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T08": {
+      "nodes": [
+        "tests/test_execution.py::test_terminal_when_download_not_completed"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T09": {
+      "nodes": [
+        "tests/test_revisions.py::test_descendants_when_source_replaced"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T10": {
+      "nodes": [
+        "tests/test_handoff.py::test_time_elision_when_prop_change_is_approved",
+        "tests/test_handoff.py::test_time_elision_when_prop_change_is_unapproved"
+      ],
+      "status": "passed",
+      "evidence_kind": "reported-semantic-contract"
+    },
+    "T11": {
+      "nodes": [
+        "tests/test_quality.py::test_input_as_output_when_download_matches_reference"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T12": {
+      "nodes": [
+        "tests/test_quality.py::test_listening_when_audio_required"
+      ],
+      "status": "passed",
+      "evidence_kind": "reported-semantic-contract"
+    },
+    "T13": {
+      "nodes": [
+        "tests/test_quality.py::test_missing_requirement_when_all_frames_decode"
+      ],
+      "status": "passed",
+      "evidence_kind": "reported-semantic-contract"
+    },
+    "T14": {
+      "nodes": [
+        "tests/test_bindings.py::test_paid_alternative_when_unlimited_not_available"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T15": {
+      "nodes": [
+        "tests/test_handoff.py::test_conditional_when_face_defect_imported"
+      ],
+      "status": "passed",
+      "evidence_kind": "reported-semantic-contract"
+    },
+    "T16": {
+      "nodes": [
+        "tests/test_handoff.py::test_delivery_when_boundary_missing"
+      ],
+      "status": "passed",
+      "evidence_kind": "reported-semantic-contract"
+    },
+    "T17": {
+      "nodes": [
+        "tests/test_adapters.py::test_coverage_source_when_batch_erases_approved_item",
+        "tests/test_reuse_scope.py::test_scope_revision_when_exclusion_explicitly_approved",
+        "tests/test_reuse_scope.py::test_scope_revision_when_missing_exclusion_grant"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T18": {
+      "nodes": [
+        "tests/test_bindings.py::test_stale_file_when_bytes_changed",
+        "tests/test_cli.py::test_cli_invalid_json_when_input_malformed"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T19": {
+      "nodes": [
+        "tests/test_bindings.py::test_transfer_when_asset_hash_not_authorized"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T20": {
+      "nodes": [
+        "tests/test_quality.py::test_unsupported_source_range_when_vfr_has_no_pts"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T21": {
+      "nodes": [
+        "tests/test_recovery.py::test_unknown_reservation_when_process_restarts"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T22": {
+      "nodes": [
+        "tests/test_bindings.py::test_multiple_history_sources_when_same_clip_consumes_both",
+        "tests/test_quality.py::test_reported_repeated_dialogue_when_take_otherwise_decodes"
+      ],
+      "status": "passed",
+      "evidence_kind": "reported-semantic-contract"
+    },
+    "T23": {
+      "nodes": [
+        "tests/test_handoff.py::test_join_when_other_take_revision_reviewed",
+        "tests/test_revisions.py::test_fingerprint_when_same_bytes_range_changed"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T24": {
+      "nodes": [
+        "tests/test_handoff.py::test_delivery_when_clip_is_missing",
+        "tests/test_handoff.py::test_flow_when_only_frames_were_seen"
+      ],
+      "status": "passed",
+      "evidence_kind": "reported-semantic-contract"
+    },
+    "T25": {
+      "nodes": [
+        "tests/test_coverage.py::test_first_missing_shot_when_queue_omits_clip"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T26": {
+      "nodes": [
+        "tests/test_coverage.py::test_multi_shot_when_one_event_unmapped"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T27": {
+      "nodes": [
+        "tests/test_quality.py::test_late_remote_success_when_running_consumer_source_replaced"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T28": {
+      "nodes": [
+        "tests/test_quality.py::test_late_commit_when_design_changed",
+        "tests/test_recovery.py::test_cas_when_another_writer_published"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T29": {
+      "nodes": [
+        "tests/test_revisions.py::test_fingerprint_when_same_bytes_range_changed",
+        "tests/test_revisions.py::test_fingerprint_when_imports_change",
+        "tests/test_revisions.py::test_fingerprint_when_conditional_acceptance_changes"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T30": {
+      "nodes": [
+        "tests/test_execution.py::test_unknown_slot_when_submit_response_lost"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T31": {
+      "nodes": [
+        "tests/test_handoff.py::test_reaction_first_when_approved_reveal_order",
+        "tests/test_handoff.py::test_reveal_when_observed_order_violates_board"
+      ],
+      "status": "passed",
+      "evidence_kind": "reported-semantic-contract"
+    },
+    "T32": {
+      "nodes": [
+        "tests/test_execution.py::test_terminal_when_download_not_completed"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T33": {
+      "nodes": [
+        "tests/test_execution.py::test_external_job_when_capacity_two",
+        "tests/test_execution.py::test_available_when_account_occupancy_unknown"
+      ],
+      "status": "passed",
+      "evidence_kind": "structural-contract"
+    },
+    "T34": {
+      "nodes": [
+        "tests/test_quality.py::test_missing_requirement_when_all_frames_decode",
+        "tests/test_adapters.py::test_coverage_source_when_batch_erases_approved_item"
+      ],
+      "status": "passed",
+      "evidence_kind": "reported-semantic-contract"
+    }
+  },
+  "live_provider_verified": false,
+  "perceptual_quality_verified": false,
+  "scope": "local contract scenarios; semantic reports are fixtures; technical decode/render are real local media checks, never provider/perceptual certification"
+}

@@ -1,0 +1,249 @@
+{
+  "$defs": {
+    "Digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "EventAnchor": {
+      "additionalProperties": false,
+      "properties": {
+        "requirement_id": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "source": {
+          "$ref": "#/$defs/SourceRef"
+        },
+        "source_range": {
+          "$ref": "#/$defs/SourceRange"
+        },
+        "asset_hash": {
+          "$ref": "#/$defs/Digest"
+        },
+        "range_revision": {
+          "$ref": "#/$defs/Positive"
+        },
+        "acceptance_revision": {
+          "$ref": "#/$defs/Positive"
+        },
+        "observer": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "evidence": {
+          "$ref": "#/$defs/Pin"
+        },
+        "video_observed": {
+          "title": "Video Observed",
+          "type": "boolean"
+        },
+        "audio_observed": {
+          "default": false,
+          "title": "Audio Observed",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "requirement_id",
+        "source",
+        "source_range",
+        "asset_hash",
+        "range_revision",
+        "acceptance_revision",
+        "observer",
+        "evidence",
+        "video_observed"
+      ],
+      "title": "EventAnchor",
+      "type": "object"
+    },
+    "Frame": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "Nonempty": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "Pin": {
+      "additionalProperties": false,
+      "description": "Versioned exact bytes at a safe project-relative POSIX path.",
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "path": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "sha256": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "path",
+        "sha256"
+      ],
+      "title": "Pin",
+      "type": "object"
+    },
+    "Positive": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "SourceRange": {
+      "additionalProperties": false,
+      "description": "Half-open source frame interval, never an invented exterior handle.",
+      "properties": {
+        "start": {
+          "$ref": "#/$defs/Frame"
+        },
+        "end": {
+          "$ref": "#/$defs/Positive"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "SourceRange",
+      "type": "object"
+    },
+    "SourceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "clip_id": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "take_id": {
+          "$ref": "#/$defs/Nonempty"
+        }
+      },
+      "required": [
+        "clip_id",
+        "take_id"
+      ],
+      "title": "SourceRef",
+      "type": "object"
+    },
+    "StemAsset": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Nonempty"
+        },
+        "role": {
+          "enum": [
+            "DX",
+            "VO",
+            "MX",
+            "FX",
+            "AMBIENCE",
+            "MIX"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "asset": {
+          "$ref": "#/$defs/Pin"
+        },
+        "sample_rate": {
+          "$ref": "#/$defs/Positive"
+        },
+        "channels": {
+          "$ref": "#/$defs/Positive"
+        },
+        "sample_count": {
+          "$ref": "#/$defs/Positive"
+        },
+        "origin": {
+          "enum": [
+            "provided_separate",
+            "derived_from_mixed",
+            "mux_mix"
+          ],
+          "title": "Origin",
+          "type": "string"
+        },
+        "independence_evidence": {
+          "$ref": "#/$defs/Pin"
+        }
+      },
+      "required": [
+        "id",
+        "role",
+        "asset",
+        "sample_rate",
+        "channels",
+        "sample_count",
+        "origin",
+        "independence_evidence"
+      ],
+      "title": "StemAsset",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "project_id": {
+      "$ref": "#/$defs/Nonempty"
+    },
+    "snapshot": {
+      "$ref": "#/$defs/Pin"
+    },
+    "handoff": {
+      "$ref": "#/$defs/Pin"
+    },
+    "schema": {
+      "$ref": "#/$defs/Pin"
+    },
+    "brief": {
+      "$ref": "#/$defs/Pin"
+    },
+    "authority": {
+      "$ref": "#/$defs/Pin"
+    },
+    "profile": {
+      "$ref": "#/$defs/Pin"
+    },
+    "upstream": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Pin"
+      },
+      "title": "Upstream",
+      "type": "array"
+    },
+    "anchors": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/EventAnchor"
+      },
+      "title": "Anchors",
+      "type": "array"
+    },
+    "stems": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/StemAsset"
+      },
+      "title": "Stems",
+      "type": "array"
+    }
+  },
+  "required": [
+    "project_id",
+    "snapshot",
+    "handoff",
+    "schema",
+    "brief",
+    "authority",
+    "profile"
+  ],
+  "title": "IntakeRequest",
+  "type": "object"
+}

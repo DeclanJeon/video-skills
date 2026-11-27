@@ -1,0 +1,39 @@
+{
+  "id": "OFFLINE-ONLY",
+  "clips": [
+    "C01"
+  ],
+  "allowed_hashes": [
+    "2e20e775e61b8439af8e6361784683edc6712f64182a05e8978d81226e9afb3a",
+    "516662394ad013b0dc1e526c5dd0a1112b41de1ad2db292d49da59655b4170a9"
+  ],
+  "configurations": [
+    {
+      "clip_id": "C01",
+      "scope_revision": "fixture-1",
+      "coverage_hash": "df68d45751704acf7ac2330921bee52009b67fbeccbcb606d20523e4da8616cc",
+      "clip_hash": "8f4aa7afddb055c8831d7945b5df5727af5b8efb1d297b8c5db3a8764fd074a6",
+      "duration_s": 2.0,
+      "width": 1280,
+      "height": 720,
+      "audio_requested": false,
+      "reuse_source": null,
+      "reuse_range": null
+    }
+  ],
+  "account": "offline-fixture",
+  "model": "offline-fixture",
+  "transport": "offline-receipt",
+  "mode": "fixture-only",
+  "max_attempts": 1,
+  "max_active": 1,
+  "upload": true,
+  "generation": true,
+  "reuse": false,
+  "evidence": {
+    "id": "authority-evidence.txt",
+    "version": "1",
+    "sha256": "1d81ac432872ba6bec421f95ee65371d8885fd6c9b95eaa043d1d92a2d300b06",
+    "path": "authority-evidence.txt"
+  }
+}

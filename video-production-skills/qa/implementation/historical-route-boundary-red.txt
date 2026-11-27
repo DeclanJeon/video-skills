@@ -1,0 +1,28 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___ test_remote_observation_when_download_state_would_skip_source_admission ____
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...pproved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-85/test_remote_observation_when_d0')
+
+    def test_remote_observation_when_download_state_would_skip_source_admission(seed,capability,authority,tmp_path):
+        # Given: remote generation succeeded, but no source has been admitted/decoded by QA.
+        store,packet,dependency=live_reservations(seed,capability,authority,tmp_path,submitted=True)
+        with store.transaction(1) as tx:
+            tx.state=require("execution","observe")(tx.state,"A1",Receipt(phase=Phase.SUCCEEDED,job_id="fixture-confirmed-remote-id",evidence="synthetic remote success",request_hash=packet.request_hash))
+        before=(tmp_path/"ledger.json").read_bytes()
+        report=tmp_path/"fake-downloaded.json"
+        report.write_text(Receipt(phase=Phase.DOWNLOADED,job_id="fixture-confirmed-remote-id",evidence="no local file/probe supplied",request_hash=packet.request_hash).model_dump_json())
+        # When: the historical-remote endpoint is misused to claim a local data gate.
+        result=cli("observe",tmp_path/"ledger.json","A1",report,2)
+        # Then: this narrow persistence route cannot bypass local source admission.
+>       assert result.returncode != 0
+E       assert 0 != 0
+E        +  where 0 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...85/test_remote_observation_when_d0/fake-downloaded.json', '2'], returncode=0, stdout='{"recorded": "A1"}\n', stderr='').returncode
+
+tests/test_observation_recovery.py:113: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_observation_recovery.py::test_remote_observation_when_download_state_would_skip_source_admission
+1 failed in 0.35s

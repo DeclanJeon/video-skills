@@ -1,0 +1,30 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_coverage_when_one_of_multiple_required_occurrences_is_hidden_cannot_count_requirement_complete _
+
+project = (PosixPath('/tmp/pytest-of-declan/pytest-266/test_coverage_when_one_of_mult0/project.json'), {'revision': 0, 'batch': ...on': '1', 'sha256': 'ed699b15baaa50b185b588f6ac9dac9dfb6189a0240b08341c15fb79843234b9', 'path': 'coverage.json'}, ...})
+
+    def test_coverage_when_one_of_multiple_required_occurrences_is_hidden_cannot_count_requirement_complete(project):
+        path,store,state,production=prepare(project)
+        timeline=state.timelines[0];first=timeline.event_map[0]
+        another=timeline.event_map[1].model_copy(update={"requirement_id":first.requirement_id})
+        timeline=timeline.model_copy(update={"event_map":(*timeline.event_map,another)})
+        evidence=require("admission","local_pin")(json_pin(path.parent,"coverage-evidence.json",{"scope":"pure reported coverage fixture"}))
+        rows=[]
+        for event in timeline.event_map:
+            cap=next(s for s in state.intake.sources if s.source==event.source)
+            rows.append(require("quality_models","ReportedCoverage")(requirement_id=event.requirement_id,status=require("quality_models","QualityVerdict").PASS,
+                source=event.source,source_hash=cap.asset.sha256,source_range=event.source_anchor,master_range=event.master_range,
+                video_observed=event is not another,audio_observed=False,evidence=evidence))
+        report=require("quality_models","QualitySubmission")(id="COVERAGE",mode="technical_fixture",artifact_id="pure-mapping",artifact=state.intake.sources[0].asset,
+            receiver="fixture",input_fingerprint="a"*64,timeline_digest="b"*64,checks=(),coverage=tuple(rows))
+        actual=require("quality_checks","coverage_count")(report,timeline,path.parent)
+>       assert actual==len(timeline.required_coverage)-1
+E       AssertionError: assert 3 == (3 - 1)
+E        +  where 3 = len((Requirement(id='R1', shot='SH1', panels=('P1',), modality='video', locator='script#1'), Requirement(id='R2', shot='SH...y='video', locator='script#2'), Requirement(id='R3', shot='SH3', panels=('P3',), modality='video', locator='script#3')))
+E        +    where (Requirement(id='R1', shot='SH1', panels=('P1',), modality='video', locator='script#1'), Requirement(id='R2', shot='SH...y='video', locator='script#2'), Requirement(id='R3', shot='SH3', panels=('P3',), modality='video', locator='script#3')) = PostTimeline(format='post-timeline/1', project_id='synthetic-post', branch='main', revision=1, parent_handoff_digest='...lation='angle_change', reveal_order=('R2', 'R3'), allowed_changes=(), locator='board#cuts')), needs_master_review=True).required_coverage
+
+tests/test_coverage_gate.py:22: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_coverage_gate.py::test_coverage_when_one_of_multiple_required_occurrences_is_hidden_cannot_count_requirement_complete
+1 failed in 0.91s

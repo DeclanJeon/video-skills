@@ -1,0 +1,13 @@
+{
+  "job": 1,
+  "offlineMedia": [],
+  "path": "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/filmcraft/master-probe-v2.mp4",
+  "result": {
+    "bytes": 7039,
+    "frames": 144,
+    "path": "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/filmcraft/master-probe-v2.mp4",
+    "render_fps": 2332.025574417576,
+    "seconds": 0.061748894
+  },
+  "warnings": []
+}

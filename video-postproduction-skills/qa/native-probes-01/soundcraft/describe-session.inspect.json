@@ -1,0 +1,9 @@
+{
+  "id": "session.inspect",
+  "label": "Inspect Session",
+  "menu": [],
+  "shortcut": null,
+  "params": "{detail?: summary|full}",
+  "enabled": true,
+  "disabled_reason": null
+}

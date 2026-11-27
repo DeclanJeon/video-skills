@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "/usr/bin/soundcraft-cli",
+    "run",
+    "--cmd",
+    "session.new={\"name\": \"Synthetic mix probe\", \"sample_rate\": 48000, \"bit_depth\": 24, \"template\": \"blank\"}",
+    "--cmd",
+    "file.import_video={\"path\": \"/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/sources/source1.mp4\", \"at\": 0}",
+    "--cmd",
+    "file.import_audio={\"path\": \"/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/audio-sources/toneA.wav\", \"at\": 0}",
+    "--cmd",
+    "file.import_audio={\"path\": \"/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/audio-sources/toneB.wav\", \"at\": 24000}",
+    "--save",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/soundcraft/native.scraft",
+    "--inspect",
+    "--compact"
+  ],
+  "pid": 936791,
+  "returncode": 0,
+  "timed_out": false,
+  "network_denied": true,
+  "scope": "real synthetic local import/timebase probe, no recording or listening claims"
+}

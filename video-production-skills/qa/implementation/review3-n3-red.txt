@@ -1,0 +1,83 @@
+.F.F...F                                                                 [100%]
+=================================== FAILURES ===================================
+____ test_cli_retention_when_consumed_source_invalid_and_pins_missing[True] ____
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...ttempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=(), observed_input_issues=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-98/test_cli_retention_when_consum1')
+optional = True
+
+    @pytest.mark.parametrize("optional",[False,True])
+    def test_cli_retention_when_consumed_source_invalid_and_pins_missing(seed,capability,authority,tmp_path,optional):
+        # Given: C3 really selected C1, and both outputs were admitted with distinct approvals.
+        state,source,review,packet=accepted_pair(seed,capability,authority,tmp_path,optional=optional)
+        assert any(b.source_clip == "C1" for b in packet.bindings)
+        store=persist(state,tmp_path)
+        assert cli("invalidate",tmp_path/"ledger.json","C1","reported imported identity/pose defect",1).returncode == 0
+        (tmp_path/source.take.asset.path).unlink()
+        (tmp_path/source.approval.evidence.path).unlink()
+        original=(tmp_path/"ledger.json").read_bytes()
+        attempts=store.read().attempts
+        report=tmp_path/"review.json";report.write_text(review.model_dump_json())
+        current=require("contracts","fingerprint")(store.read(),"C3")
+        # When: actual public CLI revalidation supplies the new fingerprint, not the stale one.
+        result=cli("revalidate",tmp_path/"ledger.json","C3",report,current,2)
+        # Then: chosen optional and required sources obey the same consumed-input safety rule.
+>       assert result.returncode != 0,result.stdout+result.stderr
+E       AssertionError: {"revalidated": "C3"}
+E         
+E       assert 0 != 0
+E        +  where 0 = CompletedProcess(args=['/usr/bin/python3', '/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/v...1d39ed21c4698c4b64d8dc104313558656dcd11c53905a5895f8', '2'], returncode=0, stdout='{"revalidated": "C3"}\n', stderr='').returncode
+
+tests/test_consumed_retention.py:46: AssertionError
+_ test_retention_when_conditional_source_defect_intersects_imports[pose-True] __
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...ttempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=(), observed_input_issues=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-98/test_retention_when_conditiona1')
+optional = True, defect = 'pose'
+
+    @pytest.mark.parametrize("optional",[False,True])
+    @pytest.mark.parametrize("defect",["pose","background_edge"])
+    def test_retention_when_conditional_source_defect_intersects_imports(seed,capability,authority,tmp_path,optional,defect):
+        # Given: source itself is valid conditional, but pose is an actually imported attribute.
+        state,source,review,packet=accepted_pair(seed,capability,authority,tmp_path,optional=optional)
+        assert any("pose" in b.imports for b in packet.bindings if b.source_clip == "C1")
+        source_report=source.review.model_copy(update={"verdict":Verdict.CONDITIONAL,"defects":(defect,),
+            "post_fix":"reported postproduction repair","post_receiver":"fixture-post","conditional_policy":"fixture-explicit-policy"})
+        state=require("quality","revalidate_take")(state,"C1",source_report,require("contracts","fingerprint")(state,"C1"),tmp_path)
+        attempts=state.attempts
+        current=require("contracts","fingerprint")(state,"C3")
+        # When / Then: affecting imports blocks; unrelated conditional defects remain retainable.
+        if defect == "pose":
+>           with pytest.raises(ContractError,match="dependency"):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE ContractError
+
+tests/test_consumed_retention.py:69: Failed
+_ test_retention_when_chosen_optional_source_flag_is_valid_but_review_fingerprint_stale _
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...ttempts=(), selections=(), history=(), join_reviews=(), change_evidence=(), scope_history=(), observed_input_issues=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-98/test_retention_when_chosen_opt0')
+
+    def test_retention_when_chosen_optional_source_flag_is_valid_but_review_fingerprint_stale(seed,capability,authority,tmp_path):
+        # Given: a selection's valid flag alone does not establish reviewed currentness.
+        state,source,review,packet=accepted_pair(seed,capability,authority,tmp_path)
+        stale=source.model_copy(update={"acceptance_revision":source.acceptance_revision+1,"reviewed_fingerprint":"f"*64})
+        state=require("revisions","replace_selection")(state,stale)
+        assert require("contracts","usable")(stale,state.batch.clips[2].references[0].imports)
+        # When / Then: chosen optional history must be current as well as otherwise usable.
+>       with pytest.raises(ContractError,match="dependency"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_consumed_retention.py:103: Failed
+=========================== short test summary info ============================
+FAILED tests/test_consumed_retention.py::test_cli_retention_when_consumed_source_invalid_and_pins_missing[True]
+FAILED tests/test_consumed_retention.py::test_retention_when_conditional_source_defect_intersects_imports[pose-True]
+FAILED tests/test_consumed_retention.py::test_retention_when_chosen_optional_source_flag_is_valid_but_review_fingerprint_stale
+3 failed, 5 passed in 7.00s

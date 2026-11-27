@@ -1,0 +1,122 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_____________ test_asset_scope_when_batch_omits_required_identity ______________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-28/test_asset_scope_when_batch_om0')
+
+    def test_asset_scope_when_batch_omits_required_identity(seed, capability, authority, tmp_path):
+        # Given: approved source explicitly assigns identity assets to shot SH1.
+        import json
+        from conftest import pin
+        source = {"format":"production-coverage/1","requirements":[r.model_dump() for r in seed.approved_coverage],"asset_uses":[{"shot":"SH1","pin":seed.batch.clips[0].assets[0].model_dump()}]}
+        scope = pin(tmp_path,"asset-scope.json",json.dumps(source))
+        bad_clip = seed.batch.clips[0].model_copy(update={"assets":()})
+        state = seed.model_copy(update={"coverage_source":scope,"batch":seed.batch.model_copy(update={"clips":(bad_clip,*seed.batch.clips[1:])})})
+        # When / Then: file existence/coverage tags do not allow silently removing a mandatory asset.
+        with pytest.raises(ContractError,match="asset"):
+>           require("adapters","verify_scope")(state,tmp_path)
+
+tests/test_adapters.py:94: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+production/adapters.py:117: in verify_scope
+    if derive_coverage(path) != state.approved_coverage:
+       ^^^^^^^^^^^^^^^^^^^^^
+production/adapters.py:81: in derive_coverage
+    source = TypeAdapter(CoverageEnvelope | Project).validate_json(path.read_bytes())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = TypeAdapter(Union[CoverageEnvelope, Project])
+data = b'{"format": "production-coverage/1", "requirements": [{"id": "R1", "shot": "SH1", "panels": ["P1"], "modality": "vide..., "version": "1", "sha256": "3d5a12bac09100944c9224d73d8574e1e8fcd6728b3d9e2d56df657aa469d60b", "path": "face.txt"}}]}'
+strict = None, extra = None, context = None, experimental_allow_partial = False
+by_alias = None, by_name = None
+
+    def validate_json(
+        self,
+        data: str | bytes | bytearray,
+        /,
+        *,
+        strict: bool | None = None,
+        extra: ExtraValues | None = None,
+        context: Any | None = None,
+        experimental_allow_partial: bool | Literal['off', 'on', 'trailing-strings'] = False,
+        by_alias: bool | None = None,
+        by_name: bool | None = None,
+    ) -> T:
+        """!!! abstract "Usage Documentation"
+            [JSON Parsing](../concepts/json.md#json-parsing)
+    
+        Validate a JSON string or bytes against the model.
+    
+        JSON validated this way often comes from an external source, where a
+        [`ValidationError`][pydantic_core.ValidationError] can be the first sign that the source changed
+        shape. [Logfire](../integrations/logfire.md) retains the complete document and trace context
+        alongside the errors — see [Troubleshooting validation errors](../errors/troubleshooting.md).
+    
+        Args:
+            data: The JSON data to validate against the model.
+            strict: Whether to strictly check types.
+            extra: Whether to ignore, allow, or forbid extra data during model validation.
+                See the [`extra` configuration value][pydantic.ConfigDict.extra] for details.
+            context: Additional context to use during validation.
+            experimental_allow_partial: **Experimental** whether to enable
+                [partial validation](../concepts/experimental.md#partial-validation), e.g. to process streams.
+                * False / 'off': Default behavior, no partial validation.
+                * True / 'on': Enable partial validation.
+                * 'trailing-strings': Enable partial validation and allow trailing strings in the input.
+            by_alias: Whether to use the field's alias when validating against the provided input data.
+            by_name: Whether to use the field's name when validating against the provided input data.
+    
+        Returns:
+            The validated object.
+        """
+        if by_alias is False and by_name is not True:
+            raise PydanticUserError(
+                'At least one of `by_alias` or `by_name` must be set to True.',
+                code='validate-by-alias-and-name-false',
+            )
+    
+>       return self.validator.validate_json(
+            data,
+            strict=strict,
+            extra=extra,
+            context=context,
+            allow_partial=experimental_allow_partial,
+            by_alias=by_alias,
+            by_name=by_name,
+        )
+E       pydantic_core._pydantic_core.ValidationError: 3 validation errors for union[CoverageEnvelope,Project]
+E       CoverageEnvelope.asset_uses
+E         Extra inputs are not permitted [type=extra_forbidden, input_value=[{'shot': 'SH1', 'pin': {...', 'path': 'face.txt'}}], input_type=list]
+E           For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
+E       Project.shots
+E         Field required [type=missing, input_value={'format': 'production-co..., 'path': 'face.txt'}}]}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/missing
+E       Project.storyboard
+E         Field required [type=missing, input_value={'format': 'production-co..., 'path': 'face.txt'}}]}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+/home/declan/.local/lib/python3.14/site-packages/pydantic/type_adapter.py:466: ValidationError
+_______________ test_audio_cue_when_upstream_shot_requires_sound _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-28/test_audio_cue_when_upstream_s0')
+
+    def test_audio_cue_when_upstream_shot_requires_sound(tmp_path):
+        # Given: sound is declared by cue rather than dialogue.
+        project = {"shots":[{"id":"SH1","audio_cue_ids":["AMB1"]}],"storyboard":{"panels":[{"id":"P1","shot_id":"SH1","beat_ids":["B1"]}]}}
+        path = tmp_path/"audio-project.json";path.write_text(json.dumps(project))
+        # When: deriving source coverage.
+        items = require("adapters","derive_coverage")(path)
+        # Then: native/registered audio is a mandatory source obligation.
+>       assert next(r for r in items if r.id == "cue:SH1:AMB1").modality == "audio"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       StopIteration
+
+tests/test_adapters.py:104: StopIteration
+=========================== short test summary info ============================
+FAILED tests/test_adapters.py::test_asset_scope_when_batch_omits_required_identity
+FAILED tests/test_adapters.py::test_audio_cue_when_upstream_shot_requires_sound
+2 failed in 0.06s

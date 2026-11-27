@@ -1,0 +1,37 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___________ test_revalidation_when_historical_result_remains_usable ____________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...673597f56a9f25b60849469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-18/test_revalidation_when_histori0')
+
+    def test_revalidation_when_historical_result_remains_usable(seed, capability, authority, tmp_path):
+        # Given: previously accepted take, then related design revision changes.
+        state, take, review = candidate(seed,capability,authority,tmp_path)
+        state = require("quality","accept_take")(state,take,review,take.fingerprint,tmp_path)
+        state = state.model_copy(update={"batch":state.batch.model_copy(update={"scope_revision":"scope-2"})})
+        current = require("contracts","fingerprint")(state,"C1")
+        # When: explicitly re-reviewing the known historical take against current requirements.
+>       updated = require("quality","revalidate_take")(state,"C1",review,current,tmp_path)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality.py:118: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'quality', name = 'revalidate_take'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+        assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+        value = getattr(importlib.import_module(f"production.{module}"), name, None)
+>       assert callable(value), f"missing {module}.{name} behavior"
+E       AssertionError: missing quality.revalidate_take behavior
+E       assert False
+E        +  where False = callable(None)
+
+tests/conftest.py:19: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_quality.py::test_revalidation_when_historical_result_remains_usable
+1 failed in 0.40s

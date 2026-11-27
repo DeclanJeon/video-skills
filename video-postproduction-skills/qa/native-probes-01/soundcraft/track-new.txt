@@ -1,0 +1,11 @@
+{
+  "id": "track.new",
+  "label": "New...",
+  "menu": [
+    "Track"
+  ],
+  "shortcut": "Cmd+Shift+N",
+  "params": "{count?: 1, format?: mono|stereo|5.1…, kind?: audio|aux|master|midi|instrument|vca|folder, name?, timebase?: samples|ticks, instrument?: plugin id, rows?: [objects with the same fields] (1–128 tracks total)}",
+  "enabled": true,
+  "disabled_reason": null
+}

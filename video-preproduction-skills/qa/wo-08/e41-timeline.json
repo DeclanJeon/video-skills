@@ -1,0 +1,26 @@
+[
+  {
+    "code": "TL04",
+    "target": "D001",
+    "message": "speech-rate block: 19 units / 2s, 0 pauses",
+    "severity": "error"
+  },
+  {
+    "code": "TL04",
+    "target": "D002",
+    "message": "speech-rate block: 23 units / 2.5s, 0 pauses",
+    "severity": "error"
+  },
+  {
+    "code": "TL05",
+    "target": "D004+D005",
+    "message": "speech-rate warn: 26 units / 4s, 1 pauses",
+    "severity": "warning"
+  },
+  {
+    "code": "TL04",
+    "target": "D009+D010",
+    "message": "speech-rate block: 36 units / 3.5s, 1 pauses",
+    "severity": "error"
+  }
+]

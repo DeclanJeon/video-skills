@@ -1,0 +1,8 @@
+/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/filmcraft.py
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/filmcraft.py:66:59 - error: Set 항목은 해시가 가능해야 합니다.
+    ‘SourceRef’ 형식을 해시할 수 없습니다. (reportUnhashable)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/filmcraft.py:165:22 - error: "Nonempty" 형식의 인수를 "__init__" 함수에서 "SourceId" 형식의 "id" 매개 변수에 할당할 수 없습니다.
+    "str"은 "SourceId"에 할당할 수 없습니다. (reportArgumentType)
+  /home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/postproduction/backends/filmcraft.py:167:25 - error: "str" 형식의 인수를 "__init__" 함수에서 "SourceId" 형식의 "id" 매개 변수에 할당할 수 없습니다.
+    "str"은 "SourceId"에 할당할 수 없습니다. (reportArgumentType)
+3 errors, 0 warnings, 0 notes

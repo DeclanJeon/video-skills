@@ -1,0 +1,385 @@
+{
+  "scope": "technical alpha/motion observations only; no master/perceptual certification",
+  "frames": [
+    {
+      "path": "plate_00000.png",
+      "mode": "RGBA",
+      "size": [
+        160,
+        90
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "bbox": [
+        20,
+        30,
+        60,
+        60
+      ],
+      "partial_alpha_sample": []
+    },
+    {
+      "path": "plate_00001.png",
+      "mode": "RGBA",
+      "size": [
+        160,
+        90
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "bbox": [
+        26,
+        30,
+        67,
+        60
+      ],
+      "partial_alpha_sample": [
+        [
+          255,
+          0,
+          0,
+          85
+        ],
+        [
+          255,
+          0,
+          0,
+          170
+        ],
+        [
+          255,
+          0,
+          0,
+          85
+        ]
+      ]
+    },
+    {
+      "path": "plate_00002.png",
+      "mode": "RGBA",
+      "size": [
+        160,
+        90
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "bbox": [
+        33,
+        30,
+        74,
+        60
+      ],
+      "partial_alpha_sample": [
+        [
+          255,
+          0,
+          0,
+          170
+        ],
+        [
+          255,
+          0,
+          0,
+          85
+        ],
+        [
+          255,
+          0,
+          0,
+          170
+        ]
+      ]
+    },
+    {
+      "path": "plate_00003.png",
+      "mode": "RGBA",
+      "size": [
+        160,
+        90
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "bbox": [
+        40,
+        30,
+        80,
+        60
+      ],
+      "partial_alpha_sample": []
+    },
+    {
+      "path": "plate_00004.png",
+      "mode": "RGBA",
+      "size": [
+        160,
+        90
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "bbox": [
+        46,
+        30,
+        87,
+        60
+      ],
+      "partial_alpha_sample": [
+        [
+          255,
+          0,
+          0,
+          85
+        ],
+        [
+          255,
+          0,
+          0,
+          170
+        ],
+        [
+          255,
+          0,
+          0,
+          85
+        ]
+      ]
+    },
+    {
+      "path": "plate_00005.png",
+      "mode": "RGBA",
+      "size": [
+        160,
+        90
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "bbox": [
+        53,
+        30,
+        94,
+        60
+      ],
+      "partial_alpha_sample": [
+        [
+          255,
+          0,
+          0,
+          170
+        ],
+        [
+          255,
+          0,
+          0,
+          85
+        ],
+        [
+          255,
+          0,
+          0,
+          170
+        ]
+      ]
+    },
+    {
+      "path": "plate_00006.png",
+      "mode": "RGBA",
+      "size": [
+        160,
+        90
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "bbox": [
+        60,
+        30,
+        100,
+        60
+      ],
+      "partial_alpha_sample": []
+    },
+    {
+      "path": "plate_00007.png",
+      "mode": "RGBA",
+      "size": [
+        160,
+        90
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "bbox": [
+        66,
+        30,
+        107,
+        60
+      ],
+      "partial_alpha_sample": [
+        [
+          255,
+          0,
+          0,
+          85
+        ],
+        [
+          255,
+          0,
+          0,
+          170
+        ],
+        [
+          255,
+          0,
+          0,
+          85
+        ]
+      ]
+    },
+    {
+      "path": "plate_00008.png",
+      "mode": "RGBA",
+      "size": [
+        160,
+        90
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "bbox": [
+        73,
+        30,
+        114,
+        60
+      ],
+      "partial_alpha_sample": [
+        [
+          255,
+          0,
+          0,
+          170
+        ],
+        [
+          255,
+          0,
+          0,
+          85
+        ],
+        [
+          255,
+          0,
+          0,
+          170
+        ]
+      ]
+    },
+    {
+      "path": "plate_00009.png",
+      "mode": "RGBA",
+      "size": [
+        160,
+        90
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "bbox": [
+        80,
+        30,
+        120,
+        60
+      ],
+      "partial_alpha_sample": []
+    },
+    {
+      "path": "plate_00010.png",
+      "mode": "RGBA",
+      "size": [
+        160,
+        90
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "bbox": [
+        86,
+        30,
+        127,
+        60
+      ],
+      "partial_alpha_sample": [
+        [
+          255,
+          0,
+          0,
+          85
+        ],
+        [
+          255,
+          0,
+          0,
+          170
+        ],
+        [
+          255,
+          0,
+          0,
+          85
+        ]
+      ]
+    },
+    {
+      "path": "plate_00011.png",
+      "mode": "RGBA",
+      "size": [
+        160,
+        90
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "bbox": [
+        93,
+        30,
+        134,
+        60
+      ],
+      "partial_alpha_sample": [
+        [
+          255,
+          0,
+          0,
+          170
+        ],
+        [
+          255,
+          0,
+          0,
+          85
+        ],
+        [
+          255,
+          0,
+          0,
+          170
+        ]
+      ]
+    }
+  ]
+}

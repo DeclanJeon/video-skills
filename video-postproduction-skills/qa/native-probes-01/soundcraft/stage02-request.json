@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "/usr/bin/soundcraft-cli",
+    "run",
+    "--in",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/soundcraft/native.scraft",
+    "--cmd",
+    "setup.session={\"frame_rate\": \"24\"}",
+    "--cmd",
+    "mix.volume={\"tracks\": [5], \"db\": -6}",
+    "--cmd",
+    "mix.volume={\"tracks\": [8], \"db\": -12}",
+    "--cmd",
+    "file.bounce_mix={\"path\": \"/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/soundcraft/mix-probe.wav\", \"format\": \"wav\", \"bit_depth\": \"32f\", \"start\": 0, \"end\": 96000, \"normalize\": false, \"dither\": false}",
+    "--save",
+    "/home/declan/Documents/Projects/Products/04_Skills/Skills-and-Automation/video-skills/video-postproduction-skills/qa/native-probes-01/soundcraft/mixed.scraft",
+    "--inspect",
+    "--compact"
+  ],
+  "pid": 937991,
+  "returncode": 0,
+  "timed_out": false,
+  "network_denied": true
+}

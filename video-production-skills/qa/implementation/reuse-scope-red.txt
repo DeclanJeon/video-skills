@@ -1,0 +1,122 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+____________ test_supplied_source_when_reuse_is_explicitly_approved ____________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-59/test_supplied_source_when_reus0')
+
+    def test_supplied_source_when_reuse_is_explicitly_approved(seed,capability,authority,tmp_path):
+        # Given: rights/approval pins name an existing local source and exact selected range.
+        take,report,approval=supplied(seed,capability,authority,tmp_path)
+        # When: admitting supplied media without generation.
+>       state=require("quality","accept_supplied")(seed,take,report,approval,tmp_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_reuse_scope.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'quality', name = 'accept_supplied'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+        assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+        value = getattr(importlib.import_module(f"production.{module}"), name, None)
+>       assert callable(value), f"missing {module}.{name} behavior"
+E       AssertionError: missing quality.accept_supplied behavior
+E       assert False
+E        +  where False = callable(None)
+
+tests/conftest.py:19: AssertionError
+______ test_supplied_source_when_generation_grant_is_not_reuse_permission ______
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+capability = Capability(account='fixture-account', model='fixture-model', transport='offline-receipt', mode='unlimited', roles=('as...='df28e9b6b71acb09b83342f14db863ac6395937fe2014f1f7e8551b25377d16e', path='capability.txt'), observed_mode='unlimited')
+authority = Authority(id='AP-1', clips=('C1', 'C2', 'C3'), allowed_hashes=('6c0b1e48894a1edc7ea93350aac21f59cd429c105447f0a2bc3748...ty.txt', version='1', sha256='ff89d2af995a4ea6c7429a8947e98da18ed5599ba63dfaca9b59a4e859da2ec5', path='authority.txt'))
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-59/test_supplied_source_when_gene0')
+
+    def test_supplied_source_when_generation_grant_is_not_reuse_permission(seed,capability,authority,tmp_path):
+        # Given: a generation-only grant, not permission to reuse this file.
+        take,report,approval=supplied(seed,capability,authority,tmp_path)
+        approval=approval.model_copy(update={"reuse":False})
+        # When / Then: possession of media or a generation grant does not authorize reuse.
+        with pytest.raises(ContractError,match="authority"):
+>           require("quality","accept_supplied")(seed,take,report,approval,tmp_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_reuse_scope.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'quality', name = 'accept_supplied'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+        assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+        value = getattr(importlib.import_module(f"production.{module}"), name, None)
+>       assert callable(value), f"missing {module}.{name} behavior"
+E       AssertionError: missing quality.accept_supplied behavior
+E       assert False
+E        +  where False = callable(None)
+
+tests/conftest.py:19: AssertionError
+____________ test_scope_revision_when_exclusion_explicitly_approved ____________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-59/test_scope_revision_when_exclu0')
+
+    def test_scope_revision_when_exclusion_explicitly_approved(seed,tmp_path):
+        # Given: exact old/new scope hashes and explicit approved removal of R3.
+        scope=pin(tmp_path,"coverage-v2.json",json.dumps({"format":"production-coverage/1","requirements":[r.model_dump() for r in seed.approved_coverage[:-1]]}))
+        evidence=pin(tmp_path,"exclude-approval.txt","fixture approval of exactly R3 exclusion")
+>       grant=require("scope","ScopeGrant")(old_source_hash=seed.coverage_source.sha256,old_scope_revision=seed.batch.scope_revision,new_source=scope,new_scope_revision="scope-2",removed=("R3",),added=(),changed=(),asset_changes=(),evidence=evidence)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_reuse_scope.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'scope', name = 'ScopeGrant'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing scope runtime
+E       assert None
+E        +  where None = <function find_spec at 0x76e8b7b47270>('production.scope')
+E        +    where <function find_spec at 0x76e8b7b47270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:17: AssertionError
+_______________ test_scope_revision_when_missing_exclusion_grant _______________
+
+seed = State(revision=0, batch=Batch(id='B1', revision=1, scope_revision='scope-1', coverage=(Requirement(id='R1', shot='SH1'...469e78b6', path='approved-coverage.json'), attempts=(), selections=(), history=(), join_reviews=(), change_evidence=())
+tmp_path = PosixPath('/tmp/pytest-of-declan/pytest-59/test_scope_revision_when_missi0')
+
+    def test_scope_revision_when_missing_exclusion_grant(seed,tmp_path):
+        # Given: same reduced plan but no authorization for removed required items.
+        scope=pin(tmp_path,"coverage-v2.json",json.dumps({"format":"production-coverage/1","requirements":[r.model_dump() for r in seed.approved_coverage[:-1]]}))
+        evidence=pin(tmp_path,"no-exclusion.txt","does not approve an exclusion")
+>       grant=require("scope","ScopeGrant")(old_source_hash=seed.coverage_source.sha256,old_scope_revision=seed.batch.scope_revision,new_source=scope,new_scope_revision="scope-2",removed=(),added=(),changed=(),asset_changes=(),evidence=evidence)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_reuse_scope.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+module = 'scope', name = 'ScopeGrant'
+
+    def require(module, name):
+        """Fail as an assertion when a planned behavior is not implemented yet."""
+>       assert importlib.util.find_spec(f"production.{module}"), f"missing {module} runtime"
+E       AssertionError: missing scope runtime
+E       assert None
+E        +  where None = <function find_spec at 0x76e8b7b47270>('production.scope')
+E        +    where <function find_spec at 0x76e8b7b47270> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/conftest.py:17: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_reuse_scope.py::test_supplied_source_when_reuse_is_explicitly_approved
+FAILED tests/test_reuse_scope.py::test_supplied_source_when_generation_grant_is_not_reuse_permission
+FAILED tests/test_reuse_scope.py::test_scope_revision_when_exclusion_explicitly_approved
+FAILED tests/test_reuse_scope.py::test_scope_revision_when_missing_exclusion_grant
+4 failed in 0.27s

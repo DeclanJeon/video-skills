@@ -1,0 +1,16 @@
+{
+  "name": "video-production-skills",
+  "version": "0.1.0",
+  "status": "local-implementation-unreleased",
+  "entry_skill": "production-supervisor",
+  "automatic_invocation": false,
+  "skills": [
+    "production-supervisor",
+    "generation-operator",
+    "take-reviewer",
+    "continuity-reviewer",
+    "production-handoff"
+  ],
+  "runtime": "python3",
+  "external_execution": false
+}

@@ -1,0 +1,6 @@
+{
+  "valid": true,
+  "protected_files": 3,
+  "external_mutations": false,
+  "scope": "protected code digests unchanged; no provider execution tools called"
+}
